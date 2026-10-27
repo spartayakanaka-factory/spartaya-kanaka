@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "build": "DATABASE_URL='mysql://localhost/sprtaya_build' prisma generate && next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\" \"docs/**/*.md\" README.md package.json tsconfig.json next.config.mjs postcss.config.mjs eslint.config.mjs vitest.config.mts .prettierrc.json",
