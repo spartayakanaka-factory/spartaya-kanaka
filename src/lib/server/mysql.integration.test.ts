@@ -1,15 +1,43 @@
 import { randomUUID } from "node:crypto";
+import { hashPassword } from "better-auth/crypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { assertSafeDatabaseTarget } from "../../../scripts/database-target";
 import { createRuntimeDatabase } from "../../../scripts/runtime-db";
+import {
+  buildLegacyProductDraft,
+  createLegacyProductIfUnmapped,
+  type LegacyProduct,
+} from "../catalog-import";
+import { assertCompatibleDatabaseVersion } from "./database-engine";
+import { getAuth } from "./auth";
 import type { PrismaClient } from "@/generated/prisma/client";
 
-const enabled = process.env.PHASE2_DB_INTEGRATION === "1";
+const hostingerAcceptanceApproval = "CONFIRM_SYNTHETIC_TEST_WRITES";
+const hostingerAcceptance =
+  process.env.DATABASE_TARGET === "hostinger-phase2-test" &&
+  process.env.PHASE2_HOSTINGER_ACCEPTANCE === hostingerAcceptanceApproval;
+const enabled =
+  process.env.PHASE2_DB_INTEGRATION === "1" &&
+  (process.env.DATABASE_TARGET === "local" || hostingerAcceptance);
 
 function assertIsolatedTestDatabase() {
-  assertSafeDatabaseTarget();
   const raw = process.env.DATABASE_URL;
-  if (!raw || process.env.DATABASE_TARGET !== "local") {
+  if (!raw) {
+    throw new Error("Database integration tests require DATABASE_URL.");
+  }
+
+  if (process.env.DATABASE_TARGET === "hostinger-phase2-test") {
+    if (!hostingerAcceptance) {
+      throw new Error(
+        "Hostinger database tests require PHASE2_HOSTINGER_ACCEPTANCE=CONFIRM_SYNTHETIC_TEST_WRITES.",
+      );
+    }
+    assertSafeDatabaseTarget({ allowHostingerPhase2Test: true });
+    return;
+  }
+
+  assertSafeDatabaseTarget();
+  if (process.env.DATABASE_TARGET !== "local") {
     throw new Error("Database integration tests require DATABASE_TARGET=local.");
   }
   const url = new URL(raw);
@@ -22,14 +50,6 @@ function assertIsolatedTestDatabase() {
       "Database integration tests require a loopback MySQL database named with a test or integration suffix.",
     );
   }
-}
-
-function versionAtLeast(actual: number[], required: number[]) {
-  for (let index = 0; index < required.length; index++) {
-    if (actual[index] > required[index]) return true;
-    if (actual[index] < required[index]) return false;
-  }
-  return true;
 }
 
 const databaseSuite = describe.skipIf(!enabled);
@@ -51,20 +71,7 @@ databaseSuite("MySQL/MariaDB integration acceptance", () => {
     const versions = await db.$queryRaw<Array<{ version: string }>>`SELECT VERSION() AS version`;
     const version = versions[0]?.version ?? "";
     expect(version).toBeTruthy();
-    const mariadb = /mariadb/i.test(version);
-    const versionTuple = mariadb
-      ? version.match(/(?:^|[- ])(\d+)\.(\d+)\.(\d+)-MariaDB/i)
-      : version.match(/^(\d+)\.(\d+)\.(\d+)/);
-    expect(versionTuple, `unrecognized MySQL/MariaDB version: ${version}`).not.toBeNull();
-    const actualVersion = [
-      Number(versionTuple?.[1]),
-      Number(versionTuple?.[2]),
-      Number(versionTuple?.[3]),
-    ];
-    expect(
-      versionAtLeast(actualVersion, mariadb ? [10, 2, 1] : [8, 0, 16]),
-      `${version} must support enforced CHECK constraints`,
-    ).toBe(true);
+    expect(() => assertCompatibleDatabaseVersion(version)).not.toThrow();
 
     const appliedMigrations = await db.$queryRaw<Array<{ applied: bigint }>>`
       SELECT COUNT(*) AS applied
@@ -237,6 +244,137 @@ databaseSuite("MySQL/MariaDB integration acceptance", () => {
     expect(permissionsByRole.get("OWNER")?.has("STAFF_MANAGE")).toBe(true);
     expect(permissionsByRole.get("CATALOG_EDITOR")?.has("PRODUCTS_PUBLISH")).toBe(false);
     expect(permissionsByRole.get("INVENTORY_STAFF")?.has("PRODUCTS_WRITE")).toBe(false);
+  });
+
+  it("authenticates a synthetic admin and persists a Better Auth session", async () => {
+    const email = `phase2-auth-${randomUUID()}@example.invalid`;
+    const password = `P2-${randomUUID()}-Auth!`;
+    let userId: string | undefined;
+    let sessionToken: string | undefined;
+
+    try {
+      const user = await db.adminUser.create({
+        data: {
+          name: "Synthetic Auth Test",
+          email,
+          roleCode: "INVENTORY_STAFF",
+          forcePasswordChange: true,
+          emailVerified: true,
+        },
+      });
+      userId = user.id;
+      await db.authAccount.create({
+        data: {
+          id: randomUUID(),
+          accountId: user.id,
+          providerId: "credential",
+          userId: user.id,
+          password: await hashPassword(password),
+        },
+      });
+
+      const origin =
+        process.env.AUTH_TRUSTED_ORIGINS?.split(",")[0]?.trim() || process.env.BETTER_AUTH_URL;
+      if (!origin)
+        throw new Error("Set the staging auth URL and trusted origin before integration tests.");
+      const result = await getAuth().api.signInEmail({
+        body: { email, password, rememberMe: false },
+        headers: new Headers({ origin }),
+      });
+      sessionToken = result.token;
+
+      expect(result.user.id).toBe(user.id);
+      expect(result.user.email).toBe(email);
+      expect(sessionToken).toBeTruthy();
+      expect(await db.authSession.findUnique({ where: { token: sessionToken } })).toMatchObject({
+        userId: user.id,
+      });
+      expect(
+        (await db.adminUser.findUniqueOrThrow({ where: { id: user.id } })).forcePasswordChange,
+      ).toBe(true);
+    } finally {
+      if (sessionToken) await db.authSession.deleteMany({ where: { token: sessionToken } });
+      if (userId) {
+        await db.authAccount.deleteMany({ where: { userId } });
+        await db.adminUser.deleteMany({ where: { id: userId } });
+      }
+    }
+  });
+
+  it("applies a synthetic catalog mapping once and preserves edits on importer rerun", async () => {
+    const suffix = randomUUID();
+    const sourceProductId = `phase2-rerun-${suffix}`;
+    const slug = `phase2-rerun-${suffix}`;
+    const categorySlug = `phase2-rerun-category-${suffix}`;
+    const imagePath = `integration/${suffix}.jpg`;
+    const categoryUrl = `https://legacy.invalid/collections/${categorySlug}/`;
+    let productId: string | undefined;
+
+    const sourceProduct: LegacyProduct = {
+      id: sourceProductId,
+      url: `https://legacy.invalid/products/${slug}/`,
+      name_ar: "منتج اصطناعي لاختبار إعادة الاستيراد",
+      description: "Synthetic database-only importer acceptance fixture.",
+      category_urls: [categoryUrl],
+      price: "unverified source evidence",
+      currency: "EGP",
+      images: [{ local_path: imagePath, status: "downloaded" }],
+    };
+
+    try {
+      const category = await db.category.create({
+        data: {
+          slug: categorySlug,
+          nameAr: "فئة اختبار اصطناعية",
+          visible: false,
+          reviewRequired: true,
+        },
+      });
+      const media = await db.mediaAsset.create({
+        data: {
+          provider: "LEGACY_LOCAL",
+          originalKey: imagePath,
+          mimeType: "image/jpeg",
+          byteSize: 1,
+        },
+      });
+      const draft = buildLegacyProductDraft(
+        sourceProduct,
+        new Map([[categoryUrl, category.id]]),
+        new Map([[imagePath, media.id]]),
+      );
+
+      await expect(createLegacyProductIfUnmapped(db, sourceProduct, draft)).resolves.toBe(
+        "imported",
+      );
+      const mapping = await db.legacyProductMapping.findUniqueOrThrow({
+        where: { sourceProductId },
+        select: { productId: true },
+      });
+      productId = mapping.productId;
+
+      await db.product.update({
+        where: { id: productId },
+        data: { titleAr: "تعديل يدوي محفوظ", priceMinor: 12345, detailsReviewedAt: new Date() },
+      });
+      await expect(createLegacyProductIfUnmapped(db, sourceProduct, draft)).resolves.toBe(
+        "skipped",
+      );
+
+      const preserved = await db.product.findUniqueOrThrow({
+        where: { id: productId },
+        include: { categories: true, media: true },
+      });
+      expect(preserved).toMatchObject({ titleAr: "تعديل يدوي محفوظ", priceMinor: 12345 });
+      expect(preserved.detailsReviewedAt).toBeInstanceOf(Date);
+      expect(preserved.categories).toHaveLength(1);
+      expect(preserved.media).toHaveLength(1);
+    } finally {
+      await db.legacyProductMapping.deleteMany({ where: { sourceProductId } });
+      if (productId) await db.product.deleteMany({ where: { id: productId } });
+      await db.category.deleteMany({ where: { slug: categorySlug } });
+      await db.mediaAsset.deleteMany({ where: { originalKey: imagePath } });
+    }
   });
 
   it("serializes concurrent stock adjustments and rejects negative balances and duplicate request keys", async () => {

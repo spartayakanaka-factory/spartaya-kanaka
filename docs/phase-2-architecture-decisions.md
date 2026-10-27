@@ -4,14 +4,14 @@ Decisions recorded before implementation, 27 October 2026.
 
 ## Starting point
 
-- Existing Next.js 16.4.3 / React 19.3.1 application, strict TypeScript, Node engine `>=22 <25`.
+- Existing Next.js 16.4.3 / React 19.3.1 application, strict TypeScript, Node engine `^22.12.0 || ^24.0.0` to satisfy Prisma 7.10.1.
 - Catalog is a synchronous read-only adapter over local manifests: 487 product records, 38 scraped categories (36 verified populated categories), 2,823 gallery references, and 1,753 archived image files. No inventory, variants, approved current prices, or authenticated admin exists.
 - The project directory has no readable `.git` metadata or source commit; no starting commit can be reported. Preserve current files; do not invent Git provenance.
 - No database URL, admin secret, R2 credentials, local MySQL server, MySQL/MariaDB CLI, Docker, or Podman is present in the available workspace/environment.
 
 ## Database and catalog
 
-- Use stable Prisma 7 with its MySQL datasource and a bounded MariaDB driver adapter. Prisma 8 is still a release candidate as of this date and does not yet support MySQL.
+- Use stable Prisma 7 with its MySQL datasource and a bounded MariaDB driver adapter. Prisma 7 officially supports MariaDB 11; the designated Hostinger test target was owner-verified as MariaDB 11.8.9.
 - Store source records as unverified drafts. Keep legacy source IDs/URLs unique and import only observed data. Do not infer EGP price, availability, variant, ready-made/made-to-order classification, or category assignment from a scraped value alone. Source price is retained in legacy evidence only; operational product price starts unset.
 - Public reads select only `PUBLISHED` rows and require media/category data explicitly. The current static adapter remains an explicit local preview fallback until an operator supplies a non-production MySQL database. Production must fail closed when the DB mode is selected but unconfigured.
 - Use request-time queries and path revalidation after writes so newly published or edited catalog entries can appear without rebuilding the application. Existing route shapes remain source-slug compatible.

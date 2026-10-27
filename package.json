@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.25.0",
   "engines": {
-    "node": ">=22 <25"
+    "node": "^22.12.0 || ^24.0.0"
   },
   "scripts": {
     "dev": "next dev --webpack",
@@ -20,7 +20,9 @@
     "db:validate": "prisma validate",
     "db:generate": "prisma generate",
     "db:migrate:dev": "node scripts/migrate-dev.mjs",
-    "db:migrate:deploy": "node scripts/deploy-migrations.mjs",
+    "db:migrate:deploy": "tsx scripts/deploy-migrations.ts",
+    "db:preflight": "tsx scripts/preflight-hostinger-phase2.ts",
+    "db:preflight:hostinger": "tsx scripts/preflight-hostinger-phase2.ts",
     "db:seed": "tsx scripts/seed-database.ts",
     "admin:bootstrap": "tsx scripts/bootstrap-owner.ts",
     "catalog:import": "tsx scripts/import-legacy-catalog.ts"
@@ -34,9 +36,11 @@
     "dotenv": "18.0.9",
     "mariadb": "3.5.4",
     "next": "16.4.3",
+    "prisma": "7.10.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "sharp": "0.35.5",
+    "tsx": "4.23.15",
     "zod": "4.6.7"
   },
   "devDependencies": {
@@ -48,9 +52,7 @@
     "eslint": "10.13.0",
     "eslint-config-next": "16.4.3",
     "prettier": "3.9.10",
-    "prisma": "7.10.1",
     "tailwindcss": "4.3.3",
-    "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vitest": "5.0.5"
   }

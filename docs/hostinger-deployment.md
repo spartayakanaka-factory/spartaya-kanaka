@@ -7,7 +7,8 @@ No deployment, domain change, DNS change, account linking, or upload to Hostinge
 - Install: **pnpm install --frozen-lockfile**
 - Build: **pnpm build** (Webpack)
 - Start: **pnpm start**
-- Required Node engine: 22 or 24 (package range is **>=22 <25**)
+- Required Node engine: Node 22.12+ or 24.x (`^22.12.0 || ^24.0.0`, matching Prisma 7.10.1)
+- The Prisma CLI and `tsx` are production dependencies so the guarded preflight/migration scripts can run in Hostinger's build phase if development dependencies are omitted.
 - Public environment: **NEXT_PUBLIC_SITE_URL**
 - Database or payment environment variables: none in Phase 1
 
@@ -16,7 +17,7 @@ The Next.js production build is a Node server application. Do not select static 
 ## Readiness checklist
 
 - [ ] Confirm the exact Hostinger plan exposes managed Node.js web apps for this domain.
-- [ ] Select Node 22 or 24 and confirm its availability in the account.
+- [ ] Select Node 22.12+ or 24.x and confirm its availability in the account.
 - [ ] Deploy first to a non-production preview/subdomain after the owner authorizes it.
 - [ ] Package the Next.js source, lockfile, and required media; exclude **.git**, caches, extractor page cache, and unrelated files.
 - [ ] Set **NEXT_PUBLIC_SITE_URL** to the preview URL, then to the approved public domain at launch.
@@ -26,6 +27,8 @@ The Next.js production build is a Node server application. Do not select static 
 - [ ] Review every product’s price, stock/made-to-order state, and category before enabling any transaction path.
 - [ ] Plan the domain cutover, existing URL redirects, rollback, and mail/DNS checks before replacing the live website.
 
-Hostinger's current help center lists Next.js and Node 18/20/22/24 for eligible Business/Unlimited and Cloud Node.js web apps. The app requires Node 22 or 24. Current managed web limits do not support inbound WebSockets, Docker, Redis, or always-running background workers. Use cron or an approved external durable scheduler for future notifications.
+Hostinger's current help center lists Next.js and Node 18/20/22/24 for eligible Business/Unlimited and Cloud Node.js web apps. Prisma 7 narrows the useful runtime to Node 22.12+ or 24.x. The owner reports that this account's designated test database is MariaDB 11.8.9, supported by Prisma ORM 7 and this repository's MariaDB driver adapter. The preflight also permits MariaDB 10.2.1+ or MySQL 8.0.16+ to preserve enforced inventory `CHECK` constraints. The app's actual Hostinger connection and migration behavior remain unverified until the approved staging procedure runs. Current managed web limits do not support inbound WebSockets, Docker, Redis, or always-running background workers. Use cron or an approved external durable scheduler for future notifications.
+
+For the owner-designated Phase 2 test database, use [the controlled staging acceptance plan](hostinger-phase2-staging-acceptance.md). The staging site must remain Basic-Auth restricted and noindex. No migration or deployment is authorized by this document.
 
 References: [Hostinger Node.js web apps](https://www.hostinger.com/support/how-to-deploy-a-nodejs-website-in-hostinger/), [Hostinger Node.js limits](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/), [Next.js installation requirements](https://nextjs.org/docs/app/getting-started/installation).

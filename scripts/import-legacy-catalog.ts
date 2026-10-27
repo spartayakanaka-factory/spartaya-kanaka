@@ -47,7 +47,9 @@ async function main() {
     );
     return;
   }
-  assertSafeDatabaseTarget();
+  assertSafeDatabaseTarget({
+    allowHostingerPhase2Test: process.argv.includes("--confirm-hostinger-phase2-test"),
+  });
   if (process.argv.includes("--dry-run")) throw new Error("Choose either --dry-run or --apply.");
   const db = createRuntimeDatabase();
   let importedProducts = 0;

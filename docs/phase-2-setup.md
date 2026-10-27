@@ -4,9 +4,9 @@ This is an implementation guide. No database, object-storage bucket, credentials
 
 ## Local or staging database
 
-Use Node 22 or 24 and pnpm 11. Create a MySQL 8.0.16+ or MariaDB 10.2.1+ database with a UTF-8 compatible charset. The migration uses `CHECK` constraints for nonnegative inventory. Do not point the `local` or `staging` commands at production.
+Use Node 22.12+ or 24.x and pnpm 11. Create a MySQL 8.0.16+ or MariaDB 10.2.1+ database with a UTF-8 compatible charset. The migration uses `CHECK` constraints for nonnegative inventory. The designated Hostinger test database was owner-verified as MariaDB 11.8.9 with no tables in the previous structure check; the guarded preflight must reverify it. Do not point the `local` or `staging` commands at production.
 
-1. Copy `.env.example` to `.env` and replace its placeholders with local values. URL-encode special characters in database credentials. Keep `.env` out of source control. For local commands, use a loopback host and database name ending in `_local`, `_test`, or `_dev`. For staging commands, use a dedicated non-loopback database whose name includes `staging` or `stage`.
+1. Copy `.env.example` to `.env` and replace its placeholders with local values. URL-encode special characters in database credentials. Keep `.env` out of source control. For local commands, use a loopback host and database name ending in `_local`, `_test`, or `_dev`. Generic `DATABASE_TARGET=staging` remains for separate staging databases named with `stage`/`staging`. The designated Hostinger test database has a separate exact-identity target; follow [the Hostinger Phase 2.2 acceptance plan](hostinger-phase2-staging-acceptance.md) instead of weakening the generic guard.
 2. Validate and generate the client, then apply the committed migration:
 
    ```sh
@@ -26,13 +26,11 @@ Use Node 22 or 24 and pnpm 11. Create a MySQL 8.0.16+ or MariaDB 10.2.1+ databas
 
 ### Hostinger staging environment
 
-For a later staging run, enter `DATABASE_URL`, `DATABASE_TARGET=staging`, `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`, `AUTH_TRUSTED_ORIGINS`, and `CATALOG_SOURCE` in the temporary website's protected environment-variable settings. Keep database credentials and auth secrets out of GitHub, this document, and client-side variables. Obtain the database host and engine/version from Hostinger; do not assume a local connection hostname works from Codex.
-
-Before applying migrations, verify the database is dedicated and its contents are backed up. The current migration safety check accepts staging only when the URL host is non-loopback and the database name contains `stage` or `staging`. The owner reports a provisioned test database whose current name does not meet that rule. Resolve the naming/guard mismatch deliberately before setting `DATABASE_TARGET=staging`; no migration or connection should be attempted until that check passes.
+The designated Hostinger Phase 2 target now has an exact database/user fingerprint, a required `APP_ENV=staging` and `STAGING_SITE=1` environment, and a Hostinger-local `127.0.0.1:3306` connection check. Read-only preflight validates live identity/version and migration history. Migration deploy additionally requires a Hostinger backup reference and explicit CLI review flags. See [the controlled Hostinger acceptance plan](hostinger-phase2-staging-acceptance.md) for the environment-variable list, account steps, test commands, and release gates. No credentials are stored here.
 
 ## Opt-in MySQL integration checks
 
-The database integration suite is disabled during ordinary unit-test runs. It refuses to connect unless `PHASE2_DB_INTEGRATION=1`, `DATABASE_TARGET=local`, and `DATABASE_URL` points to loopback with a database name containing `test` or `integration`. Use a newly created, empty database such as `sprtaya_phase2_test`; never point it at a database containing user data. Apply migrations twice to verify replay, seed roles, then run:
+The database integration suite is disabled during ordinary unit-test runs. For local tests it requires `PHASE2_DB_INTEGRATION=1`, `DATABASE_TARGET=local`, and a loopback database with a `test` or `integration` name. For Hostinger tests, use only the exact target and explicit synthetic-write acknowledgement documented in the acceptance plan. Never point tests at a database containing production/customer data.
 
 ```sh
 DATABASE_TARGET=local pnpm db:migrate:deploy
@@ -43,7 +41,7 @@ PHASE2_DB_INTEGRATION=1 DATABASE_TARGET=local pnpm test:integration
 
 The suite checks migrated tables, required indexes and foreign keys, seeded role permissions, session-row reads, catalog/media relation writes, integer minor-unit prices, transaction rollback, concurrent stock compare-and-swap, nonnegative adjustment behavior, audit rows, and duplicate inventory request-key rejection. Its synthetic inventory fixture is deleted after the test. It does not replace HTTP-level Better Auth, server-action authorization, importer apply/rerun, storefront route, or object-storage upload/read-back tests; those still require the configured isolated services and owner test account.
 
-Set `DATABASE_TARGET=staging` only when intentionally running against a dedicated staging database. The seed, bootstrap, and importer reject `production` mode; they do not provide production credentials or perform deployment.
+Set `DATABASE_TARGET=staging` only for a separately named staging database. The designated Hostinger target is permitted only through its explicit target and command confirmation; production database targets remain blocked. These commands do not provide credentials or perform deployment.
 
 ## Catalog import and review
 
