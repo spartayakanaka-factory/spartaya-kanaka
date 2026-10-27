@@ -4,7 +4,7 @@ import { getStagingAccessConfig, isAuthorizedStagingBasicAuth } from "./staging-
 const protectedEnvironment = {
   STAGING_SITE: "1",
   STAGING_ACCESS_USERNAME: "stage-reviewer",
-  STAGING_ACCESS_PASSWORD: "long-staging-only-password-12345",
+  STAGING_ACCESS_PASSWORD: "x".repeat(24),
 };
 
 describe("staging access gate", () => {
@@ -22,6 +22,16 @@ describe("staging access gate", () => {
     expect(
       getStagingAccessConfig({ ...protectedEnvironment, STAGING_ACCESS_PASSWORD: "short" }),
     ).toEqual({ mode: "misconfigured" });
+  });
+
+  it("fails closed on the known Hostinger staging hostname until access is configured", () => {
+    expect(getStagingAccessConfig({}, "bisque-pheasant-330767.hostingersite.com")).toEqual({
+      mode: "misconfigured",
+    });
+    expect(getStagingAccessConfig({}, "bisque-pheasant-330767.hostingersite.com:443")).toEqual({
+      mode: "misconfigured",
+    });
+    expect(getStagingAccessConfig({}, "store.example.com")).toEqual({ mode: "disabled" });
   });
 
   it("accepts only the configured HTTP Basic credentials", () => {
