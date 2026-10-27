@@ -1,5 +1,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 
+export const hostingerPhase2StagingHostname = "bisque-pheasant-330767.hostingersite.com";
+
 export type StagingAccessConfig =
   | { mode: "disabled" }
   | { mode: "misconfigured" }
@@ -7,9 +9,16 @@ export type StagingAccessConfig =
 
 export function getStagingAccessConfig(
   environment: Record<string, string | undefined> = process.env,
+  hostname?: string | null,
 ): StagingAccessConfig {
   const enabled = environment.STAGING_SITE;
-  if ((enabled === undefined || enabled === "0") && environment.APP_ENV !== "staging") {
+  const forceProtection =
+    hostname?.toLowerCase().replace(/:\d+$/, "") === hostingerPhase2StagingHostname;
+  if (
+    (enabled === undefined || enabled === "0") &&
+    environment.APP_ENV !== "staging" &&
+    !forceProtection
+  ) {
     return { mode: "disabled" };
   }
   if (enabled !== "1") return { mode: "misconfigured" };
