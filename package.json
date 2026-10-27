@@ -30,6 +30,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.1156.0",
     "@aws-sdk/s3-request-presigner": "3.1156.0",
+    "@swc/helpers": "0.5.23",
     "@prisma/adapter-mariadb": "7.10.1",
     "@prisma/client": "7.10.1",
     "better-auth": "1.7.14",
