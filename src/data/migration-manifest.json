@@ -1,0 +1,4209 @@
+{
+  "version": 1,
+  "source": "https://www.sprtaya-kanaka.net",
+  "generatedFrom": "sprtaya-kanaka-assets/بيانات",
+  "note": "Review every mapping before launch. This file does not publish redirects.",
+  "products": [
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-sbhh-sdf-loks-copy",
+      "sourceId": "002b7649981b",
+      "sourceSlug": "aalbh-sbhh-sdf-loks-copy",
+      "targetPath": "/ar/products/aalbh-sbhh-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "sourceId": "002eb04cfe9c",
+      "sourceSlug": "asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "targetPath": "/ar/products/asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkshth-allsan-nhas-ahmr-copy",
+      "sourceId": "0054db8d73fa",
+      "sourceSlug": "mkshth-allsan-nhas-ahmr-copy",
+      "targetPath": "/ar/products/mkshth-allsan-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-nhas-asfr-nksh-byd-khshb-gmlh-copy",
+      "sourceId": "00aa2482809e",
+      "sourceSlug": "knk-nhas-asfr-nksh-byd-khshb-gmlh-copy",
+      "targetPath": "/ar/products/knk-nhas-asfr-nksh-byd-khshb-gmlh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "sourceId": "00fbdcf906f0",
+      "sourceSlug": "msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "targetPath": "/ar/products/msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/brad-almghrb-nhas-ahmr-brh-ojoh-copy",
+      "sourceId": "01ae927f58a3",
+      "sourceSlug": "brad-almghrb-nhas-ahmr-brh-ojoh-copy",
+      "targetPath": "/ar/products/brad-almghrb-nhas-ahmr-brh-ojoh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy-1",
+      "sourceId": "01b783e919ad",
+      "sourceSlug": "asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy-1",
+      "targetPath": "/ar/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sukariat-banana"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-alnhas-bjmyaa-ashkalha-jodh-aaalyh-copy",
+      "sourceId": "02ee17f92bb9",
+      "sourceSlug": "soan-alnhas-bjmyaa-ashkalha-jodh-aaalyh-copy",
+      "targetPath": "/ar/products/soan-alnhas-bjmyaa-ashkalha-jodh-aaalyh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-jorj-copy",
+      "sourceId": "02ef3854844b",
+      "sourceSlug": "ansyal-jorj-copy",
+      "targetPath": "/ar/products/ansyal-jorj-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy",
+      "sourceId": "033e75ab02da",
+      "sourceSlug": "sbhh-33-nhas-asfr-copy",
+      "targetPath": "/ar/products/sbhh-33-nhas-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb-copy",
+      "sourceId": "04049a89795b",
+      "sourceSlug": "hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb-copy",
+      "targetPath": "/ar/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hrm-altakh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-hgr-snaaa",
+      "sourceId": "04506a2b7d71",
+      "sourceSlug": "dlayat-bslslh-hgr-snaaa",
+      "targetPath": "/ar/products/dlayat-bslslh-hgr-snaaa",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-mdor-loks-copy",
+      "sourceId": "0479a9239821",
+      "sourceSlug": "tkm-3aalb-sdf-mdor-loks-copy",
+      "targetPath": "/ar/products/tkm-3aalb-sdf-mdor-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "sourceId": "052c6cce379b",
+      "sourceSlug": "tkm-asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "targetPath": "/ar/products/tkm-asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalb-joant-sdf-loks",
+      "sourceId": "05738d41f672",
+      "sourceSlug": "aalb-joant-sdf-loks",
+      "targetPath": "/ar/products/aalb-joant-sdf-loks",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-ayh-alkrsy-oalklakl-copy",
+      "sourceId": "062e2b41f51e",
+      "sourceSlug": "mydalyat-ayh-alkrsy-oalklakl-copy",
+      "targetPath": "/ar/products/mydalyat-ayh-alkrsy-oalklakl-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-almsryyn-alkdmaaa-mgsm-fraaon-copy",
+      "sourceId": "06450de15ead",
+      "sourceSlug": "mydalyat-almsryyn-alkdmaaa-mgsm-fraaon-copy",
+      "targetPath": "/ar/products/mydalyat-almsryyn-alkdmaaa-mgsm-fraaon-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asor-modrn",
+      "sourceId": "06a07f5341dd",
+      "sourceSlug": "tkm-asor-modrn",
+      "targetPath": "/ar/products/tkm-asor-modrn",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slk-nhas-hlzon-mtah-sadh-omgdol-copy",
+      "sourceId": "0795955bbbec",
+      "sourceSlug": "slk-nhas-hlzon-mtah-sadh-omgdol-copy",
+      "targetPath": "/ar/products/slk-nhas-hlzon-mtah-sadh-omgdol-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shfat-hgamh-copy",
+      "sourceId": "07f10771fc0f",
+      "sourceSlug": "shfat-hgamh-copy",
+      "targetPath": "/ar/products/shfat-hgamh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shoayat-tkdym-nhas-asfr-ao-ahmr-copy",
+      "sourceId": "088dd3d4551a",
+      "sourceSlug": "shoayat-tkdym-nhas-asfr-ao-ahmr-copy",
+      "targetPath": "/ar/products/shoayat-tkdym-nhas-asfr-ao-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahramat-antyka-kbyr-copy",
+      "sourceId": "08e9d68ea4a5",
+      "sourceSlug": "ahramat-antyka-kbyr-copy",
+      "targetPath": "/ar/products/ahramat-antyka-kbyr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hrm-altakh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy-2",
+      "sourceId": "0a9e950e2b54",
+      "sourceSlug": "mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy-2",
+      "targetPath": "/ar/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy-2",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-nksh-copy-2",
+      "sourceId": "0c6262811d0c",
+      "sourceSlug": "dblh-nksh-copy-2",
+      "targetPath": "/ar/products/dblh-nksh-copy-2",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkhlh-nhas-ahmr-asfr",
+      "sourceId": "0d206d75cb61",
+      "sourceSlug": "mkhlh-nhas-ahmr-asfr",
+      "targetPath": "/ar/products/mkhlh-nhas-ahmr-asfr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mkahl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-zy-alslslh",
+      "sourceId": "0d69862964a8",
+      "sourceSlug": "khlkhal-zy-alslslh",
+      "targetPath": "/ar/products/khlkhal-zy-alslslh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-btbk-oknkh-3ashkal",
+      "sourceId": "0d835aa4fd43",
+      "sourceSlug": "sbrtayh-btbk-oknkh-3ashkal",
+      "targetPath": "/ar/products/sbrtayh-btbk-oknkh-3ashkal",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy",
+      "sourceId": "0de1d5b118e6",
+      "sourceSlug": "mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy",
+      "targetPath": "/ar/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+        "https://www.sprtaya-kanaka.net/collections/mbakhr"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-asfr-copy-1",
+      "sourceId": "0ded36baf924",
+      "sourceSlug": "khlkhal-nhas-asfr-copy-1",
+      "targetPath": "/ar/products/khlkhal-nhas-asfr-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/myzan-alaadalh-ashkal-mkhtlfh-copy",
+      "sourceId": "0e0df27de895",
+      "sourceSlug": "myzan-alaadalh-ashkal-mkhtlfh-copy",
+      "targetPath": "/ar/products/myzan-alaadalh-ashkal-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-mshghol-copy",
+      "sourceId": "117ecf3e1dc9",
+      "sourceSlug": "khlkhal-mshghol-copy",
+      "targetPath": "/ar/products/khlkhal-mshghol-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fraaon-mtaamh-baloan-myna-4-ashkal-copy",
+      "sourceId": "11e9cfaa868e",
+      "sourceSlug": "asaor-fraaon-mtaamh-baloan-myna-4-ashkal-copy",
+      "targetPath": "/ar/products/asaor-fraaon-mtaamh-baloan-myna-4-ashkal-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-ahgar-tbyaayh-copy",
+      "sourceId": "124a1d74c3d5",
+      "sourceSlug": "dlayat-bslslh-ahgar-tbyaayh-copy",
+      "targetPath": "/ar/products/dlayat-bslslh-ahgar-tbyaayh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/broaz-aslam-sdf",
+      "sourceId": "136e8f36de81",
+      "sourceSlug": "broaz-aslam-sdf",
+      "targetPath": "/ar/products/broaz-aslam-sdf",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-kandy-copy",
+      "sourceId": "13798056b777",
+      "sourceSlug": "khoatm-kandy-copy",
+      "targetPath": "/ar/products/khoatm-kandy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ksrolh-nhas-ahmr",
+      "sourceId": "138fd8a1bf1b",
+      "sourceSlug": "ksrolh-nhas-ahmr",
+      "targetPath": "/ar/products/ksrolh-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyh-alhrm-copy",
+      "sourceId": "15a558cef47f",
+      "sourceSlug": "mydalyh-alhrm-copy",
+      "targetPath": "/ar/products/mydalyh-alhrm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-25sm-ydoy-nhas-asfr-copy",
+      "sourceId": "15f618d8a2ed",
+      "sourceSlug": "tkm-asaor-25sm-ydoy-nhas-asfr-copy",
+      "targetPath": "/ar/products/tkm-asaor-25sm-ydoy-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolyhat-ashkal-mkhtlfh-copy",
+      "sourceId": "161f43e0d953",
+      "sourceSlug": "kolyhat-ashkal-mkhtlfh-copy",
+      "targetPath": "/ar/products/kolyhat-ashkal-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/antykat-othf-sghyrh-hyoanat",
+      "sourceId": "16bab45b7653",
+      "sourceSlug": "antykat-othf-sghyrh-hyoanat",
+      "targetPath": "/ar/products/antykat-othf-sghyrh-hyoanat",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-rfyaah-nksh-aarb-copy",
+      "sourceId": "16f6771d8ab0",
+      "sourceSlug": "asaor-rfyaah-nksh-aarb-copy",
+      "targetPath": "/ar/products/asaor-rfyaah-nksh-aarb-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-rjaly-nhas-ahmr-copy",
+      "sourceId": "185394ea97a6",
+      "sourceSlug": "asaor-rjaly-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-rjaly-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/skryh-obnanh-nhas-ahmr-copy",
+      "sourceId": "1877d35bb062",
+      "sourceSlug": "skryh-obnanh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/skryh-obnanh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr-copy",
+      "sourceId": "196551e3e79b",
+      "sourceSlug": "hrm-altakh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/hrm-altakh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shaving",
+      "sourceId": "19c63701dd71",
+      "sourceSlug": "shaving",
+      "targetPath": "/ar/products/shaving",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-rjaly-nhas-ahmr",
+      "sourceId": "1a12fa335dcd",
+      "sourceSlug": "asaor-rjaly-nhas-ahmr",
+      "targetPath": "/ar/products/asaor-rjaly-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-nhas-mrsaah-balsdf-copy",
+      "sourceId": "1a5da663b06c",
+      "sourceSlug": "sbrtayh-oknkh-nhas-mrsaah-balsdf-copy",
+      "targetPath": "/ar/products/sbrtayh-oknkh-nhas-mrsaah-balsdf-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-nhas-ahmr",
+      "sourceId": "1a7a1e4719b3",
+      "sourceSlug": "asaor-nhas-ahmr",
+      "targetPath": "/ar/products/asaor-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy",
+      "sourceId": "1ae42f2165c8",
+      "sourceSlug": "asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy",
+      "targetPath": "/ar/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-copy",
+      "sourceId": "1bfab0186a7c",
+      "sourceSlug": "tkm-kho-4ktaa-copy",
+      "targetPath": "/ar/products/tkm-kho-4ktaa-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-nksh-ydo-nhas-ahmr-1mll-tkylh",
+      "sourceId": "1dea0685209b",
+      "sourceSlug": "soan-nksh-ydo-nhas-ahmr-1mll-tkylh",
+      "targetPath": "/ar/products/soan-nksh-ydo-nhas-ahmr-1mll-tkylh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/soany"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-bdblh-fraaon-nhas-ahmr",
+      "sourceId": "1ec0f6606d38",
+      "sourceSlug": "tkm-asaor-bdblh-fraaon-nhas-ahmr",
+      "targetPath": "/ar/products/tkm-asaor-bdblh-fraaon-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-ayh-alkrsy",
+      "sourceId": "1f9daa1ed7db",
+      "sourceSlug": "slslh-ayh-alkrsy",
+      "targetPath": "/ar/products/slslh-ayh-alkrsy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas-ahmr-copy",
+      "sourceId": "2038509a065f",
+      "sourceSlug": "ansyal-nhas-ahmr-copy",
+      "targetPath": "/ar/products/ansyal-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bajor-jaz-antaj-kdym-aaaly-aljodh",
+      "sourceId": "203a95f4fe5f",
+      "sourceSlug": "bajor-jaz-antaj-kdym-aaaly-aljodh",
+      "targetPath": "/ar/products/bajor-jaz-antaj-kdym-aaaly-aljodh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaony-copy",
+      "sourceId": "20a885aab38f",
+      "sourceSlug": "khoatm-fraaony-copy",
+      "targetPath": "/ar/products/khoatm-fraaony-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-loks-copy",
+      "sourceId": "20b2308c6815",
+      "sourceSlug": "aalbh-khatm-sdf-loks-copy",
+      "targetPath": "/ar/products/aalbh-khatm-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh-kbyrh-copy",
+      "sourceId": "20d41c3c9015",
+      "sourceSlug": "sbrtayh-oknkh-sadh-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-oknkh-sadh-kbyrh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tasat-nhas-ahmr",
+      "sourceId": "20d49458b077",
+      "sourceSlug": "tasat-nhas-ahmr",
+      "targetPath": "/ar/products/tasat-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-klh-okobayh-myah-nhas-ahmr-byor-thsyn-sadh-copy",
+      "sourceId": "21646f1462e1",
+      "sourceSlug": "tkm-klh-okobayh-myah-nhas-ahmr-byor-thsyn-sadh-copy",
+      "targetPath": "/ar/products/tkm-klh-okobayh-myah-nhas-ahmr-byor-thsyn-sadh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-gmlh-copy",
+      "sourceId": "21dd16f01299",
+      "sourceSlug": "asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-gmlh-copy",
+      "targetPath": "/ar/products/asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-gmlh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-akl-nhas-ahmr-copy",
+      "sourceId": "21e6553645d1",
+      "sourceSlug": "atbak-akl-nhas-ahmr-copy",
+      "targetPath": "/ar/products/atbak-akl-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-fraaony-nshr-oaloan",
+      "sourceId": "244d25999956",
+      "sourceSlug": "atbak-fraaony-nshr-oaloan",
+      "targetPath": "/ar/products/atbak-fraaony-nshr-oaloan",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayh-alaayn",
+      "sourceId": "24fe9c3c371e",
+      "sourceSlug": "dlayh-alaayn",
+      "targetPath": "/ar/products/dlayh-alaayn",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-ahmr-ao-asfr-copy",
+      "sourceId": "251d00024d2c",
+      "sourceSlug": "khlkhal-nhas-ahmr-ao-asfr-copy",
+      "targetPath": "/ar/products/khlkhal-nhas-ahmr-ao-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-kranyh-nhas-ahmr-copy",
+      "sourceId": "252fbde87d4d",
+      "sourceSlug": "dlayat-kranyh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/dlayat-kranyh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-ghoaysh-nhas",
+      "sourceId": "2545390f37d2",
+      "sourceSlug": "tkm-ghoaysh-nhas",
+      "targetPath": "/ar/products/tkm-ghoaysh-nhas",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/thf-oantykat-tkm-bgaa-copy",
+      "sourceId": "25a89528bc7f",
+      "sourceSlug": "thf-oantykat-tkm-bgaa-copy",
+      "targetPath": "/ar/products/thf-oantykat-tkm-bgaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-mtah-shklyn-copy",
+      "sourceId": "25b8239af067",
+      "sourceSlug": "tkm-asaor-mgdol-ydo-mtah-shklyn-copy",
+      "targetPath": "/ar/products/tkm-asaor-mgdol-ydo-mtah-shklyn-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkn-asaor-fraaon-nhas-asfr",
+      "sourceId": "26a6c6e4894d",
+      "sourceSlug": "tkn-asaor-fraaon-nhas-asfr",
+      "targetPath": "/ar/products/tkn-asaor-fraaon-nhas-asfr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-shgrh-zhrh-allots-copy",
+      "sourceId": "272eeb6b9a5e",
+      "sourceSlug": "hlk-shgrh-zhrh-allots-copy",
+      "targetPath": "/ar/products/hlk-shgrh-zhrh-allots-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-nksh-gmlh-copy",
+      "sourceId": "2847b547f53e",
+      "sourceSlug": "dblh-nksh-gmlh-copy",
+      "targetPath": "/ar/products/dblh-nksh-gmlh-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/accessories",
+        "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asor-odblh-msmar",
+      "sourceId": "28580d5f9af3",
+      "sourceSlug": "tkm-asor-odblh-msmar",
+      "targetPath": "/ar/products/tkm-asor-odblh-msmar",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/jrs-nhas",
+      "sourceId": "288fdaff47ff",
+      "sourceSlug": "jrs-nhas",
+      "targetPath": "/ar/products/jrs-nhas",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "sourceId": "28bd70d8c02a",
+      "sourceSlug": "asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "targetPath": "/ar/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/gzm-antyka-copy-1",
+      "sourceId": "29bdaeafaa30",
+      "sourceSlug": "gzm-antyka-copy-1",
+      "targetPath": "/ar/products/gzm-antyka-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy-1",
+      "sourceId": "2a2c8a56d2fc",
+      "sourceSlug": "srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy-1",
+      "targetPath": "/ar/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam",
+        "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/srfys-bghtaaa-nhas-ahmr",
+      "sourceId": "2a700f6b2cb5",
+      "sourceSlug": "srfys-bghtaaa-nhas-ahmr",
+      "targetPath": "/ar/products/srfys-bghtaaa-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-25sm-ydoy-nhas-asfr-copy-1",
+      "sourceId": "2a83b71f4667",
+      "sourceSlug": "tkm-asaor-25sm-ydoy-nhas-asfr-copy-1",
+      "targetPath": "/ar/products/tkm-asaor-25sm-ydoy-nhas-asfr-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy",
+      "sourceId": "2aba2a4f07c7",
+      "sourceSlug": "srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy",
+      "targetPath": "/ar/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "sourceId": "2ad27e900ab4",
+      "sourceSlug": "asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "targetPath": "/ar/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-trathna-copy",
+      "sourceId": "2e21ff0543b5",
+      "sourceSlug": "hlk-trathna-copy",
+      "targetPath": "/ar/products/hlk-trathna-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bolh-nhas-ahmr-copy",
+      "sourceId": "2e234c5a0e1c",
+      "sourceSlug": "bolh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/bolh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy",
+      "sourceId": "2eb7f4b2b1f3",
+      "sourceSlug": "shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy",
+      "targetPath": "/ar/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khatm-jorj-nhas-asfr-copy",
+      "sourceId": "2ec71926e1b8",
+      "sourceSlug": "khatm-jorj-nhas-asfr-copy",
+      "targetPath": "/ar/products/khatm-jorj-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr-copy",
+      "sourceId": "2fe569679458",
+      "sourceSlug": "fasl-almshf-nhas-ahmr-asfr-copy",
+      "targetPath": "/ar/products/fasl-almshf-nhas-ahmr-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/maaalk-oshok-oskakyn-akl-nhas-ahmr-copy",
+      "sourceId": "30029996929a",
+      "sourceSlug": "maaalk-oshok-oskakyn-akl-nhas-ahmr-copy",
+      "targetPath": "/ar/products/maaalk-oshok-oskakyn-akl-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-nksh-osad-byd-khshb-1mlly-copy",
+      "sourceId": "30067c4b7c2b",
+      "sourceSlug": "knk-nksh-osad-byd-khshb-1mlly-copy",
+      "targetPath": "/ar/products/knk-nksh-osad-byd-khshb-1mlly-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbayk-nhas-ahmr-9999-copy",
+      "sourceId": "3159162b90a1",
+      "sourceSlug": "sbayk-nhas-ahmr-9999-copy",
+      "targetPath": "/ar/products/sbayk-nhas-ahmr-9999-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-15sm-copy",
+      "sourceId": "318963dd158f",
+      "sourceSlug": "asaor-15sm-copy",
+      "targetPath": "/ar/products/asaor-15sm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "sourceId": "326494cd2ba6",
+      "sourceSlug": "msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "targetPath": "/ar/products/msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-ahmr-sab-copy",
+      "sourceId": "336fc1471012",
+      "sourceSlug": "khlkhal-nhas-ahmr-sab-copy",
+      "targetPath": "/ar/products/khlkhal-nhas-ahmr-sab-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tokh-ao-tok-shaar",
+      "sourceId": "33e3676e7962",
+      "sourceSlug": "tokh-ao-tok-shaar",
+      "targetPath": "/ar/products/tokh-ao-tok-shaar",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr",
+        "https://www.sprtaya-kanaka.net/collections/amshat"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-7m-6-ashkal-mkhtlfh-copy",
+      "sourceId": "348003ed9eec",
+      "sourceSlug": "asaor-7m-6-ashkal-mkhtlfh-copy",
+      "targetPath": "/ar/products/asaor-7m-6-ashkal-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-sadh-mdlaa-copy",
+      "sourceId": "34cc4ec6aa3e",
+      "sourceSlug": "tkm-asaor-sadh-mdlaa-copy",
+      "targetPath": "/ar/products/tkm-asaor-sadh-mdlaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-nhas",
+      "sourceId": "3544c85f20f3",
+      "sourceSlug": "slslh-nhas",
+      "targetPath": "/ar/products/slslh-nhas",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-nhas-ashkal-mkhtlf-alsaar-60-225",
+      "sourceId": "35b6e5fb7794",
+      "sourceSlug": "hlk-nhas-ashkal-mkhtlf-alsaar-60-225",
+      "targetPath": "/ar/products/hlk-nhas-ashkal-mkhtlf-alsaar-60-225",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/thf-oantykat-hyoanat-sghyrh-copy",
+      "sourceId": "36290c3a29d1",
+      "sourceSlug": "thf-oantykat-hyoanat-sghyrh-copy",
+      "targetPath": "/ar/products/thf-oantykat-hyoanat-sghyrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-alrokan-6-ktaa",
+      "sourceId": "366d41f86b54",
+      "sourceSlug": "tkm-alrokan-6-ktaa",
+      "targetPath": "/ar/products/tkm-alrokan-6-ktaa",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-alastrkhaaa-nhas-ahmr-mstord-4ktaa",
+      "sourceId": "3747efc94540",
+      "sourceSlug": "tkm-alastrkhaaa-nhas-ahmr-mstord-4ktaa",
+      "targetPath": "/ar/products/tkm-alastrkhaaa-nhas-ahmr-mstord-4ktaa",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/hrm-altakh",
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-btbk-3-ashkal-jml-copy",
+      "sourceId": "377d2c4cbb08",
+      "sourceSlug": "sbrtayh-btbk-3-ashkal-jml-copy",
+      "targetPath": "/ar/products/sbrtayh-btbk-3-ashkal-jml-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/suspended",
+      "sourceId": "3809c7156ca2",
+      "sourceSlug": "suspended",
+      "targetPath": "/ar/products/suspended",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/maaalk"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-3ktaa-copy-1",
+      "sourceId": "38fba453efeb",
+      "sourceSlug": "tkm-kho-3ktaa-copy-1",
+      "targetPath": "/ar/products/tkm-kho-3ktaa-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-trathna",
+      "sourceId": "396a99ce6a96",
+      "sourceSlug": "hlk-trathna",
+      "targetPath": "/ar/products/hlk-trathna",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr-copy",
+      "sourceId": "39730f30ca2b",
+      "sourceSlug": "tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-copy",
+      "sourceId": "39ac2ad68ba3",
+      "sourceSlug": "tkm-asaor-mgdol-ydo-copy",
+      "targetPath": "/ar/products/tkm-asaor-mgdol-ydo-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shryhh-nhas-ahmr-nk-copy",
+      "sourceId": "39cc949f06b4",
+      "sourceSlug": "shryhh-nhas-ahmr-nk-copy",
+      "targetPath": "/ar/products/shryhh-nhas-ahmr-nk-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-sbhh-sdf-loks-copy-1",
+      "sourceId": "3b1bff3e7776",
+      "sourceSlug": "aalbh-sbhh-sdf-loks-copy-1",
+      "targetPath": "/ar/products/aalbh-sbhh-sdf-loks-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/alsbh",
+        "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-byt-aatr-ao-mkhlh-mftah-alkaabh-copy",
+      "sourceId": "3cc57e0fdaee",
+      "sourceSlug": "sbhh-33-nhas-asfr-byt-aatr-ao-mkhlh-mftah-alkaabh-copy",
+      "targetPath": "/ar/products/sbhh-33-nhas-asfr-byt-aatr-ao-mkhlh-mftah-alkaabh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-mrtl-kbyrh-copy",
+      "sourceId": "3db51b3613c9",
+      "sourceSlug": "sbrtayh-oknkh-mrtl-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-oknkh-mrtl-kbyrh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dalh-ao-bkrk-kho-osha-copy",
+      "sourceId": "3df90b9b09c1",
+      "sourceSlug": "dalh-ao-bkrk-kho-osha-copy",
+      "targetPath": "/ar/products/dalh-ao-bkrk-kho-osha-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mraya-sdf-tslym-maard",
+      "sourceId": "3f373533dcae",
+      "sourceSlug": "mraya-sdf-tslym-maard",
+      "targetPath": "/ar/products/mraya-sdf-tslym-maard",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hdaya-mktb-nsr-omyzan-alaadalh",
+      "sourceId": "402fe644046b",
+      "sourceSlug": "hdaya-mktb-nsr-omyzan-alaadalh",
+      "targetPath": "/ar/products/hdaya-mktb-nsr-omyzan-alaadalh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolyhat-nhas-ashkal-mkhtlfh",
+      "sourceId": "41a40b50e096",
+      "sourceSlug": "kolyhat-nhas-ashkal-mkhtlfh",
+      "targetPath": "/ar/products/kolyhat-nhas-ashkal-mkhtlfh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-1",
+      "sourceId": "4225e52dc80e",
+      "sourceSlug": "asaor-1",
+      "targetPath": "/ar/products/asaor-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-nksh-kbyrh-btbk-gmlh-copy",
+      "sourceId": "4253129c5bf6",
+      "sourceSlug": "sbrtayh-nksh-kbyrh-btbk-gmlh-copy",
+      "targetPath": "/ar/products/sbrtayh-nksh-kbyrh-btbk-gmlh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mftah-alkaab",
+      "sourceId": "43cacfefce11",
+      "sourceSlug": "mftah-alkaab",
+      "targetPath": "/ar/products/mftah-alkaab",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolmn-o-asbnsr-nhas-ahmr-copy-1",
+      "sourceId": "448a7646ae67",
+      "sourceSlug": "kolmn-o-asbnsr-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/kolmn-o-asbnsr-nhas-ahmr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dork-myah",
+      "sourceId": "45c5b52bf609",
+      "sourceSlug": "dork-myah",
+      "targetPath": "/ar/products/dork-myah",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-rfyaah-07-copy",
+      "sourceId": "45db56f0503f",
+      "sourceSlug": "asaor-sadh-rfyaah-07-copy",
+      "targetPath": "/ar/products/asaor-sadh-rfyaah-07-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/quran-dishes",
+      "sourceId": "461d1716aa78",
+      "sourceSlug": "quran-dishes",
+      "targetPath": "/ar/products/quran-dishes",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shbshb-nhas-ahmr-copy",
+      "sourceId": "46537acfd91d",
+      "sourceSlug": "shbshb-nhas-ahmr-copy",
+      "targetPath": "/ar/products/shbshb-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntgat-akhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-dork-myah-nhas-ahmr-sadh-kran-copy",
+      "sourceId": "4688c53f3ff7",
+      "sourceSlug": "tkm-dork-myah-nhas-ahmr-sadh-kran-copy",
+      "targetPath": "/ar/products/tkm-dork-myah-nhas-ahmr-sadh-kran-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mj-nhas-ahmr-mn-aldakhl-kran-thsyn",
+      "sourceId": "46b541bec817",
+      "sourceSlug": "mj-nhas-ahmr-mn-aldakhl-kran-thsyn",
+      "targetPath": "/ar/products/mj-nhas-ahmr-mn-aldakhl-kran-thsyn",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-nhas-ahmr-copy",
+      "sourceId": "4728154e6b60",
+      "sourceSlug": "tkm-kho-4ktaa-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-kho-4ktaa-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fraaon-ashkal-mkhtlfh-copy-1",
+      "sourceId": "47e80bdabc4c",
+      "sourceSlug": "asaor-fraaon-ashkal-mkhtlfh-copy-1",
+      "targetPath": "/ar/products/asaor-fraaon-ashkal-mkhtlfh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/tash-alkhdh-ao-alkhlaah"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dbl-fraaony-nhas-ahmr-copy",
+      "sourceId": "488538e815c1",
+      "sourceSlug": "dbl-fraaony-nhas-ahmr-copy",
+      "targetPath": "/ar/products/dbl-fraaony-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbh-nhas-bdlayh-ayh-alkrs-33-copy",
+      "sourceId": "488b97655bc8",
+      "sourceSlug": "sbh-nhas-bdlayh-ayh-alkrs-33-copy",
+      "targetPath": "/ar/products/sbh-nhas-bdlayh-ayh-alkrs-33-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayh-ayh-alkrs",
+      "sourceId": "49239b4b8cf0",
+      "sourceSlug": "dlayh-ayh-alkrs",
+      "targetPath": "/ar/products/dlayh-ayh-alkrs",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-mkasat-mkhtlfh-gmlh-copy",
+      "sourceId": "496752fbebe5",
+      "sourceSlug": "kob-myah-nhas-ahmr-mkasat-mkhtlfh-gmlh-copy",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-mkasat-mkhtlfh-gmlh-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-althok-alaaal-asorh-odblh-nhas-ahmr-copy",
+      "sourceId": "49d059162d8a",
+      "sourceSlug": "tkm-althok-alaaal-asorh-odblh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-althok-alaaal-asorh-odblh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy-1",
+      "sourceId": "4aa717e21a51",
+      "sourceSlug": "sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy-1",
+      "targetPath": "/ar/products/sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh-atfaly-copy-1",
+      "sourceId": "4b8731a6a766",
+      "sourceSlug": "asorh-sadh-atfaly-copy-1",
+      "targetPath": "/ar/products/asorh-sadh-atfaly-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-mdfrh-copy",
+      "sourceId": "4bb91f0950d8",
+      "sourceSlug": "asaor-sadh-mdfrh-copy",
+      "targetPath": "/ar/products/asaor-sadh-mdfrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kdr-fol-antyka-3-mkasat-copy-1",
+      "sourceId": "4c356823f565",
+      "sourceSlug": "kdr-fol-antyka-3-mkasat-copy-1",
+      "targetPath": "/ar/products/kdr-fol-antyka-3-mkasat-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/maalkh-khoh-mkas-kbyr",
+      "sourceId": "4cd4c974491b",
+      "sourceSlug": "maalkh-khoh-mkas-kbyr",
+      "targetPath": "/ar/products/maalkh-khoh-mkas-kbyr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/maaalk"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/allolb-alnhas-copy",
+      "sourceId": "4ce36f4f567a",
+      "sourceSlug": "allolb-alnhas-copy",
+      "targetPath": "/ar/products/allolb-alnhas-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-15sm-ydoy-nhas-asfr-copy-1",
+      "sourceId": "4e4e26d48300",
+      "sourceSlug": "tkm-asaor-15sm-ydoy-nhas-asfr-copy-1",
+      "targetPath": "/ar/products/tkm-asaor-15sm-ydoy-nhas-asfr-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-frzatsh-07sm-copy",
+      "sourceId": "4e5c3b4b3600",
+      "sourceSlug": "asaor-frzatsh-07sm-copy",
+      "targetPath": "/ar/products/asaor-frzatsh-07sm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kob-myah-bghtaaa-oshfat-nhas-ahmr-mkasat-mkhtlfh-copy",
+      "sourceId": "4f76405c58e1",
+      "sourceSlug": "tkm-kob-myah-bghtaaa-oshfat-nhas-ahmr-mkasat-mkhtlfh-copy",
+      "targetPath": "/ar/products/tkm-kob-myah-bghtaaa-oshfat-nhas-ahmr-mkasat-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/brwaz-sadaf",
+      "sourceId": "4ffa011d8cf4",
+      "sourceSlug": "brwaz-sadaf",
+      "targetPath": "/ar/products/brwaz-sadaf",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas-asfr-copy",
+      "sourceId": "503817255b95",
+      "sourceSlug": "sbhh-nhas-asfr-copy",
+      "targetPath": "/ar/products/sbhh-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-kran-nksh-aarb-copy",
+      "sourceId": "50aba70b2607",
+      "sourceSlug": "mydalyat-kran-nksh-aarb-copy",
+      "targetPath": "/ar/products/mydalyat-kran-nksh-aarb-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mg-nhas-ahmr-copy",
+      "sourceId": "52fc0203030a",
+      "sourceSlug": "mg-nhas-ahmr-copy",
+      "targetPath": "/ar/products/mg-nhas-ahmr-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-sdf-tbyaay",
+      "sourceId": "535a974209fd",
+      "sourceSlug": "dlayat-bslslh-sdf-tbyaay",
+      "targetPath": "/ar/products/dlayat-bslslh-sdf-tbyaay",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr",
+      "sourceId": "53a719a5cf05",
+      "sourceSlug": "sbhh-33-nhas-asfr",
+      "targetPath": "/ar/products/sbhh-33-nhas-asfr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-alamyrat-copy",
+      "sourceId": "53eb87b3c865",
+      "sourceSlug": "tkm-slslh-oansyal-alamyrat-copy",
+      "targetPath": "/ar/products/tkm-slslh-oansyal-alamyrat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-bdlayh-modrn-frnsao-ashkal-mkhtlfh-copy",
+      "sourceId": "570a830d422a",
+      "sourceSlug": "slslh-bdlayh-modrn-frnsao-ashkal-mkhtlfh-copy",
+      "targetPath": "/ar/products/slslh-bdlayh-modrn-frnsao-ashkal-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/thf-oantykat-abo-alhol-copy",
+      "sourceId": "592000129de1",
+      "sourceSlug": "thf-oantykat-abo-alhol-copy",
+      "targetPath": "/ar/products/thf-oantykat-abo-alhol-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dbl-nhas-ahmr-copy",
+      "sourceId": "59d6779208fe",
+      "sourceSlug": "dbl-nhas-ahmr-copy",
+      "targetPath": "/ar/products/dbl-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dalh-ao-bkrk-kho-osha-nhas-ahmr-o-asfr-copy",
+      "sourceId": "5a3986111c50",
+      "sourceSlug": "dalh-ao-bkrk-kho-osha-nhas-ahmr-o-asfr-copy",
+      "targetPath": "/ar/products/dalh-ao-bkrk-kho-osha-nhas-ahmr-o-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dal-kho-aarby"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-nhas-asfr-nksh-byd-khshb-1mlly-copy",
+      "sourceId": "5a7f3bb0f469",
+      "sourceSlug": "knk-nhas-asfr-nksh-byd-khshb-1mlly-copy",
+      "targetPath": "/ar/products/knk-nhas-asfr-nksh-byd-khshb-1mlly-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-sdf-tbyaa-25sm",
+      "sourceId": "5ae29e1a4b5f",
+      "sourceSlug": "aalbh-sdf-tbyaa-25sm",
+      "targetPath": "/ar/products/aalbh-sdf-tbyaa-25sm",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa",
+      "sourceId": "5b1ea4bb10ba",
+      "sourceSlug": "aalbh-khatm-sdf-tlbyaa",
+      "targetPath": "/ar/products/aalbh-khatm-sdf-tlbyaa",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-mlkyh-mgdolh-ydo-nhas-ahmr-copy",
+      "sourceId": "5baa223e20b5",
+      "sourceSlug": "asaor-mlkyh-mgdolh-ydo-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-mlkyh-mgdolh-ydo-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-loks-copy",
+      "sourceId": "5d06c92917c3",
+      "sourceSlug": "shkmjyh-sdf-loks-copy",
+      "targetPath": "/ar/products/shkmjyh-sdf-loks-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bajor-shrayt-btaaa-zman-copy",
+      "sourceId": "5d50d263e5ca",
+      "sourceSlug": "bajor-shrayt-btaaa-zman-copy",
+      "targetPath": "/ar/products/bajor-shrayt-btaaa-zman-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-nhas-ahmr-kbyr-nksh-ao-kran-copy",
+      "sourceId": "5ddc538d1cb1",
+      "sourceSlug": "msht-nhas-ahmr-kbyr-nksh-ao-kran-copy",
+      "targetPath": "/ar/products/msht-nhas-ahmr-kbyr-nksh-ao-kran-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "sourceId": "5de8d79c9c40",
+      "sourceSlug": "asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "targetPath": "/ar/products/asaor-alkyng-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-sadh-copy-1",
+      "sourceId": "5ea00686e2cd",
+      "sourceSlug": "khoatm-fraaon-sadh-copy-1",
+      "targetPath": "/ar/products/khoatm-fraaon-sadh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-kran-nksh-aarb-fraaon-jmlh",
+      "sourceId": "6014930303d7",
+      "sourceSlug": "atbak-kran-nksh-aarb-fraaon-jmlh",
+      "targetPath": "/ar/products/atbak-kran-nksh-aarb-fraaon-jmlh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tasat-nhas-ahmr-1",
+      "sourceId": "601c61ce011e",
+      "sourceSlug": "tasat-nhas-ahmr-1",
+      "targetPath": "/ar/products/tasat-nhas-ahmr-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "sourceId": "601e7275674b",
+      "sourceSlug": "knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "targetPath": "/ar/products/knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asd-antyka",
+      "sourceId": "60ca25fae1c4",
+      "sourceSlug": "asd-antyka",
+      "targetPath": "/ar/products/asd-antyka",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-albhr-copy",
+      "sourceId": "60ccaf468c22",
+      "sourceSlug": "khlkhal-albhr-copy",
+      "targetPath": "/ar/products/khlkhal-albhr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-odblh-ashkal-aarb-copy",
+      "sourceId": "612dc0cf6b41",
+      "sourceSlug": "tkm-asaor-odblh-ashkal-aarb-copy",
+      "targetPath": "/ar/products/tkm-asaor-odblh-ashkal-aarb-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy-1",
+      "sourceId": "62d89b321746",
+      "sourceSlug": "asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy-1",
+      "targetPath": "/ar/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-rfyaa-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahramat-antyka-kbyr-copy-1",
+      "sourceId": "62eb98d282ae",
+      "sourceSlug": "ahramat-antyka-kbyr-copy-1",
+      "targetPath": "/ar/products/ahramat-antyka-kbyr-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-frnsao-copy-1",
+      "sourceId": "6421ea389de3",
+      "sourceSlug": "hlk-frnsao-copy-1",
+      "targetPath": "/ar/products/hlk-frnsao-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-loks",
+      "sourceId": "64321f5ea290",
+      "sourceSlug": "asaor-loks",
+      "targetPath": "/ar/products/asaor-loks",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-nhas-byd-khshb-copy-1",
+      "sourceId": "64ca668111f9",
+      "sourceSlug": "msht-nhas-byd-khshb-copy-1",
+      "targetPath": "/ar/products/msht-nhas-byd-khshb-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mkahl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-5-ktaa-copy-1",
+      "sourceId": "64caaa603266",
+      "sourceSlug": "tkm-kho-mlk-5-ktaa-copy-1",
+      "targetPath": "/ar/products/tkm-kho-mlk-5-ktaa-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dalh-myah-okhoh-osha-maa-baad-copy",
+      "sourceId": "652e355ad908",
+      "sourceSlug": "dalh-myah-okhoh-osha-maa-baad-copy",
+      "targetPath": "/ar/products/dalh-myah-okhoh-osha-maa-baad-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dal-kho-aarby"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shhadh-tkdyr-sbykh-nhas-copy",
+      "sourceId": "65639fedc418",
+      "sourceSlug": "shhadh-tkdyr-sbykh-nhas-copy",
+      "targetPath": "/ar/products/shhadh-tkdyr-sbykh-nhas-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "sourceId": "6608806ed819",
+      "sourceSlug": "knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "targetPath": "/ar/products/knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy-2",
+      "sourceId": "660f991b2afe",
+      "sourceSlug": "sbhh-33-nhas-asfr-copy-2",
+      "targetPath": "/ar/products/sbhh-33-nhas-asfr-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mlk-copy",
+      "sourceId": "66604dc88c7b",
+      "sourceSlug": "sbrtayh-mlk-copy",
+      "targetPath": "/ar/products/sbrtayh-mlk-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-nksh-aarby",
+      "sourceId": "673b47e62ebd",
+      "sourceSlug": "atbak-nksh-aarby",
+      "targetPath": "/ar/products/atbak-nksh-aarby",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+        "https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat",
+      "sourceId": "674c59ceee06",
+      "sourceSlug": "mftah-alkaabh-mkhlh-aatarh-3-mkasat",
+      "targetPath": "/ar/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-ashkal-mkhtlfh",
+      "sourceId": "678b64ca3d8a",
+      "sourceSlug": "tkm-slslh-oansyal-ashkal-mkhtlfh",
+      "targetPath": "/ar/products/tkm-slslh-oansyal-ashkal-mkhtlfh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-askndrany-copy",
+      "sourceId": "6858fe6f9c32",
+      "sourceSlug": "knk-askndrany-copy",
+      "targetPath": "/ar/products/knk-askndrany-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkhlh-klasyk-fayk-algod-copy",
+      "sourceId": "693aee2e3869",
+      "sourceSlug": "mkhlh-klasyk-fayk-algod-copy",
+      "targetPath": "/ar/products/mkhlh-klasyk-fayk-algod-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mkahl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fallh-khyr-haftha-oho-arhm-alrahmyn-oay-alkrs-almaaothtyn-oalakhlas-copy-2",
+      "sourceId": "6c3ea2b32fa7",
+      "sourceSlug": "asaor-fallh-khyr-haftha-oho-arhm-alrahmyn-oay-alkrs-almaaothtyn-oalakhlas-copy-2",
+      "targetPath": "/ar/products/asaor-fallh-khyr-haftha-oho-arhm-alrahmyn-oay-alkrs-almaaothtyn-oalakhlas-copy-2",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-nhas-ahmr-copy",
+      "sourceId": "6cc2e85799b8",
+      "sourceSlug": "sbrtayh-mrtl-nhas-ahmr-copy",
+      "targetPath": "/ar/products/sbrtayh-mrtl-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-asfr-copy",
+      "sourceId": "6cff8aae6bf0",
+      "sourceSlug": "khlkhal-nhas-asfr-copy",
+      "targetPath": "/ar/products/khlkhal-nhas-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-rfyaah-07",
+      "sourceId": "6d28aee34100",
+      "sourceSlug": "asaor-sadh-rfyaah-07",
+      "targetPath": "/ar/products/asaor-sadh-rfyaah-07",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-aldngoan-nhas-ahmr-aaal-algodh-rfyaa-copy",
+      "sourceId": "6d2a3d5bf243",
+      "sourceSlug": "tkm-asaor-aldngoan-nhas-ahmr-aaal-algodh-rfyaa-copy",
+      "targetPath": "/ar/products/tkm-asaor-aldngoan-nhas-ahmr-aaal-algodh-rfyaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-nksh-kbyrh-copy",
+      "sourceId": "6d57b53ea242",
+      "sourceSlug": "sbrtayh-nksh-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-nksh-kbyrh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/krs-alaarsh-copy-1",
+      "sourceId": "6db40d172ec4",
+      "sourceSlug": "krs-alaarsh-copy-1",
+      "targetPath": "/ar/products/krs-alaarsh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-rmoz-altakh-nhas-ahmr-copy",
+      "sourceId": "6dcbdebf6a88",
+      "sourceSlug": "asaor-rmoz-altakh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-rmoz-altakh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-alshbh-6-ktaa-nhas-ahmr-copy",
+      "sourceId": "6ebc91a3a095",
+      "sourceSlug": "tkm-alshbh-6-ktaa-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-alshbh-6-ktaa-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/thf-oantykat-tfayat-ashkal-mkhtlfh",
+      "sourceId": "6f7d91ef5bdf",
+      "sourceSlug": "thf-oantykat-tfayat-ashkal-mkhtlfh",
+      "targetPath": "/ar/products/thf-oantykat-tfayat-ashkal-mkhtlfh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbkhrh-sdf-copy",
+      "sourceId": "70241c22ee58",
+      "sourceSlug": "mbkhrh-sdf-copy",
+      "targetPath": "/ar/products/mbkhrh-sdf-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark",
+      "sourceId": "70cc8d9304e2",
+      "sourceSlug": "ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark",
+      "targetPath": "/ar/products/ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-sadh-kbyrh-copy",
+      "sourceId": "70ee85749fdb",
+      "sourceSlug": "sbrtayh-sadh-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-sadh-kbyrh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-kranyh-slslh-10-ashkal-copy",
+      "sourceId": "71583b97134c",
+      "sourceSlug": "dlayat-kranyh-slslh-10-ashkal-copy",
+      "targetPath": "/ar/products/dlayat-kranyh-slslh-10-ashkal-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aard-oahdh-oaalyha-oahdh-asaor-nhas-ahmr-rfyaa-nksh-copy",
+      "sourceId": "724552977bf5",
+      "sourceSlug": "aard-oahdh-oaalyha-oahdh-asaor-nhas-ahmr-rfyaa-nksh-copy",
+      "targetPath": "/ar/products/aard-oahdh-oaalyha-oahdh-asaor-nhas-ahmr-rfyaa-nksh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/gzm-antyka-copy",
+      "sourceId": "725291ff29cf",
+      "sourceSlug": "gzm-antyka-copy",
+      "targetPath": "/ar/products/gzm-antyka-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asor-odbl-amy",
+      "sourceId": "72dc75e53e57",
+      "sourceSlug": "asor-odbl-amy",
+      "targetPath": "/ar/products/asor-odbl-amy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-byd-snon-oasaah-lyzr-copy",
+      "sourceId": "7302c576a855",
+      "sourceSlug": "msht-byd-snon-oasaah-lyzr-copy",
+      "targetPath": "/ar/products/msht-byd-snon-oasaah-lyzr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy",
+      "sourceId": "744316f1a557",
+      "sourceSlug": "mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy",
+      "targetPath": "/ar/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asd-antyka-copy",
+      "sourceId": "7486be89eb2e",
+      "sourceSlug": "asd-antyka-copy",
+      "targetPath": "/ar/products/asd-antyka-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-bydao-loks-copy-1",
+      "sourceId": "74c40ee0169b",
+      "sourceSlug": "tkm-3aalb-sdf-bydao-loks-copy-1",
+      "targetPath": "/ar/products/tkm-3aalb-sdf-bydao-loks-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-fraaon-copy-2",
+      "sourceId": "75f6167a3450",
+      "sourceSlug": "ansyal-fraaon-copy-2",
+      "targetPath": "/ar/products/ansyal-fraaon-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-nhas-ahmr-rfyaah",
+      "sourceId": "773ca6e2ef96",
+      "sourceSlug": "asorh-nhas-ahmr-rfyaah",
+      "targetPath": "/ar/products/asorh-nhas-ahmr-rfyaah",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/broaz-fraaony-khshb-zan-tslym-maard",
+      "sourceId": "77a3553d19d0",
+      "sourceSlug": "broaz-fraaony-khshb-zan-tslym-maard",
+      "targetPath": "/ar/products/broaz-fraaony-khshb-zan-tslym-maard",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahramat-antyka",
+      "sourceId": "77c9621eda87",
+      "sourceSlug": "ahramat-antyka",
+      "targetPath": "/ar/products/ahramat-antyka",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-lyd-3-ktaa-slslh-bdlayh-ansyal-khatm-copy",
+      "sourceId": "785eef402515",
+      "sourceSlug": "tkm-lyd-3-ktaa-slslh-bdlayh-ansyal-khatm-copy",
+      "targetPath": "/ar/products/tkm-lyd-3-ktaa-slslh-bdlayh-ansyal-khatm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/brad-almghrb-nhas-ahmr-brh-ogoh-copy",
+      "sourceId": "78d9be34a511",
+      "sourceSlug": "brad-almghrb-nhas-ahmr-brh-ogoh-copy",
+      "targetPath": "/ar/products/brad-almghrb-nhas-ahmr-brh-ogoh-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/brad-shay",
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-shklyn-copy",
+      "sourceId": "792771e941e0",
+      "sourceSlug": "khoatm-fraaon-shklyn-copy",
+      "targetPath": "/ar/products/khoatm-fraaon-shklyn-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-almsryyn-alkdmaaa-fraaon-copy",
+      "sourceId": "7946ad687610",
+      "sourceSlug": "mydalyat-almsryyn-alkdmaaa-fraaon-copy",
+      "targetPath": "/ar/products/mydalyat-almsryyn-alkdmaaa-fraaon-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-odblh-arbysk-copy",
+      "sourceId": "79793e3e764d",
+      "sourceSlug": "tkm-asaor-odblh-arbysk-copy",
+      "targetPath": "/ar/products/tkm-asaor-odblh-arbysk-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-tbyaa-faek-aljod-copy",
+      "sourceId": "7c450246eaef",
+      "sourceSlug": "shkmjyh-sdf-tbyaa-faek-aljod-copy",
+      "targetPath": "/ar/products/shkmjyh-sdf-tbyaa-faek-aljod-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy-1",
+      "sourceId": "7c5385919f85",
+      "sourceSlug": "shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy-1",
+      "targetPath": "/ar/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+        "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-5-ktaa-copy",
+      "sourceId": "7c95ada3ac7e",
+      "sourceSlug": "tkm-kho-mlk-5-ktaa-copy",
+      "targetPath": "/ar/products/tkm-kho-mlk-5-ktaa-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asorh-odblh-aayn-hors-nhas-asfr",
+      "sourceId": "7db84a59d5dc",
+      "sourceSlug": "tkm-asorh-odblh-aayn-hors-nhas-asfr",
+      "targetPath": "/ar/products/tkm-asorh-odblh-aayn-hors-nhas-asfr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-aldlaa-4-ashkal",
+      "sourceId": "7df05a5b86e4",
+      "sourceSlug": "asaor-aldlaa-4-ashkal",
+      "targetPath": "/ar/products/asaor-aldlaa-4-ashkal",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-frnsao-copy",
+      "sourceId": "7e0c9a2e2637",
+      "sourceSlug": "hlk-frnsao-copy",
+      "targetPath": "/ar/products/hlk-frnsao-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh-copy",
+      "sourceId": "7e3a9e813cfe",
+      "sourceSlug": "sbrtayh-oknkh-sadh-copy",
+      "targetPath": "/ar/products/sbrtayh-oknkh-sadh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-symbl",
+      "sourceId": "7f3f94b37e56",
+      "sourceSlug": "dblh-symbl",
+      "targetPath": "/ar/products/dblh-symbl",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-kartyr-copy-1",
+      "sourceId": "7f72033c1049",
+      "sourceSlug": "tkm-slslh-oansyal-kartyr-copy-1",
+      "targetPath": "/ar/products/tkm-slslh-oansyal-kartyr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-1",
+      "sourceId": "7fa5a896132f",
+      "sourceSlug": "sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-1",
+      "targetPath": "/ar/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntgat-akhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-byd-snon-oasaah-lyzr",
+      "sourceId": "7fb087c0e905",
+      "sourceSlug": "msht-byd-snon-oasaah-lyzr",
+      "targetPath": "/ar/products/msht-byd-snon-oasaah-lyzr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/coffee-function",
+      "sourceId": "7fb0ff31e9bc",
+      "sourceSlug": "coffee-function",
+      "targetPath": "/ar/products/coffee-function",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dal-kho-aarby"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-99-byt-aatr-nhas-asfr",
+      "sourceId": "7fb5dd6d1e45",
+      "sourceSlug": "sbhh-99-byt-aatr-nhas-asfr",
+      "targetPath": "/ar/products/sbhh-99-byt-aatr-nhas-asfr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-ahmr-brh-ojoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "sourceId": "807577321d8f",
+      "sourceSlug": "knk-frnsao-nhas-ahmr-brh-ojoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "targetPath": "/ar/products/knk-frnsao-nhas-ahmr-brh-ojoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "sourceId": "8077503e19b4",
+      "sourceSlug": "asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "targetPath": "/ar/products/asaor-algynral-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolyhat-ashkal-mkhtlfh-copy-1",
+      "sourceId": "807c714cb1e4",
+      "sourceSlug": "kolyhat-ashkal-mkhtlfh-copy-1",
+      "targetPath": "/ar/products/kolyhat-ashkal-mkhtlfh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy-1",
+      "sourceId": "80a2613005d4",
+      "sourceSlug": "sbhh-33-nhas-asfr-copy-1",
+      "targetPath": "/ar/products/sbhh-33-nhas-asfr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hon-antyka-copy",
+      "sourceId": "80a9c0b069a0",
+      "sourceSlug": "hon-antyka-copy",
+      "targetPath": "/ar/products/hon-antyka-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-nksh-kbyrh-btbk-copy",
+      "sourceId": "812e44ea0e11",
+      "sourceSlug": "sbrtayh-nksh-kbyrh-btbk-copy",
+      "targetPath": "/ar/products/sbrtayh-nksh-kbyrh-btbk-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-kranyh-nhas-ahmr",
+      "sourceId": "813393072024",
+      "sourceSlug": "dlayat-kranyh-nhas-ahmr",
+      "targetPath": "/ar/products/dlayat-kranyh-nhas-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/alsawani",
+      "sourceId": "81ad047d7061",
+      "sourceSlug": "alsawani",
+      "targetPath": "/ar/products/alsawani",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/soany"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolmn-o-asbnsr-nhas-ahmr",
+      "sourceId": "833b621f2e25",
+      "sourceSlug": "kolmn-o-asbnsr-nhas-ahmr",
+      "targetPath": "/ar/products/kolmn-o-asbnsr-nhas-ahmr",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-nhas-ahmr-copy",
+      "sourceId": "8426a36f1e2e",
+      "sourceSlug": "asaor-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-frn-nhas-ahmr",
+      "sourceId": "844e8b4d567c",
+      "sourceSlug": "soan-frn-nhas-ahmr",
+      "targetPath": "/ar/products/soan-frn-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-jny-jorj-4-ktaa",
+      "sourceId": "849c65270e34",
+      "sourceSlug": "tkm-jny-jorj-4-ktaa",
+      "targetPath": "/ar/products/tkm-jny-jorj-4-ktaa",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aard-dblh-nksh",
+      "sourceId": "862b2b1943b5",
+      "sourceSlug": "aard-dblh-nksh",
+      "targetPath": "/ar/products/aard-dblh-nksh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-almlk-nhas-asfr-sadh-kran-copy",
+      "sourceId": "8684b0db69d5",
+      "sourceSlug": "msht-almlk-nhas-asfr-sadh-kran-copy",
+      "targetPath": "/ar/products/msht-almlk-nhas-asfr-sadh-kran-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-3mll-mhmlh",
+      "sourceId": "8691440aa4f1",
+      "sourceSlug": "asaor-sadh-3mll-mhmlh",
+      "targetPath": "/ar/products/asaor-sadh-3mll-mhmlh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/rmalh-nhas-ahmr-balkhrbaaa-mtah-ktabh-asm-copy",
+      "sourceId": "87e5f39590ab",
+      "sourceSlug": "rmalh-nhas-ahmr-balkhrbaaa-mtah-ktabh-asm-copy",
+      "targetPath": "/ar/products/rmalh-nhas-ahmr-balkhrbaaa-mtah-ktabh-asm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbkhr-alkds",
+      "sourceId": "88ac4a1aced7",
+      "sourceSlug": "mbkhr-alkds",
+      "targetPath": "/ar/products/mbkhr-alkds",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mbakhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shbshb-nhas-ahmr",
+      "sourceId": "8902f5d89997",
+      "sourceSlug": "shbshb-nhas-ahmr",
+      "targetPath": "/ar/products/shbshb-nhas-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-nhas-nhas-ahmr-copy",
+      "sourceId": "897447404ece",
+      "sourceSlug": "kob-nhas-nhas-ahmr-copy",
+      "targetPath": "/ar/products/kob-nhas-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam",
+      "sourceId": "8a0c4295d659",
+      "sourceSlug": "mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam",
+      "targetPath": "/ar/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mbakhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kolmn-o-asbnsr-nhas-ahmr-copy",
+      "sourceId": "8a36a53d4bc9",
+      "sourceSlug": "kolmn-o-asbnsr-nhas-ahmr-copy",
+      "targetPath": "/ar/products/kolmn-o-asbnsr-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-odblh-msmar-copy",
+      "sourceId": "8a4843502076",
+      "sourceSlug": "tkm-asaor-odblh-msmar-copy",
+      "targetPath": "/ar/products/tkm-asaor-odblh-msmar-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-asfr-3-ashkal-3-ahjam-copy",
+      "sourceId": "8ad90058b68d",
+      "sourceSlug": "mbakhr-mlk-nhas-asfr-3-ashkal-3-ahjam-copy",
+      "targetPath": "/ar/products/mbakhr-mlk-nhas-asfr-3-ashkal-3-ahjam-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khatm-alnbo-copy",
+      "sourceId": "8afd3b6e93c6",
+      "sourceSlug": "khatm-alnbo-copy",
+      "targetPath": "/ar/products/khatm-alnbo-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slsl-onsyal-kartyr",
+      "sourceId": "8d9379ce90f2",
+      "sourceSlug": "slsl-onsyal-kartyr",
+      "targetPath": "/ar/products/slsl-onsyal-kartyr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/zgagh-myah-nhas-ahmr-sghyrh-kbyrh-copy",
+      "sourceId": "8fd57080dc8f",
+      "sourceSlug": "zgagh-myah-nhas-ahmr-sghyrh-kbyrh-copy",
+      "targetPath": "/ar/products/zgagh-myah-nhas-ahmr-sghyrh-kbyrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-mg-ghtaaashlmon-nhas-ahmr-copy-1",
+      "sourceId": "8feb6192af22",
+      "sourceSlug": "tkm-mg-ghtaaashlmon-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/tkm-mg-ghtaaashlmon-nhas-ahmr-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-nhas-byd-khshb-copy",
+      "sourceId": "901145b00073",
+      "sourceSlug": "msht-nhas-byd-khshb-copy",
+      "targetPath": "/ar/products/msht-nhas-byd-khshb-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbayk"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-fraaon-copy-1",
+      "sourceId": "90d4d59ed023",
+      "sourceSlug": "ansyal-fraaon-copy-1",
+      "targetPath": "/ar/products/ansyal-fraaon-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-3mll-mhmlh-copy",
+      "sourceId": "924650865eb6",
+      "sourceSlug": "asaor-sadh-3mll-mhmlh-copy",
+      "targetPath": "/ar/products/asaor-sadh-3mll-mhmlh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mg-nhas-ahmr-sadh-aldakhl-kran-copy",
+      "sourceId": "92e6bb36e954",
+      "sourceSlug": "mg-nhas-ahmr-sadh-aldakhl-kran-copy",
+      "targetPath": "/ar/products/mg-nhas-ahmr-sadh-aldakhl-kran-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-okhatm-roz-copy",
+      "sourceId": "92fa7733c776",
+      "sourceSlug": "asorh-okhatm-roz-copy",
+      "targetPath": "/ar/products/asorh-okhatm-roz-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-odblh-sadh-rfyaa-copy",
+      "sourceId": "93e7a3139627",
+      "sourceSlug": "asorh-odblh-sadh-rfyaa-copy",
+      "targetPath": "/ar/products/asorh-odblh-sadh-rfyaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkhlh-mlk-sghyr-kbyr-sadh-nksh-copy",
+      "sourceId": "9403ccad1001",
+      "sourceSlug": "mkhlh-mlk-sghyr-kbyr-sadh-nksh-copy",
+      "targetPath": "/ar/products/mkhlh-mlk-sghyr-kbyr-sadh-nksh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-copy-1",
+      "sourceId": "940f0d76dcd2",
+      "sourceSlug": "tkm-kho-4ktaa-copy-1",
+      "targetPath": "/ar/products/tkm-kho-4ktaa-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-shhr-rmdan-mtah9-ashkal",
+      "sourceId": "9622b2481b40",
+      "sourceSlug": "mydalyat-shhr-rmdan-mtah9-ashkal",
+      "targetPath": "/ar/products/mydalyat-shhr-rmdan-mtah9-ashkal",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+        "https://www.sprtaya-kanaka.net/collections/mydalyat"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy",
+      "sourceId": "96696ad16e73",
+      "sourceSlug": "slslh-zhrh-allots-copy",
+      "targetPath": "/ar/products/slslh-zhrh-allots-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-mg-ghtaaashlmon-nhas-ahmr-copy",
+      "sourceId": "966a67f51d5c",
+      "sourceSlug": "tkm-mg-ghtaaashlmon-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-mg-ghtaaashlmon-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asorh-odbl-nhas-ahmr-copy",
+      "sourceId": "96cf86b1429b",
+      "sourceSlug": "tkm-asorh-odbl-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-asorh-odbl-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-aasha",
+      "sourceId": "975ba35a5830",
+      "sourceSlug": "soan-aasha",
+      "targetPath": "/ar/products/soan-aasha",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/soany"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asor-odbl",
+      "sourceId": "97630b5f1bd8",
+      "sourceSlug": "tkm-asor-odbl",
+      "targetPath": "/ar/products/tkm-asor-odbl",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ktafh-okbdh-ayd-nhas-ahmr-1",
+      "sourceId": "989203f2f0ae",
+      "sourceSlug": "ktafh-okbdh-ayd-nhas-ahmr-1",
+      "targetPath": "/ar/products/ktafh-okbdh-ayd-nhas-ahmr-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mgmoaah-trkyb-hrm-altakh-nhas-ahmr-copy",
+      "sourceId": "98cd857d3eef",
+      "sourceSlug": "mgmoaah-trkyb-hrm-altakh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/mgmoaah-trkyb-hrm-altakh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-nhas-almsryyn-alkdmaaa-copy",
+      "sourceId": "9999545e620d",
+      "sourceSlug": "hlk-nhas-almsryyn-alkdmaaa-copy",
+      "targetPath": "/ar/products/hlk-nhas-almsryyn-alkdmaaa-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-mghnatys-thsyn-copy-1",
+      "sourceId": "9abd827fb803",
+      "sourceSlug": "asaor-mghnatys-thsyn-copy-1",
+      "targetPath": "/ar/products/asaor-mghnatys-thsyn-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-nksh-copy-1",
+      "sourceId": "9addb81165e4",
+      "sourceSlug": "dblh-nksh-copy-1",
+      "targetPath": "/ar/products/dblh-nksh-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy-1",
+      "sourceId": "9b0c5dd80855",
+      "sourceSlug": "tkm-kho-mlk-3-ktaa-copy-1",
+      "targetPath": "/ar/products/tkm-kho-mlk-3-ktaa-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "sourceId": "9b17ecc5a39c",
+      "sourceSlug": "msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "targetPath": "/ar/products/msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hrm-altakh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shyshh-antyka-bor",
+      "sourceId": "9bad5dae0ae9",
+      "sourceSlug": "shyshh-antyka-bor",
+      "targetPath": "/ar/products/shyshh-antyka-bor",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-2",
+      "sourceId": "9bd0ff15e5bb",
+      "sourceSlug": "sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-2",
+      "targetPath": "/ar/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh",
+      "sourceId": "9bfc00fd885d",
+      "sourceSlug": "dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh",
+      "targetPath": "/ar/products/dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-ahmr-copy",
+      "sourceId": "9ce7946a87a0",
+      "sourceSlug": "khlkhal-nhas-ahmr-copy",
+      "targetPath": "/ar/products/khlkhal-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mg-bghtaaa-nhas-ahmr-copy",
+      "sourceId": "9d28749d5546",
+      "sourceSlug": "mg-bghtaaa-nhas-ahmr-copy",
+      "targetPath": "/ar/products/mg-bghtaaa-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh-copy",
+      "sourceId": "9d41f4defad1",
+      "sourceSlug": "dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh-copy",
+      "targetPath": "/ar/products/dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/srfys-tkdym",
+      "sourceId": "9dfe5c69d742",
+      "sourceSlug": "srfys-tkdym",
+      "targetPath": "/ar/products/srfys-tkdym",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy-2",
+      "sourceId": "9e6259bbc494",
+      "sourceSlug": "aalbh-khatm-sdf-tlbyaa-copy-2",
+      "targetPath": "/ar/products/aalbh-khatm-sdf-tlbyaa-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas-ahmr-asfr",
+      "sourceId": "9f44d3ba75ff",
+      "sourceSlug": "ansyal-nhas-ahmr-asfr",
+      "targetPath": "/ar/products/ansyal-nhas-ahmr-asfr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tok-nhas-mgdol-3-mkasat-copy",
+      "sourceId": "9fa51cdb47c0",
+      "sourceSlug": "tok-nhas-mgdol-3-mkasat-copy",
+      "targetPath": "/ar/products/tok-nhas-mgdol-3-mkasat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh33-nhas-asfr-byt-aatr-copy",
+      "sourceId": "a18150cfa570",
+      "sourceSlug": "sbhh33-nhas-asfr-byt-aatr-copy",
+      "targetPath": "/ar/products/sbhh33-nhas-asfr-byt-aatr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-dork-myah",
+      "sourceId": "a28c6994be49",
+      "sourceSlug": "tkm-dork-myah",
+      "targetPath": "/ar/products/tkm-dork-myah",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-mnadyl-sdf-loks-copy",
+      "sourceId": "a2bcf0031147",
+      "sourceSlug": "aalbh-mnadyl-sdf-loks-copy",
+      "targetPath": "/ar/products/aalbh-mnadyl-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-nhas-ahmr-almsryyn-alkdmaaa-copy",
+      "sourceId": "a2de825f8038",
+      "sourceSlug": "hlk-nhas-ahmr-almsryyn-alkdmaaa-copy",
+      "targetPath": "/ar/products/hlk-nhas-ahmr-almsryyn-alkdmaaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-2",
+      "sourceId": "a371c018ffde",
+      "sourceSlug": "asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-2",
+      "targetPath": "/ar/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-2",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr",
+        "https://www.sprtaya-kanaka.net/collections/amshat"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalb-msdsh-sdf-loks",
+      "sourceId": "a37e1ce0a337",
+      "sourceSlug": "aalb-msdsh-sdf-loks",
+      "targetPath": "/ar/products/aalb-msdsh-sdf-loks",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlh-nhas-ahmr",
+      "sourceId": "a44c4b1fd769",
+      "sourceSlug": "hlh-nhas-ahmr",
+      "targetPath": "/ar/products/hlh-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahramat-antyka-sghyr-copy",
+      "sourceId": "a471abe82fc2",
+      "sourceSlug": "ahramat-antyka-sghyr-copy",
+      "targetPath": "/ar/products/ahramat-antyka-sghyr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/brad-alaarby-nhas-ahmr-brh-ojoh",
+      "sourceId": "a574cce22334",
+      "sourceSlug": "brad-alaarby-nhas-ahmr-brh-ojoh",
+      "targetPath": "/ar/products/brad-alaarby-nhas-ahmr-brh-ojoh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/brad-shay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shoayat-tkdym",
+      "sourceId": "a60021bb724a",
+      "sourceSlug": "shoayat-tkdym",
+      "targetPath": "/ar/products/shoayat-tkdym",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy-1",
+      "sourceId": "a6182ac7bf55",
+      "sourceSlug": "aalbh-khatm-sdf-tlbyaa-copy-1",
+      "targetPath": "/ar/products/aalbh-khatm-sdf-tlbyaa-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/accessories",
+        "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kolh-okobayh-myah-nhas-ahmr-byor-thsyn-mn-aldakhl",
+      "sourceId": "a68b3d05c83d",
+      "sourceSlug": "tkm-kolh-okobayh-myah-nhas-ahmr-byor-thsyn-mn-aldakhl",
+      "targetPath": "/ar/products/tkm-kolh-okobayh-myah-nhas-ahmr-byor-thsyn-mn-aldakhl",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mg-nhas-ahmr-copy-1",
+      "sourceId": "a747b28700cf",
+      "sourceSlug": "mg-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/mg-nhas-ahmr-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/broaz-aslam-sdf-mkasat-sghyrh-copy",
+      "sourceId": "a76f4eb669e7",
+      "sourceSlug": "broaz-aslam-sdf-mkasat-sghyrh-copy",
+      "targetPath": "/ar/products/broaz-aslam-sdf-mkasat-sghyrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mosque-dishes",
+      "sourceId": "a78087ddc1f5",
+      "sourceSlug": "mosque-dishes",
+      "targetPath": "/ar/products/mosque-dishes",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "sourceId": "a7d209d1481e",
+      "sourceSlug": "asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "targetPath": "/ar/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/akoab-myah",
+      "sourceId": "a8bfa85a1ed7",
+      "sourceSlug": "akoab-myah",
+      "targetPath": "/ar/products/akoab-myah",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-ahgar-tbyaayh",
+      "sourceId": "a911bb1cbcfb",
+      "sourceSlug": "dlayat-bslslh-ahgar-tbyaayh",
+      "targetPath": "/ar/products/dlayat-bslslh-ahgar-tbyaayh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-btbk-brgl-copy",
+      "sourceId": "a93c34bc0ce6",
+      "sourceSlug": "sbrtayh-mrtl-kbyrh-btbk-brgl-copy",
+      "targetPath": "/ar/products/sbrtayh-mrtl-kbyrh-btbk-brgl-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/jml-antyka-3mkasat",
+      "sourceId": "a9a67fca7937",
+      "sourceSlug": "jml-antyka-3mkasat",
+      "targetPath": "/ar/products/jml-antyka-3mkasat",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tash-alkbdh-nhas-ahmr-mstord",
+      "sourceId": "a9d6e03c0e35",
+      "sourceSlug": "tash-alkbdh-nhas-ahmr-mstord",
+      "targetPath": "/ar/products/tash-alkbdh-nhas-ahmr-mstord",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-copy",
+      "sourceId": "aa42ce194ada",
+      "sourceSlug": "sbrtayh-mrtl-copy",
+      "targetPath": "/ar/products/sbrtayh-mrtl-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-sadh-copy-2",
+      "sourceId": "aa48a9a1e1d6",
+      "sourceSlug": "khoatm-fraaon-sadh-copy-2",
+      "targetPath": "/ar/products/khoatm-fraaon-sadh-copy-2",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-zjzaj-asorh-odblh-nhas-ahmr",
+      "sourceId": "aa508b7e521a",
+      "sourceSlug": "tkm-zjzaj-asorh-odblh-nhas-ahmr",
+      "targetPath": "/ar/products/tkm-zjzaj-asorh-odblh-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asor-mdfr-rfyaa",
+      "sourceId": "aa811b3abb1b",
+      "sourceSlug": "tkm-asor-mdfr-rfyaa",
+      "targetPath": "/ar/products/tkm-asor-mdfr-rfyaa",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-btbk-3-ashkal",
+      "sourceId": "aa8289bad61a",
+      "sourceSlug": "sbrtayh-btbk-3-ashkal",
+      "targetPath": "/ar/products/sbrtayh-btbk-3-ashkal",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-alaarb-nhas-ahmr-copy",
+      "sourceId": "ac3d22bfd841",
+      "sourceSlug": "asaor-alaarb-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-alaarb-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-copy-1",
+      "sourceId": "acc16cb8c5b4",
+      "sourceSlug": "tkm-asaor-mgdol-ydo-copy-1",
+      "targetPath": "/ar/products/tkm-asaor-mgdol-ydo-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-almlk-nhas-asfr-sadh-kran-copy-1",
+      "sourceId": "ad432dc18dff",
+      "sourceSlug": "msht-almlk-nhas-asfr-sadh-kran-copy-1",
+      "targetPath": "/ar/products/msht-almlk-nhas-asfr-sadh-kran-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/fngan-btbk-mlok-nhas-ahmr-asfr-copy",
+      "sourceId": "adbf0e8190ba",
+      "sourceSlug": "fngan-btbk-mlok-nhas-ahmr-asfr-copy",
+      "targetPath": "/ar/products/fngan-btbk-mlok-nhas-ahmr-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/cup"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-trathna-copy-1",
+      "sourceId": "af0bdd1424f8",
+      "sourceSlug": "hlk-trathna-copy-1",
+      "targetPath": "/ar/products/hlk-trathna-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-15sm-ydoy-nhas-asfr",
+      "sourceId": "af20f57b9237",
+      "sourceSlug": "tkm-asaor-15sm-ydoy-nhas-asfr",
+      "targetPath": "/ar/products/tkm-asaor-15sm-ydoy-nhas-asfr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-35sm-ydoy-nhas-asfr-copy",
+      "sourceId": "af6838d3237e",
+      "sourceSlug": "tkm-asaor-35sm-ydoy-nhas-asfr-copy",
+      "targetPath": "/ar/products/tkm-asaor-35sm-ydoy-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tokh-ao-tok-shaar-copy",
+      "sourceId": "afeb1f4e547e",
+      "sourceSlug": "tokh-ao-tok-shaar-copy",
+      "targetPath": "/ar/products/tokh-ao-tok-shaar-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sadh-kran-mn-aldakhl-mkasat-mkhtlfh-copy",
+      "sourceId": "b0a366724664",
+      "sourceSlug": "kob-myah-nhas-ahmr-sadh-kran-mn-aldakhl-mkasat-mkhtlfh-copy",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-sadh-kran-mn-aldakhl-mkasat-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-ahmr-brh-ogoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "sourceId": "b0c8e1698c54",
+      "sourceSlug": "knk-frnsao-nhas-ahmr-brh-ogoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "targetPath": "/ar/products/knk-frnsao-nhas-ahmr-brh-ogoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-hdaya-tthkaryh-basmk",
+      "sourceId": "b0caf3822523",
+      "sourceSlug": "atbak-hdaya-tthkaryh-basmk",
+      "targetPath": "/ar/products/atbak-hdaya-tthkaryh-basmk",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-ayh-alkrsy-oalklakl",
+      "sourceId": "b0f88169f458",
+      "sourceSlug": "mydalyat-ayh-alkrsy-oalklakl",
+      "targetPath": "/ar/products/mydalyat-ayh-alkrsy-oalklakl",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-kran-nksh-aarb",
+      "sourceId": "b145800800e9",
+      "sourceSlug": "mydalyat-kran-nksh-aarb",
+      "targetPath": "/ar/products/mydalyat-kran-nksh-aarb",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-nksh-copy",
+      "sourceId": "b145bb82f0ea",
+      "sourceSlug": "dblh-nksh-copy",
+      "targetPath": "/ar/products/dblh-nksh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-mlky-33-nhas-asfr-copy",
+      "sourceId": "b2c753380b67",
+      "sourceSlug": "sbhh-mlky-33-nhas-asfr-copy",
+      "targetPath": "/ar/products/sbhh-mlky-33-nhas-asfr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-3b150j-bdl-210-aard-aljmaa-althhby",
+      "sourceId": "b39ebe6f839a",
+      "sourceSlug": "asaor-3b150j-bdl-210-aard-aljmaa-althhby",
+      "targetPath": "/ar/products/asaor-3b150j-bdl-210-aard-aljmaa-althhby",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/myzan-alaadal",
+      "sourceId": "b3e25d34285e",
+      "sourceSlug": "myzan-alaadal",
+      "targetPath": "/ar/products/myzan-alaadal",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayh-mftah-alkaabh",
+      "sourceId": "b3fbe1d6941c",
+      "sourceSlug": "dlayh-mftah-alkaabh",
+      "targetPath": "/ar/products/dlayh-mftah-alkaabh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/klm-almsaj-copy",
+      "sourceId": "b547ddc6df3c",
+      "sourceSlug": "klm-almsaj-copy",
+      "targetPath": "/ar/products/klm-almsaj-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kdr-fol",
+      "sourceId": "b5623cf77417",
+      "sourceSlug": "kdr-fol",
+      "targetPath": "/ar/products/kdr-fol",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-1",
+      "sourceId": "b5d0e05b748d",
+      "sourceSlug": "kob-myah-nhas-ahmr-sghyr-nksh-copy-1",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dork-myah-nhas-ahmr-sadh-kran-copy",
+      "sourceId": "b5ea7f9f67d8",
+      "sourceSlug": "dork-myah-nhas-ahmr-sadh-kran-copy",
+      "targetPath": "/ar/products/dork-myah-nhas-ahmr-sadh-kran-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-mnadyl-sdf-loks",
+      "sourceId": "b613a99f3d99",
+      "sourceSlug": "aalbh-mnadyl-sdf-loks",
+      "targetPath": "/ar/products/aalbh-mnadyl-sdf-loks",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bakt-8-bnsh-shaar-nhas-ahmr-copy-1",
+      "sourceId": "b61cb630fe06",
+      "sourceSlug": "bakt-8-bnsh-shaar-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/bakt-8-bnsh-shaar-nhas-ahmr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntgat-akhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbaek-nhas-ahmr-999",
+      "sourceId": "b652e93899b5",
+      "sourceSlug": "sbaek-nhas-ahmr-999",
+      "targetPath": "/ar/products/sbaek-nhas-ahmr-999",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbayk"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/lmbh-jaz-zjaj-copy-1",
+      "sourceId": "b7dbc5f24e3e",
+      "sourceSlug": "lmbh-jaz-zjaj-copy-1",
+      "targetPath": "/ar/products/lmbh-jaz-zjaj-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkhlh-alaarb-copy",
+      "sourceId": "b7faae5605d1",
+      "sourceSlug": "mkhlh-alaarb-copy",
+      "targetPath": "/ar/products/mkhlh-alaarb-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tok-nhas-mgdol-3-mkasat",
+      "sourceId": "b81fdeab1553",
+      "sourceSlug": "tok-nhas-mgdol-3-mkasat",
+      "targetPath": "/ar/products/tok-nhas-mgdol-3-mkasat",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntgat-akhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalb-mshf",
+      "sourceId": "b86dc030ab72",
+      "sourceSlug": "aalb-mshf",
+      "targetPath": "/ar/products/aalb-mshf",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/nfrtyt-thf-oantykat",
+      "sourceId": "b8b243cf0382",
+      "sourceSlug": "nfrtyt-thf-oantykat",
+      "targetPath": "/ar/products/nfrtyt-thf-oantykat",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy",
+      "sourceId": "b8b8387b4141",
+      "sourceSlug": "asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy",
+      "targetPath": "/ar/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-aaryd-copy",
+      "sourceId": "b8c2a6b82a8a",
+      "sourceSlug": "asaor-aldnjoan-nhas-ahmr-aaal-aljodh-aaryd-copy",
+      "targetPath": "/ar/products/asaor-aldnjoan-nhas-ahmr-aaal-aljodh-aaryd-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shryhh-nhas-ahmr-nk",
+      "sourceId": "b8eff0215eb1",
+      "sourceSlug": "shryhh-nhas-ahmr-nk",
+      "targetPath": "/ar/products/shryhh-nhas-ahmr-nk",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-2",
+      "sourceId": "b9039518fc2e",
+      "sourceSlug": "kob-myah-nhas-ahmr-sghyr-nksh-copy-2",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-2",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-copy-2",
+      "sourceId": "b93d18f5f3be",
+      "sourceSlug": "sbrtayh-mrtl-kbyrh-copy-2",
+      "targetPath": "/ar/products/sbrtayh-mrtl-kbyrh-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-ahmr",
+      "sourceId": "b98cfcc4e1b6",
+      "sourceSlug": "asaor-sadh-ahmr",
+      "targetPath": "/ar/products/asaor-sadh-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-nhas-loks-kran-nksh-aarby-fraaony-copy-1",
+      "sourceId": "b9ac5495ae54",
+      "sourceSlug": "mydalyat-nhas-loks-kran-nksh-aarby-fraaony-copy-1",
+      "targetPath": "/ar/products/mydalyat-nhas-loks-kran-nksh-aarby-fraaony-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh-15sm",
+      "sourceId": "ba075e6ea3ce",
+      "sourceSlug": "asorh-sadh-15sm",
+      "targetPath": "/ar/products/asorh-sadh-15sm",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-alfkhamh-mgdolh-ydoy-copy-1",
+      "sourceId": "ba52a2e1db78",
+      "sourceSlug": "dblh-alfkhamh-mgdolh-ydoy-copy-1",
+      "targetPath": "/ar/products/dblh-alfkhamh-mgdolh-ydoy-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy",
+      "sourceId": "ba69b43f4522",
+      "sourceSlug": "aalbh-khatm-sdf-tlbyaa-copy",
+      "targetPath": "/ar/products/aalbh-khatm-sdf-tlbyaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy",
+      "sourceId": "bb37e404e37b",
+      "sourceSlug": "asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy",
+      "targetPath": "/ar/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/cup"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-alkds-copy",
+      "sourceId": "bb73bd92fe73",
+      "sourceSlug": "mbakhr-alkds-copy",
+      "targetPath": "/ar/products/mbakhr-alkds-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ksrolh-nhas-ahmr-copy",
+      "sourceId": "bc31951f52b8",
+      "sourceSlug": "ksrolh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/ksrolh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy",
+      "sourceId": "bc410de363f3",
+      "sourceSlug": "asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy",
+      "targetPath": "/ar/products/asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyh-mftah-alkaabh-mkhlh-aatarh-copy",
+      "sourceId": "bd0069f33a59",
+      "sourceSlug": "mydalyh-mftah-alkaabh-mkhlh-aatarh-copy",
+      "targetPath": "/ar/products/mydalyh-mftah-alkaabh-mkhlh-aatarh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-alfkhamh-6-ktaa",
+      "sourceId": "bd023e35fdd0",
+      "sourceSlug": "tkm-alfkhamh-6-ktaa",
+      "targetPath": "/ar/products/tkm-alfkhamh-6-ktaa",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-mghnatys-msryyn-alkdma-copy",
+      "sourceId": "bd21781ef0ec",
+      "sourceSlug": "asaor-mghnatys-msryyn-alkdma-copy",
+      "targetPath": "/ar/products/asaor-mghnatys-msryyn-alkdma-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ktafh-nhas-ahmr-copy",
+      "sourceId": "bd5416999f05",
+      "sourceSlug": "ktafh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/ktafh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh",
+      "sourceId": "be4739b4a019",
+      "sourceSlug": "sbrtayh-oknkh-sadh",
+      "targetPath": "/ar/products/sbrtayh-oknkh-sadh",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka",
+        "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/fngan-mlok-nhas-asfr-copy",
+      "sourceId": "be5cc1c5fffd",
+      "sourceSlug": "fngan-mlok-nhas-asfr-copy",
+      "targetPath": "/ar/products/fngan-mlok-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-symbl-copy",
+      "sourceId": "bed509f8e1f3",
+      "sourceSlug": "dblh-symbl-copy",
+      "targetPath": "/ar/products/dblh-symbl-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fraaon-7m-copy",
+      "sourceId": "bf04c21ee3a6",
+      "sourceSlug": "asaor-fraaon-7m-copy",
+      "targetPath": "/ar/products/asaor-fraaon-7m-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-copy-2",
+      "sourceId": "bf23b10e7a94",
+      "sourceSlug": "tkm-asaor-mgdol-ydo-copy-2",
+      "targetPath": "/ar/products/tkm-asaor-mgdol-ydo-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-aldlaa-4-ashkal-copy",
+      "sourceId": "bfbcf62d7b48",
+      "sourceSlug": "asaor-aldlaa-4-ashkal-copy",
+      "targetPath": "/ar/products/asaor-aldlaa-4-ashkal-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/toagn-nhas-ahmr-brh-ogoh-copy",
+      "sourceId": "c09d11124a7d",
+      "sourceSlug": "toagn-nhas-ahmr-brh-ogoh-copy",
+      "targetPath": "/ar/products/toagn-nhas-ahmr-brh-ogoh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbayk-nhas-ahmr-copy",
+      "sourceId": "c0b27ec2b8ef",
+      "sourceSlug": "sbayk-nhas-ahmr-copy",
+      "targetPath": "/ar/products/sbayk-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bajor-shrayt-btaaa-zman",
+      "sourceId": "c0b4e3c54fa6",
+      "sourceSlug": "bajor-shrayt-btaaa-zman",
+      "targetPath": "/ar/products/bajor-shrayt-btaaa-zman",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/antykat-othf-sghyrh-hyoanat-copy",
+      "sourceId": "c15c1696db50",
+      "sourceSlug": "antykat-othf-sghyrh-hyoanat-copy",
+      "targetPath": "/ar/products/antykat-othf-sghyrh-hyoanat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark-copy",
+      "sourceId": "c1a61071a29c",
+      "sourceSlug": "ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark-copy",
+      "targetPath": "/ar/products/ahoad-ao-bot-zraa-alshkl-oalmkas-mn-akhtyark-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh-atfaly",
+      "sourceId": "c1b40473aeb3",
+      "sourceSlug": "asorh-sadh-atfaly",
+      "targetPath": "/ar/products/asorh-sadh-atfaly",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-askndrany",
+      "sourceId": "c1bee6dae577",
+      "sourceSlug": "knk-askndrany",
+      "targetPath": "/ar/products/knk-askndrany",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kanaka"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-alhdarat-alkdymh-nhas-ahmr-copy",
+      "sourceId": "c2b76022b155",
+      "sourceSlug": "asaor-alhdarat-alkdymh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/asaor-alhdarat-alkdymh-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-mghnatys-msryyn-alkdmaaa-copy",
+      "sourceId": "c38f7c4e9869",
+      "sourceSlug": "asaor-mghnatys-msryyn-alkdmaaa-copy",
+      "targetPath": "/ar/products/asaor-mghnatys-msryyn-alkdmaaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-6-ktaa-copy",
+      "sourceId": "c4b4cd858d7c",
+      "sourceSlug": "tkm-kho-mlk-6-ktaa-copy",
+      "targetPath": "/ar/products/tkm-kho-mlk-6-ktaa-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atkm-kho"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-althsyn",
+      "sourceId": "c5013b2b5461",
+      "sourceSlug": "slslh-althsyn",
+      "targetPath": "/ar/products/slslh-althsyn",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fraaon-ashkal-mkhtlfh-copy",
+      "sourceId": "c504b9fcee86",
+      "sourceSlug": "asaor-fraaon-ashkal-mkhtlfh-copy",
+      "targetPath": "/ar/products/asaor-fraaon-ashkal-mkhtlfh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-sadh-copy",
+      "sourceId": "c58e66485366",
+      "sourceSlug": "dblh-sadh-copy",
+      "targetPath": "/ar/products/dblh-sadh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy-1",
+      "sourceId": "c627131f4c2e",
+      "sourceSlug": "asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy-1",
+      "targetPath": "/ar/products/asaor-nksh-nhas-ahmr-aard-oahd-aalyha-oahd-hdy-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-alfkhamh-mgdolh-ydoy-copy",
+      "sourceId": "c6c08161d3f5",
+      "sourceSlug": "dblh-alfkhamh-mgdolh-ydoy-copy",
+      "targetPath": "/ar/products/dblh-alfkhamh-mgdolh-ydoy-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-mksrat-sdf",
+      "sourceId": "c6e8d8763c97",
+      "sourceSlug": "tkm-mksrat-sdf",
+      "targetPath": "/ar/products/tkm-mksrat-sdf",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "sourceId": "c7f220011729",
+      "sourceSlug": "msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "targetPath": "/ar/products/msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkhlh-nhas-ahmr-asfr-copy",
+      "sourceId": "c861d5c658f7",
+      "sourceSlug": "mkhlh-nhas-ahmr-asfr-copy",
+      "targetPath": "/ar/products/mkhlh-nhas-ahmr-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kostr-sdf-loks-copy",
+      "sourceId": "c86915cc2f71",
+      "sourceSlug": "kostr-sdf-loks-copy",
+      "targetPath": "/ar/products/kostr-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-15sm-ydoy-nhas-asfr-copy",
+      "sourceId": "c877feaba7ab",
+      "sourceSlug": "tkm-asaor-15sm-ydoy-nhas-asfr-copy",
+      "targetPath": "/ar/products/tkm-asaor-15sm-ydoy-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soany-sdf",
+      "sourceId": "c8c961654e19",
+      "sourceSlug": "soany-sdf",
+      "targetPath": "/ar/products/soany-sdf",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-taoos-sadh-nksh-snon-lyzr-copy",
+      "sourceId": "c948d7502e74",
+      "sourceSlug": "msht-taoos-sadh-nksh-snon-lyzr-copy",
+      "targetPath": "/ar/products/msht-taoos-sadh-nksh-snon-lyzr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy-1",
+      "sourceId": "c9b3701ef03a",
+      "sourceSlug": "asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy-1",
+      "targetPath": "/ar/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalb-sbh",
+      "sourceId": "cac6c5739af9",
+      "sourceSlug": "aalb-sbh",
+      "targetPath": "/ar/products/aalb-sbh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aakd-jnyhat-jorj",
+      "sourceId": "cbd9af608767",
+      "sourceSlug": "aakd-jnyhat-jorj",
+      "targetPath": "/ar/products/aakd-jnyhat-jorj",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-nhas-ahmr-nksh-kbyrh-copy",
+      "sourceId": "cc011bd0d68a",
+      "sourceSlug": "sbrtayh-nhas-ahmr-nksh-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-nhas-ahmr-nksh-kbyrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-akl-nhas-ahmr",
+      "sourceId": "cc19c7d37edb",
+      "sourceSlug": "atbak-akl-nhas-ahmr",
+      "targetPath": "/ar/products/atbak-akl-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-fraaon-7m-copy-1",
+      "sourceId": "cc5c55b3038f",
+      "sourceSlug": "asaor-fraaon-7m-copy-1",
+      "targetPath": "/ar/products/asaor-fraaon-7m-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-3ktaa-sbrtayh-btbk-copy",
+      "sourceId": "ccf920ae3c89",
+      "sourceSlug": "tkm-kho-3ktaa-sbrtayh-btbk-copy",
+      "targetPath": "/ar/products/tkm-kho-3ktaa-sbrtayh-btbk-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-bydao-loks",
+      "sourceId": "cd16602134bb",
+      "sourceSlug": "tkm-3aalb-sdf-bydao-loks",
+      "targetPath": "/ar/products/tkm-3aalb-sdf-bydao-loks",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-zhrh-allots-copy-2",
+      "sourceId": "cddb204b5a5b",
+      "sourceSlug": "hlk-zhrh-allots-copy-2",
+      "targetPath": "/ar/products/hlk-zhrh-allots-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy",
+      "sourceId": "cf0d98a7a041",
+      "sourceSlug": "tkm-kho-mlk-3-ktaa-copy",
+      "targetPath": "/ar/products/tkm-kho-mlk-3-ktaa-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/atkm-kho",
+        "https://www.sprtaya-kanaka.net/collections/atkm-kho-oshay",
+        "https://www.sprtaya-kanaka.net/collections/atkm-shay"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asor-bkortyn",
+      "sourceId": "cf584aae56c2",
+      "sourceSlug": "asor-bkortyn",
+      "targetPath": "/ar/products/asor-bkortyn",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh-15sm-copy",
+      "sourceId": "d01ee7fc3a77",
+      "sourceSlug": "asorh-sadh-15sm-copy",
+      "targetPath": "/ar/products/asorh-sadh-15sm-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tasat-nhas-ahmr-7-mkasat-copy",
+      "sourceId": "d14adf906687",
+      "sourceSlug": "tasat-nhas-ahmr-7-mkasat-copy",
+      "targetPath": "/ar/products/tasat-nhas-ahmr-7-mkasat-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-mftah-alkaabh-33-copy",
+      "sourceId": "d1613e227f16",
+      "sourceSlug": "sbhh-mftah-alkaabh-33-copy",
+      "targetPath": "/ar/products/sbhh-mftah-alkaabh-33-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-taoos-sadh-nksh-snon-lyzr",
+      "sourceId": "d404deabd371",
+      "sourceSlug": "msht-taoos-sadh-nksh-snon-lyzr",
+      "targetPath": "/ar/products/msht-taoos-sadh-nksh-snon-lyzr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-copy",
+      "sourceId": "d464fe15a9ab",
+      "sourceSlug": "kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-copy",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/knk-nksh-osad-byd-khshb-1mlly-copy-1",
+      "sourceId": "d5b0a82fbde7",
+      "sourceSlug": "knk-nksh-osad-byd-khshb-1mlly-copy-1",
+      "targetPath": "/ar/products/knk-nksh-osad-byd-khshb-1mlly-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-albhr-copy-1",
+      "sourceId": "d5d3a4f2e1eb",
+      "sourceSlug": "khlkhal-albhr-copy-1",
+      "targetPath": "/ar/products/khlkhal-albhr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/fnjan-btbk-nhas-ahmr-copy",
+      "sourceId": "d655a914dda1",
+      "sourceSlug": "fnjan-btbk-nhas-ahmr-copy",
+      "targetPath": "/ar/products/fnjan-btbk-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/aalb-joant-sdf-loks-copy",
+      "sourceId": "d70a8c651846",
+      "sourceSlug": "aalb-joant-sdf-loks-copy",
+      "targetPath": "/ar/products/aalb-joant-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-sadh",
+      "sourceId": "d75ab1d78a5d",
+      "sourceSlug": "tkm-asaor-sadh",
+      "targetPath": "/ar/products/tkm-asaor-sadh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-zhrh-allots-copy",
+      "sourceId": "d993bae15dbc",
+      "sourceSlug": "hlk-zhrh-allots-copy",
+      "targetPath": "/ar/products/hlk-zhrh-allots-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/maalkh-khoh-mkas-kbyr-copy",
+      "sourceId": "d9c41cf79634",
+      "sourceSlug": "maalkh-khoh-mkas-kbyr-copy",
+      "targetPath": "/ar/products/maalkh-khoh-mkas-kbyr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dbl-mgdol-shklyn-copy",
+      "sourceId": "daa9ca521626",
+      "sourceSlug": "dbl-mgdol-shklyn-copy",
+      "targetPath": "/ar/products/dbl-mgdol-shklyn-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-ahmr",
+      "sourceId": "dab3df1cf5b5",
+      "sourceSlug": "ansyal-ahmr",
+      "targetPath": "/ar/products/ansyal-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/allolb-alnhas",
+      "sourceId": "dac366a87129",
+      "sourceSlug": "allolb-alnhas",
+      "targetPath": "/ar/products/allolb-alnhas",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/krs-alaarsh-copy",
+      "sourceId": "db4bd822fb7f",
+      "sourceSlug": "krs-alaarsh-copy",
+      "targetPath": "/ar/products/krs-alaarsh-copy",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat",
+        "https://www.sprtaya-kanaka.net/collections/mbakhr"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-hgr-snaaa-copy",
+      "sourceId": "db7f4de41ae8",
+      "sourceSlug": "dlayat-bslslh-hgr-snaaa-copy",
+      "targetPath": "/ar/products/dlayat-bslslh-hgr-snaaa-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy",
+      "sourceId": "dcd6e9c897c0",
+      "sourceSlug": "sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy",
+      "targetPath": "/ar/products/sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hsan-antyka",
+      "sourceId": "dcf1bce32025",
+      "sourceSlug": "hsan-antyka",
+      "targetPath": "/ar/products/hsan-antyka",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas-copy-1",
+      "sourceId": "dd9c450af0e3",
+      "sourceSlug": "ansyal-nhas-copy-1",
+      "targetPath": "/ar/products/ansyal-nhas-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-nksh-gmlh-copy-1",
+      "sourceId": "de20c3ae7d71",
+      "sourceSlug": "dblh-nksh-gmlh-copy-1",
+      "targetPath": "/ar/products/dblh-nksh-gmlh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dlayh-fraaony-nhas-ahmr-ao-asfr",
+      "sourceId": "de2aa2fe688b",
+      "sourceSlug": "dlayh-fraaony-nhas-ahmr-ao-asfr",
+      "targetPath": "/ar/products/dlayh-fraaony-nhas-ahmr-ao-asfr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-soan-zan-tbyaay-sdf-loks-copy",
+      "sourceId": "de3cc25906e6",
+      "sourceSlug": "tkm-soan-zan-tbyaay-sdf-loks-copy",
+      "targetPath": "/ar/products/tkm-soan-zan-tbyaay-sdf-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr",
+      "sourceId": "de63250d3649",
+      "sourceSlug": "hrm-altakh-nhas-ahmr",
+      "targetPath": "/ar/products/hrm-altakh-nhas-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hrm-altakh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas",
+      "sourceId": "de6e1df366d3",
+      "sourceSlug": "ansyal-nhas",
+      "targetPath": "/ar/products/ansyal-nhas",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ktaf-oshokr-rkb",
+      "sourceId": "ded8741e0a0b",
+      "sourceSlug": "ktaf-oshokr-rkb",
+      "targetPath": "/ar/products/ktaf-oshokr-rkb",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-trathna-copy-2",
+      "sourceId": "dfc5f804338b",
+      "sourceSlug": "hlk-trathna-copy-2",
+      "targetPath": "/ar/products/hlk-trathna-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy-1",
+      "sourceId": "e0e9ecfb2ecf",
+      "sourceSlug": "slslh-zhrh-allots-copy-1",
+      "targetPath": "/ar/products/slslh-zhrh-allots-copy-1",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/rmalh-nhas-ahmr",
+      "sourceId": "e12be56532df",
+      "sourceSlug": "rmalh-nhas-ahmr",
+      "targetPath": "/ar/products/rmalh-nhas-ahmr",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/atkm-kho-oshay",
+        "https://www.sprtaya-kanaka.net/collections/dal-kho-aarby"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dblh-khyaas",
+      "sourceId": "e18d4c656fc9",
+      "sourceSlug": "dblh-khyaas",
+      "targetPath": "/ar/products/dblh-khyaas",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-mdfrh-copy-1",
+      "sourceId": "e1d2fd38bea8",
+      "sourceSlug": "asaor-sadh-mdfrh-copy-1",
+      "targetPath": "/ar/products/asaor-sadh-mdfrh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/accessories"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shakmajia",
+      "sourceId": "e340861323f4",
+      "sourceSlug": "shakmajia",
+      "targetPath": "/ar/products/shakmajia",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr",
+      "sourceId": "e3989a69c7c3",
+      "sourceSlug": "tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr",
+      "targetPath": "/ar/products/tkm-asaor-bdblh-oasaor-fkt-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-jorj",
+      "sourceId": "e3d36fb47a1b",
+      "sourceSlug": "ansyal-jorj",
+      "targetPath": "/ar/products/ansyal-jorj",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dlayat-slasl"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-kolh-myah-nhas-ahmr-thsyn",
+      "sourceId": "e3e859194900",
+      "sourceSlug": "tkm-kolh-myah-nhas-ahmr-thsyn",
+      "targetPath": "/ar/products/tkm-kolh-myah-nhas-ahmr-thsyn",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-sadh-copy",
+      "sourceId": "e40a482bb149",
+      "sourceSlug": "khoatm-fraaon-sadh-copy",
+      "targetPath": "/ar/products/khoatm-fraaon-sadh-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "sourceId": "e412c8a6176c",
+      "sourceSlug": "msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "targetPath": "/ar/products/msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mkshth-allsan-nhas-ahmr",
+      "sourceId": "e5185c030a75",
+      "sourceSlug": "mkshth-allsan-nhas-ahmr",
+      "targetPath": "/ar/products/mkshth-allsan-nhas-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntgat-akhr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy-1",
+      "sourceId": "e550b7ee7e56",
+      "sourceSlug": "mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy-1",
+      "targetPath": "/ar/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas-copy-2",
+      "sourceId": "e55c4139aa6e",
+      "sourceSlug": "ansyal-nhas-copy-2",
+      "targetPath": "/ar/products/ansyal-nhas-copy-2",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy-1",
+      "sourceId": "e597a94a0bfd",
+      "sourceSlug": "asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy-1",
+      "targetPath": "/ar/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-fs-5-ashkal-copy",
+      "sourceId": "e5feb0339ee1",
+      "sourceSlug": "hlk-fs-5-ashkal-copy",
+      "targetPath": "/ar/products/hlk-fs-5-ashkal-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-kartyr-copy",
+      "sourceId": "e618f1f63945",
+      "sourceSlug": "tkm-slslh-oansyal-kartyr-copy",
+      "targetPath": "/ar/products/tkm-slslh-oansyal-kartyr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-sdf-shkl-fraaon",
+      "sourceId": "e6427521529e",
+      "sourceSlug": "soan-sdf-shkl-fraaon",
+      "targetPath": "/ar/products/soan-sdf-shkl-fraaon",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tash-alkhdh-ao-alkhlaah-nhas-ahmr-copy",
+      "sourceId": "e6b958b2999a",
+      "sourceSlug": "tash-alkhdh-ao-alkhlaah-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tash-alkhdh-ao-alkhlaah-nhas-ahmr-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-alamyr-nhas-asfr-copy",
+      "sourceId": "e7c660880ea0",
+      "sourceSlug": "msht-alamyr-nhas-asfr-copy",
+      "targetPath": "/ar/products/msht-alamyr-nhas-asfr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-nhas-ahmr-kbyr-nksh-copy-1",
+      "sourceId": "e832720135aa",
+      "sourceSlug": "msht-nhas-ahmr-kbyr-nksh-copy-1",
+      "targetPath": "/ar/products/msht-nhas-ahmr-kbyr-nksh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/amshat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh",
+      "sourceId": "e894f9a57eed",
+      "sourceSlug": "asorh-sadh",
+      "targetPath": "/ar/products/asorh-sadh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-fraaon-copy",
+      "sourceId": "e968326c4ef9",
+      "sourceSlug": "ansyal-fraaon-copy",
+      "targetPath": "/ar/products/ansyal-fraaon-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlh-nhas-ahmr-copy",
+      "sourceId": "e9ecd6941290",
+      "sourceSlug": "hlh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/hlh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-aasha-copy",
+      "sourceId": "ea16dda9160c",
+      "sourceSlug": "soan-aasha-copy",
+      "targetPath": "/ar/products/soan-aasha-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mbakhr-malk-mkasat-kbyr-copy",
+      "sourceId": "ea8aad509771",
+      "sourceSlug": "mbakhr-malk-mkasat-kbyr-copy",
+      "targetPath": "/ar/products/mbakhr-malk-mkasat-kbyr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-shhr-rmdan-mtah9-ashkal-copy",
+      "sourceId": "ebdd796dc58d",
+      "sourceSlug": "mydalyat-shhr-rmdan-mtah9-ashkal-copy",
+      "targetPath": "/ar/products/mydalyat-shhr-rmdan-mtah9-ashkal-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyh-zhrh-alhyah-oaayn-hors-maa-baad-copy",
+      "sourceId": "ec1a55c729dc",
+      "sourceSlug": "mydalyh-zhrh-alhyah-oaayn-hors-maa-baad-copy",
+      "targetPath": "/ar/products/mydalyh-zhrh-alhyah-oaayn-hors-maa-baad-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/dbl-ashkal-mkhtlf-copy",
+      "sourceId": "ecbffcfeaada",
+      "sourceSlug": "dbl-ashkal-mkhtlf-copy",
+      "targetPath": "/ar/products/dbl-ashkal-mkhtlf-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-snon-oasaah-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "sourceId": "ece7eb96a407",
+      "sourceSlug": "msht-snon-oasaah-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "targetPath": "/ar/products/msht-snon-oasaah-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tot-aankh-amon-antykat",
+      "sourceId": "ecece86189a1",
+      "sourceSlug": "tot-aankh-amon-antykat",
+      "targetPath": "/ar/products/tot-aankh-amon-antykat",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-zhrh-allots-copy-1",
+      "sourceId": "ed6c4095af3f",
+      "sourceSlug": "hlk-zhrh-allots-copy-1",
+      "targetPath": "/ar/products/hlk-zhrh-allots-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbhh-nhas",
+      "sourceId": "edb0f20a038e",
+      "sourceSlug": "sbhh-nhas",
+      "targetPath": "/ar/products/sbhh-nhas",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/alsbh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hlk-fs-5-ashkal",
+      "sourceId": "edcfcae453f1",
+      "sourceSlug": "hlk-fs-5-ashkal",
+      "targetPath": "/ar/products/hlk-fs-5-ashkal",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hlkan"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khatm-nhas-ahmr-ao-asfr-sad",
+      "sourceId": "edfc4ef5080c",
+      "sourceSlug": "khatm-nhas-ahmr-ao-asfr-sad",
+      "targetPath": "/ar/products/khatm-nhas-ahmr-ao-asfr-sad",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-frzatsh-07sm",
+      "sourceId": "ee68884e1f7e",
+      "sourceSlug": "asaor-frzatsh-07sm",
+      "targetPath": "/ar/products/asaor-frzatsh-07sm",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-gmlh-copy",
+      "sourceId": "ef3586f497be",
+      "sourceSlug": "kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-gmlh-copy",
+      "targetPath": "/ar/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-gmlh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/soan-fraaon-ashkal-mkhtlfh",
+      "sourceId": "efbd7c098bd0",
+      "sourceSlug": "soan-fraaon-ashkal-mkhtlfh",
+      "targetPath": "/ar/products/soan-fraaon-ashkal-mkhtlfh",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-alaarb-nhas-ahmr-copy-1",
+      "sourceId": "efc38c7f4e04",
+      "sourceSlug": "asaor-alaarb-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/asaor-alaarb-nhas-ahmr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-bydao-loks-copy",
+      "sourceId": "f0935c9cd275",
+      "sourceSlug": "tkm-3aalb-sdf-bydao-loks-copy",
+      "targetPath": "/ar/products/tkm-3aalb-sdf-bydao-loks-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb",
+      "sourceId": "f176026d8cf1",
+      "sourceSlug": "hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb",
+      "targetPath": "/ar/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/hrm-altakh"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor",
+      "sourceId": "f218441a16ed",
+      "sourceSlug": "asaor",
+      "targetPath": "/ar/products/asaor",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr",
+      "sourceId": "f34e7bc2a293",
+      "sourceSlug": "fasl-almshf-nhas-ahmr-asfr",
+      "targetPath": "/ar/products/fasl-almshf-nhas-ahmr-asfr",
+      "categorySourceUrls": [
+        "https://www.sprtaya-kanaka.net/collections/alsbh",
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr"
+      ],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kdrh-fol-nhas-ahmr-brh-ojoh",
+      "sourceId": "f4cc28bba2f5",
+      "sourceSlug": "kdrh-fol-nhas-ahmr-brh-ojoh",
+      "targetPath": "/ar/products/kdrh-fol-nhas-ahmr-brh-ojoh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/tkm-asaor-bdblh-fraaon-nhas-ahmr-copy",
+      "sourceId": "f4d54191e461",
+      "sourceSlug": "tkm-asaor-bdblh-fraaon-nhas-ahmr-copy",
+      "targetPath": "/ar/products/tkm-asaor-bdblh-fraaon-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "sourceId": "f6000828c4fc",
+      "sourceSlug": "msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "targetPath": "/ar/products/msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-tbyaa-faek-aljod-copy-1",
+      "sourceId": "f7b5ee4baaa5",
+      "sourceSlug": "shkmjyh-sdf-tbyaa-faek-aljod-copy-1",
+      "targetPath": "/ar/products/shkmjyh-sdf-tbyaa-faek-aljod-copy-1",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-copy-1",
+      "sourceId": "f7bf1c71fc85",
+      "sourceSlug": "sbrtayh-mrtl-kbyrh-copy-1",
+      "targetPath": "/ar/products/sbrtayh-mrtl-kbyrh-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/sbrtay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/kostr-sdf-loks",
+      "sourceId": "f825d737c569",
+      "sourceSlug": "kostr-sdf-loks",
+      "targetPath": "/ar/products/kostr-sdf-loks",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khoatm-fraaony-2-copy",
+      "sourceId": "f8ac1f9e71d3",
+      "sourceSlug": "khoatm-fraaony-2-copy",
+      "targetPath": "/ar/products/khoatm-fraaony-2-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/shnbr-ntharh-nhas-ahmr-copy",
+      "sourceId": "f8ed1b399cb9",
+      "sourceSlug": "shnbr-ntharh-nhas-ahmr-copy",
+      "targetPath": "/ar/products/shnbr-ntharh-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/maaalk-oshok-oskakyn-akl-nhas-ahmr",
+      "sourceId": "f8effd6c0aed",
+      "sourceSlug": "maaalk-oshok-oskakyn-akl-nhas-ahmr",
+      "targetPath": "/ar/products/maaalk-oshok-oskakyn-akl-nhas-ahmr",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/maaalk"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/nsr-antyka-copy",
+      "sourceId": "f9b5b1816486",
+      "sourceSlug": "nsr-antyka-copy",
+      "targetPath": "/ar/products/nsr-antyka-copy",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khatm-fraaon-sghyr",
+      "sourceId": "fa275a6315cd",
+      "sourceSlug": "khatm-fraaon-sghyr",
+      "targetPath": "/ar/products/khatm-fraaon-sghyr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/ansyal-nhas-copy",
+      "sourceId": "fa8a4cce1d75",
+      "sourceSlug": "ansyal-nhas-copy",
+      "targetPath": "/ar/products/ansyal-nhas-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-copy",
+      "sourceId": "fb15caccca49",
+      "sourceSlug": "sbrtayh-mrtl-kbyrh-copy",
+      "targetPath": "/ar/products/sbrtayh-mrtl-kbyrh-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-ahmr-modrn",
+      "sourceId": "fc3230e06484",
+      "sourceSlug": "asorh-ahmr-modrn",
+      "targetPath": "/ar/products/asorh-ahmr-modrn",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/gzm-antyka",
+      "sourceId": "fc3a7bdc8c7c",
+      "sourceSlug": "gzm-antyka",
+      "targetPath": "/ar/products/gzm-antyka",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-ahmr-copy-1",
+      "sourceId": "fc7e2181f5bf",
+      "sourceSlug": "khlkhal-nhas-ahmr-copy-1",
+      "targetPath": "/ar/products/khlkhal-nhas-ahmr-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/khlkhal"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/bakt-8-bnsh-shaar-nhas-ahmr-copy",
+      "sourceId": "fcd7f0a8cf68",
+      "sourceSlug": "bakt-8-bnsh-shaar-nhas-ahmr-copy",
+      "targetPath": "/ar/products/bakt-8-bnsh-shaar-nhas-ahmr-copy",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asorh-sadh-mrbaah-nhas-ahmr-asfr",
+      "sourceId": "fd10e4d9a525",
+      "sourceSlug": "asorh-sadh-mrbaah-nhas-ahmr-asfr",
+      "targetPath": "/ar/products/asorh-sadh-mrbaah-nhas-ahmr-asfr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/mydalyat-almsryyn-alkdmaaa-fraaon-copy-1",
+      "sourceId": "fd6d4b704860",
+      "sourceSlug": "mydalyat-almsryyn-alkdmaaa-fraaon-copy-1",
+      "targetPath": "/ar/products/mydalyat-almsryyn-alkdmaaa-fraaon-copy-1",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/mydalyat"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/atbak-fraaon-nhas-ahmr",
+      "sourceId": "ff045ec75947",
+      "sourceSlug": "atbak-fraaon-nhas-ahmr",
+      "targetPath": "/ar/products/atbak-fraaon-nhas-ahmr",
+      "categorySourceUrls": [],
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy-2",
+      "sourceId": "ff8569a96daf",
+      "sourceSlug": "slslh-zhrh-allots-copy-2",
+      "targetPath": "/ar/products/slslh-zhrh-allots-copy-2",
+      "categorySourceUrls": ["https://www.sprtaya-kanaka.net/collections/asaor"],
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/products/asaor-sadh-mdfrh",
+      "sourceId": "ffd4bcef5aab",
+      "sourceSlug": "asaor-sadh-mdfrh",
+      "targetPath": "/ar/products/asaor-sadh-mdfrh",
+      "categorySourceUrls": [],
+      "needsReview": true
+    }
+  ],
+  "categories": [
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/mkahl",
+      "sourceId": "mkahl",
+      "targetPath": "/ar/collections/mkahl",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/maaalk",
+      "sourceId": "maaalk",
+      "targetPath": "/ar/collections/maaalk",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/fnagyyn-fnanyyn",
+      "sourceId": "fnagyyn-fnanyyn",
+      "targetPath": null,
+      "needsReview": true
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/sbrtay",
+      "sourceId": "sbrtay",
+      "targetPath": "/ar/collections/sbrtay",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/asaor",
+      "sourceId": "asaor",
+      "targetPath": "/ar/collections/asaor",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/dlayat-slasl",
+      "sourceId": "dlayat-slasl",
+      "targetPath": "/ar/collections/dlayat-slasl",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/accessories",
+      "sourceId": "accessories",
+      "targetPath": "/ar/collections/accessories",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/cup",
+      "sourceId": "cup",
+      "targetPath": "/ar/collections/cup",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/alsbh",
+      "sourceId": "alsbh",
+      "targetPath": "/ar/collections/alsbh",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+      "sourceId": "hdayat-shhr-rmdan",
+      "targetPath": "/ar/collections/hdayat-shhr-rmdan",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/brad-shay",
+      "sourceId": "brad-shay",
+      "targetPath": "/ar/collections/brad-shay",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/sbayk",
+      "sourceId": "sbayk",
+      "targetPath": "/ar/collections/sbayk",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/atkm-kho",
+      "sourceId": "atkm-kho",
+      "targetPath": "/ar/collections/atkm-kho",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+      "sourceId": "zgagh-oakoab-almyah",
+      "targetPath": "/ar/collections/zgagh-oakoab-almyah",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka",
+      "sourceId": "sprtaya-kanaka",
+      "targetPath": "/ar/collections/sprtaya-kanaka",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/atkm-kho-oshay",
+      "sourceId": "atkm-kho-oshay",
+      "targetPath": "/ar/collections/atkm-kho-oshay",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/hrm-altakh",
+      "sourceId": "hrm-altakh",
+      "targetPath": "/ar/collections/hrm-altakh",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/dal-kho-aarby",
+      "sourceId": "dal-kho-aarby",
+      "targetPath": "/ar/collections/dal-kho-aarby",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/dbl-okhoatm",
+      "sourceId": "dbl-okhoatm",
+      "targetPath": "/ar/collections/dbl-okhoatm",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay",
+      "sourceId": "mntjat-alsdf-altbyaay",
+      "targetPath": "/ar/collections/mntjat-alsdf-altbyaay",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat",
+      "sourceId": "slasl-oansyalat-okolyhat",
+      "targetPath": "/ar/collections/slasl-oansyalat-okolyhat",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/kanaka",
+      "sourceId": "kanaka",
+      "targetPath": "/ar/collections/kanaka",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/soany",
+      "sourceId": "soany",
+      "targetPath": "/ar/collections/soany",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary",
+      "sourceId": "atbak-kraany-otthkary",
+      "targetPath": "/ar/collections/atbak-kraany-otthkary",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/hlkan",
+      "sourceId": "hlkan",
+      "targetPath": "/ar/collections/hlkan",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/tash-alkhdh-ao-alkhlaah",
+      "sourceId": "tash-alkhdh-ao-alkhlaah",
+      "targetPath": "/ar/collections/tash-alkhdh-ao-alkhlaah",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/mydalyat",
+      "sourceId": "mydalyat",
+      "targetPath": "/ar/collections/mydalyat",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam",
+      "sourceId": "adoat-almaed-otkdym-altaaam",
+      "targetPath": "/ar/collections/adoat-almaed-otkdym-altaaam",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/sukariat-banana",
+      "sourceId": "sukariat-banana",
+      "targetPath": "/ar/collections/sukariat-banana",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/khlkhal",
+      "sourceId": "khlkhal",
+      "targetPath": "/ar/collections/khlkhal",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/mntgat-akhr",
+      "sourceId": "mntgat-akhr",
+      "targetPath": "/ar/collections/mntgat-akhr",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/amshat",
+      "sourceId": "amshat",
+      "targetPath": "/ar/collections/amshat",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat",
+      "sourceId": "althf-o-alantykat",
+      "targetPath": "/ar/collections/althf-o-alantykat",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr",
+      "sourceId": "ksm-aljml-oaltsdyr",
+      "targetPath": "/ar/collections/ksm-aljml-oaltsdyr",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd",
+      "sourceId": "kolyhat-o-aakd",
+      "targetPath": "/ar/collections/kolyhat-o-aakd",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/mbakhr",
+      "sourceId": "mbakhr",
+      "targetPath": "/ar/collections/mbakhr",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/atkm-shay",
+      "sourceId": "atkm-shay",
+      "targetPath": "/ar/collections/atkm-shay",
+      "needsReview": false
+    },
+    {
+      "sourceUrl": "https://www.sprtaya-kanaka.net/collections/kofy-kornr",
+      "sourceId": "kofy-kornr",
+      "targetPath": null,
+      "needsReview": true
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "base": "http://127.0.0.1:3002",
+  "checks": [
+    {
+      "name": "ar homepage 390px",
+      "pass": true
+    },
+    {
+      "name": "ar homepage 768px",
+      "pass": true
+    },
+    {
+      "name": "ar homepage 1440px",
+      "pass": true
+    },
+    {
+      "name": "en homepage 390px",
+      "pass": true
+    },
+    {
+      "name": "en homepage 768px",
+      "pass": true
+    },
+    {
+      "name": "en homepage 1440px",
+      "pass": true
+    },
+    {
+      "name": "hero switches real product photograph and destination",
+      "pass": true
+    },
+    {
+      "name": "search dialog keyboard containment, Escape and focus restoration",
+      "pass": true
+    },
+    {
+      "name": "search form returns Arabic matches",
+      "pass": true
+    },
+    {
+      "name": "English search finds translated collection terms",
+      "pass": true
+    },
+    {
+      "name": "empty search recovery",
+      "pass": true
+    },
+    {
+      "name": "catalog filtering and sort persist in URL",
+      "pass": true
+    },
+    {
+      "name": "pagination preserves sort and page",
+      "pass": true
+    },
+    {
+      "name": "language switch preserves product route and query",
+      "pass": true
+    },
+    {
+      "name": "gallery thumbnails, navigation and honest commerce state",
+      "pass": true
+    },
+    {
+      "name": "cart and account give clear non-transactional states",
+      "pass": true
+    },
+    {
+      "name": "mobile menu closes on category navigation",
+      "pass": true
+    },
+    {
+      "name": "ar/products mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/collections mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/collections/atkm-kho mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/products/tkm-kho-4ktaa-copy mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/about mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/wholesale mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/custom-orders mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/contact mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "ar/policies mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/products mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/collections mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/collections/atkm-kho mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/products/tkm-kho-4ktaa-copy mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/about mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/wholesale mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/custom-orders mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/contact mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "en/policies mobile route & accessibility",
+      "pass": true
+    },
+    {
+      "name": "reduced motion keeps content visible and animations stopped",
+      "pass": true
+    },
+    {
+      "name": "no-script homepage retains catalog navigation",
+      "pass": true
+    },
+    {
+      "name": "not-found recovery is noindex; invalid locale returns 404",
+      "pass": true
+    },
+    {
+      "name": "no browser exceptions or failed image/script requests",
+      "pass": true
+    }
+  ],
+  "metrics": [
+    {
+      "label": "ar-home-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 0,
+        "y": 425.1875,
+        "width": 390,
+        "height": 340,
+        "top": 425.1875,
+        "right": 390,
+        "bottom": 765.1875,
+        "left": 0
+      },
+      "offenders": []
+    },
+    {
+      "label": "ar-home-768",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 768,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 0.015625,
+        "y": 146,
+        "width": 430.078125,
+        "height": 560,
+        "top": 146,
+        "right": 430.09375,
+        "bottom": 706,
+        "left": 0.015625
+      },
+      "offenders": []
+    },
+    {
+      "label": "ar-home-1440",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 1440,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 0.015625,
+        "y": 146,
+        "width": 835.1875,
+        "height": 560,
+        "top": 146,
+        "right": 835.203125,
+        "bottom": 706,
+        "left": 0.015625
+      },
+      "offenders": []
+    },
+    {
+      "label": "en-home-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 0,
+        "y": 443.875,
+        "width": 390,
+        "height": 340,
+        "top": 443.875,
+        "right": 390,
+        "bottom": 783.875,
+        "left": 0
+      },
+      "offenders": []
+    },
+    {
+      "label": "en-home-768",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 768,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 337.90625,
+        "y": 146,
+        "width": 430.078125,
+        "height": 560,
+        "top": 146,
+        "right": 767.984375,
+        "bottom": 706,
+        "left": 337.90625
+      },
+      "offenders": []
+    },
+    {
+      "label": "en-home-1440",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 1440,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 604.796875,
+        "y": 146,
+        "width": 835.1875,
+        "height": 560,
+        "top": 146,
+        "right": 1439.984375,
+        "bottom": 706,
+        "left": 604.796875
+      },
+      "offenders": []
+    },
+    {
+      "label": "ar-search-empty-1440",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 1440,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-products-filtered-1440",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 1440,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-product-1440",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 1440,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-menu-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [
+        "http://127.0.0.1:3002/_next/image?url=%2Fassets%2F%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA%2F%25D8%25B3%25D8%25A8%25D8%25B1%25D8%25AA%25D8%25A7%25D9%258A%25D8%25A9%2520%25D9%2588%25D9%2583%25D9%2586%25D9%2583%25D8%25A9%2F%25D8%25B3%25D8%25A8%25D8%25B1%25D8%25AA%25D8%25A7%25D9%258A%25D9%2587%2520%25D9%2588%25D9%2583%25D9%2586%25D9%2583%25D9%2587%2520%25D9%2585%25D8%25B1%25D8%25AA%25D9%2584%25D9%2589-01.jpg&w=3840&q=75",
+        "http://127.0.0.1:3002/_next/image?url=%2Fassets%2F%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA%2F%25D8%25AA%25D8%25B5%25D9%2586%25D9%258A%25D9%2581%25D8%25A7%25D8%25AA%2520%25D8%25A3%25D8%25AE%25D8%25B1%25D9%2589%2F%25D8%25AF%25D8%25A7%25D9%2584%25D8%25A9%2520%25D9%2582%25D9%2587%25D9%2588%25D8%25A9%2520%25D8%25B9%25D8%25B1%25D8%25A8%25D9%258A%2F%25D8%25AF%25D8%25A7%25D9%2584%25D9%2587%2520%25D9%2585%25D9%258A%25D8%25A7%25D9%2587%2520%25D9%2588%25D9%2582%25D9%2587%25D9%2588%25D9%2587%2520%25D9%2588%25D8%25B4%25D8%25A7%25D9%2589%2520%25D9%2585%25D8%25B9%2520%25D8%25A8%25D8%25B9%25D8%25B6%2520%25D9%2586%25D8%25AD%25D8%25A7%25D8%25B3%2520%25D8%25A7%25D8%25AD%25D9%2585%25D8%25B1%2520%25D8%25A8%25D8%25B1%25D9%2587%2520%25D9%2588%25D8%25AC%25D9%2588%25D9%2587-01.jpg&w=3840&q=75",
+        "http://127.0.0.1:3002/_next/image?url=%2Fassets%2F%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA%2F%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA%2520%25D8%25A7%25D9%2584%25D8%25B5%25D8%25AF%25D9%2581%2F%25D8%25B7%25D9%2582%25D9%2585%25203%25D8%25B9%25D9%2584%25D8%25A8%2520%25D8%25B5%25D8%25AF%25D9%2581%2520%25D9%2585%25D8%25AF%25D9%2588%25D8%25B1%2520-%2520%25D9%2584%25D9%2588%25D9%2583%25D8%25B3-01.jpg&w=3840&q=75"
+      ],
+      "hero": {
+        "x": 0,
+        "y": 425.1875,
+        "width": 390,
+        "height": 340,
+        "top": 425.1875,
+        "right": 390,
+        "bottom": 765.1875,
+        "left": 0
+      },
+      "offenders": []
+    },
+    {
+      "label": "ar-products-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-collections-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-collections-atkm-kho-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-products-tkm-kho-4ktaa-copy-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-about-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-wholesale-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-custom-orders-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-contact-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-policies-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-products-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-collections-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-collections-atkm-kho-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-products-tkm-kho-4ktaa-copy-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-about-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-wholesale-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-custom-orders-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-contact-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "en-policies-390",
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "offenders": []
+    },
+    {
+      "label": "ar-reduced-motion-390",
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "overflow": 0,
+      "broken": [],
+      "unloaded": [],
+      "hero": {
+        "x": 0,
+        "y": 425.1875,
+        "width": 390,
+        "height": 340,
+        "top": 425.1875,
+        "right": 390,
+        "bottom": 765.1875,
+        "left": 0
+      },
+      "offenders": []
+    }
+  ],
+  "audits": [
+    {
+      "label": "ar-home-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-home-768",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-home-1440",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en-home-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en-home-768",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en-home-1440",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en-search",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-search-empty",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-products-filtered",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-product",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-cart-dialog",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar-mobile-menu",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/products-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/collections-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/collections/atkm-kho-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/products/tkm-kho-4ktaa-copy-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/about-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/wholesale-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/custom-orders-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/contact-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "ar/policies-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/products-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/collections-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/collections/atkm-kho-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/products/tkm-kho-4ktaa-copy-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/about-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/wholesale-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/custom-orders-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/contact-390",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "label": "en/policies-390",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "errors": [],
+  "failures": []
+}

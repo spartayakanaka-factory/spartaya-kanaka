@@ -1,0 +1,1432 @@
+{
+  "source": "https://www.sprtaya-kanaka.net",
+  "sitemaps": [
+    "https://sprtaya-kanaka.net/sitemap/categories_01.xml",
+    "https://sprtaya-kanaka.net/sitemap/pages_01.xml",
+    "https://sprtaya-kanaka.net/sitemap/products_01.xml"
+  ],
+  "categories": [
+    {
+      "id": "mkahl",
+      "name_ar": "مكاحل",
+      "url": "https://www.sprtaya-kanaka.net/collections/mkahl",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/msht-nhas-byd-khshb-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mkhlh-klasyk-fayk-algod-copy",
+        "https://www.sprtaya-kanaka.net/products/mkhlh-nhas-ahmr-asfr"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/mkahl"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "maaalk",
+      "name_ar": "معالق",
+      "url": "https://www.sprtaya-kanaka.net/collections/maaalk",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/maalkh-khoh-mkas-kbyr",
+        "https://www.sprtaya-kanaka.net/products/maaalk-oshok-oskakyn-akl-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/suspended"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/maaalk"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "fnagyyn-fnanyyn",
+      "name_ar": "اتصل بنا",
+      "url": "https://www.sprtaya-kanaka.net/collections/fnagyyn-fnanyyn",
+      "product_urls": [],
+      "pagination_urls": [],
+      "collection_urls": [],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": true
+    },
+    {
+      "id": "sbrtay",
+      "name_ar": "سبرتاية",
+      "url": "https://www.sprtaya-kanaka.net/collections/sbrtay",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-copy-2",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-nksh-kbyrh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-nksh-kbyrh-btbk-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-mrtl-kbyrh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-sadh-kbyrh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-btbk-3-ashkal-jml-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/sbrtay"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "asaor",
+      "name_ar": "اساور",
+      "url": "https://www.sprtaya-kanaka.net/collections/asaor",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-sadh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy-2",
+        "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-copy-2",
+        "https://www.sprtaya-kanaka.net/products/dblh-alfkhamh-mgdolh-ydoy-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-15-shkl-copy-1",
+        "https://www.sprtaya-kanaka.net/products/hlk-trathna-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-aldlaa-4-ashkal",
+        "https://www.sprtaya-kanaka.net/products/asaor-alaarb-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-1"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/asaor"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "dlayat-slasl",
+      "name_ar": "دلايات سلاسل",
+      "url": "https://www.sprtaya-kanaka.net/collections/dlayat-slasl",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/ansyal-fraaon-copy-2",
+        "https://www.sprtaya-kanaka.net/products/dlayh-ayh-alkrs",
+        "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-sdf-tbyaay",
+        "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-ahgar-tbyaayh",
+        "https://www.sprtaya-kanaka.net/products/dlayat-bslslh-hgr-snaaa",
+        "https://www.sprtaya-kanaka.net/products/dlayat-ahgar-ashkal-mkhtlfh-mtah-dlayh-fkt-omtah-bslslh",
+        "https://www.sprtaya-kanaka.net/products/slslh-althsyn",
+        "https://www.sprtaya-kanaka.net/products/dlayh-mftah-alkaabh",
+        "https://www.sprtaya-kanaka.net/products/dlayh-alaayn",
+        "https://www.sprtaya-kanaka.net/products/ansyal-jorj"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/dlayat-slasl"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "accessories",
+      "name_ar": "اكسسوارات",
+      "url": "https://www.sprtaya-kanaka.net/collections/accessories",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/msht-byd-snon-oasaah-lyzr",
+        "https://www.sprtaya-kanaka.net/products/dblh-nksh-gmlh-copy",
+        "https://www.sprtaya-kanaka.net/products/ansyal-fraaon-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mydalyh-mftah-alkaabh-mkhlh-aatarh-copy",
+        "https://www.sprtaya-kanaka.net/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat",
+        "https://www.sprtaya-kanaka.net/products/asaor-sadh-mdfrh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/dlayat-kranyh-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/shbshb-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy-1",
+        "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/accessories"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "cup",
+      "name_ar": "فناجين نحاس",
+      "url": "https://www.sprtaya-kanaka.net/collections/cup",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/fngan-btbk-mlok-nhas-ahmr-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/cup"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "alsbh",
+      "name_ar": "السبح",
+      "url": "https://www.sprtaya-kanaka.net/collections/alsbh",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr",
+        "https://www.sprtaya-kanaka.net/products/sbhh-99-byt-aatr-nhas-asfr",
+        "https://www.sprtaya-kanaka.net/products/aalbh-sbhh-sdf-loks-copy-1",
+        "https://www.sprtaya-kanaka.net/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-2",
+        "https://www.sprtaya-kanaka.net/products/sbhh-nhas-ahmr-oyr-33-99-sadh-asmaaa-allh-alhsn-copy-1",
+        "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr",
+        "https://www.sprtaya-kanaka.net/products/sbhh-nhas",
+        "https://www.sprtaya-kanaka.net/products/aalb-sbh"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/alsbh"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "hdayat-shhr-rmdan",
+      "name_ar": "هدايات شهر رمضان",
+      "url": "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/mydalyat-shhr-rmdan-mtah9-ashkal",
+        "https://www.sprtaya-kanaka.net/products/lmbh-jaz-zjaj-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy",
+        "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy-1",
+        "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy",
+        "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-tbyaa-faek-aljod-copy",
+        "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-loks-copy",
+        "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr",
+        "https://www.sprtaya-kanaka.net/products/mftah-alkaab",
+        "https://www.sprtaya-kanaka.net/products/atbak-nksh-aarby"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/hdayat-shhr-rmdan"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "brad-shay",
+      "name_ar": "براد شاى",
+      "url": "https://www.sprtaya-kanaka.net/collections/brad-shay",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/brad-almghrb-nhas-ahmr-brh-ogoh-copy",
+        "https://www.sprtaya-kanaka.net/products/brad-alaarby-nhas-ahmr-brh-ojoh"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/brad-shay"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "sbayk",
+      "name_ar": "سبائك",
+      "url": "https://www.sprtaya-kanaka.net/collections/sbayk",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/msht-nhas-byd-khshb-copy",
+        "https://www.sprtaya-kanaka.net/products/sbaek-nhas-ahmr-999"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/sbayk"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "atkm-kho",
+      "name_ar": "أطقم قهوة",
+      "url": "https://www.sprtaya-kanaka.net/collections/atkm-kho",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-6-ktaa-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-5-ktaa-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-5-ktaa-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-alshbh-6-ktaa-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-4ktaa-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-3ktaa-copy-1"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/atkm-kho"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "zgagh-oakoab-almyah",
+      "name_ar": "زجاجه واكواب و مجات المياه",
+      "url": "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-copy",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-mkasat-mkhtlfh-gmlh-copy",
+        "https://www.sprtaya-kanaka.net/products/shryhh-nhas-ahmr-nk",
+        "https://www.sprtaya-kanaka.net/products/tkm-kolh-okobayh-myah-nhas-ahmr-byor-thsyn-mn-aldakhl",
+        "https://www.sprtaya-kanaka.net/products/akoab-myah",
+        "https://www.sprtaya-kanaka.net/products/tkm-dork-myah",
+        "https://www.sprtaya-kanaka.net/products/dork-myah"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/zgagh-oakoab-almyah"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "sprtaya-kanaka",
+      "name_ar": "سبرتاية وكنكة",
+      "url": "https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh-kbyrh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-mrtl-kbyrh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-btbk-oknkh-3ashkal"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/sprtaya-kanaka"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "atkm-kho-oshay",
+      "name_ar": "أطقم قهوة وشاي",
+      "url": "https://www.sprtaya-kanaka.net/collections/atkm-kho-oshay",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/rmalh-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/atkm-kho-oshay"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "hrm-altakh",
+      "name_ar": "هرم الطاقه",
+      "url": "https://www.sprtaya-kanaka.net/collections/hrm-altakh",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/msht-kbyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+        "https://www.sprtaya-kanaka.net/products/ahramat-antyka-kbyr-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-alastrkhaaa-nhas-ahmr-mstord-4ktaa",
+        "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb-copy",
+        "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr-mkasat-kbyrh-fk-otrkyb",
+        "https://www.sprtaya-kanaka.net/products/hrm-altakh-nhas-ahmr"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/hrm-altakh"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "dal-kho-aarby",
+      "name_ar": "دالة قهوة عربي",
+      "url": "https://www.sprtaya-kanaka.net/collections/dal-kho-aarby",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/dalh-myah-okhoh-osha-maa-baad-copy",
+        "https://www.sprtaya-kanaka.net/products/dalh-ao-bkrk-kho-osha-nhas-ahmr-o-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/rmalh-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/coffee-function"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/dal-kho-aarby"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "dbl-okhoatm",
+      "name_ar": "دبل وخواتم",
+      "url": "https://www.sprtaya-kanaka.net/collections/dbl-okhoatm",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-altakh-nhas-ahmr-maa-ahgar-tbyaayh-8-shkl-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kolmn-o-asbnsr-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/dblh-nksh-gmlh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mydalyh-zhrh-alhyah-oaayn-hors-maa-baad-copy",
+        "https://www.sprtaya-kanaka.net/products/dblh-nksh-copy",
+        "https://www.sprtaya-kanaka.net/products/dblh-khyaas",
+        "https://www.sprtaya-kanaka.net/products/dblh-symbl",
+        "https://www.sprtaya-kanaka.net/products/aard-dblh-nksh",
+        "https://www.sprtaya-kanaka.net/products/khatm-nhas-ahmr-ao-asfr-sad"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/dbl-okhoatm"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "mntjat-alsdf-altbyaay",
+      "name_ar": "منتجات الصدف لوكس و طبيعى",
+      "url": "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/aalbh-sbhh-sdf-loks-copy-1",
+        "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy-2",
+        "https://www.sprtaya-kanaka.net/products/sbrtayh-oknkh-sadh",
+        "https://www.sprtaya-kanaka.net/products/aalbh-sdf-tbyaa-25sm",
+        "https://www.sprtaya-kanaka.net/products/kostr-sdf-loks",
+        "https://www.sprtaya-kanaka.net/products/aalbh-mnadyl-sdf-loks",
+        "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-bydao-loks-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-3aalb-sdf-bydao-loks",
+        "https://www.sprtaya-kanaka.net/products/aalbh-khatm-sdf-tlbyaa-copy-1",
+        "https://www.sprtaya-kanaka.net/products/shkmjyh-sdf-abyd-tbyaa-faek-aljod-copy-1"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/mntjat-alsdf-altbyaay"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "slasl-oansyalat-okolyhat",
+      "name_ar": "سلاسل وانسيالات",
+      "url": "https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/hlk-zhrh-allots-copy-2",
+        "https://www.sprtaya-kanaka.net/products/hlk-frnsao-copy-1",
+        "https://www.sprtaya-kanaka.net/products/ansyal-nhas-copy-1",
+        "https://www.sprtaya-kanaka.net/products/ansyal-nhas",
+        "https://www.sprtaya-kanaka.net/products/khlkhal-albhr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-ashkal-mkhtlfh",
+        "https://www.sprtaya-kanaka.net/products/slslh-ayh-alkrsy",
+        "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-kartyr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/tkm-slslh-oansyal-kartyr-copy",
+        "https://www.sprtaya-kanaka.net/products/ansyal-ahmr"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/slasl-oansyalat-okolyhat"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "kanaka",
+      "name_ar": "كنك",
+      "url": "https://www.sprtaya-kanaka.net/collections/kanaka",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/knk-nhas-asfr-nksh-byd-khshb-1mlly-copy",
+        "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-asfr-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+        "https://www.sprtaya-kanaka.net/products/knk-frnsao-nhas-ahmr-brh-ojoh-1mlly-tkyl-ktaa-oahdh-bdon-lhamat-copy-1",
+        "https://www.sprtaya-kanaka.net/products/knk-nksh-osad-byd-khshb-1mlly-copy",
+        "https://www.sprtaya-kanaka.net/products/knk-askndrany"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/kanaka"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "soany",
+      "name_ar": "صوانى",
+      "url": "https://www.sprtaya-kanaka.net/collections/soany",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/soan-nksh-ydo-nhas-ahmr-1mll-tkylh",
+        "https://www.sprtaya-kanaka.net/products/soan-aasha",
+        "https://www.sprtaya-kanaka.net/products/alsawani"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/soany"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "atbak-kraany-otthkary",
+      "name_ar": "اطباق قرآنية وتذكارية وفرعونية ونقش عربي",
+      "url": "https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/soan-fraaon-ashkal-mkhtlfh",
+        "https://www.sprtaya-kanaka.net/products/atbak-hdaya-tthkaryh-basmk",
+        "https://www.sprtaya-kanaka.net/products/atbak-nksh-aarby",
+        "https://www.sprtaya-kanaka.net/products/atbak-fraaony-nshr-oaloan",
+        "https://www.sprtaya-kanaka.net/products/quran-dishes",
+        "https://www.sprtaya-kanaka.net/products/mosque-dishes"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/atbak-kraany-otthkary"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "hlkan",
+      "name_ar": "حلقان",
+      "url": "https://www.sprtaya-kanaka.net/collections/hlkan",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/hlk-zhrh-allots-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kolyhat-ashkal-mkhtlfh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/hlk-trathna-copy-2",
+        "https://www.sprtaya-kanaka.net/products/hlk-trathna",
+        "https://www.sprtaya-kanaka.net/products/hlk-fs-5-ashkal",
+        "https://www.sprtaya-kanaka.net/products/hlk-nhas-almsryyn-alkdmaaa-copy",
+        "https://www.sprtaya-kanaka.net/products/hlk-nhas-ashkal-mkhtlf-alsaar-60-225",
+        "https://www.sprtaya-kanaka.net/products/shaving"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/hlkan"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "tash-alkhdh-ao-alkhlaah",
+      "name_ar": "طاسه الخضه او الخلعه",
+      "url": "https://www.sprtaya-kanaka.net/collections/tash-alkhdh-ao-alkhlaah",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/asaor-fraaon-ashkal-mkhtlfh-copy-1"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/tash-alkhdh-ao-alkhlaah"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "mydalyat",
+      "name_ar": "ميداليات",
+      "url": "https://www.sprtaya-kanaka.net/collections/mydalyat",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/mydalyat-kran-nksh-aarb",
+        "https://www.sprtaya-kanaka.net/products/mydalyat-ayh-alkrsy-oalklakl",
+        "https://www.sprtaya-kanaka.net/products/mydalyat-almsryyn-alkdmaaa-fraaon-copy-1",
+        "https://www.sprtaya-kanaka.net/products/dlayat-kranyh-slslh-10-ashkal-copy",
+        "https://www.sprtaya-kanaka.net/products/mftah-alkaabh-mkhlh-aatarh-3-mkasat-copy",
+        "https://www.sprtaya-kanaka.net/products/mydalyat-nhas-loks-kran-nksh-aarby-fraaony-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mydalyat-shhr-rmdan-mtah9-ashkal"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/mydalyat"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "adoat-almaed-otkdym-altaaam",
+      "name_ar": "ادوات المائدة وتقديم الطعام (المطبخ)",
+      "url": "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/mg-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/slslh-zhrh-allots-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sadh-mkasat-mkhtlfh-copy",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-mkasat-mkhtlfh-gmlh-copy",
+        "https://www.sprtaya-kanaka.net/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kob-myah-nhas-ahmr-sghyr-nksh-copy-2",
+        "https://www.sprtaya-kanaka.net/products/tkm-mg-ghtaaashlmon-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/mg-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/kolmn-o-asbnsr-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/brad-almghrb-nhas-ahmr-brh-ogoh-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/adoat-almaed-otkdym-altaaam"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "sukariat-banana",
+      "name_ar": "سكريه و بنانه",
+      "url": "https://www.sprtaya-kanaka.net/collections/sukariat-banana",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/asaor-enh-mn-slyman-oenh-bsm-allh-alrhmn-alrhym-mn-aldakhl-oalkharj-sadh-rfyaah-copy-1"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/sukariat-banana"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "khlkhal",
+      "name_ar": "خلخال وكتافه",
+      "url": "https://www.sprtaya-kanaka.net/collections/khlkhal",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/ansyal-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/khlkhal-zy-alslslh",
+        "https://www.sprtaya-kanaka.net/products/khlkhal-mshghol-copy",
+        "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/khlkhal-nhas-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/ansyal-nhas-ahmr-asfr",
+        "https://www.sprtaya-kanaka.net/products/ktafh-okbdh-ayd-nhas-ahmr-1",
+        "https://www.sprtaya-kanaka.net/products/ktaf-oshokr-rkb"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/khlkhal"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "mntgat-akhr",
+      "name_ar": "منتجات اخرى",
+      "url": "https://www.sprtaya-kanaka.net/collections/mntgat-akhr",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/bakt-8-bnsh-shaar-nhas-ahmr-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-2",
+        "https://www.sprtaya-kanaka.net/products/shryhh-nhas-ahmr-nk",
+        "https://www.sprtaya-kanaka.net/products/tok-nhas-mgdol-3-mkasat",
+        "https://www.sprtaya-kanaka.net/products/sbhh-nhas-asfr-oyr-sadh-mftah-alkaabh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/shbshb-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-alastrkhaaa-nhas-ahmr-mstord-4ktaa",
+        "https://www.sprtaya-kanaka.net/products/mkshth-allsan-nhas-ahmr",
+        "https://www.sprtaya-kanaka.net/products/tokh-ao-tok-shaar",
+        "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/mntgat-akhr"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "amshat",
+      "name_ar": "امشاط",
+      "url": "https://www.sprtaya-kanaka.net/collections/amshat",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/msht-taoos-sadh-nksh-snon-lyzr",
+        "https://www.sprtaya-kanaka.net/products/msht-ost-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+        "https://www.sprtaya-kanaka.net/products/msht-sghyr-nhas-ahmr-tktyaa-snon-lyzr-ashkal-mkhtlfh-sadh-nksh-copy",
+        "https://www.sprtaya-kanaka.net/products/msht-nhas-ahmr-kbyr-nksh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/asaor-algntl-nhas-ahmr-aaal-algodh-mgdolh-ydoy-copy-2",
+        "https://www.sprtaya-kanaka.net/products/msht-almlk-nhas-asfr-sadh-kran-copy-1",
+        "https://www.sprtaya-kanaka.net/products/msht-nhas-ahmr-kbyr-nksh-ao-kran-copy",
+        "https://www.sprtaya-kanaka.net/products/tokh-ao-tok-shaar"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/amshat"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "althf-o-alantykat",
+      "name_ar": "التحف و الانتيكات",
+      "url": "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/srfys-msttyl-nhas-ahmr-roz-gold-4-mkasat-copy-1",
+        "https://www.sprtaya-kanaka.net/products/dblh-nksh-gmlh-copy",
+        "https://www.sprtaya-kanaka.net/products/krs-alaarsh-copy-1",
+        "https://www.sprtaya-kanaka.net/products/krs-alaarsh-copy",
+        "https://www.sprtaya-kanaka.net/products/asd-antyka-copy",
+        "https://www.sprtaya-kanaka.net/products/asd-antyka",
+        "https://www.sprtaya-kanaka.net/products/gzm-antyka-copy-1",
+        "https://www.sprtaya-kanaka.net/products/nsr-antyka-copy",
+        "https://www.sprtaya-kanaka.net/products/gzm-antyka-copy",
+        "https://www.sprtaya-kanaka.net/products/hdaya-mktb-nsr-omyzan-alaadalh"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/althf-o-alantykat"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "ksm-aljml-oaltsdyr",
+      "name_ar": "قسم الجمله والتصدير",
+      "url": "https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/sbhh33-nhas-asfr-byt-aatr-copy",
+        "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-byt-aatr-ao-mkhlh-mftah-alkaabh-copy",
+        "https://www.sprtaya-kanaka.net/products/sbhh-33-nhas-asfr-copy-2",
+        "https://www.sprtaya-kanaka.net/products/sbhh-mlky-33-nhas-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/fasl-almshf-nhas-ahmr-asfr-copy",
+        "https://www.sprtaya-kanaka.net/products/slk-nhas-hlzon-mtah-sadh-omgdol-copy",
+        "https://www.sprtaya-kanaka.net/products/asaor-fraaon-mtaamh-baloan-myna-4-ashkal-copy",
+        "https://www.sprtaya-kanaka.net/products/khoatm-fraaon-sadh-copy",
+        "https://www.sprtaya-kanaka.net/products/kob-nhas-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/tash-alkhdh-ao-alkhlaah-nhas-ahmr-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/ksm-aljml-oaltsdyr"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "kolyhat-o-aakd",
+      "name_ar": "كوليهات و عقد",
+      "url": "https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/asaor-alhdarat-alkdymh-nhas-ahmr-copy",
+        "https://www.sprtaya-kanaka.net/products/tkm-asaor-mgdol-ydo-copy-1",
+        "https://www.sprtaya-kanaka.net/products/kolyhat-nhas-ashkal-mkhtlfh"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/kolyhat-o-aakd"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "mbakhr",
+      "name_ar": "مباخر",
+      "url": "https://www.sprtaya-kanaka.net/collections/mbakhr",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/krs-alaarsh-copy",
+        "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam-copy",
+        "https://www.sprtaya-kanaka.net/products/mbakhr-mlk-nhas-ahmr-3-ashkal-3-ahjam",
+        "https://www.sprtaya-kanaka.net/products/mbkhr-alkds"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/mbakhr"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "atkm-shay",
+      "name_ar": "أطقم شاي",
+      "url": "https://www.sprtaya-kanaka.net/collections/atkm-shay",
+      "product_urls": [
+        "https://www.sprtaya-kanaka.net/products/tkm-kho-mlk-3-ktaa-copy"
+      ],
+      "pagination_urls": [],
+      "collection_urls": [
+        "https://www.sprtaya-kanaka.net/collections/atkm-shay"
+      ],
+      "page_urls": [
+        "https://www.sprtaya-kanaka.net/pages/contact-us",
+        "https://www.sprtaya-kanaka.net/pages/about-us",
+        "https://www.sprtaya-kanaka.net/pages/how-to-pay",
+        "https://www.sprtaya-kanaka.net/pages/shipping-delivery",
+        "https://www.sprtaya-kanaka.net/pages/return-policy",
+        "https://www.sprtaya-kanaka.net/pages/confidentiality"
+      ],
+      "cover_candidates": [
+        {
+          "source_url": "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg",
+          "source_urls": [
+            "https://assets.youcan.shop/stores/46cc69fa56ae72a4572423d2602308655a14f794/415846282_867237522075010_587389591837412927_n-2pXq7l5Vz8yZ8ZMgcrQwFaMLr76.jpg"
+          ],
+          "alt": "",
+          "classes": "open-graph",
+          "declared_width": 0,
+          "index": -1
+        }
+      ],
+      "review_required": false
+    },
+    {
+      "id": "kofy-kornr",
+      "name_ar": "اسم غير متاح في المصدر",
+      "url": "https://www.sprtaya-kanaka.net/collections/kofy-kornr",
+      "product_urls": [],
+      "pagination_urls": [],
+      "collection_urls": [],
+      "page_urls": [],
+      "cover_candidates": [],
+      "status": "inaccessible",
+      "error": "HTTP 404: Not Found",
+      "review_required": true
+    }
+  ]
+}
