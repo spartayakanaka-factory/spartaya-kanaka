@@ -2,6 +2,7 @@ import { stdin, stdout } from "node:process";
 import { hashPassword } from "better-auth/crypto";
 import { createRuntimeDatabase } from "./runtime-db";
 import { assertSafeDatabaseTarget } from "./database-target";
+import { consumeOwnerBootstrapPassword } from "./owner-bootstrap-secret";
 
 async function hiddenInput(label: string) {
   if (!stdin.isTTY || !stdin.setRawMode)
@@ -60,8 +61,14 @@ async function main() {
     throw new Error(
       "Set OWNER_BOOTSTRAP_EMAIL to the exact authorized owner identity and use that email in the command.",
     );
-  const password = await hiddenInput("New owner password (12+ characters): ");
-  const confirm = await hiddenInput("Confirm password: ");
+  const environmentPassword = consumeOwnerBootstrapPassword(
+    process.env,
+    process.argv,
+    Boolean(stdin.isTTY && stdin.setRawMode),
+  );
+  const password =
+    environmentPassword ?? (await hiddenInput("New owner password (12+ characters): "));
+  const confirm = environmentPassword ? password : await hiddenInput("Confirm password: ");
   if (password.length < 12 || password.length > 128 || password !== confirm)
     throw new Error("Passwords must match and be between 12 and 128 characters.");
   const db = createRuntimeDatabase();
