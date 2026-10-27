@@ -7,7 +7,7 @@ const stagingHeaders = {
 };
 
 export function proxy(request: NextRequest) {
-  const config = getStagingAccessConfig();
+  const config = getStagingAccessConfig(process.env, request.nextUrl.hostname);
   if (config.mode === "disabled") return NextResponse.next();
 
   if (config.mode === "misconfigured") {
