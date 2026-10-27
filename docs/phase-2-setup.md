@@ -24,6 +24,12 @@ Use Node 22 or 24 and pnpm 11. Create a MySQL 8.0.16+ or MariaDB 10.2.1+ databas
 
 4. Open `/admin/login`. Self-registration is disabled. Add additional staff from the owner-only staff page; their first password change is required.
 
+### Hostinger staging environment
+
+For a later staging run, enter `DATABASE_URL`, `DATABASE_TARGET=staging`, `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`, `AUTH_TRUSTED_ORIGINS`, and `CATALOG_SOURCE` in the temporary website's protected environment-variable settings. Keep database credentials and auth secrets out of GitHub, this document, and client-side variables. Obtain the database host and engine/version from Hostinger; do not assume a local connection hostname works from Codex.
+
+Before applying migrations, verify the database is dedicated and its contents are backed up. The current migration safety check accepts staging only when the URL host is non-loopback and the database name contains `stage` or `staging`. The owner reports a provisioned test database whose current name does not meet that rule. Resolve the naming/guard mismatch deliberately before setting `DATABASE_TARGET=staging`; no migration or connection should be attempted until that check passes.
+
 ## Opt-in MySQL integration checks
 
 The database integration suite is disabled during ordinary unit-test runs. It refuses to connect unless `PHASE2_DB_INTEGRATION=1`, `DATABASE_TARGET=local`, and `DATABASE_URL` points to loopback with a database name containing `test` or `integration`. Use a newly created, empty database such as `sprtaya_phase2_test`; never point it at a database containing user data. Apply migrations twice to verify replay, seed roles, then run:
