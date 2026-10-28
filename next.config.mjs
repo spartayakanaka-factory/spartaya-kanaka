@@ -4,6 +4,9 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/@swc/helpers/esm/**/*"],
+  },
 };
 
 export default nextConfig;
