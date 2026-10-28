@@ -1,8 +1,8 @@
 # Hostinger Phase 2.2 staging acceptance plan
 
-> **Staging security update:** the deployed site is not protected despite the expected source branch being deployed. See [Phase 2.3 staging security recovery](phase2.3-staging-security-recovery.md) for the current Hostinger audit, layered source fix, and required one-time rebuild gate.
+> **Staging security update:** the currently deployed site is not protected. The source fix is now published to `codex/hostinger-nextjs-source`, but auto-deployment is off and the live app still runs the previous commit. See [Phase 2.3 staging security recovery](phase2.3-staging-security-recovery.md) for the current Hostinger audit, layered source fix, and required one-time rebuild gate.
 
-**State: PARTIAL — database schema remains untouched; the current Hostinger staging deployment has a verified access-control failure.** The source branch currently points to `fe6e7897ee948ce7805ff81ea253d478ef3ac818`, deployed to build `01a181ca-d4d9-735a-88fa-6aacccae6daa`. The current source recovery and required next steps are in [Phase 2.3 staging security recovery](phase2.3-staging-security-recovery.md). The database verification/export records below are retained for the controlled migration plan and are not deployment or migration authorization.
+**State: PARTIAL — database schema remains untouched; the current Hostinger staging deployment has a verified access-control failure.** GitHub branch `codex/hostinger-nextjs-source` now points to `af447d9ecdcf9d5eb3de3eb9844953470b52077f`. Hostinger still serves `fe6e7897ee948ce7805ff81ea253d478ef3ac818`, build `01a181ef-eb61-73fa-9d9e-79e47d78e9fc`. The current source recovery and required next steps are in [Phase 2.3 staging security recovery](phase2.3-staging-security-recovery.md). The database verification/export records below are retained for the controlled migration plan and are not deployment or migration authorization.
 
 ## Historical database and staging audit — 2026-10-28
 

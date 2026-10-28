@@ -1,10 +1,10 @@
 # Phase 2.3 staging security recovery
 
-**Status: PARTIAL — source fix locally validated; staging remains unprotected until it is published, rebuilt once with separate approval, and the Hostinger HTTP checks pass.** Do not treat the currently deployed site as protected. This update supersedes earlier staging-security statements in `hostinger-phase2-staging-acceptance.md`.
+**Status: PARTIAL — source fix published as `af447d9ecdcf9d5eb3de3eb9844953470b52077f` and locally validated; staging remains unprotected until a separately approved rebuild and the Hostinger HTTP checks pass.** Do not treat the currently deployed site as protected. This update supersedes earlier staging-security statements in `hostinger-phase2-staging-acceptance.md`.
 
 ## Hostinger evidence — 2026-10-28
 
-- The configured Node app is `bisque-pheasant-330767.hostingersite.com`, Node 22, branch `codex/hostinger-nextjs-source`, deployed commit `fe6e7897ee948ce7805ff81ea253d478ef3ac818`, build `01a181ca-d4d9-735a-88fa-6aacccae6daa` (completed).
+- The configured Node app is `bisque-pheasant-330767.hostingersite.com`, Node 22, branch `codex/hostinger-nextjs-source`. The branch now points to source fix `af447d9ecdcf9d5eb3de3eb9844953470b52077f`; Hostinger still serves commit `fe6e7897ee948ce7805ff81ea253d478ef3ac818`, build `01a181ef-eb61-73fa-9d9e-79e47d78e9fc` (completed). Auto-deployment is off, so publishing did not start a build.
 - Hostinger reports the environment-variable names `APP_ENV`, `STAGING_SITE`, `STAGING_ACCESS_USERNAME`, and `STAGING_ACCESS_PASSWORD`. Their values are masked. The connector cannot verify the values read by the running Node process.
 - Runtime logs show Next.js 16.4.3 starts successfully. The current deployment still has the reported access-control failure: anonymous and invalid-Basic-Auth requests returned HTTP 200; `X-Robots-Tag` was absent; robots.txt allowed wildcard crawlers. The Hostinger CDN setting is enabled, but responses were reported as `DYNAMIC` with upstream timing, not cache hits.
 - Hostinger's website file API shows `public_html` contains only the generated `.htaccess`, not a competing static `robots.txt`. Its current rules route requests through Passenger to `/hbuilds/current/nodejs/server.js`. Hostinger's API cannot inspect that startup file because it is outside the document-root file API.
