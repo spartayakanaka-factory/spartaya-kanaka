@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
+import { getStagingAccessResponse } from "@/lib/staging-access";
 
 const assetRoot = path.resolve(process.cwd(), "sprtaya-kanaka-assets");
 const allowedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
@@ -12,7 +13,9 @@ const mimeTypes: Record<string, string> = {
   ".avif": "image/avif",
 };
 
-export async function GET(_request: Request, context: { params: Promise<{ path: string[] }> }) {
+export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
+  const blocked = getStagingAccessResponse(request.headers);
+  if (blocked) return blocked;
   const { path: segments } = await context.params;
   const relativePath = segments.join("/");
   const resolved = path.resolve(assetRoot, relativePath);

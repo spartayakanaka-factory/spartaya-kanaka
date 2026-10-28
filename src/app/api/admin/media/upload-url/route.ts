@@ -4,6 +4,7 @@ import { z } from "zod";
 import { requirePermission } from "@/lib/server/admin-session";
 import { getMediaStorage } from "@/lib/server/media-storage";
 import { hasTrustedRequestOrigin } from "@/lib/server/request-origin";
+import { getStagingAccessResponse } from "@/lib/staging-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,6 +12,8 @@ const inputSchema = z.object({ contentType: z.enum(["image/jpeg", "image/png", "
 const extensions = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/avif": "avif" } as const;
 
 export async function POST(request: Request) {
+  const blocked = getStagingAccessResponse(request.headers);
+  if (blocked) return blocked;
   try {
     const actor = await requirePermission("MEDIA_WRITE");
     if (!hasTrustedRequestOrigin(request)) return Response.json({ error: "FORBIDDEN" }, { status: 403 });

@@ -12,8 +12,20 @@ vi.mock("@/lib/server/auth", () => ({
 
 import { getAdminActor, requirePermission } from "@/lib/server/admin-session";
 
-const configKeys = ["DATABASE_URL", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"] as const;
+const configKeys = [
+  "DATABASE_URL",
+  "BETTER_AUTH_SECRET",
+  "BETTER_AUTH_URL",
+  "APP_ENV",
+  "STAGING_SITE",
+  "STAGING_ACCESS_USERNAME",
+  "STAGING_ACCESS_PASSWORD",
+] as const;
 const originalAuthConfig = new Map(configKeys.map((key) => [key, process.env[key]]));
+const stagingUsername = "stage-reviewer";
+const stagingPassword = "test-only-staging-password-123456";
+const validStagingAuthorization =
+  "Basic " + Buffer.from(`${stagingUsername}:${stagingPassword}`).toString("base64");
 
 function session(roleCode: string, forcePasswordChange = false) {
   return {
@@ -32,7 +44,16 @@ describe("admin session authorization boundary (mocked session; no persistence c
     process.env.DATABASE_URL = "mysql://test:test@127.0.0.1:3306/sprtaya_phase2_test";
     process.env.BETTER_AUTH_SECRET = "test-only-secret-with-at-least-thirty-two-characters";
     process.env.BETTER_AUTH_URL = "http://localhost:3000";
-    mocks.headers.mockResolvedValue(new Headers());
+    process.env.APP_ENV = "staging";
+    process.env.STAGING_SITE = "1";
+    process.env.STAGING_ACCESS_USERNAME = stagingUsername;
+    process.env.STAGING_ACCESS_PASSWORD = stagingPassword;
+    mocks.headers.mockResolvedValue(
+      new Headers({
+        host: "bisque-pheasant-330767.hostingersite.com",
+        authorization: validStagingAuthorization,
+      }),
+    );
     mocks.getSession.mockResolvedValue(null);
   });
 
@@ -53,6 +74,24 @@ describe("admin session authorization boundary (mocked session; no persistence c
     process.env.DATABASE_URL = "mysql://test:test@127.0.0.1:3306/sprtaya_phase2_test";
     await expect(getAdminActor()).resolves.toBeNull();
     await expect(requirePermission("PRODUCTS_READ")).rejects.toThrow("FORBIDDEN");
+  });
+
+  it("rejects missing or invalid staging Basic Auth before looking up an admin session", async () => {
+    mocks.getSession.mockResolvedValue(session("OWNER"));
+    mocks.headers.mockResolvedValueOnce(
+      new Headers({ host: "bisque-pheasant-330767.hostingersite.com" }),
+    );
+    await expect(getAdminActor()).resolves.toBeNull();
+    expect(mocks.getSession).not.toHaveBeenCalled();
+
+    mocks.headers.mockResolvedValueOnce(
+      new Headers({
+        host: "bisque-pheasant-330767.hostingersite.com",
+        authorization: "Basic bm90LWF1dGhvcml6ZWQ=",
+      }),
+    );
+    await expect(getAdminActor()).resolves.toBeNull();
+    expect(mocks.getSession).not.toHaveBeenCalled();
   });
 
   it("accepts only known roles from the session", async () => {

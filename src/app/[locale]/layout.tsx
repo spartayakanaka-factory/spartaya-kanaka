@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { isLocale } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
+import { requireStagingPageAccess } from "@/lib/server/staging-page-access";
 import "../globals.css";
 
 const arabic = localFont({
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
   children: ReactNode;
   params: Promise<{ locale: string }>;
 }) {
+  await requireStagingPageAccess();
   const { locale: value } = await params;
   if (!isLocale(value)) notFound();
   return (

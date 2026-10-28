@@ -1,34 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getStagingAccessConfig, isAuthorizedStagingBasicAuth } from "@/lib/staging-access";
-
-const stagingHeaders = {
-  "Cache-Control": "private, no-store",
-  "X-Robots-Tag": "noindex, nofollow, noarchive",
-};
+import { getStagingAccessDecision, getStagingAccessResponse } from "@/lib/staging-access";
 
 export function proxy(request: NextRequest) {
-  const config = getStagingAccessConfig(process.env, request.nextUrl.hostname);
-  if (config.mode === "disabled") return NextResponse.next();
-
-  if (config.mode === "misconfigured") {
-    return new NextResponse("Staging access is not configured.", {
-      status: 503,
-      headers: stagingHeaders,
-    });
-  }
-
-  if (!isAuthorizedStagingBasicAuth(request.headers.get("authorization"))) {
-    return new NextResponse("Authentication required.", {
-      status: 401,
-      headers: {
-        ...stagingHeaders,
-        "WWW-Authenticate": 'Basic realm="Sprtaya Phase 2 Staging", charset="UTF-8"',
-      },
-    });
-  }
+  const blocked = getStagingAccessResponse(request.headers);
+  if (blocked) return blocked;
 
   const response = NextResponse.next();
-  for (const [name, value] of Object.entries(stagingHeaders)) response.headers.set(name, value);
+  if (getStagingAccessDecision(request.headers).mode !== "disabled") {
+    response.headers.set("Cache-Control", "private, no-store");
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
   return response;
 }
 

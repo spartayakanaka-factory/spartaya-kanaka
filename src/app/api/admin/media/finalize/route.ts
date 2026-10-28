@@ -6,6 +6,7 @@ import { requirePermission } from "@/lib/server/admin-session";
 import { getDatabase } from "@/lib/server/database";
 import { getMediaStorage, mediaPublicUrl } from "@/lib/server/media-storage";
 import { hasTrustedRequestOrigin } from "@/lib/server/request-origin";
+import { getStagingAccessResponse } from "@/lib/staging-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,6 +31,8 @@ async function deleteOwnedOriginal(storage: ReturnType<typeof getMediaStorage>, 
 }
 
 export async function POST(request: Request) {
+  const blocked = getStagingAccessResponse(request.headers);
+  if (blocked) return blocked;
   let ownedKey: string | null = null;
   let storage: ReturnType<typeof getMediaStorage> | null = null;
   try {
