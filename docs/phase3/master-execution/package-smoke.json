@@ -1,0 +1,121 @@
+{
+  "sourceCommit": "6ac28ee42676b8f07779e9e0795b7f047720a944",
+  "archive": "sprtaya-phase3-6ac28ee42676_20261029_231903.zip",
+  "sha256": "8c11240e6d48cf046274dc43e55bae18577dae3ee75abba3c0ec52bb8220d151",
+  "bytes": 1555309,
+  "sourceFiles": 180,
+  "node": "22.23.4",
+  "pnpm": "11.24.0",
+  "environment": "Independent extracted source; macOS ARM64; no database configured/connected; application normal .next build/start; not Hostinger packaging acceptance",
+  "checks": [
+    {
+      "check": "clean-install",
+      "exitCode": 0
+    },
+    {
+      "check": "build",
+      "exitCode": 0
+    },
+    {
+      "check": "typecheck",
+      "exitCode": 0
+    }
+  ],
+  "http": [
+    {
+      "route": "/",
+      "authentication": "none",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/ar",
+      "authentication": "none",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/en",
+      "authentication": "none",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/admin",
+      "authentication": "none",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/robots.txt",
+      "authentication": "none",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/admin",
+      "authentication": "invalid",
+      "status": 401,
+      "bytes": 24,
+      "noindex": true
+    },
+    {
+      "route": "/ar",
+      "authentication": "valid",
+      "status": 200,
+      "bytes": 188917,
+      "noindex": true
+    },
+    {
+      "route": "/en",
+      "authentication": "valid",
+      "status": 200,
+      "bytes": 185935,
+      "noindex": true
+    },
+    {
+      "route": "/admin/login",
+      "authentication": "valid",
+      "status": 200,
+      "bytes": 9960,
+      "noindex": true
+    },
+    {
+      "route": "/robots.txt",
+      "authentication": "valid",
+      "status": 200,
+      "bytes": 26,
+      "noindex": true
+    },
+    {
+      "route": "/does-not-exist",
+      "authentication": "valid",
+      "status": 404,
+      "bytes": 6870,
+      "noindex": true
+    },
+    {
+      "route": "/api/admin/media/upload-url",
+      "authentication": "valid",
+      "status": 403,
+      "bytes": 21,
+      "noindex": true
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "authentication": "valid",
+      "status": 200,
+      "bytes": 918,
+      "noindex": true
+    }
+  ],
+  "runtimeExceptions": [],
+  "migrationsApplied": false,
+  "uploadedOrDeployed": false,
+  "credentialsRecorded": false
+}

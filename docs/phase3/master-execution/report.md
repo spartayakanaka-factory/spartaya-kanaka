@@ -58,6 +58,14 @@ Customer suspension/CRM, configurable product variants, real delivery tracking a
 | Promotion/import/recovery         | PASS on newly created disposable aliases only; exact saved Phase 2 export, 21 original data-table fingerprints preserved, 487 drafts unchanged, old history preserved, two additive migrations and idempotent second deploy, independent restore and actual importer rerun. `promotion-rehearsal.json`.                                                                                |
 | Secret/artifact/preservation scan | PASS for known private local values and credential patterns in candidate text, reachable history text/ZIP members and generated build text. No private runtime/env files traced; 47 manifests retain SWC exports/CJS/ESM. Known fixtures/interpolated placeholders were reviewed as non-secrets. `final-security-and-preservation.json`. Not a guarantee against every unknown secret. |
 
+### Independently built release package
+
+Source commit: `6ac28ee42676b8f07779e9e0795b7f047720a944`.
+
+Private source ZIP: `sprtaya-phase3-6ac28ee42676_20261029_231903.zip`, **1,555,309 bytes**, 180 source files. SHA-256: `8c11240e6d48cf046274dc43e55bae18577dae3ee75abba3c0ec52bb8220d151`. It is under the private local `runtime/release-artifacts` directory, not uploaded or tracked. It contains no original product archive, node_modules, environment files or private runtime state.
+
+Extracted into a separate directory, it passed another frozen clean install, the normal `pnpm build` producing `.next`, TypeScript, a real `next start`, and **13 HTTP checks** without configuring or connecting a database: anonymous/invalid 401, valid Arabic/English/admin-login 200, robots Disallow, noindex headers, 404, static asset delivery and valid Basic Auth alone denied media access. No helper/runtime exceptions occurred. `package-smoke.json` and `package-secret-scan.json` record actual results and scans. This is macOS Node 22 evidence, not a Hostinger Linux/packaging pass. The later local evidence commit changes documentation only; the runtime package remains tied to this exact implementation commit.
+
 ## C. Database readiness
 
 MariaDB 11.8.9 accepted the existing four migrations. The Phase 3 additions create separate commerce/customer/payment/refund/outbox structures plus cancellation review, and add inventory `reserved` default zero with CHECK bounds. No product policy, price, stock or customer backfill is introduced. Existing original-column fingerprints cover auth, mappings, categories, product media, manufacturing terms, settings and inventory. Read-only schema-drift/metadata evidence from integration is retained; no SQL changed since that evidence.
