@@ -1,3 +1,6 @@
+# Hostinger's managed Node.js loader needs runtime dependencies at stable paths.
+nodeLinker: hoisted
+
 allowBuilds:
   '@prisma/engines': true
   esbuild: true
