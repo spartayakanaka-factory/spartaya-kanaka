@@ -4,6 +4,10 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
+  images: {
+    // The optimizer does not forward Basic Auth to protected staging assets.
+    unoptimized: process.env.STAGING_SITE === "1" || process.env.APP_ENV === "staging",
+  },
   outputFileTracingIncludes: {
     // Hostinger's LSNode loader also resolves helpers through the root package.
     // Include exports metadata and CommonJS helpers as well as ESM files.
