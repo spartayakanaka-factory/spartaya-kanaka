@@ -1,9 +1,11 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
-import { getStagingAccessResponse } from "@/lib/staging-access";
+import { getStagingAccessDecision, getStagingAccessResponse } from "@/lib/staging-access";
 
-const assetRoot = path.resolve(process.cwd(), "sprtaya-kanaka-assets");
+const assetRoot = path.resolve(
+  process.env.LEGACY_ASSET_ROOT || path.join(process.cwd(), "sprtaya-kanaka-assets"),
+);
 const allowedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const mimeTypes: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -31,7 +33,10 @@ export async function GET(request: Request, context: { params: Promise<{ path: s
     return new NextResponse(new Uint8Array(image), {
       headers: {
         "Content-Type": mimeTypes[extension],
-        "Cache-Control": "public, max-age=31536000, immutable",
+        "Cache-Control":
+          getStagingAccessDecision(request.headers).mode === "disabled"
+            ? "public, max-age=31536000, immutable"
+            : "private, no-store",
         "X-Content-Type-Options": "nosniff",
       },
     });
