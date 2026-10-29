@@ -1,0 +1,45 @@
+{
+  "base": "http://localhost:3004",
+  "productionMode": true,
+  "checks": [
+    {
+      "name": "production HTTP smoke, noindex, anonymous administrative boundaries",
+      "pass": true
+    },
+    {
+      "name": "browser quantity update and removal persist, then a new addition restores the bag",
+      "pass": true
+    },
+    {
+      "name": "guest browse, add, persist and review checkout in Arabic",
+      "pass": true
+    },
+    {
+      "name": "invalid credentials/CSRF and unowned order access are rejected by live server",
+      "pass": true
+    },
+    {
+      "name": "customer registration, private verification, login, profile and saved address persist",
+      "pass": true
+    },
+    {
+      "name": "two real customer sessions cannot enumerate each other's orders or obtain staff authority",
+      "pass": true
+    },
+    {
+      "name": "owner login, password rotation and Arabic order dashboard",
+      "pass": true
+    },
+    {
+      "name": "three real staff sessions enforce refund request, approval, execution and reconciliation",
+      "pass": true
+    },
+    {
+      "name": "stored product markup is rendered as text in Arabic and English",
+      "pass": false,
+      "error": "false == true"
+    }
+  ],
+  "errors": [],
+  "audits": []
+}

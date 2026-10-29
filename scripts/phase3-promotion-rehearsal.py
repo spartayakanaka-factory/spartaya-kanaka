@@ -83,10 +83,16 @@ def main():
             if len(initial_history) != 2:
                 raise RuntimeError("Expected exactly the two Phase 2 migrations.")
             env = {**os.environ, "DATABASE_URL": "mysql://" + USER + ":" + password + "@127.0.0.1:33078/" + database}
+            env.update({"DATABASE_TARGET":"local","APP_ENV":"local","STAGING_SITE":"0"})
+            certificate = private / "promotion-certificates" / (database + "-before.json")
+            check = subprocess.run([os.environ.get("P3_NODE_BINARY","node"),"--import","tsx","scripts/phase3-promotion-check.ts","preflight","--out",str(certificate)],cwd=ROOT,env=env,capture_output=True)
+            if check.returncode: raise RuntimeError("Independent read-only preflight failed.")
             for run in range(2):
                 result = subprocess.run([os.environ.get("P3_NODE_BINARY", "node"), "node_modules/prisma/build/index.js", "migrate", "deploy"], cwd=ROOT, env=env, capture_output=True)
                 if result.returncode:
                     raise RuntimeError("Disposable Prisma deployment failed; private diagnostics retained only in memory.")
+            check = subprocess.run([os.environ.get("P3_NODE_BINARY","node"),"--import","tsx","scripts/phase3-promotion-check.ts","postflight","--baseline",str(certificate),"--out",str(certificate.with_name(database+"-after.json"))],cwd=ROOT,env=env,capture_output=True)
+            if check.returncode: raise RuntimeError("Independent read-only postflight failed.")
             if snapshot(database, columns)[1] != before:
                 raise RuntimeError("Promotion changed existing Phase 2 row data.")
             history = local.query("SELECT migration_name,checksum FROM `" + database + "`._prisma_migrations ORDER BY migration_name;").splitlines()

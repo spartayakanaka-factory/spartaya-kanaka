@@ -315,6 +315,8 @@ export function CommercePage({
     [busy, setBusy] = useState(false),
     [authMode, setAuthMode] = useState("login"),
     [reference, setReference] = useState("");
+  const outstandingMinor = order ? BigInt(order.totalMinor) - BigInt(order.creditedMinor) - BigInt(order.paidMinor) + BigInt(order.refundedMinor) : BigInt(0);
+  const paymentUnderReview = order?.payments.some((payment) => ["PENDING", "CLAIMED", "UNKNOWN", "REVIEW_REQUIRED"].includes(payment.state));
   const money = (v: string | number) => formatMoneyMinor(Number(v), ar ? "ar" : "en", "EGP");
   const fail = (e: unknown) =>
     setMessage(
@@ -1014,7 +1016,7 @@ export function CommercePage({
                 {stateLabel(p.state, ar)} · {money(p.amountMinor)}
               </p>
             ))}
-            {["AWAITING_PAYMENT", "CONFIRMED", "IN_PRODUCTION", "READY"].includes(order.state) &&
+            {outstandingMinor > BigInt(0) && !paymentUnderReview && ["AWAITING_PAYMENT", "CONFIRMED", "IN_PRODUCTION", "READY"].includes(order.state) &&
             order.paymentMethod !== "COD" ? (
               <>
                 {order.paymentMethod !== "MOCK_CARD" ? (
@@ -1060,12 +1062,16 @@ export function CommercePage({
               </>
             ) : (
               <p>
-                {order.paymentMethod === "COD"
+                {outstandingMinor <= BigInt(0)
+                  ? t("لا يوجد رصيد مستحق.", "No outstanding balance.")
+                  : order.paymentMethod === "COD"
                   ? t(
-                      "الدفع عند الاستلام غير محصّل حتى التسوية.",
-                      "COD remains uncollected until reconciliation.",
+                      "لا تُثبت دفعة الدفع عند الاستلام إلا بعد مطابقة التحصيل وتسويته.",
+                      "COD is credited only after collection is verified and reconciled.",
                     )
-                  : t("لا توجد دفعة متاحة حالياً.", "No payment action is available now.")}
+                  : paymentUnderReview
+                    ? t("الدفعة قيد التحقق. لن يُطلب دفع جديد قبل حسم حالتها.", "Payment is being verified. No new payment is requested until its status is resolved.")
+                    : t("لا توجد دفعة متاحة حالياً.", "No payment action is available now.")}
               </p>
             )}
           </div>

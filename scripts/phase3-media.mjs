@@ -49,7 +49,7 @@ if (command === "stop") {
       "-ip=127.0.0.1", "-ip.bind=127.0.0.1", "-master.port=39011", "-volume.port=39012", "-filer.port=39013",
       "-master.telemetry=false", "-admin.ui=false", "-admin.port.legacy=0", "-webdav=false", "-s3.iam=false",
       "-s3.port=39010", "-s3.port.iceberg=0", "-s3.port.lance=0", "-s3.config=" + configuration,
-      "-s3.allowedOrigins=http://localhost:3003", "-filer.allowedOrigins=http://localhost:3003", "-filer.disableDirListing=true",
+      "-s3.allowedOrigins=http://localhost:3003,http://localhost:3004", "-filer.allowedOrigins=http://localhost:3003,http://localhost:3004", "-filer.disableDirListing=true",
     ], { cwd: directory, detached: true, stdio: ["ignore", log, log] });
     child.unref();
     privateFile(pidFile, String(child.pid));

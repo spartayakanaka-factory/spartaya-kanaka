@@ -3,8 +3,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import assert from "node:assert/strict";
 const require = createRequire(import.meta.url);
+const evidence = process.env.P3_EVIDENCE_DIR || "docs/phase3/integration";
 const { chromium } = require(process.env.P3_PLAYWRIGHT_MODULE || "playwright");
-const fixtures = JSON.parse(await readFile(path.join(process.env.P3_STATE_DIR, "staff.json"), "utf8"));
+const fixtures = JSON.parse(await readFile(path.join(process.env.P3_STATE_DIR, process.env.P3_STAFF_FILE || "staff.json"), "utf8"));
 const browser = await chromium.launch({ executablePath: process.env.P3_CHROME_EXECUTABLE || undefined, headless: true });
 const context = await browser.newContext();
 const page = await context.newPage();
@@ -28,10 +29,10 @@ try {
     await page.addScriptTag({ path: process.env.P3_AXE_PATH || require.resolve("axe-core/axe.min.js") });
     const violations = await page.evaluate(async () => (await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] } })).violations.map(v => ({ id: v.id, impact: v.impact })));
     assert.deepEqual(violations, []);
-    await page.screenshot({ path: `docs/phase3/integration/screenshots/pass2-ar-admin-inventory-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `${evidence}/screenshots/pass2-ar-admin-inventory-${width}.png`, fullPage: true });
     checks.push({ width, geometry, violations, pass: true });
   }
   assert.deepEqual(errors, []);
-  await writeFile("docs/phase3/integration/inventory-final-review.json", JSON.stringify({ productionMode: true, checks, errors }, null, 2) + "\n");
+  await writeFile(evidence + "/inventory-final-review.json", JSON.stringify({ productionMode: true, checks, errors }, null, 2) + "\n");
   console.log("PASS final inventory: three sizes, focus, overflow and axe");
 } finally { await browser.close(); }

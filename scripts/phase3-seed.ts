@@ -23,7 +23,7 @@ async function main() {
     const rate = await fixtureRate(db);
     const ready = await fixtureProduct(db, "ready", "READY_MADE", 20),
       made = await fixtureProduct(db, "made", "MADE_TO_ORDER", 0);
-    const imageDirectory = path.resolve("sprtaya-kanaka-assets/المنتجات");
+    const imageDirectory = path.resolve(process.env.LEGACY_ASSET_ROOT || "sprtaya-kanaka-assets", "المنتجات");
     const productDirs = readdirSync(imageDirectory, { withFileTypes: true }).filter((d) =>
       d.isDirectory(),
     );

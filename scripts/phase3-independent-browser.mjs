@@ -7,11 +7,12 @@ const require = createRequire(import.meta.url);
 const {
   chromium,
 } = require(process.env.P3_PLAYWRIGHT_MODULE || "playwright");
+const evidence = process.env.P3_EVIDENCE_DIR || "docs/phase3/integration";
 const base = (process.env.P3_BASE_URL || "http://localhost:3003"),
-  out = "docs/phase3/integration/screenshots";
+  out = evidence + "/screenshots";
 await mkdir(out, { recursive: true });
 const state = process.env.P3_STATE_DIR,
-  staffFile = path.join(state, "staff.json"),
+  staffFile = path.join(state, process.env.P3_STAFF_FILE || "staff.json"),
   fixtures = JSON.parse(await readFile(staffFile, "utf8"));
 const browser = await chromium.launch({
   executablePath: process.env.P3_CHROME_EXECUTABLE || undefined,
@@ -27,7 +28,7 @@ let orderId;
 page.on("pageerror", (e) => errors.push(e.message));
 async function report() {
   await writeFile(
-    "docs/phase3/integration/browser-evidence.json",
+    evidence + "/browser-evidence.json",
     JSON.stringify({ base, productionMode: true, checks, errors, audits }, null, 2),
   );
 }
@@ -70,8 +71,14 @@ try {
     await goto("/admin");
     assert.ok(page.url().endsWith("/admin/login"));
   });
+  await check("browser quantity update and removal persist, then a new addition restores the bag", async()=>{
+    await goto("/ar/products/"+fixtures.ready.slug);await page.getByRole("button",{name:"أضف لحقيبة الاختبار",exact:true}).click();await page.getByRole("status").filter({hasText:"أضيفت للحقيبة"}).waitFor();await goto("/ar/cart");
+    const changed=page.waitForResponse(r=>r.url().endsWith("/api/commerce")&&r.request().method()==="POST");await page.getByRole("spinbutton").first().fill("2");assert.equal((await changed).status(),200);await page.reload({waitUntil:"networkidle"});await page.getByRole("spinbutton").first().waitFor();assert.equal(await page.getByRole("spinbutton").first().inputValue(),"2");
+    await page.getByRole("button",{name:"إزالة",exact:true}).click();await page.getByRole("heading",{name:"حقيبتك تنتظر قطعة مميزة",exact:true}).waitFor();await page.reload({waitUntil:"networkidle"});assert.equal(await page.getByRole("spinbutton").count(),0);
+  });
   await check("guest browse, add, persist and review checkout in Arabic", async () => {
     await goto("/ar/products/" + fixtures.ready.slug);
+    await page.getByText("تجربة طلب محلية فقط؛ لا يوجد تحصيل أو شحن فعلي.",{exact:true}).waitFor();
     await page.getByRole("button", { name: "أضف لحقيبة الاختبار", exact: true }).click();
     await page.getByRole("status").filter({ hasText: "أضيفت للحقيبة" }).waitFor();
     await page.getByRole("link", { name: "عرض الحقيبة", exact: true }).click();
@@ -282,6 +289,44 @@ try {
       await switchStaff(0);
     },
   );
+  if(process.env.P3_EXTENDED_JOURNEYS==="1"){
+    await check("stored product markup is rendered as text in Arabic and English",async()=>{
+      const item=JSON.parse(await readFile(path.join(state,"extended-security.json"),"utf8"));
+      for(const locale of ["ar","en"]){await goto("/"+locale+"/products/"+item.slug);assert.ok((await page.getByRole("heading",{level:1}).textContent()).includes("<img"));assert.equal(await page.locator("img[src=x]").count(),0);assert.equal(await page.evaluate(()=>globalThis.__phase3Injected),undefined);}
+    });
+    const manufacturing=JSON.parse(await readFile(path.join(state,"extended-products.json"),"utf8"));
+    for(const item of manufacturing)await check(`manufacturing browser journey ${item.fullAdvance?"full advance":"50 percent deposit"}`,async()=>{
+      const shopper=await browser.newContext({viewport:{width:390,height:900}}),screen=await shopper.newPage();
+      screen.on("pageerror",e=>errors.push(e.message));
+      try{
+        await screen.goto(base+"/ar/products/"+item.slug,{waitUntil:"networkidle"});
+        await screen.getByRole("button",{name:"أضف لحقيبة الاختبار",exact:true}).click();
+        await screen.getByRole("status").filter({hasText:"أضيفت للحقيبة"}).waitFor();
+        await screen.goto(base+"/ar/checkout",{waitUntil:"networkidle"});
+        for(const [label,value] of [["اسم المستلم","مستلم تصنيع اصطناعي"],["الهاتف","01000000000"],["المدينة","مدينة اختبار"],["العنوان بالتفصيل","عنوان تصنيع اصطناعي للاختبار فقط"]])await screen.getByLabel(label,{exact:true}).fill(value);
+        await screen.getByLabel("منطقة التوصيل",{exact:true}).selectOption("TEST-CAIRO");await screen.getByLabel("خدمة التوصيل",{exact:true}).selectOption(fixtures.rateId);
+        await screen.getByRole("button",{name:"احسب الإجمالي",exact:true}).click();await screen.getByRole("button",{name:"إنشاء طلب اختباري",exact:true}).click();
+        await screen.waitForURL(/\/ar\/orders\//);const id=screen.url().split("/").at(-1);
+        const detail=async()=>{const r=await shopper.request.get(base+"/api/commerce?resource=order&id="+id);assert.equal(r.status(),200);return r.json();};
+        const admin=async(transition)=>context.request.post(base+"/api/admin/commerce",{headers:{origin:base},data:{action:"fulfill",orderId:id,transition,reference:"SYNTHETIC-TRACKING"}});
+        const created=await detail();assert.equal(created.paidMinor,"0");assert.ok(item.fullAdvance?created.initialMinor===created.totalMinor:BigInt(created.initialMinor)<BigInt(created.totalMinor));
+        assert.equal((await admin("start")).status(),409);
+        await screen.getByRole("button",{name:"محاكاة دفع محلي",exact:true}).click();await screen.getByText("مؤكد",{exact:true}).waitFor();
+        const deposit=await detail();assert.equal(deposit.paidMinor,deposit.initialMinor);assert.equal((await admin("start")).status(),200);assert.equal((await admin("ready")).status(),200);
+        if(!item.fullAdvance){assert.equal((await admin("dispatch")).status(),409);await screen.reload({waitUntil:"networkidle"});await screen.getByRole("button",{name:"محاكاة دفع محلي",exact:true}).click();await screen.getByText("لا يوجد رصيد مستحق.",{exact:true}).waitFor();}
+        else await screen.getByText("لا يوجد رصيد مستحق.",{exact:true}).waitFor();
+        assert.equal(await screen.getByRole("button",{name:"محاكاة دفع محلي",exact:true}).count(),0);
+        assert.equal((await detail()).paidMinor,created.totalMinor);assert.equal((await admin("dispatch")).status(),200);assert.equal((await admin("delivered")).status(),200);
+        const cancel=await shopper.request.post(base+"/api/commerce",{headers:{origin:base},data:{action:"cancel",id}});assert.equal(cancel.status(),200);assert.equal((await cancel.json()).reviewRequired,true);
+        const final=await detail();assert.equal(final.refundedMinor,"0");assert.equal(final.state,"DELIVERED");
+        await screen.reload({waitUntil:"networkidle"});
+        await screen.addScriptTag({path:process.env.P3_AXE_PATH||require.resolve("axe-core/axe.min.js")});
+        const violations=await screen.evaluate(async()=>(await window.axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})).violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)})));
+        audits.push({view:item.fullAdvance?"manufacturing-full":"manufacturing-deposit",locale:"ar",width:390,violations});assert.deepEqual(violations,[]);
+        await screen.screenshot({path:out+`/manufacturing-${item.fullAdvance?"full":"deposit"}-390.png`,fullPage:true});
+      }finally{await shopper.close();}
+    });
+  }
   await context.request.post(base + "/api/commerce", {
     data: { action: "cart", variantId: fixtures.ready.variantId, quantity: 1 },
     headers: { origin: base },

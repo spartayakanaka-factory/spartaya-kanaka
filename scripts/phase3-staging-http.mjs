@@ -1,9 +1,11 @@
 // Local production-mode staging simulation. No hosted requests or live credentials.
 import { spawn } from "node:child_process";
 import { randomBytes } from "node:crypto";
-import { writeFile } from "node:fs/promises";
+import { writeFile, readdir } from "node:fs/promises";
+import path from "node:path";
 import assert from "node:assert/strict";
 const base = "http://127.0.0.1:3005";
+const evidence = process.env.P3_EVIDENCE_DIR || "docs/phase3/integration";
 const username = "local-security-review", password = randomBytes(32).toString("hex");
 const valid = "Basic " + Buffer.from(username + ":" + password).toString("base64");
 const checks = [];
@@ -33,6 +35,13 @@ async function scenario(configured) {
     }
     if (configured) {
       for (const route of ["/ar", "/en", "/admin/login"]) await check(route, 200, valid);
+      await check("/__phase3_missing__",404,valid);
+      async function findImage(root,relative="",depth=0){if(depth>3)return null;for(const entry of await readdir(path.join(root,relative),{withFileTypes:true})){const next=path.join(relative,entry.name);if(entry.isFile()&&/\.(jpg|jpeg|webp|png|avif)$/i.test(entry.name))return next;if(entry.isDirectory()){const found=await findImage(root,next,depth+1);if(found)return found;}}return null;}
+      if(!process.env.LEGACY_ASSET_ROOT)throw Error("Local staging acceptance requires the configured persistent archive root.");
+      const image=await findImage(path.join(process.env.LEGACY_ASSET_ROOT,"المنتجات"));assert.ok(image);
+      const route="/assets/"+["المنتجات",...image.split(path.sep)].map(encodeURIComponent).join("/");
+      await check(route,401);await check(route,401,"Basic "+Buffer.from("invalid:invalid").toString("base64"));const imageResult=await check(route,200,valid);assert.match(imageResult.headers.get("content-type")||"",/^image\//);assert.ok((await imageResult.arrayBuffer()).byteLength>0);
+
       const robots = await check("/robots.txt", 200, valid);
       assert.match(await robots.text(), /User-agent: \*\nDisallow: \//);
       await check("/api/admin/commerce", 503, valid, "POST");
@@ -48,5 +57,5 @@ async function scenario(configured) {
 }
 await scenario(false);
 await scenario(true);
-await writeFile("docs/phase3/integration/staging-http-local.json", JSON.stringify({ scope: "LOCAL simulation only; not Hostinger acceptance", node: process.version, checks, runtimeExceptions: [] }, null, 2) + "\n");
+await writeFile(evidence + "/staging-http-local.json", JSON.stringify({ scope: "LOCAL simulation only; not Hostinger acceptance", node: process.version, checks, runtimeExceptions: [] }, null, 2) + "\n");
 console.log(`PASS ${checks.length} local staging HTTP checks; secrets remained in memory.`);

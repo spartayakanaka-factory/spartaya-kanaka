@@ -1,7 +1,9 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID, createHash } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { hashPassword, verifyPassword } from "better-auth/crypto";
 import sharp from "sharp";
-import { DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { assertSafeDatabaseTarget } from "../../../scripts/database-target";
 
@@ -563,6 +565,96 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
         );
       storage.client.destroy();
       asUser(ownerCookie);
+    }
+  });
+
+  it("finalizes the same S3 upload concurrently without deleting the committed display", async () => {
+    asUser(ownerCookie);
+    const storage = getMediaStorage();
+    const image = await sharp({create:{width:16,height:16,channels:3,background:"#906040"}}).jpeg().toBuffer();
+    const req = (data: unknown) => new Request(process.env.BETTER_AUTH_URL! + "/api/admin/media/finalize", {method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:JSON.stringify(data)});
+    const signed = await (await signUpload(req({contentType:"image/jpeg",size:image.length}))).json();
+    try {
+      expect((await fetch(signed.uploadUrl,{method:"PUT",headers:signed.signedHeaders,body:new Uint8Array(image)})).status).toBe(200);
+      const results = await Promise.all(Array.from({length:4},()=>finalizeUpload(req({key:signed.key,size:image.length}))));
+      expect(results.map(r=>r.status)).toEqual([200,200,200,200]);
+      const assets = await getDatabase().mediaAsset.findMany({where:{originalKey:signed.key}});
+      expect(assets).toHaveLength(1);
+      expect((await fetch(assets[0].publicUrl!)).status).toBe(200);
+    } finally {
+      const asset=await getDatabase().mediaAsset.findUnique({where:{originalKey:signed.key}});
+      await getDatabase().mediaAsset.deleteMany({where:{originalKey:signed.key}});
+      await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:signed.key}));
+      if(asset?.displayKey)await storage.client.send(new DeleteObjectCommand({Bucket:storage.displayBucket,Key:asset.displayKey}));
+      storage.client.destroy();
+    }
+  });
+
+  it("does not permit a reused presigned URL to overwrite an uploaded original", async () => {
+    asUser(ownerCookie);
+    const storage=getMediaStorage();
+    const image=await sharp({create:{width:16,height:16,channels:3,background:"#996040"}}).jpeg().toBuffer();
+    const req=new Request(process.env.BETTER_AUTH_URL!+"/api/admin/media/upload-url",{method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:JSON.stringify({contentType:"image/jpeg",size:image.length})});
+    const signed=await(await signUpload(req)).json();
+    try{
+      expect((await fetch(signed.uploadUrl,{method:"PUT",headers:signed.signedHeaders,body:new Uint8Array(image)})).status).toBe(200);
+      expect([409,412]).toContain((await fetch(signed.uploadUrl,{method:"PUT",headers:signed.signedHeaders,body:new Uint8Array(image)})).status);
+    }finally{await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:signed.key}));storage.client.destroy();}
+  });
+
+  it("bounds chunked media JSON and rejects oversized declarations and invalid MIME types", async()=>{
+    asUser(ownerCookie);
+    const request=(data: unknown)=>new Request(process.env.BETTER_AUTH_URL!+"/api/admin/media/upload-url",{method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:JSON.stringify(data)});
+    for(const body of [{contentType:"image/svg+xml",size:10},{contentType:"image/jpeg",size:10*1024*1024+1}])expect((await signUpload(request(body))).status).toBe(400);
+    const requestChunked=()=>new Request(process.env.BETTER_AUTH_URL!+"/api/admin/media/upload-url",{method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:new ReadableStream({start(controller){controller.enqueue(new TextEncoder().encode("ن".repeat(1100)));controller.close();}}),duplex:"half"} as RequestInit);
+    expect((await signUpload(requestChunked())).status).toBe(413);
+    expect((await finalizeUpload(requestChunked())).status).toBe(413);
+  });
+
+  it("recovers exact saved upload objects and rejects missing or interrupted originals", async()=>{
+    asUser(ownerCookie);const storage=getMediaStorage();
+    const image=await sharp({create:{width:16,height:16,channels:3,background:"#806040"}}).jpeg().toBuffer();
+    const req=(data: unknown)=>new Request(process.env.BETTER_AUTH_URL!+"/api/admin/media/finalize",{method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:JSON.stringify(data)});
+    const signed=await(await signUpload(req({contentType:"image/jpeg",size:image.length}))).json();
+    let displayKey:string|undefined;
+    try{
+      expect((await finalizeUpload(req({key:signed.key,size:image.length}))).status).toBe(503);
+      expect((await fetch(signed.uploadUrl,{method:"PUT",headers:signed.signedHeaders,body:new Uint8Array(image)})).status).toBe(200);
+      const finalized=await finalizeUpload(req({key:signed.key,size:image.length}));expect(finalized.status).toBe(200);const asset=await finalized.json();
+      const row=await getDatabase().mediaAsset.findUniqueOrThrow({where:{id:asset.id}});displayKey=row.displayKey!;
+      const display=Buffer.from(await(await fetch(asset.url)).arrayBuffer());
+      const file=path.join(process.env.P3_STATE_DIR!,"media-recovery-fixtures",randomUUID()+".json");await mkdir(path.dirname(file),{recursive:true,mode:0o700});
+      await writeFile(file,JSON.stringify({original:image.toString("base64"),display:display.toString("base64"),owner:row.uploadedById}),{mode:0o600});
+      await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:signed.key}));await storage.client.send(new DeleteObjectCommand({Bucket:storage.displayBucket,Key:displayKey}));
+      expect((await fetch(asset.url)).status).toBe(404);
+      expect((await finalizeUpload(req({key:signed.key,size:image.length}))).status).toBe(503);
+      const saved=JSON.parse(await readFile(file,"utf8"));
+      await storage.client.send(new PutObjectCommand({Bucket:storage.originalsBucket,Key:signed.key,Body:Buffer.from(saved.original,"base64"),ContentType:"image/jpeg",Metadata:{owner:saved.owner},IfNoneMatch:"*"}));
+      await storage.client.send(new PutObjectCommand({Bucket:storage.displayBucket,Key:displayKey,Body:Buffer.from(saved.display,"base64"),ContentType:"image/webp",IfNoneMatch:"*"}));
+      const restored=Buffer.from(await(await fetch(asset.url)).arrayBuffer());expect(createHash("sha256").update(restored).digest("hex")).toBe(createHash("sha256").update(display).digest("hex"));
+      expect((await fetch(storage.client.config.endpoint?"http://127.0.0.1:39010/"+storage.originalsBucket+"/"+signed.key:"invalid")).status).toBe(403);
+    }finally{await getDatabase().mediaAsset.deleteMany({where:{originalKey:signed.key}});await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:signed.key}));if(displayKey)await storage.client.send(new DeleteObjectCommand({Bucket:storage.displayBucket,Key:displayKey}));storage.client.destroy();}
+  });
+
+  it("replaces product media without overwriting or deleting the previous upload", async()=>{
+    asUser(ownerCookie);const storage=getMediaStorage();const assets:{id:string;key:string;display:string}[]=[];let replacementId:string|undefined;
+    const req=(data:unknown)=>new Request(process.env.BETTER_AUTH_URL!+"/api/admin/media/finalize",{method:"POST",headers:{origin:process.env.BETTER_AUTH_URL!,"content-type":"application/json"},body:JSON.stringify(data)});
+    try{
+      for(const color of ["#906030","#604020"]){
+        const image=await sharp({create:{width:16,height:16,channels:3,background:color}}).jpeg().toBuffer();
+        const signed=await(await signUpload(req({contentType:"image/jpeg",size:image.length}))).json();
+        expect((await fetch(signed.uploadUrl,{method:"PUT",headers:signed.signedHeaders,body:new Uint8Array(image)})).status).toBe(200);
+        const result=await finalizeUpload(req({key:signed.key,size:image.length}));expect(result.status).toBe(200);const asset=await result.json();const row=await getDatabase().mediaAsset.findUniqueOrThrow({where:{id:asset.id}});assets.push({id:row.id,key:row.originalKey,display:row.displayKey!});
+      }
+      const draft=await getDatabase().product.create({data:{slug:"replacement-"+randomUUID(),titleAr:"اختبار استبدال صورة",descriptionAr:"اختبار محلي فقط",type:"MADE_TO_ORDER",media:{create:{mediaId:assets[0].id,position:0}},variants:{create:{nameAr:"اختبار"}}},include:{variants:true}});replacementId=draft.id;
+      const data=form({productId:draft.id,titleAr:draft.titleAr,descriptionAr:draft.descriptionAr,slug:draft.slug,type:"MADE_TO_ORDER",categoryIds:categoryId,mediaIds:assets[1].id,variantsJson:JSON.stringify([{id:draft.variants[0].id,nameAr:"اختبار"}])});
+      await redirected(saveProduct(data),"/admin/products/"+draft.id+"?saved=1");
+      const relations=await getDatabase().productMedia.findMany({where:{productId:draft.id}});expect(relations.map(r=>r.mediaId)).toEqual([assets[1].id]);
+      expect(await getDatabase().mediaAsset.count({where:{id:{in:assets.map(a=>a.id)}}})).toBe(2);
+      for(const asset of assets)expect((await fetch(storage.publicBase+"/"+asset.display)).status).toBe(200);
+    }finally{
+      if(replacementId)await getDatabase().product.deleteMany({where:{id:replacementId}});
+      for(const asset of assets){await getDatabase().mediaAsset.deleteMany({where:{id:asset.id}});await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:asset.key}));await storage.client.send(new DeleteObjectCommand({Bucket:storage.displayBucket,Key:asset.display}));}storage.client.destroy();
     }
   });
 

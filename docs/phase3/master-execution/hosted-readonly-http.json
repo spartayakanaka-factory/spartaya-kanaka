@@ -1,0 +1,73 @@
+{
+  "observedAt": "2026-10-29T22:16:21.201Z",
+  "scope": "Existing Phase 2 build only; no valid credential retrieval or Phase 3 hosted acceptance",
+  "checks": [
+    {
+      "route": "/",
+      "credentials": "absent",
+      "status": 401,
+      "challenge": "Basic realm=\"Sprtaya Phase 2 Staging\", charset=\"UTF-8\"",
+      "noindex": "noindex, nofollow, noarchive",
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/ar",
+      "credentials": "absent",
+      "status": 401,
+      "challenge": "Basic realm=\"Sprtaya Phase 2 Staging\", charset=\"UTF-8\"",
+      "noindex": "noindex, nofollow, noarchive",
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/en",
+      "credentials": "absent",
+      "status": 401,
+      "challenge": "Basic realm=\"Sprtaya Phase 2 Staging\", charset=\"UTF-8\"",
+      "noindex": "noindex, nofollow, noarchive",
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/admin",
+      "credentials": "absent",
+      "status": 401,
+      "challenge": "Basic realm=\"Sprtaya Phase 2 Staging\", charset=\"UTF-8\"",
+      "noindex": "noindex, nofollow, noarchive",
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/robots.txt",
+      "credentials": "absent",
+      "status": 200,
+      "challenge": null,
+      "noindex": null,
+      "cache": null,
+      "body": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+    },
+    {
+      "route": "/api/admin/media/upload-url",
+      "credentials": "absent",
+      "status": 401,
+      "challenge": "Basic realm=\"Sprtaya Phase 2 Staging\", charset=\"UTF-8\"",
+      "noindex": "noindex, nofollow, noarchive",
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/",
+      "credentials": "invalid",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "route": "/admin",
+      "credentials": "invalid",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "route": "/robots.txt",
+      "credentials": "invalid",
+      "status": 200,
+      "noindex": null
+    }
+  ]
+}

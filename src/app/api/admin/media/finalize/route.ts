@@ -7,6 +7,7 @@ import { getDatabase } from "@/lib/server/database";
 import { getMediaStorage, mediaPublicUrl } from "@/lib/server/media-storage";
 import { hasTrustedRequestOrigin } from "@/lib/server/request-origin";
 import { getStagingAccessResponse } from "@/lib/staging-access";
+import { readBody } from "@/lib/server/commerce/http";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
     const actor = await requirePermission("MEDIA_WRITE");
     if (!hasTrustedRequestOrigin(request)) return Response.json({ error: "FORBIDDEN" }, { status: 403 });
     if (Number(request.headers.get("content-length") ?? 0) > 2_048) return Response.json({ error: "INVALID_REQUEST" }, { status: 413 });
-    const raw = await request.text();
+    const raw = await readBody(request, 2_048);
     if (raw.length > 2_048) return Response.json({ error: "INVALID_REQUEST" }, { status: 413 });
     let body: unknown;
     try { body = JSON.parse(raw); } catch { return Response.json({ error: "INVALID_REQUEST" }, { status: 400 }); }
@@ -49,9 +50,15 @@ export async function POST(request: Request) {
     storage = getMediaStorage();
     const db = getDatabase();
 
-    const existing = await db.mediaAsset.findUnique({ where: { originalKey: parsed.data.key }, select: { id: true, publicUrl: true, width: true, height: true, altAr: true, uploadedById: true } });
+    const existing = await db.mediaAsset.findUnique({ where: { originalKey: parsed.data.key }, select: { id: true, publicUrl: true, displayKey: true, byteSize: true, width: true, height: true, altAr: true, uploadedById: true } });
     if (existing) {
       if (existing.uploadedById !== actor.id) return Response.json({ error: "FORBIDDEN" }, { status: 403 });
+      if (!existing.displayKey || !existing.publicUrl) throw new Error("MEDIA_STORAGE_UNAVAILABLE");
+      const [original, display] = await Promise.all([
+        storage.client.send(new HeadObjectCommand({ Bucket: storage.originalsBucket, Key: parsed.data.key })),
+        storage.client.send(new HeadObjectCommand({ Bucket: storage.displayBucket, Key: existing.displayKey })),
+      ]);
+      if (original.Metadata?.owner !== actor.id || original.ContentLength !== existing.byteSize || display.ContentType !== "image/webp") throw new Error("MEDIA_STORAGE_UNAVAILABLE");
       return Response.json({ id: existing.id, url: existing.publicUrl, width: existing.width, height: existing.height, alt: existing.altAr }, { headers: { "Cache-Control": "no-store" } });
     }
 
@@ -86,7 +93,9 @@ export async function POST(request: Request) {
       await deleteOwnedOriginal(storage, parsed.data.key);
       return Response.json({ error: "INVALID_IMAGE" }, { status: 400 });
     }
-    const displayKey = `product-displays/${parsed.data.key.split("/").pop()?.replace(/\.[^.]+$/, ".webp")}`;
+    // Each contender owns its derivative. A losing database transaction must
+    // never delete the object referenced by the winning finalization.
+    const displayKey = `product-displays/${crypto.randomUUID()}.webp`;
     await storage.client.send(new PutObjectCommand({ Bucket: storage.displayBucket, Key: displayKey, Body: display, ContentLength: display.length, ContentType: "image/webp", CacheControl: "public, max-age=31536000, immutable" }));
     const publicUrl = mediaPublicUrl(storage.publicBase, displayKey);
     try {
@@ -112,16 +121,23 @@ export async function POST(request: Request) {
       return Response.json({ id: asset.id, url: asset.publicUrl, width: asset.width, height: asset.height, alt: asset.altAr }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       try { await storage.client.send(new DeleteObjectCommand({ Bucket: storage.displayBucket, Key: displayKey })); } catch { /* Preserve the original for safe retry and clean the derivative best-effort. */ }
+      if (error && typeof error === "object" && "code" in error && error.code === "P2002") {
+        const committed = await db.mediaAsset.findUnique({ where: { originalKey: parsed.data.key } });
+        if (committed?.uploadedById === actor.id) return Response.json({ id: committed.id, url: committed.publicUrl, width: committed.width, height: committed.height, alt: committed.altAr }, { headers: { "Cache-Control": "no-store" } });
+      }
       throw error;
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
     if (message === "FORBIDDEN") return Response.json({ error: "FORBIDDEN" }, { status: 403 });
+    if (message === "INPUT_TOO_LARGE") return Response.json({ error: "INVALID_REQUEST" }, { status: 413 });
     if (message === "MEDIA_STORAGE_UNAVAILABLE") return Response.json({ error: "MEDIA_STORAGE_UNAVAILABLE" }, { status: 503 });
     if (message === "INVALID_OBJECT") {
       if (storage && ownedKey) await deleteOwnedOriginal(storage, ownedKey);
       return Response.json({ error: "INVALID_IMAGE" }, { status: 400 });
     }
     return Response.json({ error: "UPLOAD_UNAVAILABLE" }, { status: 503 });
+  } finally {
+    storage?.client.destroy();
   }
 }
