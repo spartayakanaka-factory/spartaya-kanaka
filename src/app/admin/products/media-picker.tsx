@@ -5,10 +5,11 @@ import { useState } from "react";
 type MediaOption = { id: string; label: string; url?: string | null };
 
 export function MediaPicker({ assets, selected: initialSelected = [] }: { assets: MediaOption[]; selected?: string[] }) {
+  const [library, setLibrary] = useState(assets);
   const [selected, setSelected] = useState(initialSelected);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
-  const available = assets.filter((asset) => !selected.includes(asset.id));
+  const available = library.filter((asset) => !selected.includes(asset.id));
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
@@ -16,6 +17,7 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
     setMessage("");
     const ids = [...selected];
     try {
+      if (ids.length + files.length > 30) throw new Error("اختر حتى 30 صورة للمنتج.");
       for (const file of Array.from(files)) {
         if (file.size > 10 * 1024 * 1024 || !["image/jpeg", "image/png", "image/webp", "image/avif"].includes(file.type)) {
           throw new Error("الصورة يجب أن تكون JPG أو PNG أو WebP أو AVIF وأقل من 10 ميجابايت.");
@@ -34,9 +36,14 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ key, size: file.size, altAr: file.name.replace(/\.[^.]+$/, "") }),
         });
-        if (!finalized.ok) throw new Error("تم رفع الملف لكن تعذر تجهيز صورته للكتالوج.");
+        if (!finalized.ok) {
+          const result = await finalized.json().catch(() => ({})) as { error?: string };
+          throw new Error(result.error === "INVALID_IMAGE" ? "محتوى الصورة أو حجمها لا يطابق نوع الملف. اختر صورة أصلية بالصيغة الصحيحة." : "تعذر تجهيز الصورة للكتالوج. حاول مجدداً.");
+        }
         const result = await finalized.json() as { id: string; url: string; alt?: string };
         ids.push(result.id);
+        setLibrary((items) => [...items.filter((item) => item.id !== result.id), { id: result.id, label: result.alt || file.name, url: result.url }]);
+        setSelected([...new Set(ids)]);
       }
       setSelected([...new Set(ids)]);
       setMessage("تم رفع الصور وإضافتها إلى القائمة. احفظ المنتج لتثبيت ارتباطها.");
@@ -50,9 +57,9 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
   return <div className="admin-media-picker wide">
     <div className="admin-form-grid">
       <label>اختر صور المنتج من مكتبة الوسائط<select multiple onChange={(event) => setSelected(Array.from(event.currentTarget.selectedOptions).map((option) => option.value))} size={Math.max(3, Math.min(6, available.length + selected.length))} value={selected}>
-        {[...selected.map((id) => assets.find((asset) => asset.id === id)).filter((asset): asset is MediaOption => Boolean(asset)), ...available].map((asset) => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
+        {[...selected.map((id) => library.find((asset) => asset.id === id)).filter((asset): asset is MediaOption => Boolean(asset)), ...available].map((asset) => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
       </select><small className="admin-muted">ترتيب الاختيار يحدد الصورة الرئيسية ثم صور المعرض.</small></label>
-      <label>رفع صور جديدة<input accept="image/jpeg,image/png,image/webp,image/avif" disabled={busy} multiple onChange={(event) => { void upload(event.target.files); event.target.value = ""; }} type="file" /><small className="admin-muted">حتى 10 ميجابايت לכל صورة. تحفظ النسخة الأصلية في التخزين الخارجي.</small></label>
+      <label>رفع صور جديدة<input accept="image/jpeg,image/png,image/webp,image/avif" disabled={busy} multiple onChange={(event) => { void upload(event.target.files); event.target.value = ""; }} type="file" /><small className="admin-muted">حتى 10 ميجابايت لكل صورة. تحفظ النسخة الأصلية في التخزين الخارجي.</small></label>
     </div>
     {selected.map((id) => <input key={id} name="mediaIds" type="hidden" value={id} />)}
     {message ? <p aria-live="polite" className={message.startsWith("تم") ? "admin-notice" : "admin-error"}>{message}</p> : null}

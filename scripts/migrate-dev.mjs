@@ -1,8 +1,12 @@
 import { spawnSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+if (existsSync(path.join(root,"prisma/migrations/20261029143000_phase3_local_commerce"))) {
+  throw new Error("Phase 3 promotion is blocked. Use scripts/phase3 migrate for the reviewed disposable-only preflight.");
+}
 const raw = process.env.DATABASE_URL;
 if (process.env.NODE_ENV === "production") throw new Error("Development migrations are disabled with NODE_ENV=production.");
 if (process.env.DATABASE_TARGET !== "local" || !raw) throw new Error("Development migrations require DATABASE_TARGET=local and an isolated local DATABASE_URL.");

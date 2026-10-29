@@ -1,0 +1,59 @@
+{
+  "deployment": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"domain\":\"bisque-pheasant-330767.hostingersite.com\",\"build\":{\"uuid\":\"01a183f5-aacc-70cc-be8c-bd1ee3a9400f\",\"state\":\"completed\",\"options\":{\"node_version\":22,\"app_type\":\"next\",\"root_directory\":null,\"output_directory\":\".next\",\"build_script\":\"build\",\"entry_file\":null,\"package_manager\":\"pnpm\",\"source_type\":\"git\",\"source_options\":{\"archive_path\":null,\"owner\":\"spartayakanaka-factory\",\"repository\":\"spartaya-kanaka\",\"branch\":\"codex/hostinger-nextjs-source\",\"installation_uuid\":\"01a181ee-a98e-7070-92c6-90f82be60b7b\",\"commit\":{\"hash\":\"254ad4c10cfdd18cf0e1aacc10758ae2206ffa15\",\"message\":\"docs: keep staging status current\",\"author\":{\"name\":\"spartayakanaka-factory\",\"avatar_url\":null}}}},\"created_at\":\"2026-10-28T19:21:17Z\",\"updated_at\":\"2026-10-28T19:23:59Z\"},\"logs\":{\"logs\":null,\"lines\":1},\"buildSettings\":{\"node_version\":22,\"app_type\":\"next\",\"root_directory\":null,\"output_directory\":\".next\",\"build_script\":\"build\",\"entry_file\":null,\"package_manager\":\"pnpm\"},\"gitAutoDeployment\":null}"
+      }
+    ],
+    "isError": false
+  },
+  "runtime": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"logs\":[{\"timestamp\":\"2026-10-28T19:23:55.428Z\",\"level\":\"LOG\",\"message\":\"\\u25b2 Next.js 16.4.3\"},{\"timestamp\":\"2026-10-28T19:23:55.428Z\",\"level\":\"LOG\",\"message\":\"- Local:         http:\\/\\/0.0.0.0:3000\"},{\"timestamp\":\"2026-10-28T19:23:55.428Z\",\"level\":\"LOG\",\"message\":\"- Network:       http:\\/\\/0.0.0.0:3000\"},{\"timestamp\":\"2026-10-28T19:23:55.429Z\",\"level\":\"LOG\",\"message\":\"\\u2713 Ready in 0ms\"},{\"timestamp\":\"2026-10-28T19:23:55.432Z\",\"level\":\"LOG\",\"message\":\"\\u2713 Running next.config took 2ms\"}],\"started_at\":\"2026-10-28T19:23:55Z\",\"total_lines\":5,\"last_deployed_at\":\"2026-10-28T19:23:59Z\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "environment": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "[{\"key\":\"STAGING_ACCESS_PASSWORD\",\"value\":\"********\"},{\"key\":\"STAGING_ACCESS_USERNAME\",\"value\":\"********\"},{\"key\":\"STAGING_SITE\",\"value\":\"********\"},{\"key\":\"APP_ENV\",\"value\":\"********\"}]"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "routing": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\".htaccess\",\"content\":\"PassengerAppRoot \\/home\\/u858869017\\/domains\\/bisque-pheasant-330767.hostingersite.com\\/hbuilds\\/current\\/nodejs\\nPassengerAppType node\\nPassengerNodejs \\/opt\\/alt\\/alt-nodejs22\\/root\\/bin\\/node\\nPassengerStartupFile server.js\\nPassengerBaseURI \\/\\nPassengerRestartDir \\/home\\/u858869017\\/domains\\/bisque-pheasant-330767.hostingersite.com\\/hbuilds\\/current\\/nodejs\\/tmp\\nSetEnv NODE_OPTIONS \\\"--require \\/home\\/u858869017\\/domains\\/bisque-pheasant-330767.hostingersite.com\\/hbuilds\\/config\\/preload-timestamp.js\\\"\\nSetEnv LSNODE_CONSOLE_LOG console.log\\nSetEnv TOKIO_WORKER_THREADS 2\",\"from_line\":0,\"total_lines\":8,\"size_bytes\":544}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "files": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"\",\"items\":[{\"name\":\".htaccess\",\"path\":\".htaccess\",\"type\":\"file\",\"size_bytes\":544}],\"total_items\":1,\"total_items_current_page\":1,\"offset\":0}"
+        }
+      ],
+      "isError": false
+    }
+  }
+}

@@ -137,7 +137,11 @@
 .review-actions > .admin-muted { margin-inline-start: auto; font-size: 12px; }
 .review-pagination { justify-content: space-between; margin-top: 14px; color: var(--muted); font-size: 12px; }
 .review-pagination .admin-button { text-decoration: none; }
-@media (max-width: 1000px) { .admin-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1000px) {
+  .admin-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .review-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .review-actions { position: static; }
+}
 @media (max-width: 700px) {
   .admin-layout { display: block; }
   .admin-sidebar { position: static; height: auto; padding: 12px 14px 8px; border-left: 0; border-bottom: 1px solid #e0d9cf; }
@@ -175,3 +179,57 @@
   .admin-login-card { margin-top: 32px; }
   .admin-back-link { bottom: 14px; right: 20px; }
 }
+
+.admin-finance-row {
+  border-bottom: 1px solid #ddd3c7;
+  padding: 16px 0;
+}
+.admin-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.admin-filter-grid label {
+  display: grid;
+  gap: 8px;
+}
+.admin-filter-grid input,
+.admin-filter-grid select {
+  min-height: 44px;
+  font: inherit;
+  padding: 8px;
+  border: 1px solid #b7aa9a;
+  max-width: 100%;
+}
+@media (max-width: 700px) {
+  .admin-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.admin-panel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.admin-panel :is(p, bdi, address) {
+  overflow-wrap: anywhere;
+}
+.admin-form :is(input, select, textarea) {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.admin-panel address {
+  font-style: normal;
+}
+.admin-panel dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e4dbcf;
+}
+.admin-panel dl dd {
+  margin: 0;
+}
+
+.inventory-table-region .admin-table{min-width:1000px;table-layout:auto}.inventory-table-region td{overflow-wrap:normal}.inventory-table-region td:first-child{min-width:150px}.inventory-table-region td:nth-child(2){min-width:180px}

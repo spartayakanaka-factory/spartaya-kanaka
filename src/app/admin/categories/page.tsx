@@ -3,7 +3,7 @@ import { getDatabase } from "@/lib/server/database";
 import { requireAdminPage } from "@/lib/server/admin-page";
 import { hasPermission } from "@/lib/admin/permissions";
 import { AdminFrame, AdminPageHeader } from "@/app/admin/admin-frame";
-import { saveCategory } from "@/app/admin/actions";
+import { saveCategory, deleteCategory } from "@/app/admin/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +17,10 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
     db.mediaAsset.findMany({ select: { id: true, altAr: true, originalKey: true }, orderBy: { createdAt: "desc" }, take: 200 }),
   ]);
   const canWrite = hasPermission(actor.roleCode, "CATEGORIES_WRITE");
-  const errors: Record<string, string> = { invalid: "راجع الحقول المطلوبة.", hierarchy: "هذا الترتيب ينشئ دورة غير صالحة في التصنيفات.", media: "الصورة المختارة غير متاحة." };
+  const errors: Record<string, string> = { invalid: "راجع الحقول المطلوبة.", hierarchy: "هذا الترتيب ينشئ دورة غير صالحة في التصنيفات.", media: "الصورة المختارة غير متاحة.", slug: "رابط التصنيف مستخدم بالفعل. اختر رابطاً آخر.", missing: "لم يعد التصنيف موجوداً.", "not-empty": "التصنيف مرتبط بمنتجات أو تصنيفات فرعية. يمكنك إخفاؤه بدلاً من حذفه." };
   return <AdminFrame actor={actor}>
     <AdminPageHeader title="التصنيفات" description="راجع تصنيفات المصنع، ثم أظهر ما تم اعتماده في المتجر." />
-    {query.saved ? <p className="admin-notice" role="status">تم حفظ التصنيف.</p> : null}
+    {query.saved ? <p className="admin-notice" role="status">{query.saved === "deleted" ? "تم حذف التصنيف الفارغ وتسجيل العملية." : "تم حفظ التصنيف."}</p> : null}
     {errors[query.error ?? ""] ? <p className="admin-error" role="alert">{errors[query.error ?? ""]}</p> : null}
     <div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>التصنيف</th><th>المنتجات</th><th>المراجعة</th><th>الظهور</th><th>الصورة</th><th>إجراء</th></tr></thead><tbody>
       {categories.map((category) => <tr key={category.id}><td>{category.nameAr}<small className="admin-table-sub">{category.slug}</small></td><td>{new Intl.NumberFormat("ar-EG").format(category._count.products)}</td><td><span className={"admin-badge " + (category.reviewRequired ? "admin-badge-warning" : "admin-badge-success")}>{category.reviewRequired ? "تحتاج مراجعة" : "مراجعة مكتملة"}</span></td><td>{category.visible ? "ظاهر" : "مخفي"}{category.featured ? " · مختار" : ""}</td><td>{category.image?.altAr || category.image?.originalKey.split("/").pop() || "—"}</td><td>{canWrite ? <Link href={"/admin/categories?edit=" + category.id}>تعديل</Link> : "—"}</td></tr>)}
@@ -43,6 +43,7 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
         </div>
         <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">حفظ التصنيف</button>{edit ? <Link className="admin-button" href="/admin/categories">تصنيف جديد</Link> : null}</div>
       </form>
+      {edit ? <form action={deleteCategory.bind(null, edit.id)} className="admin-subsection"><p className="admin-muted">الحذف متاح للتصنيف الفارغ فقط. يحتفظ السجل بالمنتجات والتصنيفات المرتبطة.</p><button className="admin-button" disabled={Boolean(categories.find((item) => item.id === edit.id)?._count.products || categories.some((item) => item.parentId === edit.id))} type="submit">حذف التصنيف الفارغ</button></form> : null}
     </section> : null}
   </AdminFrame>;
 }

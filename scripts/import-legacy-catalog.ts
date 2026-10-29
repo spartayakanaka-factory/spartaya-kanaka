@@ -15,7 +15,7 @@ import {
 import rawProducts from "../sprtaya-kanaka-assets/بيانات/products.json";
 import rawCategories from "../sprtaya-kanaka-assets/بيانات/categories.json";
 
-const assetRoot = resolve(process.cwd(), "sprtaya-kanaka-assets");
+const assetRoot = resolve(process.env.LEGACY_ASSET_ROOT || resolve(process.cwd(), "sprtaya-kanaka-assets"));
 const products = rawProducts as LegacyProduct[];
 const categoryData = rawCategories as { categories: LegacyCategory[] };
 const categories = categoryData.categories;

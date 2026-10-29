@@ -35,10 +35,16 @@
     "**/*.ts",
     "**/*.tsx",
     ".next-phase2/types/**/*.ts",
-    ".next-phase2/dev/types/**/*.ts"
+    ".next-phase2/dev/types/**/*.ts",
+    ".next-phase2-validation/dev/types/**/*.ts",
+    ".next-local/types/**/*.ts",
+    ".next-local/dev/types/**/*.ts",
+    ".next-phase3/types/**/*.ts",
+    ".next-phase3/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
+    ".local",
     "sprtaya-kanaka-assets",
     "scripts"
   ]

@@ -1,0 +1,9 @@
+{
+  "repository": "spartayakanaka-factory/spartaya-kanaka",
+  "branch": "codex/hostinger-nextjs-source",
+  "commit": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "source": "Connected GitHub read-only branches API",
+  "checkedOn": "2026-10-29",
+  "matchesIntegrationBase": true,
+  "remoteWrites": false
+}

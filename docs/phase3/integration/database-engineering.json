@@ -1,0 +1,1806 @@
+{
+  "readOnly": true,
+  "identity": [
+    {
+      "databaseName": "sprtaya_phase3_disposable_local",
+      "version": "11.8.9-MariaDB",
+      "port": "33078",
+      "sessionDefaultIsolation": "REPEATABLE-READ",
+      "foreignKeyChecks": "1",
+      "checkConstraintChecks": "1"
+    }
+  ],
+  "constraints": [
+    {
+      "tableName": "admin_roles",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "admin_role_permissions",
+      "constraintName": "admin_role_permissions_roleCode_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "admin_role_permissions",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "admin_users",
+      "constraintName": "admin_users_email_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "admin_users",
+      "constraintName": "admin_users_roleCode_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "admin_users",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "audit_events",
+      "constraintName": "afterData",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "audit_events",
+      "constraintName": "audit_events_actorId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "audit_events",
+      "constraintName": "beforeData",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "audit_events",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "auth_accounts",
+      "constraintName": "auth_accounts_providerId_accountId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "auth_accounts",
+      "constraintName": "auth_accounts_userId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "auth_accounts",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "auth_rate_limits",
+      "constraintName": "auth_rate_limits_key_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "auth_rate_limits",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "auth_sessions",
+      "constraintName": "auth_sessions_token_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "auth_sessions",
+      "constraintName": "auth_sessions_userId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "auth_sessions",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "auth_verifications",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "categories_imageAssetId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "categories_parentId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "categories_slug_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "categories_sourceId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "categories_sourceUrl_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "categories",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "constraintName": "commerce_cancellations_orderId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "constraintName": "p3_cancellation_order_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_carts",
+      "constraintName": "commerce_carts_ownerKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_carts",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "constraintName": "commerce_cart_items_cartId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "constraintName": "commerce_cart_items_cartId_variantId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "constraintName": "p3_cart_quantity",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "constraintName": "p3_cart_variant_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_events",
+      "constraintName": "commerce_events_operationKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_events",
+      "constraintName": "commerce_events_orderId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_events",
+      "constraintName": "data",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_events",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "constraintName": "commerce_finance_grants_adminId_operation_currency_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "constraintName": "p3_finance_admin_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "constraintName": "p3_finance_limit",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "commerce_finance_requests_requestKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "p3_finance_money",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "p3_finance_order_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "p3_no_self_approval",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "p3_separate_reconciliation",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "constraintName": "commerce_notifications_dedupKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "constraintName": "payload",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_orders",
+      "constraintName": "commerce_orders_ownerKey_requestKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_orders",
+      "constraintName": "p3_money_valid",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_orders",
+      "constraintName": "p3_simulation_only",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_orders",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_orders",
+      "constraintName": "snapshot",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "constraintName": "commerce_order_items_orderId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "constraintName": "p3_order_quantity",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "constraintName": "p3_order_variant_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "constraintName": "snapshot",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "commerce_payments_orderId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "commerce_payments_orderId_requestKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "commerce_payments_providerReference_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "commerce_payment_claim_unique",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "p3_payment_money",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_payments",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_payment_events",
+      "constraintName": "p3_event_payment_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_payment_events",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_policies",
+      "constraintName": "configuration",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_policies",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "constraintName": "commerce_recovery_sessionHash_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "constraintName": "commerce_recovery_tokenHash_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "constraintName": "p3_recovery_order_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "constraintName": "commerce_reservations_itemId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "constraintName": "commerce_reservations_itemId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "constraintName": "p3_reservation_quantity",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "constraintName": "p3_reservation_state",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_shipments",
+      "constraintName": "commerce_shipments_orderId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_shipments",
+      "constraintName": "p3_shipment_order_fk",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "commerce_shipments",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "constraintName": "commerce_stock_events_operationKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_accounts",
+      "constraintName": "customer_accounts_providerId_accountId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "customer_accounts",
+      "constraintName": "customer_accounts_userId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "customer_accounts",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_addresses",
+      "constraintName": "customer_addresses_userId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "customer_addresses",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_rate_limits",
+      "constraintName": "customer_rate_limits_key_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "customer_rate_limits",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_sessions",
+      "constraintName": "customer_sessions_token_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "customer_sessions",
+      "constraintName": "customer_sessions_userId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "customer_sessions",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_users",
+      "constraintName": "customer_users_email_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "customer_users",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "customer_verifications",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "inventory_balances_low_stock_nonnegative_check",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "inventory_balances_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "inventory_balances_quantity_nonnegative_check",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "inventory_balances_variantId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "inventory_balances_variantId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "p3_reserved_valid",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "inventory_balances",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "inventory_movements",
+      "constraintName": "inventory_movements_actorId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "inventory_movements",
+      "constraintName": "inventory_movements_balanceId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "inventory_movements",
+      "constraintName": "inventory_movements_balance_after_nonnegative_check",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "inventory_movements",
+      "constraintName": "inventory_movements_requestKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "inventory_movements",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "legacy_import_issues",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "legacy_product_mappings_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "legacy_product_mappings_productId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "legacy_product_mappings_sourceProductId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "legacy_product_mappings_sourceUrl_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "payload",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "constraintName": "manufacturing_policies_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "constraintName": "manufacturing_policies_productId_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "media_assets",
+      "constraintName": "media_assets_displayKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "media_assets",
+      "constraintName": "media_assets_originalKey_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "media_assets",
+      "constraintName": "media_assets_uploadedById_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "media_assets",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "products",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "products",
+      "constraintName": "products_slug_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "product_categories",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "product_categories",
+      "constraintName": "product_categories_categoryId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "product_categories",
+      "constraintName": "product_categories_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "product_media",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "product_media",
+      "constraintName": "product_media_mediaId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "product_media",
+      "constraintName": "product_media_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "product_media",
+      "constraintName": "product_media_productId_position_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "product_variants",
+      "constraintName": "options",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "product_variants",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "product_variants",
+      "constraintName": "product_variants_productId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "product_variants",
+      "constraintName": "product_variants_productId_position_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "product_variants",
+      "constraintName": "product_variants_sku_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "shipping_rates",
+      "constraintName": "p3_shipping_money",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "shipping_rates",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "shipping_rates",
+      "constraintName": "shipping_rates_country_region_carrier_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "store_settings",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "store_settings",
+      "constraintName": "value",
+      "constraintType": "CHECK"
+    },
+    {
+      "tableName": "variant_media",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    },
+    {
+      "tableName": "variant_media",
+      "constraintName": "variant_media_mediaId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "variant_media",
+      "constraintName": "variant_media_variantId_fkey",
+      "constraintType": "FOREIGN KEY"
+    },
+    {
+      "tableName": "variant_media",
+      "constraintName": "variant_media_variantId_position_key",
+      "constraintType": "UNIQUE"
+    },
+    {
+      "tableName": "_prisma_migrations",
+      "constraintName": "PRIMARY",
+      "constraintType": "PRIMARY KEY"
+    }
+  ],
+  "indexes": [
+    {
+      "tableName": "admin_roles",
+      "indexName": "PRIMARY",
+      "columnName": "code",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "admin_role_permissions",
+      "indexName": "PRIMARY",
+      "columnName": "roleCode",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "admin_role_permissions",
+      "indexName": "PRIMARY",
+      "columnName": "permission",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "admin_users",
+      "indexName": "admin_users_email_key",
+      "columnName": "email",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "admin_users",
+      "indexName": "admin_users_roleCode_idx",
+      "columnName": "roleCode",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "admin_users",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "audit_events_actorId_createdAt_idx",
+      "columnName": "actorId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "audit_events_actorId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "audit_events_entity_entityId_createdAt_idx",
+      "columnName": "entity",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "audit_events_entity_entityId_createdAt_idx",
+      "columnName": "entityId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "audit_events_entity_entityId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "3"
+    },
+    {
+      "tableName": "audit_events",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_accounts",
+      "indexName": "auth_accounts_providerId_accountId_key",
+      "columnName": "providerId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_accounts",
+      "indexName": "auth_accounts_providerId_accountId_key",
+      "columnName": "accountId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "auth_accounts",
+      "indexName": "auth_accounts_userId_idx",
+      "columnName": "userId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_accounts",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_rate_limits",
+      "indexName": "auth_rate_limits_key_key",
+      "columnName": "key",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_rate_limits",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_sessions",
+      "indexName": "auth_sessions_expiresAt_idx",
+      "columnName": "expiresAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_sessions",
+      "indexName": "auth_sessions_token_key",
+      "columnName": "token",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_sessions",
+      "indexName": "auth_sessions_userId_idx",
+      "columnName": "userId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_sessions",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_verifications",
+      "indexName": "auth_verifications_expiresAt_idx",
+      "columnName": "expiresAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_verifications",
+      "indexName": "auth_verifications_identifier_idx",
+      "columnName": "identifier",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "auth_verifications",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_imageAssetId_fkey",
+      "columnName": "imageAssetId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_parentId_sortOrder_idx",
+      "columnName": "parentId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_parentId_sortOrder_idx",
+      "columnName": "sortOrder",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_slug_key",
+      "columnName": "slug",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_sourceId_key",
+      "columnName": "sourceId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_sourceUrl_key",
+      "columnName": "sourceUrl",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_visible_sortOrder_idx",
+      "columnName": "visible",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "categories_visible_sortOrder_idx",
+      "columnName": "sortOrder",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "categories",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "indexName": "commerce_cancellations_orderId_key",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "indexName": "commerce_cancellations_state_createdAt_idx",
+      "columnName": "state",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "indexName": "commerce_cancellations_state_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_cancellations",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_carts",
+      "indexName": "commerce_carts_ownerKey_key",
+      "columnName": "ownerKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_carts",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "indexName": "commerce_cart_items_cartId_variantId_key",
+      "columnName": "cartId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "indexName": "commerce_cart_items_cartId_variantId_key",
+      "columnName": "variantId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "indexName": "p3_cart_variant_fk",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_cart_items",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_events",
+      "indexName": "commerce_events_operationKey_key",
+      "columnName": "operationKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_events",
+      "indexName": "commerce_events_orderId_createdAt_idx",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_events",
+      "indexName": "commerce_events_orderId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_events",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "indexName": "commerce_finance_grants_adminId_operation_currency_key",
+      "columnName": "adminId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "indexName": "commerce_finance_grants_adminId_operation_currency_key",
+      "columnName": "operation",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "indexName": "commerce_finance_grants_adminId_operation_currency_key",
+      "columnName": "currency",
+      "sequenceInIndex": "3"
+    },
+    {
+      "tableName": "commerce_finance_grants",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "indexName": "commerce_finance_requests_orderId_state_idx",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "indexName": "commerce_finance_requests_orderId_state_idx",
+      "columnName": "state",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "indexName": "commerce_finance_requests_requestKey_key",
+      "columnName": "requestKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_finance_requests",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "indexName": "commerce_notifications_dedupKey_key",
+      "columnName": "dedupKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "indexName": "commerce_notifications_state_leaseUntil_idx",
+      "columnName": "state",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "indexName": "commerce_notifications_state_leaseUntil_idx",
+      "columnName": "leaseUntil",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_notifications",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_ownerKey_createdAt_idx",
+      "columnName": "ownerKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_ownerKey_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_ownerKey_requestKey_key",
+      "columnName": "ownerKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_ownerKey_requestKey_key",
+      "columnName": "requestKey",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_state_createdAt_idx",
+      "columnName": "state",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "commerce_orders_state_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_orders",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "indexName": "commerce_order_items_orderId_fkey",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "indexName": "commerce_order_items_variantId_idx",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_order_items",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payments",
+      "indexName": "commerce_payments_orderId_requestKey_key",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payments",
+      "indexName": "commerce_payments_orderId_requestKey_key",
+      "columnName": "requestKey",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_payments",
+      "indexName": "commerce_payments_providerReference_key",
+      "columnName": "providerReference",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payments",
+      "indexName": "commerce_payment_claim_unique",
+      "columnName": "claimReference",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payments",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payment_events",
+      "indexName": "commerce_payment_events_paymentId_idx",
+      "columnName": "paymentId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_payment_events",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_policies",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "indexName": "commerce_recovery_orderId_idx",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "indexName": "commerce_recovery_sessionHash_key",
+      "columnName": "sessionHash",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "indexName": "commerce_recovery_tokenHash_key",
+      "columnName": "tokenHash",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_recovery",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "commerce_reservations_itemId_key",
+      "columnName": "itemId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "commerce_reservations_state_expiresAt_idx",
+      "columnName": "state",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "commerce_reservations_state_expiresAt_idx",
+      "columnName": "expiresAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "commerce_reservations_variantId_state_idx",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "commerce_reservations_variantId_state_idx",
+      "columnName": "state",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_reservations",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_shipments",
+      "indexName": "commerce_shipments_orderId_key",
+      "columnName": "orderId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_shipments",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "indexName": "commerce_stock_events_operationKey_key",
+      "columnName": "operationKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "indexName": "commerce_stock_events_variantId_createdAt_idx",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "indexName": "commerce_stock_events_variantId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "commerce_stock_events",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_accounts",
+      "indexName": "customer_accounts_providerId_accountId_key",
+      "columnName": "providerId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_accounts",
+      "indexName": "customer_accounts_providerId_accountId_key",
+      "columnName": "accountId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "customer_accounts",
+      "indexName": "customer_accounts_userId_idx",
+      "columnName": "userId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_accounts",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_addresses",
+      "indexName": "customer_addresses_userId_idx",
+      "columnName": "userId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_addresses",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_rate_limits",
+      "indexName": "customer_rate_limits_key_key",
+      "columnName": "key",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_rate_limits",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_sessions",
+      "indexName": "customer_sessions_expiresAt_idx",
+      "columnName": "expiresAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_sessions",
+      "indexName": "customer_sessions_token_key",
+      "columnName": "token",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_sessions",
+      "indexName": "customer_sessions_userId_idx",
+      "columnName": "userId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_sessions",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_users",
+      "indexName": "customer_users_email_key",
+      "columnName": "email",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_users",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_verifications",
+      "indexName": "customer_verifications_expiresAt_idx",
+      "columnName": "expiresAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_verifications",
+      "indexName": "customer_verifications_identifier_idx",
+      "columnName": "identifier",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "customer_verifications",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_balances",
+      "indexName": "inventory_balances_productId_idx",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_balances",
+      "indexName": "inventory_balances_quantity_lowStockAt_idx",
+      "columnName": "quantity",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_balances",
+      "indexName": "inventory_balances_quantity_lowStockAt_idx",
+      "columnName": "lowStockAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "inventory_balances",
+      "indexName": "inventory_balances_variantId_key",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_balances",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "inventory_movements_actorId_createdAt_idx",
+      "columnName": "actorId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "inventory_movements_actorId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "inventory_movements_balanceId_createdAt_idx",
+      "columnName": "balanceId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "inventory_movements_balanceId_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "inventory_movements_requestKey_key",
+      "columnName": "requestKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "inventory_movements",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_import_issues",
+      "indexName": "legacy_import_issues_attemptedAt_idx",
+      "columnName": "attemptedAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_import_issues",
+      "indexName": "PRIMARY",
+      "columnName": "sourceProductId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "legacy_product_mappings_productId_key",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "legacy_product_mappings_sourceProductId_key",
+      "columnName": "sourceProductId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "legacy_product_mappings_sourceUrl_key",
+      "columnName": "sourceUrl",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "legacy_product_mappings_status_importedAt_idx",
+      "columnName": "status",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "legacy_product_mappings_status_importedAt_idx",
+      "columnName": "importedAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "legacy_product_mappings",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "indexName": "manufacturing_policies_available_idx",
+      "columnName": "available",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "indexName": "manufacturing_policies_productId_key",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "manufacturing_policies",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "media_assets_createdAt_idx",
+      "columnName": "createdAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "media_assets_displayKey_key",
+      "columnName": "displayKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "media_assets_lastReferencedAt_idx",
+      "columnName": "lastReferencedAt",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "media_assets_originalKey_key",
+      "columnName": "originalKey",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "media_assets_uploadedById_fkey",
+      "columnName": "uploadedById",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "media_assets",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_slug_key",
+      "columnName": "slug",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_status_updatedAt_idx",
+      "columnName": "status",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_status_updatedAt_idx",
+      "columnName": "updatedAt",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_titleAr_titleEn_descriptionAr_descriptionEn_idx",
+      "columnName": "titleAr",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_titleAr_titleEn_descriptionAr_descriptionEn_idx",
+      "columnName": "titleEn",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_titleAr_titleEn_descriptionAr_descriptionEn_idx",
+      "columnName": "descriptionAr",
+      "sequenceInIndex": "3"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_titleAr_titleEn_descriptionAr_descriptionEn_idx",
+      "columnName": "descriptionEn",
+      "sequenceInIndex": "4"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_type_availability_idx",
+      "columnName": "type",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "products",
+      "indexName": "products_type_availability_idx",
+      "columnName": "availability",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_categories",
+      "indexName": "PRIMARY",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_categories",
+      "indexName": "PRIMARY",
+      "columnName": "categoryId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_categories",
+      "indexName": "product_categories_categoryId_position_idx",
+      "columnName": "categoryId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_categories",
+      "indexName": "product_categories_categoryId_position_idx",
+      "columnName": "position",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_media",
+      "indexName": "PRIMARY",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_media",
+      "indexName": "PRIMARY",
+      "columnName": "mediaId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_media",
+      "indexName": "product_media_mediaId_idx",
+      "columnName": "mediaId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_media",
+      "indexName": "product_media_productId_position_key",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_media",
+      "indexName": "product_media_productId_position_key",
+      "columnName": "position",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_variants",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_variants",
+      "indexName": "product_variants_productId_idx",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_variants",
+      "indexName": "product_variants_productId_position_key",
+      "columnName": "productId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "product_variants",
+      "indexName": "product_variants_productId_position_key",
+      "columnName": "position",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "product_variants",
+      "indexName": "product_variants_sku_key",
+      "columnName": "sku",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "shipping_rates",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "shipping_rates",
+      "indexName": "shipping_rates_country_region_carrier_key",
+      "columnName": "country",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "shipping_rates",
+      "indexName": "shipping_rates_country_region_carrier_key",
+      "columnName": "region",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "shipping_rates",
+      "indexName": "shipping_rates_country_region_carrier_key",
+      "columnName": "carrier",
+      "sequenceInIndex": "3"
+    },
+    {
+      "tableName": "store_settings",
+      "indexName": "PRIMARY",
+      "columnName": "key",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "variant_media",
+      "indexName": "PRIMARY",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "variant_media",
+      "indexName": "PRIMARY",
+      "columnName": "mediaId",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "variant_media",
+      "indexName": "variant_media_mediaId_fkey",
+      "columnName": "mediaId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "variant_media",
+      "indexName": "variant_media_variantId_position_key",
+      "columnName": "variantId",
+      "sequenceInIndex": "1"
+    },
+    {
+      "tableName": "variant_media",
+      "indexName": "variant_media_variantId_position_key",
+      "columnName": "position",
+      "sequenceInIndex": "2"
+    },
+    {
+      "tableName": "_prisma_migrations",
+      "indexName": "PRIMARY",
+      "columnName": "id",
+      "sequenceInIndex": "1"
+    }
+  ]
+}

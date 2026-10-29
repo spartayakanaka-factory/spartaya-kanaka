@@ -1,0 +1,227 @@
+.commerce-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 48px 28px 80px;
+  min-height: 55vh;
+}
+.commerce-heading {
+  margin-bottom: 28px;
+}
+.commerce-heading h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 8px 0 20px;
+}
+.commerce-heading nav,
+.commerce-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.commerce-notice {
+  background: #eee6da;
+  border-inline-start: 3px solid #8f4d2d;
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.commerce-feedback {
+  min-height: 1.5em;
+  color: #793b20;
+}
+.commerce-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.commerce-panel {
+  border: 1px solid #dcd5ca;
+  padding: 28px;
+  background: #fffdf9;
+  min-width: 0;
+}
+.commerce-panel h2 {
+  font-size: 23px;
+  margin: 0 0 20px;
+}
+.commerce-panel h2:not(:first-child) {
+  margin-top: 32px;
+}
+.commerce-panel label,
+.commerce-add label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.commerce-panel input,
+.commerce-panel select,
+.commerce-add select {
+  font: inherit;
+  min-width: 0;
+  width: 100%;
+  min-height: 46px;
+  padding: 9px 12px;
+  border: 1px solid #b4a89b;
+  background: #fffdf9;
+  border-radius: 0;
+  color: #29231f;
+}
+.commerce-panel input:focus-visible,
+.commerce-panel select:focus-visible {
+  outline: 2px solid #8b4a2b;
+  outline-offset: 3px;
+}
+.commerce-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+.commerce-form-grid label:last-child {
+  grid-column: 1/-1;
+}
+.commerce-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #e5dfd5;
+  padding: 18px 0;
+  min-width: 0;
+}
+.commerce-line > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.commerce-line h3 {
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+}
+.commerce-line p {
+  font-size: 13px;
+  color: #665a50;
+}
+.commerce-line label {
+  width: 74px;
+  margin: 0;
+}
+.commerce-line .text-link {
+  min-height: 44px;
+}
+.commerce-empty {
+  padding: 25px 0;
+  line-height: 1.9;
+}
+.commerce-summary {
+  border-top: 1px solid #dcd5ca;
+  margin-top: 24px;
+  padding-top: 12px;
+}
+.commerce-summary dl > div,
+.commerce-totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 16px 0;
+}
+.commerce-summary dd,
+.commerce-totals dd {
+  margin: 0;
+  white-space: nowrap;
+}
+.commerce-page button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.commerce-auth .commerce-inline {
+  margin-top: 22px;
+}
+.commerce-add {
+  margin: 24px 0;
+}
+.commerce-add p {
+  margin: 12px 0;
+}
+.commerce-panel button + .text-link {
+  margin: 20px 0;
+}
+.commerce-panel :is(p, a, dd) {
+  overflow-wrap: anywhere;
+}
+.commerce-panel .button {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.commerce-page .text-link {
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: inherit;
+}
+.commerce-page .text-link:hover {
+  color: #8b4a2b;
+}
+@media (max-width: 800px) {
+  .commerce-columns {
+    grid-template-columns: 1fr;
+  }
+  .commerce-page {
+    padding: 30px 18px 50px;
+  }
+  .commerce-panel {
+    padding: 22px;
+  }
+  .commerce-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .commerce-form-grid label:last-child {
+    grid-column: auto;
+  }
+  .commerce-line {
+    gap: 10px;
+  }
+  .commerce-line label {
+    width: 65px;
+  }
+  .commerce-heading nav {
+    gap: 24px;
+  }
+  .commerce-heading nav a {
+    padding-block: 8px;
+  }
+  .commerce-summary dl > div {
+    flex-wrap: wrap;
+  }
+  .commerce-notice {
+    font-size: 13px;
+  }
+}
+
+.commerce-line > div:first-child {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.commerce-thumb {
+  flex: none;
+  object-fit: cover;
+}
+.commerce-item-copy {
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  .commerce-line {
+    flex-wrap: wrap;
+  }
+  .commerce-line > div:first-child {
+    flex-basis: 100%;
+  }
+  .commerce-line label {
+    margin-inline-start: auto;
+  }
+}

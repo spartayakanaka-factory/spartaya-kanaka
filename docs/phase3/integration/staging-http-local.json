@@ -1,0 +1,191 @@
+{
+  "scope": "LOCAL simulation only; not Hostinger acceptance",
+  "node": "v22.23.4",
+  "checks": [
+    {
+      "configured": false,
+      "route": "/",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/admin",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/admin",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/robots.txt",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/robots.txt",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/api/commerce",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": false,
+      "route": "/api/commerce",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/admin",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/admin",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/robots.txt",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/robots.txt",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/api/commerce",
+      "method": "GET",
+      "credentialKind": "absent",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/api/commerce",
+      "method": "GET",
+      "credentialKind": "invalid",
+      "status": 401,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/ar",
+      "method": "GET",
+      "credentialKind": "valid",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/en",
+      "method": "GET",
+      "credentialKind": "valid",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/admin/login",
+      "method": "GET",
+      "credentialKind": "valid",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/robots.txt",
+      "method": "GET",
+      "credentialKind": "valid",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/api/admin/commerce",
+      "method": "POST",
+      "credentialKind": "valid",
+      "status": 503,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/api/admin/media/upload-url",
+      "method": "POST",
+      "credentialKind": "valid",
+      "status": 403,
+      "noindex": true
+    },
+    {
+      "configured": true,
+      "route": "/api/customer-auth/get-session",
+      "method": "GET",
+      "credentialKind": "valid",
+      "status": 503,
+      "noindex": true
+    }
+  ],
+  "runtimeExceptions": []
+}

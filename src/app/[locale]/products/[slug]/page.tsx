@@ -1,3 +1,6 @@
+import { commerceEnabled } from "@/lib/commerce/runtime";
+import { AddToCart } from "@/components/commerce-client";
+import { getDatabase } from "@/lib/server/database";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,6 +43,7 @@ export default async function ProductPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   const [product, categories, contacts] = await Promise.all([getStoreProductBySlug(slug), getStoreCategories(), getStoreContactSettings()]);
   if (!product) notFound();
+  const buying = commerceEnabled() ? await getDatabase().product.findUnique({where:{slug},include:{variants:{where:{active:true}}}}) : null;
   const ar = locale === "ar",
     base = "/" + locale;
   const category = categories.find((item) => product.categoryIds?.includes(item.id));
@@ -85,6 +89,7 @@ export default async function ProductPage({ params }: Props) {
               : "Contact the factory to confirm price, availability, options and preparation time."}
           </p>
           {product.variants && product.variants.length > 1 ? <section className="variant-details" aria-labelledby="variant-title"><h2 id="variant-title">{ar ? "المتغيرات" : "Available variations"}</h2><ul>{product.variants.map((variant) => <li key={variant.id}><span lang="ar" dir="rtl">{variant.nameAr}</span>{Object.entries(variant.options).length ? <small>{Object.entries(variant.options).map(([key, value]) => `${key}: ${value}`).join(" · ")}</small> : null}{variant.priceMinor !== null ? <strong>{formatMoneyMinor(variant.priceMinor, locale, product.sourceCurrency ?? "EGP")}</strong> : null}</li>)}</ul></section> : null}
+          {buying?.status==="PUBLISHED" && buying.priceMinor!==null ? <AddToCart locale={locale} variants={buying.variants.map(v=>({id:v.id,nameAr:v.nameAr}))}/> : null}
           <div className="product-actions">
             <a className="button" href={"tel:" + contacts.phone}>
               <Icon name="phone" />

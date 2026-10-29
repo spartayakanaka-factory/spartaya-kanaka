@@ -70,7 +70,7 @@ export function ProductGallery({
         >
           {images.map((image, index) => (
             <button
-              key={image.localPath}
+              key={image.publicUrl ?? image.localPath}
               type="button"
               className={index === active ? "gallery-thumb is-active" : "gallery-thumb"}
               onClick={() => setActive(index)}

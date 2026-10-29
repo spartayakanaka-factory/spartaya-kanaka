@@ -1,0 +1,14 @@
+{
+  "backup": "20261029-150410.sql",
+  "sha256": "adb740f27a22302e2a5a0dc6941733d78d12350ff8aea85a26c9345dda7d03e6",
+  "databases": [
+    "sprtaya_phase3_disposable_local",
+    "sprtaya_phase3_disposable_test"
+  ],
+  "port": 33078,
+  "verified": true,
+  "verifiedAt": 1793275481.49631,
+  "tablesComparedPerDatabase": 45,
+  "comparison": "row counts and SHA-256 of sorted row data",
+  "restoreScope": "Separate disposable restore database on isolated port33078; no accepted database accessed"
+}

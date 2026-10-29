@@ -32,7 +32,7 @@ export function VariantEditor({ initial, existingProduct }: { initial: VariantDr
       <label>الاسم بالعربية<input maxLength={191} onChange={(event) => update(index, "nameAr", event.target.value)} required value={variant.nameAr} /></label>
       <label>الاسم بالإنجليزية<input maxLength={191} onChange={(event) => update(index, "nameEn", event.target.value)} value={variant.nameEn} /></label>
       <label>SKU<input dir="ltr" maxLength={96} onChange={(event) => update(index, "sku", event.target.value)} value={variant.sku} /></label>
-      <label>سعر المتغير (ج.م.)<input inputMode="decimal" min="0" onChange={(event) => update(index, "price", event.target.value)} placeholder="اتركه فارغاً لاستخدام سعر المنتج" step="0.01" type="number" value={variant.price} /></label>
+      <label>سعر المتغير (ج.م.)<input inputMode="decimal" onChange={(event) => update(index, "price", event.target.value)} placeholder="اتركه فارغاً لاستخدام سعر المنتج" type="text" value={variant.price} /></label>
       <label className="wide">الخيارات — مثال: المقاس=وسط؛ التشطيب=مطروق<input maxLength={500} onChange={(event) => update(index, "optionsText", event.target.value)} value={variant.optionsText} /></label>
       <label>العرض (مم)<input max="50000" min="0" onChange={(event) => update(index, "widthMm", event.target.value)} type="number" value={variant.widthMm} /></label>
       <label>الارتفاع (مم)<input max="50000" min="0" onChange={(event) => update(index, "heightMm", event.target.value)} type="number" value={variant.heightMm} /></label>

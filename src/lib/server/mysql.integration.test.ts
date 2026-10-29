@@ -203,7 +203,7 @@ databaseSuite("MySQL/MariaDB integration acceptance", () => {
             actorLabel: actor.name,
           },
         });
-        await tx.manufacturingPolicy.create({ data: { productId: product.id, available: true } });
+        await tx.manufacturingPolicy.create({ data: { id: product.id, productId: product.id, available: true } });
         await tx.auditEvent.create({
           data: {
             actorId: actor.id,

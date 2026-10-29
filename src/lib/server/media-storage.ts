@@ -38,6 +38,9 @@ export function getMediaStorage() {
     endpoint: parsed.toString(),
     region: process.env.MEDIA_S3_REGION || "auto",
     forcePathStyle: process.env.MEDIA_S3_FORCE_PATH_STYLE === "true",
+    // A presigned upload has no body until the browser supplies the image.
+    // Do not calculate an empty-body checksum while creating its signed URL.
+    requestChecksumCalculation: "WHEN_REQUIRED",
     credentials: { accessKeyId, secretAccessKey },
   });
   return {

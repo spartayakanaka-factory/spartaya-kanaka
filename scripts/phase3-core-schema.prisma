@@ -1,0 +1,723 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ProductType {
+  READY_MADE
+  MADE_TO_ORDER
+}
+
+enum Availability {
+  AVAILABLE
+  UNAVAILABLE
+}
+
+enum MediaProvider {
+  LEGACY_LOCAL
+  S3_COMPATIBLE
+}
+
+enum MovementKind {
+  OPENING
+  ADJUSTMENT
+  CORRECTION
+}
+
+enum DepositMode {
+  FULL_ADVANCE
+  DEPOSIT
+}
+
+enum DepositType {
+  FIXED_MINOR
+  PERCENT
+}
+
+enum BalanceCollection {
+  BEFORE_DISPATCH
+  CASH_ON_DELIVERY
+}
+
+enum AdminPermission {
+  PRODUCTS_READ
+  PRODUCTS_WRITE
+  PRODUCTS_PUBLISH
+  CATEGORIES_READ
+  CATEGORIES_WRITE
+  MEDIA_WRITE
+  INVENTORY_READ
+  INVENTORY_ADJUST
+  SETTINGS_READ
+  SETTINGS_WRITE
+  STAFF_MANAGE
+  AUDIT_READ
+}
+
+model AdminUser {
+  id                  String              @id @default(cuid()) @db.VarChar(191)
+  name                String              @db.VarChar(120)
+  email               String              @unique @db.VarChar(191)
+  emailVerified       Boolean             @default(false)
+  image               String?             @db.Text
+  roleCode            String              @default("INVENTORY_STAFF") @db.VarChar(32)
+  forcePasswordChange Boolean             @default(true)
+  banned              Boolean             @default(false)
+  banReason           String?             @db.Text
+  banExpires          DateTime?           @db.DateTime(3)
+  createdAt           DateTime            @default(now()) @db.DateTime(3)
+  updatedAt           DateTime            @updatedAt @db.DateTime(3)
+  role                AdminRole           @relation(fields: [roleCode], references: [code], onUpdate: Cascade)
+  sessions            AuthSession[]
+  accounts            AuthAccount[]
+  auditEvents         AuditEvent[]
+  inventoryMovements  InventoryMovement[]
+  uploadedMedia       MediaAsset[]
+
+  @@index([roleCode])
+  @@map("admin_users")
+}
+
+model AdminRole {
+  code        String                @id @db.VarChar(32)
+  nameAr      String                @db.VarChar(80)
+  users       AdminUser[]
+  permissions AdminRolePermission[]
+
+  @@map("admin_roles")
+}
+
+model AdminRolePermission {
+  roleCode   String          @db.VarChar(32)
+  permission AdminPermission
+  role       AdminRole       @relation(fields: [roleCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([roleCode, permission])
+  @@map("admin_role_permissions")
+}
+
+model AuthSession {
+  id        String    @id @db.VarChar(191)
+  expiresAt DateTime  @db.DateTime(3)
+  token     String    @unique @db.VarChar(191)
+  ipAddress String?   @db.VarChar(64)
+  userAgent String?   @db.Text
+  userId    String    @db.VarChar(191)
+  createdAt DateTime  @default(now()) @db.DateTime(3)
+  updatedAt DateTime  @updatedAt @db.DateTime(3)
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("auth_sessions")
+}
+
+model AuthAccount {
+  id                    String    @id @db.VarChar(191)
+  accountId             String    @db.VarChar(191)
+  providerId            String    @db.VarChar(64)
+  userId                String    @db.VarChar(191)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.LongText
+  accessTokenExpiresAt  DateTime? @db.DateTime(3)
+  refreshTokenExpiresAt DateTime? @db.DateTime(3)
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now()) @db.DateTime(3)
+  updatedAt             DateTime  @updatedAt @db.DateTime(3)
+  user                  AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+  @@map("auth_accounts")
+}
+
+model AuthVerification {
+  id         String   @id @db.VarChar(191)
+  identifier String   @db.VarChar(191)
+  value      String   @db.Text
+  expiresAt  DateTime @db.DateTime(3)
+  createdAt  DateTime @default(now()) @db.DateTime(3)
+  updatedAt  DateTime @updatedAt @db.DateTime(3)
+
+  @@index([identifier])
+  @@index([expiresAt])
+  @@map("auth_verifications")
+}
+
+model AuthRateLimit {
+  id          String @id @db.VarChar(191)
+  key         String @unique @db.VarChar(191)
+  count       Int
+  lastRequest BigInt
+
+  @@map("auth_rate_limits")
+}
+
+model Product {
+  id                  String                @id @default(uuid()) @db.Char(36)
+  slug                String                @unique @db.VarChar(191)
+  titleAr             String                @db.VarChar(191)
+  titleEn             String?               @db.VarChar(191)
+  descriptionAr       String                @db.Text
+  descriptionEn       String?               @db.Text
+  // Imported records remain unclassified until an administrator reviews them.
+  type                ProductType?
+  status              PublicationStatus     @default(DRAFT)
+  featured            Boolean               @default(false)
+  availability        Availability          @default(UNAVAILABLE)
+  priceMinor          Int?
+  detailsReviewedAt   DateTime?             @db.DateTime(3)
+  currency            String                @default("EGP") @db.Char(3)
+  seoTitleAr          String?               @db.VarChar(191)
+  seoTitleEn          String?               @db.VarChar(191)
+  seoDescriptionAr    String?               @db.VarChar(320)
+  seoDescriptionEn    String?               @db.VarChar(320)
+  createdAt           DateTime              @default(now()) @db.DateTime(3)
+  updatedAt           DateTime              @updatedAt @db.DateTime(3)
+  publishedAt         DateTime?             @db.DateTime(3)
+  categories          ProductCategory[]
+  variants            ProductVariant[]
+  media               ProductMedia[]
+  inventory           InventoryBalance[]
+  manufacturingPolicy ManufacturingPolicy?
+  legacyMapping       LegacyProductMapping?
+
+  @@index([status, updatedAt])
+  @@index([type, availability])
+  @@fulltext([titleAr, titleEn, descriptionAr, descriptionEn])
+  @@map("products")
+}
+
+model ProductVariant {
+  id           String            @id @default(uuid()) @db.Char(36)
+  productId    String            @db.Char(36)
+  nameAr       String            @db.VarChar(191)
+  nameEn       String?           @db.VarChar(191)
+  sku          String?           @unique @db.VarChar(96)
+  options      Json?
+  priceMinor   Int?
+  widthMm      Int?
+  heightMm     Int?
+  depthMm      Int?
+  weightGrams  Int?
+  availability Availability      @default(UNAVAILABLE)
+  active       Boolean           @default(true)
+  position     Int               @default(0)
+  product      Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media        VariantMedia[]
+  inventory    InventoryBalance?
+  createdAt    DateTime          @default(now()) @db.DateTime(3)
+  updatedAt    DateTime          @updatedAt @db.DateTime(3)
+
+  @@unique([productId, position])
+  @@index([productId])
+  @@map("product_variants")
+}
+
+model Category {
+  id             String            @id @default(uuid()) @db.Char(36)
+  sourceId       String?           @unique @db.VarChar(191)
+  sourceUrl      String?           @unique @db.VarChar(512)
+  slug           String            @unique @db.VarChar(191)
+  nameAr         String            @db.VarChar(191)
+  nameEn         String?           @db.VarChar(191)
+  descriptionAr  String?           @db.Text
+  descriptionEn  String?           @db.Text
+  visible        Boolean           @default(false)
+  featured       Boolean           @default(false)
+  reviewRequired Boolean           @default(true)
+  sortOrder      Int               @default(0)
+  imageAssetId   String?           @db.Char(36)
+  parentId       String?           @db.Char(36)
+  parent         Category?         @relation("CategoryTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children       Category[]        @relation("CategoryTree")
+  image          MediaAsset?       @relation("CategoryImage", fields: [imageAssetId], references: [id], onDelete: SetNull)
+  products       ProductCategory[]
+  createdAt      DateTime          @default(now()) @db.DateTime(3)
+  updatedAt      DateTime          @updatedAt @db.DateTime(3)
+
+  @@index([parentId, sortOrder])
+  @@index([visible, sortOrder])
+  @@map("categories")
+}
+
+model ProductCategory {
+  productId  String   @db.Char(36)
+  categoryId String   @db.Char(36)
+  position   Int      @default(0)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([productId, categoryId])
+  @@index([categoryId, position])
+  @@map("product_categories")
+}
+
+model MediaAsset {
+  id               String         @id @default(uuid()) @db.Char(36)
+  provider         MediaProvider
+  originalKey      String         @unique @db.VarChar(512)
+  displayKey       String?        @unique @db.VarChar(512)
+  publicUrl        String?        @db.VarChar(1024)
+  mimeType         String         @db.VarChar(80)
+  byteSize         Int            @default(0)
+  width            Int?
+  height           Int?
+  sha256           String?        @db.Char(64)
+  altAr            String?        @db.VarChar(191)
+  altEn            String?        @db.VarChar(191)
+  uploadedById     String?        @db.VarChar(191)
+  uploadedBy       AdminUser?     @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  products         ProductMedia[]
+  variants         VariantMedia[]
+  categories       Category[]     @relation("CategoryImage")
+  createdAt        DateTime       @default(now()) @db.DateTime(3)
+  lastReferencedAt DateTime?      @db.DateTime(3)
+
+  @@index([createdAt])
+  @@index([lastReferencedAt])
+  @@map("media_assets")
+}
+
+model ProductMedia {
+  productId String     @db.Char(36)
+  mediaId   String     @db.Char(36)
+  position  Int        @default(0)
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media     MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([productId, mediaId])
+  @@unique([productId, position])
+  @@index([mediaId])
+  @@map("product_media")
+}
+
+model VariantMedia {
+  variantId String         @db.Char(36)
+  mediaId   String         @db.Char(36)
+  position  Int            @default(0)
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  media     MediaAsset     @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([variantId, mediaId])
+  @@unique([variantId, position])
+  @@map("variant_media")
+}
+
+model InventoryBalance {
+  id         String              @id @default(uuid()) @db.Char(36)
+  productId  String              @db.Char(36)
+  variantId  String              @unique @db.Char(36)
+  quantity   Int                 @default(0)
+  reserved   Int                 @default(0)
+  lowStockAt Int                 @default(0)
+  version    Int                 @default(0)
+  product    Product             @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant    ProductVariant      @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  movements  InventoryMovement[]
+  updatedAt  DateTime            @updatedAt @db.DateTime(3)
+
+  @@index([quantity, lowStockAt])
+  @@index([productId])
+  @@map("inventory_balances")
+}
+
+model InventoryMovement {
+  id           String           @id @default(uuid()) @db.Char(36)
+  balanceId    String           @db.Char(36)
+  kind         MovementKind
+  delta        Int
+  balanceAfter Int
+  reason       String           @db.VarChar(500)
+  actorId      String           @db.VarChar(191)
+  actorLabel   String           @db.VarChar(191)
+  requestKey   String?          @unique @db.VarChar(64)
+  createdAt    DateTime         @default(now()) @db.DateTime(3)
+  balance      InventoryBalance @relation(fields: [balanceId], references: [id], onDelete: Cascade)
+  actor        AdminUser        @relation(fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@index([balanceId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("inventory_movements")
+}
+
+model ManufacturingPolicy {
+  id                 String            @id @default("global") @db.VarChar(191)
+  productId          String?           @unique @db.Char(36)
+  available          Boolean           @default(false)
+  minProductionDays  Int               @default(1)
+  maxProductionDays  Int               @default(1)
+  depositMode        DepositMode       @default(FULL_ADVANCE)
+  depositType        DepositType       @default(FIXED_MINOR)
+  depositValue       Int               @default(0)
+  balanceCollection  BalanceCollection @default(BEFORE_DISPATCH)
+  codBalanceEligible Boolean           @default(false)
+  updatedById        String?           @db.VarChar(191)
+  createdAt          DateTime          @default(now()) @db.DateTime(3)
+  updatedAt          DateTime          @updatedAt @db.DateTime(3)
+  product            Product?          @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([available])
+  @@map("manufacturing_policies")
+}
+
+model StoreSetting {
+  key       String   @id @db.VarChar(96)
+  value     Json
+  updatedBy String?  @db.VarChar(191)
+  updatedAt DateTime @updatedAt @db.DateTime(3)
+
+  @@map("store_settings")
+}
+
+model AuditEvent {
+  id         String     @id @default(uuid()) @db.Char(36)
+  actorId    String?    @db.VarChar(191)
+  actorLabel String     @db.VarChar(191)
+  action     String     @db.VarChar(80)
+  entity     String     @db.VarChar(80)
+  entityId   String?    @db.VarChar(191)
+  beforeData Json?
+  afterData  Json?
+  ipAddress  String?    @db.VarChar(64)
+  createdAt  DateTime   @default(now()) @db.DateTime(3)
+  actor      AdminUser? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([entity, entityId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("audit_events")
+}
+
+model LegacyProductMapping {
+  id              String   @id @default(uuid()) @db.Char(36)
+  sourceProductId String   @unique @db.VarChar(191)
+  sourceUrl       String   @unique @db.VarChar(512)
+  productId       String   @unique @db.Char(36)
+  payload         Json
+  status          String   @default("IMPORTED") @db.VarChar(32)
+  error           String?  @db.Text
+  importedAt      DateTime @default(now()) @db.DateTime(3)
+  product         Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([status, importedAt])
+  @@map("legacy_product_mappings")
+}
+
+model LegacyImportIssue {
+  sourceProductId String   @id @db.VarChar(191)
+  sourceUrl       String   @db.VarChar(512)
+  error           String   @db.Text
+  attemptedAt     DateTime @default(now()) @db.DateTime(3)
+
+  @@index([attemptedAt])
+  @@map("legacy_import_issues")
+}
+
+// Phase 3 is local/disposable only until an explicit promotion approval.
+model CustomerUser {
+ id String @id @default(cuid()) @db.VarChar(191)
+ name String @db.VarChar(120)
+ email String @unique @db.VarChar(191)
+ emailVerified Boolean @default(false)
+ image String? @db.Text
+ phone String? @db.VarChar(32)
+ locale String @default("ar") @db.VarChar(2)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ sessions CustomerSession[]
+ accounts CustomerAccount[]
+ addresses CustomerAddress[]
+ @@map("customer_users")
+}
+model CustomerSession {
+  id        String    @id @db.VarChar(191)
+  expiresAt DateTime  @db.DateTime(3)
+  token     String    @unique @db.VarChar(191)
+  ipAddress String?   @db.VarChar(64)
+  userAgent String?   @db.Text
+  userId    String    @db.VarChar(191)
+  createdAt DateTime  @default(now()) @db.DateTime(3)
+  updatedAt DateTime  @updatedAt @db.DateTime(3)
+  user      CustomerUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("customer_sessions")
+}
+
+model CustomerAccount {
+  id                    String    @id @db.VarChar(191)
+  accountId             String    @db.VarChar(191)
+  providerId            String    @db.VarChar(64)
+  userId                String    @db.VarChar(191)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.LongText
+  accessTokenExpiresAt  DateTime? @db.DateTime(3)
+  refreshTokenExpiresAt DateTime? @db.DateTime(3)
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now()) @db.DateTime(3)
+  updatedAt             DateTime  @updatedAt @db.DateTime(3)
+  user                  CustomerUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+  @@map("customer_accounts")
+}
+
+model CustomerVerification {
+  id         String   @id @db.VarChar(191)
+  identifier String   @db.VarChar(191)
+  value      String   @db.Text
+  expiresAt  DateTime @db.DateTime(3)
+  createdAt  DateTime @default(now()) @db.DateTime(3)
+  updatedAt  DateTime @updatedAt @db.DateTime(3)
+
+  @@index([identifier])
+  @@index([expiresAt])
+  @@map("customer_verifications")
+}
+
+model CustomerRateLimit {
+  id          String @id @db.VarChar(191)
+  key         String @unique @db.VarChar(191)
+  count       Int
+  lastRequest BigInt
+
+  @@map("customer_rate_limits")
+}
+
+
+model CustomerAddress {
+ id String @id @default(uuid()) @db.Char(36)
+ userId String @db.VarChar(191)
+ label String @db.VarChar(80)
+ recipient String @db.VarChar(120)
+ phone String @db.VarChar(32)
+ country String @db.Char(2)
+ region String @db.VarChar(96)
+ city String @db.VarChar(96)
+ line1 String @db.VarChar(240)
+ postalCode String? @db.VarChar(32)
+ user CustomerUser @relation(fields:[userId],references:[id],onDelete:Cascade)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ @@index([userId])
+ @@map("customer_addresses")
+}
+model CommercePolicy {
+ id String @id @default("local-synthetic") @db.VarChar(64)
+ version Int @default(1)
+ configuration Json
+ simulationOnly Boolean @default(true)
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ @@map("commerce_policies")
+}
+model ShippingRate {
+ id String @id @default(uuid()) @db.Char(36)
+ country String @db.Char(2)
+ region String @db.VarChar(96)
+ carrier String @db.VarChar(96)
+ feeMinor BigInt
+ codFeeMinor BigInt?
+ codMaximumMinor BigInt?
+ currency String @db.Char(3)
+ codEnabled Boolean @default(false)
+ enabled Boolean @default(false)
+ leadDays Int
+ version Int @default(1)
+ @@unique([country,region,carrier])
+ @@map("shipping_rates")
+}
+model CommerceCart {
+ id String @id @default(uuid()) @db.Char(36)
+ ownerKey String @unique @db.VarChar(191)
+ version Int @default(1)
+ items CommerceCartItem[]
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ @@map("commerce_carts")
+}
+model CommerceCartItem {
+ id String @id @default(uuid()) @db.Char(36)
+ cartId String @db.Char(36)
+ variantId String @db.Char(36)
+ quantity Int
+ cart CommerceCart @relation(fields:[cartId],references:[id],onDelete:Cascade)
+ @@unique([cartId,variantId])
+ @@map("commerce_cart_items")
+}
+model CommerceOrder {
+ id String @id @default(uuid()) @db.Char(36)
+ ownerKey String @db.VarChar(191)
+ requestKey String @db.VarChar(64)
+ requestHash String @db.Char(64)
+ state String @default("AWAITING_PAYMENT") @db.VarChar(32)
+ paymentMethod String @db.VarChar(32)
+ currency String @db.Char(3)
+ totalMinor BigInt
+ initialMinor BigInt
+ paidMinor BigInt @default(0)
+ refundedMinor BigInt @default(0)
+ creditedMinor BigInt @default(0)
+ snapshot Json
+ locale String @db.VarChar(2)
+ version Int @default(1)
+ simulationOnly Boolean @default(true)
+ expiresAt DateTime @db.DateTime(3)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ items CommerceOrderItem[]
+ payments CommercePayment[]
+ events CommerceEvent[]
+ @@unique([ownerKey,requestKey])
+ @@index([ownerKey,createdAt])
+ @@index([state,createdAt])
+ @@map("commerce_orders")
+}
+model CommerceOrderItem {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String @db.Char(36)
+ variantId String @db.Char(36)
+ quantity Int
+ type String @db.VarChar(24)
+ snapshot Json
+ manufacturingState String @default("NOT_STARTED") @db.VarChar(32)
+ order CommerceOrder @relation(fields:[orderId],references:[id],onDelete:Restrict)
+ reservation CommerceReservation?
+ @@index([variantId])
+ @@map("commerce_order_items")
+}
+model CommerceReservation {
+ id String @id @default(uuid()) @db.Char(36)
+ itemId String @unique @db.Char(36)
+ variantId String @db.Char(36)
+ quantity Int
+ state String @default("HELD") @db.VarChar(24)
+ expiresAt DateTime @db.DateTime(3)
+ item CommerceOrderItem @relation(fields:[itemId],references:[id],onDelete:Restrict)
+ @@index([state,expiresAt])
+ @@index([variantId,state])
+ @@map("commerce_reservations")
+}
+model CommercePayment {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String @db.Char(36)
+ requestKey String @db.VarChar(64)
+ method String @db.VarChar(32)
+ purpose String @db.VarChar(24)
+ state String @default("PENDING") @db.VarChar(32)
+ amountMinor BigInt
+ currency String @db.Char(3)
+ providerReference String @unique @db.VarChar(191)
+ claimReference String? @unique @db.VarChar(191)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ order CommerceOrder @relation(fields:[orderId],references:[id],onDelete:Restrict)
+ @@unique([orderId,requestKey])
+ @@map("commerce_payments")
+}
+model CommercePaymentEvent {
+ id String @id @db.VarChar(191)
+ paymentId String @db.Char(36)
+ payloadHash String @db.Char(64)
+ state String @db.VarChar(32)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ @@index([paymentId])
+ @@map("commerce_payment_events")
+}
+model CommerceFinanceGrant {
+ id String @id @default(uuid()) @db.Char(36)
+ adminId String @db.VarChar(191)
+ operation String @db.VarChar(32)
+ currency String @db.Char(3)
+ limitMinor BigInt
+ expiresAt DateTime @db.DateTime(3)
+ revoked Boolean @default(false)
+ @@unique([adminId,operation,currency])
+ @@map("commerce_finance_grants")
+}
+model CommerceFinanceRequest {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String @db.Char(36)
+ paymentId String? @db.Char(36)
+ kind String @db.VarChar(32)
+ amountMinor BigInt
+ state String @default("REQUESTED") @db.VarChar(32)
+ requestKey String @unique @db.VarChar(64)
+ requestedBy String @db.VarChar(191)
+ approvedBy String? @db.VarChar(191)
+ executedBy String? @db.VarChar(191)
+ reconciledBy String? @db.VarChar(191)
+ reason String @db.VarChar(500)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ @@index([orderId,state])
+ @@map("commerce_finance_requests")
+}
+model CommerceShipment {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String @unique @db.Char(36)
+ state String @default("READY") @db.VarChar(32)
+ carrierReference String? @db.VarChar(191)
+ collectionState String @default("NOT_COLLECTED") @db.VarChar(32)
+ updatedAt DateTime @updatedAt @db.DateTime(3)
+ @@map("commerce_shipments")
+}
+model CommerceEvent {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String? @db.Char(36)
+ actorKey String @db.VarChar(191)
+ kind String @db.VarChar(64)
+ operationKey String @unique @db.VarChar(191)
+ data Json
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ order CommerceOrder? @relation(fields:[orderId],references:[id],onDelete:Restrict)
+ @@index([orderId,createdAt])
+ @@map("commerce_events")
+}
+model CommerceStockEvent {
+ id String @id @default(uuid()) @db.Char(36)
+ variantId String @db.Char(36)
+ quantityDelta Int
+ reservedDelta Int
+ quantityAfter Int
+ reservedAfter Int
+ operationKey String @unique @db.VarChar(191)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ @@index([variantId,createdAt])
+ @@map("commerce_stock_events")
+}
+model CommerceNotification {
+ id String @id @default(uuid()) @db.Char(36)
+ dedupKey String @unique @db.VarChar(191)
+ locale String @db.VarChar(2)
+ kind String @db.VarChar(64)
+ payload Json
+ state String @default("PENDING") @db.VarChar(24)
+ attempts Int @default(0)
+ leaseUntil DateTime? @db.DateTime(3)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ @@index([state,leaseUntil])
+ @@map("commerce_notifications")
+}
+model CommerceRecovery {
+ id String @id @default(uuid()) @db.Char(36)
+ tokenHash String @unique @db.Char(64)
+ orderId String @db.Char(36)
+ expiresAt DateTime @db.DateTime(3)
+ consumedAt DateTime? @db.DateTime(3)
+ sessionHash String? @unique @db.Char(64)
+ @@index([orderId])
+ @@map("commerce_recovery")
+}

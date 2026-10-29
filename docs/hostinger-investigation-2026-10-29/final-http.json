@@ -1,0 +1,486 @@
+{
+  "observed_utc": "2026-10-28T22:22:56.498410+00:00",
+  "notes": "No real credentials used or disclosed. Valid-credential and owner-role flows not reached.",
+  "responses": [
+    {
+      "path": "/",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.274201",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:54 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 0d61cef82c35f7b1477a0853468154d0-fra-edge8\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.027\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.262838",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:54 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 3cca95dfcc917d2039e352b7295e6e1f-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.019\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/ar",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.427675",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:54 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 4e61ae8265a1075e2575773eee28eb4b-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.072\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/ar",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.277910",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:54 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 33fe9bee9c0ddf7e05c7677f275e68d0-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.031\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/en",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.23.41 0.213839",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:54 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: d778d46eaeb3d6c68a311874159285b1-fra-edge10\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.019\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/en",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.23.41 1.150012",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: fe61f1a8d28b5767c17b94832e7b8f7f-fra-edge8\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.954\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/nonexistent-hostinger-audit-20261029",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.23.41 1.148611",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: c9da45075143d62b89e9029a098dff40-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.955\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/nonexistent-hostinger-audit-20261029",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 1.003609",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 25f42b7e7ec7b0e9dd3e0ab4cc009fa0-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.819\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.915722",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 2617d224ce35784835dff96c08532c7b-fra-edge8\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.729\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.228519",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 67285d76566b3defff590657634e471a-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.034\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin/login",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.211542",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 98b9a07f3be3527e8099799c0a442342-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.018\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin/login",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.224809",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 06c76afe2442b440b6d40904a85ff605-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.027\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin/products",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.225009",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:55 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: bb56483a2eb26206f090631728436f49-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.022\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/admin/products",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.252050",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 3d2d395c6c4f6b0b157afe06bd700d61-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.017\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/api/auth/get-session",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.258839",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: f943c7cfb29d6472eb84076c673e6636-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.019\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/api/auth/get-session",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.275090",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 76e4cbdde6fc12db8384c4067c18cc1d-fra-edge10\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.020\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/api/admin/media/upload-url",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.267135",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: f3631e2233fef8653f17c6efc043e668-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.020\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/api/admin/media/upload-url",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.203755",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 2faf1ae5f138da0876c0d4e81659cb4c-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.018\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/robots.txt",
+      "auth_case": "anonymous",
+      "result": "200 58 92.113.16.26 0.185466",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: ab97fdebe8563fcbba80feb21a259707-fra-edge9\ncontent-type: text/plain\n\n",
+      "body_bytes": 58,
+      "sha256": "75959e778007bee9d4989a997f47b50ab03332a9de3404ee9e340e7cc5eb6eab",
+      "body_excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": false
+      }
+    },
+    {
+      "path": "/robots.txt",
+      "auth_case": "invalid-basic",
+      "result": "200 58 92.113.16.26 0.185374",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: afc2628ce249201e0bcd2445f5a8d8e2-fra-edge8\ncontent-type: text/plain\n\n",
+      "body_bytes": 58,
+      "sha256": "75959e778007bee9d4989a997f47b50ab03332a9de3404ee9e340e7cc5eb6eab",
+      "body_excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": false
+      }
+    },
+    {
+      "path": "/sitemap.xml",
+      "auth_case": "anonymous",
+      "result": "200 0 92.113.16.26 0.203880",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 08f04c935ea600278d72c1e590cb000a-fra-edge10\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.018\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/sitemap.xml",
+      "auth_case": "invalid-basic",
+      "result": "200 0 92.113.16.26 0.201736",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 033571610ea4bbfebb93b4ce3279443e-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.018\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    },
+    {
+      "path": "/robots.txt",
+      "auth_case": "googlebot",
+      "result": "200 58 92.113.16.26 0.182741",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:22:56 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: addd6e8fc686a80dfaa5bd3e9e6a1835-fra-edge10\ncontent-type: text/plain\n\n",
+      "body_bytes": 58,
+      "sha256": "75959e778007bee9d4989a997f47b50ab03332a9de3404ee9e340e7cc5eb6eab",
+      "body_excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": false
+      }
+    },
+    {
+      "path": "/",
+      "auth_case": "http1-anonymous",
+      "result": "200 0 92.113.16.26 0.198672",
+      "error": "",
+      "headers": "HTTP/1.1 200 OK\nDate: Wed, 28 Oct 2026 22:22:56 GMT\nTransfer-Encoding: chunked\nConnection: keep-alive\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nServer: hcdn\nx-hcdn-request-id: a456082adedefe05e06a1f352d00ff51-fra-edge8\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.016\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": "",
+      "security_headers": {
+        "www-authenticate": false,
+        "x-robots-tag": false,
+        "cache-control": false,
+        "strict-transport-security": false,
+        "x-content-type-options": false,
+        "x-frame-options": false,
+        "referrer-policy": false,
+        "content-security-policy": true
+      }
+    }
+  ]
+}

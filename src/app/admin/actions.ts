@@ -1,15 +1,18 @@
 "use server";
+import {commerceEnabled} from "@/lib/commerce/runtime";
+import {newManufacturingTemplate} from "@/lib/commerce/policy";
 
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { hashPassword, verifyPassword } from "better-auth/crypto";
-import { getAdminActor, requirePermission, type AdminActor } from "@/lib/server/admin-session";
+import { getAdminActor, requirePermission } from "@/lib/server/admin-session";
 import { getAuth } from "@/lib/server/auth";
 import { getDatabase } from "@/lib/server/database";
 import { productPublicationBlockers } from "@/lib/admin/product-publication";
 import { hasPermission } from "@/lib/admin/permissions";
+import { parsePriceMinor as minorUnits } from "@/lib/admin/price";
 
 const uuid = z.string().uuid();
 const productSchema = z.object({
@@ -41,16 +44,6 @@ const variantSchema = z.object({
   quantity: z.string().optional(),
 });
 
-function minorUnits(raw: string | undefined) {
-  if (!raw) return null;
-  const value = raw.replace(/\s/g, "").replace(/,/g, "");
-  if (!/^(?:\d{1,7})(?:\.\d{1,2})?$/.test(value)) throw new Error("INVALID_PRICE");
-  const [whole, fraction = ""] = value.split(".");
-  const minor = Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
-  if (!Number.isSafeInteger(minor) || minor < 0) throw new Error("INVALID_PRICE");
-  return minor;
-}
-
 function intField(raw: string | undefined, fallback = 0) {
   if (!raw) return fallback;
   if (!/^\d{1,8}$/.test(raw)) throw new Error("INVALID_QUANTITY");
@@ -78,20 +71,6 @@ function parseVariantOptions(raw: string | undefined) {
     options[key] = value;
   }
   return Object.keys(options).length ? options : null;
-}
-
-async function audit(actor: AdminActor, action: string, entity: string, entityId: string, after: unknown, before?: unknown) {
-  await getDatabase().auditEvent.create({
-    data: {
-      actorId: actor.id,
-      actorLabel: actor.name,
-      action,
-      entity,
-      entityId,
-      beforeData: before === undefined ? undefined : JSON.parse(JSON.stringify(before)),
-      afterData: after === undefined ? undefined : JSON.parse(JSON.stringify(after)),
-    },
-  });
 }
 
 function revalidateStorefront(slug?: string) {
@@ -226,9 +205,11 @@ export async function saveProduct(formData: FormData): Promise<void> {
         },
       },
     });
+    if(!existing && commerceEnabled() && input.type==="MADE_TO_ORDER")await tx.manufacturingPolicy.create({data:{id:product.id,productId:product.id,available:false,...newManufacturingTemplate()}});
     if (existing?.variants.length) await tx.productVariant.updateMany({ where: { productId: product.id, active: true }, data: { position: { increment: 100 }, sku: null } });
+    let retiredPosition = Math.max(1000, ((await tx.productVariant.aggregate({ where: { productId: product.id }, _max: { position: true } }))._max.position ?? 999) + 1);
     for (const variant of removedVariants) {
-      await tx.productVariant.update({ where: { id: variant.id }, data: { active: false, sku: null, availability: "UNAVAILABLE", position: 1000 + variant.position } });
+      await tx.productVariant.update({ where: { id: variant.id }, data: { active: false, sku: null, availability: "UNAVAILABLE", position: retiredPosition++ } });
     }
     for (const [position, inputVariant] of normalizedVariants.entries()) {
       const oldVariant = inputVariant.id ? existing?.variants.find((variant) => variant.id === inputVariant.id) : undefined;
@@ -253,9 +234,16 @@ export async function saveProduct(formData: FormData): Promise<void> {
       const policy = await tx.manufacturingPolicy.findUnique({ where: { productId: product.id }, select: { available: true } });
       await tx.product.update({ where: { id: product.id }, data: { availability: policy?.available ? "AVAILABLE" : "UNAVAILABLE" } });
     }
+    if (product.status === "PUBLISHED") {
+      const reviewed = await tx.product.findUniqueOrThrow({ where: { id: product.id }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
+      if (productPublicationBlockers(reviewed).length) throw new Error("PUBLISH_BLOCKED");
+    }
     if (input.mediaIds.length) await tx.mediaAsset.updateMany({ where: { id: { in: input.mediaIds } }, data: { lastReferencedAt: new Date() } });
     await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: created ? "product.created" : "product.updated", entity: "Product", entityId: product.id, afterData: { titleAr: product.titleAr, slug: product.slug, type: product.type, priceMinor: product.priceMinor } } });
     return product;
+  }).catch((error: unknown) => {
+    if (error instanceof Error && error.message === "PUBLISH_BLOCKED") redirect("/admin/products/" + input.productId + "?error=publish");
+    throw error;
   });
   revalidateStorefront(saved.slug);
   redirect("/admin/products/" + saved.id + "?saved=1");
@@ -385,6 +373,11 @@ export async function saveBulkProductReview(formData: FormData): Promise<void> {
         }
         await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "product.bulk-reviewed", entity: "Product", entityId: current.id, beforeData: { titleAr: current.titleAr, type: current.type, priceMinor: current.priceMinor, detailsReviewedAt: current.detailsReviewedAt }, afterData: { titleAr: entry.titleAr, type: nextType, priceMinor: nextPrice, detailsReviewed: entry.detailsReviewed, categoryId: entry.categoryId ?? null, initialQuantity: entry.initialQuantity } } });
       }
+      const alreadyPublished = currentRows.filter((row) => row.status === "PUBLISHED").map((row) => row.id);
+      if (alreadyPublished.length) {
+        const updatedPublished = await tx.product.findMany({ where: { id: { in: alreadyPublished } }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
+        if (updatedPublished.some((row) => productPublicationBlockers(row).length)) throw new Error("PUBLISH_BLOCKED");
+      }
       if (intent === "publish") {
         const rows = await tx.product.findMany({ where: { id: { in: publishIds } }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
         const byId = new Map(rows.map((row) => [row.id, row]));
@@ -441,7 +434,7 @@ export async function duplicateProduct(id: string): Promise<void> {
   redirect("/admin/products/" + copy.id + "?saved=1");
 }
 
-const categorySchema = z.object({ id: z.string().optional(), nameAr: z.string().trim().min(2).max(191), nameEn: z.string().trim().max(191).optional(), slug: z.string().trim().min(2).max(191).regex(/^[\p{L}\p{N}-]+$/u), descriptionAr: z.string().max(2000).optional(), sortOrder: z.number().int().min(0).max(9999), visible: z.boolean(), featured: z.boolean(), reviewRequired: z.boolean(), parentId: z.string().optional(), imageAssetId: z.string().optional() });
+const categorySchema = z.object({ id: uuid.optional(), nameAr: z.string().trim().min(2).max(191), nameEn: z.string().trim().max(191).optional(), slug: z.string().trim().min(2).max(191).regex(/^[\p{L}\p{N}-]+$/u), descriptionAr: z.string().max(2000).optional(), sortOrder: z.number().int().min(0).max(9999), visible: z.boolean(), featured: z.boolean(), reviewRequired: z.boolean(), parentId: uuid.optional(), imageAssetId: uuid.optional() });
 export async function saveCategory(formData: FormData): Promise<void> {
   const actor = await requirePermission("CATEGORIES_WRITE");
   const data = {
@@ -461,8 +454,12 @@ export async function saveCategory(formData: FormData): Promise<void> {
   if (!parsed.success) redirect("/admin/categories?error=invalid");
   const value = parsed.data;
   const db = getDatabase();
+  if (value.id && !await db.category.findUnique({ where: { id: value.id }, select: { id: true } })) redirect("/admin/categories?error=missing");
+  if (await db.category.findFirst({ where: { slug: value.slug, ...(value.id ? { id: { not: value.id } } : {}) }, select: { id: true } })) redirect("/admin/categories?error=slug");
   if (value.parentId && (!uuid.safeParse(value.parentId).success || value.parentId === value.id)) redirect("/admin/categories?error=hierarchy");
   if (value.imageAssetId && !uuid.safeParse(value.imageAssetId).success) redirect("/admin/categories?error=media");
+  if (value.parentId && !await db.category.findUnique({ where: { id: value.parentId }, select: { id: true } })) redirect("/admin/categories?error=hierarchy");
+  if (value.imageAssetId && !await db.mediaAsset.findUnique({ where: { id: value.imageAssetId }, select: { id: true } })) redirect("/admin/categories?error=media");
   if (value.id && value.parentId) {
     let ancestorId: string | null | undefined = value.parentId;
     const seen = new Set<string>();
@@ -473,14 +470,36 @@ export async function saveCategory(formData: FormData): Promise<void> {
       ancestorId = ancestor?.parentId;
     }
   }
-  const category = await db.category.upsert({
+  await db.$transaction(async (tx) => {
+  const category = await tx.category.upsert({
     where: { id: value.id ?? "00000000-0000-0000-0000-000000000000" },
     create: { nameAr: value.nameAr, nameEn: value.nameEn || null, slug: value.slug, descriptionAr: value.descriptionAr || null, sortOrder: value.sortOrder, visible: value.visible, featured: value.featured, reviewRequired: value.reviewRequired, parentId: value.parentId ?? null, imageAssetId: value.imageAssetId ?? null },
     update: { nameAr: value.nameAr, nameEn: value.nameEn || null, slug: value.slug, descriptionAr: value.descriptionAr || null, sortOrder: value.sortOrder, visible: value.visible, featured: value.featured, reviewRequired: value.reviewRequired, parentId: value.parentId ?? null, imageAssetId: value.imageAssetId ?? null },
   });
-  await audit(actor, value.id ? "category.updated" : "category.created", "Category", category.id, value);
+  await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: value.id ? "category.updated" : "category.created", entity: "Category", entityId: category.id, afterData: value } });
+  });
   revalidateStorefront();
   redirect("/admin/categories?saved=1");
+}
+
+export async function deleteCategory(id: string): Promise<void> {
+  const actor = await requirePermission("CATEGORIES_WRITE");
+  if (!uuid.safeParse(id).success) redirect("/admin/categories?error=invalid");
+  try {
+    await getDatabase().$transaction(async (tx) => {
+      const category = await tx.category.findUnique({ where: { id }, include: { _count: { select: { products: true, children: true } } } });
+      if (!category) throw new Error("NOT_FOUND");
+      if (category._count.products || category._count.children) throw new Error("NOT_EMPTY");
+      await tx.category.delete({ where: { id } });
+      await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "category.deleted", entity: "Category", entityId: id, beforeData: { nameAr: category.nameAr, slug: category.slug } } });
+    });
+  } catch (error) {
+    if (error instanceof Error && error.message === "NOT_FOUND") redirect("/admin/categories?error=missing");
+    if (error instanceof Error && error.message === "NOT_EMPTY" || error && typeof error === "object" && "code" in error && error.code === "P2003") redirect("/admin/categories?error=not-empty");
+    throw error;
+  }
+  revalidateStorefront();
+  redirect("/admin/categories?saved=deleted");
 }
 
 export async function adjustInventory(formData: FormData): Promise<void> {
@@ -496,11 +515,12 @@ export async function adjustInventory(formData: FormData): Promise<void> {
   try {
     await db.$transaction(async (tx) => {
       if (await tx.inventoryMovement.findUnique({ where: { requestKey }, select: { id: true } })) throw new Error("DUPLICATE_REQUEST");
-      const balance = await tx.inventoryBalance.findUnique({ where: { variantId } });
-      if (!balance) throw new Error("NOT_FOUND");
-      const affected = await tx.$executeRaw`UPDATE inventory_balances SET quantity = quantity + ${delta}, version = version + 1, updatedAt = CURRENT_TIMESTAMP(3) WHERE id = ${balance.id} AND quantity + ${delta} >= 0 AND version = ${balance.version}`;
+      const balance = await tx.inventoryBalance.findUnique({ where: { variantId }, include: { variant: { select: { active: true } }, product: { select: { type: true, status: true } } } });
+      if (!balance || !balance.variant.active || balance.product.type !== "READY_MADE" || balance.product.status === "ARCHIVED") throw new Error("NOT_FOUND");
+      const affected = await tx.$executeRaw`UPDATE inventory_balances SET quantity = quantity + ${delta}, version = version + 1, updatedAt = CURRENT_TIMESTAMP(3) WHERE id = ${balance.id} AND quantity + ${delta} >= reserved AND version = ${balance.version}`;
       if (affected !== 1) throw new Error("STOCK_CONFLICT");
       const updated = await tx.inventoryBalance.findUniqueOrThrow({ where: { id: balance.id } });
+      await tx.productVariant.update({ where: { id: variantId }, data: { availability: updated.quantity > 0 ? "AVAILABLE" : "UNAVAILABLE" } });
       await tx.inventoryMovement.create({ data: { balanceId: balance.id, kind: "ADJUSTMENT", delta, balanceAfter: updated.quantity, reason, requestKey, actorId: actor.id, actorLabel: actor.name } });
       const totalStock = (await tx.inventoryBalance.aggregate({ where: { productId: balance.productId, variant: { active: true } }, _sum: { quantity: true } }))._sum.quantity ?? 0;
       await tx.product.update({ where: { id: balance.productId }, data: { availability: totalStock > 0 ? "AVAILABLE" : "UNAVAILABLE" } });
@@ -556,16 +576,19 @@ export async function saveManufacturingPolicy(formData: FormData): Promise<void>
   } catch { redirect("/admin/products/" + productId + "?error=policy"); }
   const product = await db.product.findUnique({ where: { id: productId, type: "MADE_TO_ORDER" }, include: { variants: { where: { active: true }, select: { priceMinor: true } } } });
   if (!product) redirect("/admin/products?error=missing");
+  if (product.status === "PUBLISHED") await requirePermission("PRODUCTS_PUBLISH");
   if (depositMode === "DEPOSIT" && value < 1) redirect("/admin/products/" + productId + "?error=policy");
   if (depositMode === "DEPOSIT" && depositType === "PERCENT" && value > 100) redirect("/admin/products/" + productId + "?error=policy");
   const applicablePrice = product.priceMinor ?? product.variants.map((variant) => variant.priceMinor).filter((price): price is number => price !== null).sort((a, b) => a - b)[0] ?? null;
   if (depositMode === "DEPOSIT" && depositType === "FIXED_MINOR" && (applicablePrice === null || value > applicablePrice)) redirect("/admin/products/" + productId + "?error=policy");
   const data = { available, minProductionDays: minDays, maxProductionDays: maxDays, depositMode: depositMode as "FULL_ADVANCE" | "DEPOSIT", depositType: depositType as "FIXED_MINOR" | "PERCENT", depositValue: depositMode === "FULL_ADVANCE" ? 100 : value, balanceCollection: balanceCollection as "BEFORE_DISPATCH" | "CASH_ON_DELIVERY", codBalanceEligible: codBalanceEligible && balanceCollection === "CASH_ON_DELIVERY", updatedById: actor.id };
   await db.$transaction([
-    db.manufacturingPolicy.upsert({ where: { productId }, create: { productId, ...data }, update: data }),
+    db.manufacturingPolicy.upsert({ where: { productId }, create: { id: productId, productId, ...data }, update: data }),
     db.product.update({ where: { id: productId }, data: { availability: available ? "AVAILABLE" : "UNAVAILABLE" } }),
+    db.productVariant.updateMany({ where: { productId, active: true }, data: { availability: available ? "AVAILABLE" : "UNAVAILABLE" } }),
     db.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "manufacturing-policy.updated", entity: "ManufacturingPolicy", entityId: productId, afterData: data } }),
   ]);
+  revalidateStorefront(product.slug);
   redirect("/admin/products/" + productId + "?saved=1");
 }
 
@@ -579,8 +602,9 @@ export async function reorderProductMedia(formData: FormData): Promise<void> {
   const order = relations.map(({ mediaId }) => ({ mediaId, position: Number(formData.get("position_" + mediaId)) }));
   if (order.some(({ position }) => !Number.isInteger(position) || position < 0 || position > 99) || new Set(order.map(({ position }) => position)).size !== order.length) redirect("/admin/products/" + productId + "?error=media");
   order.sort((a, b) => a.position - b.position);
-  const product = await db.product.findUnique({ where: { id: productId }, select: { slug: true } });
+  const product = await db.product.findUnique({ where: { id: productId }, select: { slug: true, status: true } });
   if (!product) redirect("/admin/products?error=missing");
+  if (product.status === "PUBLISHED") await requirePermission("PRODUCTS_PUBLISH");
   await db.$transaction(async (tx) => {
     // Clear positions first because MySQL enforces the per-product unique position index immediately.
     await tx.productMedia.updateMany({ where: { productId }, data: { position: { increment: 100 } } });

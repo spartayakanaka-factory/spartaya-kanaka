@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 import type { Locale } from "@/lib/types";
@@ -28,7 +28,8 @@ export function LanguageSwitch({ locale }: { locale: Locale }) {
   );
 }
 
-export function HeaderControls({ locale, links, factoryPhone }: { locale: Locale; links: NavItem[]; factoryPhone: string }) {
+export function HeaderControls({ locale, links, factoryPhone, commerce=false }: { locale: Locale; links: NavItem[]; factoryPhone: string; commerce?:boolean }) {
+  const router=useRouter();
   const ar = locale === "ar";
   const dialog = useRef<HTMLDialogElement>(null);
   const search = useRef<HTMLInputElement>(null);
@@ -41,6 +42,7 @@ export function HeaderControls({ locale, links, factoryPhone }: { locale: Locale
     cart: ar ? "حقيبة التسوق" : "Shopping bag",
   };
   function open(next: Panel) {
+    if(commerce && (next==="account"||next==="cart")){router.push("/"+locale+"/"+next);return;}
     returnFocus.current = document.activeElement as HTMLElement;
     setPanel(next);
     dialog.current?.showModal();
@@ -52,6 +54,7 @@ export function HeaderControls({ locale, links, factoryPhone }: { locale: Locale
     dialog.current?.close();
   }
   function switchPanel(next: "account" | "cart") {
+    if(commerce){close();router.push("/"+locale+"/"+next);return;}
     const current = dialog.current;
     if (!current?.open) {
       open(next);

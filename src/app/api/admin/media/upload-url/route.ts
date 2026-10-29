@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     const id = crypto.randomUUID();
     const key = `product-originals/${id}.${extensions[parsed.data.contentType]}`;
     const signedHeaders = { "Content-Type": parsed.data.contentType, "x-amz-meta-owner": actor.id };
-    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id } }), { expiresIn: 300 });
+    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id } }), { expiresIn: 300, unhoistableHeaders: new Set(["x-amz-meta-owner"]), signableHeaders: new Set(["content-type"]) });
     return Response.json({ uploadUrl, key, signedHeaders }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
