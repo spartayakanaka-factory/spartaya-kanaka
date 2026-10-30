@@ -1,4 +1,5 @@
 // Read-only pre/postflight. Never applies or resolves a migration.
+import { promotionBaseline } from "./promotion-baseline";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -19,7 +20,8 @@ type Certificate = {
 const args = process.argv.slice(2),
   mode = args[0];
 function option(name: string) {
-  return args[args.indexOf(name) + 1];
+  const index = args.indexOf(name);
+  return index < 0 ? "" : args[index + 1] || "";
 }
 function privateFile(name: string) {
   const root = path.resolve(process.env.P3_STATE_DIR || "");
@@ -39,6 +41,7 @@ const identifier = (v: string) => {
 async function main() {
   if (!["preflight", "postflight"].includes(mode))
     throw Error("Use preflight or postflight; this tool is read-only.");
+  const selectedBaseline = promotionBaseline(option("--baseline-phase"));
   const target = assertSafeDatabaseTarget({ allowHostingerPhase2Test: true });
   if (
     target.target !== "hostinger-phase2-test" &&
@@ -101,7 +104,7 @@ async function main() {
     >`SELECT migration_name,checksum,finished_at,rolled_back_at FROM _prisma_migrations ORDER BY migration_name`;
     const expected = manifest.migrations.slice(
       0,
-      mode === "preflight" ? 2 : manifest.migrations.length,
+      mode === "preflight" ? selectedBaseline.migrationCount : manifest.migrations.length,
     );
     if (
       history.length !== expected.length ||
