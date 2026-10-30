@@ -1,0 +1,10 @@
+{
+  "baseline": "a9b4a08806a498658695bfe89ca119a4ef86693a",
+  "branch": "codex/phase3-5-local",
+  "canonicalUnchanged": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "scope": "Local source and disposable schema/storage tests only. No push, PR edits, hosted migrations/deployment, live payment or persistent data writes.",
+  "phase": "Isolated local services and additive schema preparation",
+  "implementation": ["Private immutable manual-payment evidence with authorized short-lived reads", "COD-first checkout, Egyptian mobile/address validation and delivery areas", "Configured public manual-payment instructions, no live accounts", "Arabic factory work queues, order/manufacturing notes and durable notifications"],
+  "preserve": ["FULL_ADVANCE existing products", "487 drafts/unapproved prices/stock", "1753 archived files", "Independent financial grants and separation of duties", "Local-only simulation and staging protections"],
+  "blockedCapabilities": ["Persistent database inspection/execution without supported private runner", "Live receiving instructions and financial policies", "Unconfigured external notifications", "International and live gateways", "Push, merge, deploy"]
+}

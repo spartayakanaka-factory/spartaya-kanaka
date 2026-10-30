@@ -1,0 +1,9 @@
+{
+  "scope": "Only Phase 3.5 loopback 39110 filesystem-backed storage restarted; original Phase 3 service untouched",
+  "privateProofs": 3,
+  "publicDisplays": 1,
+  "pidChanged": true,
+  "allObjectHashesPreserved": true,
+  "privateAnonymousStatus": 403,
+  "publicDisplayStatus": 200
+}
