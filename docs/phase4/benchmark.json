@@ -1,0 +1,314 @@
+{
+  "scope": "Synthetic temporary event-table microbenchmark; not an end-to-end report workload. Three event kinds, 5-year dates; no persistent schema changes.",
+  "engine": "11.8.9-MariaDB",
+  "results": [
+    {
+      "rows": 1000,
+      "noIndex": {
+        "label": "without event date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.078557954
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 0.846498061,
+            "r_loops": 1,
+            "r_total_time_ms": 0.338653548,
+            "nested_loop": [
+              {
+                "table": {
+                  "table_name": "p4_bench_events",
+                  "access_type": "index",
+                  "key": "PRIMARY",
+                  "key_length": "4",
+                  "used_key_parts": [
+                    "id"
+                  ],
+                  "loops": 1,
+                  "r_loops": 1,
+                  "rows": 1018,
+                  "r_rows": 1000,
+                  "cost": 0.180208,
+                  "r_table_time_ms": 0.259637165,
+                  "r_other_time_ms": 0.075140579,
+                  "r_engine_stats": {
+                    "pages_accessed": 5
+                  },
+                  "filtered": 100,
+                  "r_total_filtered": 0,
+                  "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                  "r_filtered": 0
+                }
+              }
+            ]
+          }
+        }
+      },
+      "indexed": {
+        "label": "with kind/date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.148780847
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 0.008067609,
+            "r_loops": 1,
+            "r_total_time_ms": 0.054136224,
+            "nested_loop": [
+              {
+                "read_sorted_file": {
+                  "r_rows": 0,
+                  "filesort": {
+                    "sort_key": "p4_bench_events.`id`",
+                    "r_loops": 1,
+                    "r_total_time_ms": 0.043008917,
+                    "r_limit": 5001,
+                    "r_used_priority_queue": true,
+                    "r_output_rows": 0,
+                    "r_sort_mode": "sort_key,addon_fields",
+                    "table": {
+                      "table_name": "p4_bench_events",
+                      "access_type": "range",
+                      "possible_keys": [
+                        "p4_bench_kind_date"
+                      ],
+                      "key": "p4_bench_kind_date",
+                      "key_length": "265",
+                      "used_key_parts": [
+                        "kind",
+                        "createdAt"
+                      ],
+                      "loops": 1,
+                      "r_loops": 1,
+                      "rows": 3,
+                      "r_rows": 0,
+                      "cost": 0.006168935,
+                      "r_table_time_ms": 0.010710554,
+                      "r_other_time_ms": 0.00266722,
+                      "r_engine_stats": {
+                        "pages_accessed": 12
+                      },
+                      "filtered": 100,
+                      "r_total_filtered": 100,
+                      "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                      "r_filtered": 100,
+                      "using_index": true
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rows": 20000,
+      "noIndex": {
+        "label": "without event date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.103188061
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 3.4081726,
+            "r_loops": 1,
+            "r_total_time_ms": 7.350482333,
+            "nested_loop": [
+              {
+                "table": {
+                  "table_name": "p4_bench_events",
+                  "access_type": "index",
+                  "key": "PRIMARY",
+                  "key_length": "4",
+                  "used_key_parts": [
+                    "id"
+                  ],
+                  "loops": 1,
+                  "r_loops": 1,
+                  "rows": 20339,
+                  "r_rows": 20000,
+                  "cost": 3.4081726,
+                  "r_table_time_ms": 5.31872775,
+                  "r_other_time_ms": 2.02583669,
+                  "r_engine_stats": {
+                    "pages_accessed": 60
+                  },
+                  "filtered": 100,
+                  "r_total_filtered": 1.045,
+                  "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                  "r_filtered": 1.045
+                }
+              }
+            ]
+          }
+        }
+      },
+      "indexed": {
+        "label": "with kind/date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.165200918
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 0.175309548,
+            "r_loops": 1,
+            "r_total_time_ms": 0.321524996,
+            "nested_loop": [
+              {
+                "read_sorted_file": {
+                  "r_rows": 209,
+                  "filesort": {
+                    "sort_key": "p4_bench_events.`id`",
+                    "r_loops": 1,
+                    "r_total_time_ms": 0.225088335,
+                    "r_limit": 5001,
+                    "r_used_priority_queue": false,
+                    "r_output_rows": 209,
+                    "r_buffer_size": "2047KiB",
+                    "r_sort_mode": "sort_key,packed_addon_fields",
+                    "table": {
+                      "table_name": "p4_bench_events",
+                      "access_type": "range",
+                      "possible_keys": [
+                        "p4_bench_kind_date"
+                      ],
+                      "key": "p4_bench_kind_date",
+                      "key_length": "265",
+                      "used_key_parts": [
+                        "kind",
+                        "createdAt"
+                      ],
+                      "loops": 1,
+                      "r_loops": 1,
+                      "rows": 209,
+                      "r_rows": 209,
+                      "cost": 0.039805245,
+                      "r_table_time_ms": 0.076057436,
+                      "r_other_time_ms": 0.139195527,
+                      "r_engine_stats": {
+                        "pages_accessed": 12
+                      },
+                      "filtered": 100,
+                      "r_total_filtered": 100,
+                      "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                      "r_filtered": 100,
+                      "using_index": true
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rows": 100000,
+      "noIndex": {
+        "label": "without event date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.081808628
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 16.6516794,
+            "r_loops": 1,
+            "r_total_time_ms": 38.4959815,
+            "nested_loop": [
+              {
+                "table": {
+                  "table_name": "p4_bench_events",
+                  "access_type": "index",
+                  "key": "PRIMARY",
+                  "key_length": "4",
+                  "used_key_parts": [
+                    "id"
+                  ],
+                  "loops": 1,
+                  "r_loops": 1,
+                  "rows": 100245,
+                  "r_rows": 100000,
+                  "cost": 16.6516794,
+                  "r_table_time_ms": 28.36104686,
+                  "r_other_time_ms": 10.13047539,
+                  "r_engine_stats": {
+                    "pages_accessed": 293
+                  },
+                  "filtered": 100,
+                  "r_total_filtered": 1.045,
+                  "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                  "r_filtered": 1.045
+                }
+              }
+            ]
+          }
+        }
+      },
+      "indexed": {
+        "label": "with kind/date index",
+        "plan": {
+          "query_optimization": {
+            "r_total_time_ms": 0.166034424
+          },
+          "query_block": {
+            "select_id": 1,
+            "cost": 0.85675994,
+            "r_loops": 1,
+            "r_total_time_ms": 0.97495214,
+            "nested_loop": [
+              {
+                "read_sorted_file": {
+                  "r_rows": 1045,
+                  "filesort": {
+                    "sort_key": "p4_bench_events.`id`",
+                    "r_loops": 1,
+                    "r_total_time_ms": 0.804750185,
+                    "r_limit": 5001,
+                    "r_used_priority_queue": false,
+                    "r_output_rows": 1045,
+                    "r_buffer_size": "2047KiB",
+                    "r_sort_mode": "sort_key,packed_addon_fields",
+                    "table": {
+                      "table_name": "p4_bench_events",
+                      "access_type": "range",
+                      "possible_keys": [
+                        "p4_bench_kind_date"
+                      ],
+                      "key": "p4_bench_kind_date",
+                      "key_length": "265",
+                      "used_key_parts": [
+                        "kind",
+                        "createdAt"
+                      ],
+                      "loops": 1,
+                      "r_loops": 1,
+                      "rows": 1045,
+                      "r_rows": 1045,
+                      "cost": 0.172691505,
+                      "r_table_time_ms": 0.276432314,
+                      "r_other_time_ms": 0.517023863,
+                      "r_engine_stats": {
+                        "pages_accessed": 20
+                      },
+                      "filtered": 100,
+                      "r_total_filtered": 100,
+                      "attached_condition": "p4_bench_events.createdAt >= '2023-01-01' and p4_bench_events.createdAt < '2023-02-01' and p4_bench_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                      "r_filtered": 100,
+                      "using_index": true
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

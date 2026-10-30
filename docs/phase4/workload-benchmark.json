@@ -1,0 +1,36 @@
+{
+  "scope": "Actual ownerReport against synthetic isolated MariaDB data; 31-day maximum and refund-heavy workload not tested",
+  "engine": "MariaDB 11.8.9",
+  "results": [
+    {
+      "orders": 100,
+      "items": 100,
+      "payments": 50,
+      "shipments": 25,
+      "financialEvents": 75,
+      "reportMs": 70,
+      "heapDeltaBytes": 1272544,
+      "totalsVerified": true
+    },
+    {
+      "orders": 1000,
+      "items": 1000,
+      "payments": 500,
+      "shipments": 250,
+      "financialEvents": 750,
+      "reportMs": 119,
+      "heapDeltaBytes": 3226088,
+      "totalsVerified": true
+    },
+    {
+      "orders": 4000,
+      "items": 4000,
+      "payments": 2000,
+      "shipments": 1000,
+      "financialEvents": 3000,
+      "reportMs": 382,
+      "heapDeltaBytes": 65157976,
+      "totalsVerified": true
+    }
+  ]
+}

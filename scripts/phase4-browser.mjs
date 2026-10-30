@@ -87,6 +87,65 @@ try {
       403,
     );
   });
+  await check("valid customer session cannot read owner reports", async () => {
+    const customer = await browser.newContext();
+    contexts.push(customer);
+    const email = "report-" + randomBytes(10).toString("hex") + "@factory.invalid";
+    const password = "Local-" + randomBytes(20).toString("hex");
+    const signUp = await customer.request.post(base + "/api/customer-auth/sign-up/email", {
+      headers: { origin: base },
+      data: { name: "Synthetic customer", email, password },
+    });
+    assert.equal(signUp.status(), 200);
+    const db = getDatabase();
+    try {
+      await db.customerUser.update({ where: { email }, data: { emailVerified: true } });
+    } finally {
+      await db.$disconnect();
+    }
+    const signIn = await customer.request.post(base + "/api/customer-auth/sign-in/email", {
+      headers: { origin: base },
+      data: { email, password },
+    });
+    assert.equal(signIn.status(), 200);
+    const customerSession = await customer.request.get(base + "/api/customer-auth/get-session");
+    assert.equal(customerSession.status(), 200);
+    assert.equal((await customerSession.json()).user.email, email);
+    const denied = await customer.request.get(
+      base + "/api/admin/reports?start=" + data.day + "&end=" + data.day,
+    );
+    assert.equal(denied.status(), 403);
+    assert.doesNotMatch(await denied.text(), /collected|outstanding|currencies/);
+  });
+  await check(
+    "tampered cookie, forged identity and malformed authorization do not grant access",
+    async () => {
+      const guest = await browser.newContext();
+      contexts.push(guest);
+      const response = await guest.request.get(
+        base + "/api/admin/reports?start=" + data.day + "&end=" + data.day,
+        {
+          headers: {
+            cookie: "better-auth.session_token=tampered",
+            authorization: "Bearer invalid",
+            "x-owner-id": fixtures.staff[0].id,
+          },
+        },
+      );
+      assert.equal(response.status(), 403);
+      assert.doesNotMatch(await response.text(), /collected|outstanding|currencies/);
+    },
+  );
+  await check("clear previous synthetic owner reporting window", async () => {
+    const { createHash } = await import("node:crypto");
+    const key = "p4-report:" + createHash("sha256").update(fixtures.staff[0].id).digest("hex");
+    const db = getDatabase();
+    try {
+      await db.authRateLimit.deleteMany({ where: { key } });
+    } finally {
+      await db.$disconnect();
+    }
+  });
   await check("owner API returns correct synthetic values with no customer details", async () => {
     owner = await session(0);
     const r = await owner.c.request.get(
@@ -98,6 +157,8 @@ try {
     assert.equal(body.currencies[0].collected, data.collected);
     assert.equal(body.currencies[0].outstanding, data.outstanding);
     assert.equal(body.products[0].units, 2);
+    assert.equal(body.daily[0].orders, 2);
+    assert.equal(body.daily[0].currencies[0].collected, data.collected);
     assert.doesNotMatch(JSON.stringify(body), /Synthetic local fixture/);
     assert.match(r.headers()["cache-control"], /no-store/);
     assert.equal(
@@ -119,6 +180,13 @@ try {
       await owner.p.getByText("قطعة اختبار اصطناعية", { exact: true }).waitFor();
       await owner.p.getByRole("button", { name: "English", exact: true }).click();
       await owner.p.getByText("Synthetic test piece", { exact: true }).waitFor();
+      await owner.p.getByRole("heading", { name: "Daily orders and collections" }).waitFor();
+      await owner.p.getByRole("heading", { name: "Collections by payment method" }).waitFor();
+      await owner.p.getByRole("heading", { name: "Ready-made and made-to-order" }).waitFor();
+      await owner.p.getByLabel("From", { exact: true }).fill("2026-01-01");
+      await owner.p.getByLabel("To", { exact: true }).fill("2026-12-31");
+      await owner.p.getByRole("button", { name: "Show report", exact: true }).click();
+      await owner.p.getByText("Choose a valid period of at most 31 days.").waitFor();
       await owner.p.getByLabel("From", { exact: true }).fill("1901-01-01");
       await owner.p.getByLabel("To", { exact: true }).fill("1901-01-01");
       await owner.p.getByRole("button", { name: "Show report", exact: true }).click();
@@ -197,6 +265,26 @@ try {
             });
           }
         });
+  await check("expired owner session is rejected", async () => {
+    const db = getDatabase();
+    try {
+      await db.authSession.updateMany({
+        where: { userId: fixtures.staff[0].id },
+        data: { expiresAt: new Date("2000-01-01T00:00:00Z") },
+      });
+      assert.equal(
+        (
+          await owner.c.request.get(
+            base + "/api/admin/reports?start=" + data.day + "&end=" + data.day,
+          )
+        ).status(),
+        403,
+      );
+    } finally {
+      await db.$disconnect();
+    }
+    owner = await session(0);
+  });
   await check("revoked owner session is rejected", async () => {
     const db = getDatabase();
     try {

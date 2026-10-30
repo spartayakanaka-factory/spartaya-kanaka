@@ -61,3 +61,29 @@
   vertical-align: middle;
   margin-inline-end: 10px;
 }
+.report-chart {
+  overflow-x: auto;
+}
+.report-chart:focus-visible {
+  outline: 3px solid #855235;
+  outline-offset: 3px;
+}
+.report-bar {
+  display: inline-block;
+  height: 0.55rem;
+  max-width: 7rem;
+  min-width: 0;
+  background: #985f3b;
+  margin-inline: 0.4rem;
+}
+.report-breakdown {
+  list-style: none;
+  padding: 0;
+}
+.report-breakdown li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-block: 0.35rem;
+}

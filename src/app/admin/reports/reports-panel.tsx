@@ -29,6 +29,7 @@ type Product = {
   valueMinor: string;
 };
 type Report = {
+  daily: { date: string; orders: number; currencies: Money[] }[];
   pendingPayments: { currency: string; method: string; pendingMinor: string; rejected: number }[];
   unpaidOrders: number;
   awaitingFulfillment: number;
@@ -276,6 +277,162 @@ export function ReportsPanel({ today }: { today: string }) {
             </section>
           ))}
           <section className="admin-panel">
+            <h2>{t("الطلبات والتحصيل اليومي", "Daily orders and collections")}</h2>
+            <p>
+              {t(
+                "الطلبات حسب تاريخ إنشائها وتشمل الملغاة؛ التحصيل الإجمالي حسب تاريخ التحقق ولا يشمل الاسترداد.",
+                "Orders use creation dates and include cancellations; gross collections use verification dates and exclude refunds.",
+              )}
+            </p>
+            <div
+              className="report-chart"
+              role="region"
+              aria-label={t("الطلبات والتحصيل لكل يوم", "Orders and collections by day")}
+              tabIndex={0}
+            >
+              <table className="admin-table">
+                <caption>{t("تفاصيل الأيام بتوقيت القاهرة", "Daily detail, Cairo time")}</caption>
+                <thead>
+                  <tr>
+                    <th>{t("اليوم", "Date")}</th>
+                    <th>{t("الطلبات", "Orders")}</th>
+                    <th>{t("التحصيل الإجمالي", "Gross collections")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.daily.map((day) => (
+                    <tr key={day.date}>
+                      <td>
+                        <bdi>{day.date}</bdi>
+                      </td>
+                      <td>
+                        <span
+                          className="report-bar"
+                          style={{
+                            width: `${Math.min(100, (day.orders * 100) / Math.max(1, ...data.daily.map((d) => d.orders)))}%`,
+                          }}
+                          aria-hidden="true"
+                        />
+                        {day.orders}
+                      </td>
+                      <td>
+                        {day.currencies.length
+                          ? day.currencies.map((c) => (
+                              <span key={c.currency}>
+                                <span
+                                  className="report-bar"
+                                  aria-hidden="true"
+                                  style={{
+                                    width: `${(() => {
+                                      const peak = data.daily.reduce((highest, row) => {
+                                        const amount = BigInt(
+                                          row.currencies.find(
+                                            (item) => item.currency === c.currency,
+                                          )?.collected ?? "0",
+                                        );
+                                        return amount > highest ? amount : highest;
+                                      }, BigInt(0));
+                                      return peak > BigInt(0)
+                                        ? Number((BigInt(c.collected) * BigInt(100)) / peak)
+                                        : 0;
+                                    })()}%`,
+                                  }}
+                                />
+                                <bdi>
+                                  {money(c.collected, c.currency, english ? "en" : "ar-EG")}
+                                </bdi>{" "}
+                              </span>
+                            ))
+                          : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section className="admin-panel">
+            <h2>{t("التحصيل حسب وسيلة الدفع", "Collections by payment method")}</h2>
+            <p>
+              {t(
+                "مبالغ متحققة فقط؛ الدفعات الأولى ضمن الإجمالي وليست مبلغاً إضافياً.",
+                "Verified amounts only; advances are included once in collections.",
+              )}
+            </p>
+            {data.currencies.length ? (
+              data.currencies.map((c) => (
+                <div key={c.currency}>
+                  <h3>{c.currency}</h3>
+                  <ul className="report-breakdown">
+                    {(
+                      [
+                        ["COD", c.cod],
+                        [t("محفظة", "Wallet"), c.wallet],
+                        ["InstaPay", c.instapay],
+                        [
+                          t("وسائل أخرى", "Other methods"),
+                          String(
+                            BigInt(c.collected) -
+                              BigInt(c.cod) -
+                              BigInt(c.wallet) -
+                              BigInt(c.instapay),
+                          ),
+                        ],
+                      ] as [string, string][]
+                    ).map(([label, value]) => (
+                      <li key={label}>
+                        <span>{label}</span>
+                        <span
+                          className="report-bar"
+                          style={{
+                            width: `${BigInt(c.collected) > BigInt(0) ? Number((BigInt(value) * BigInt(100)) / BigInt(c.collected)) : 0}%`,
+                          }}
+                          aria-hidden="true"
+                        />
+                        <bdi>{money(value, c.currency, english ? "en" : "ar-EG")}</bdi>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            ) : (
+              <p>{t("لا يوجد تحصيل في الفترة.", "No collections in this period.")}</p>
+            )}
+          </section>
+          <section className="admin-panel">
+            <h2>{t("القطع الجاهزة والتصنيع", "Ready-made and made-to-order")}</h2>
+            <p>
+              {t(
+                "حسب عدد القطع المطلوبة في الطلبات النشطة، وليس المبالغ المحصّلة.",
+                "Units ordered on active orders, not amounts collected.",
+              )}
+            </p>
+            {data.productTypes.length ? (
+              <ul className="report-breakdown">
+                {data.productTypes.map((p) => (
+                  <li key={p.currency + ":" + p.type}>
+                    <span>
+                      {p.type === "MADE_TO_ORDER"
+                        ? t("تصنيع حسب الطلب", "Made to order")
+                        : t("جاهز", "Ready made")}{" "}
+                      · {p.currency}
+                    </span>
+                    <span
+                      className="report-bar"
+                      aria-hidden="true"
+                      style={{
+                        width: `${Math.min(100, (p.units * 100) / Math.max(1, ...data.productTypes.filter((x) => x.currency === p.currency).map((x) => x.units)))}%`,
+                      }}
+                    />
+                    <strong>{p.units}</strong>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>{t("لا توجد قطع مطلوبة.", "No units ordered.")}</p>
+            )}
+          </section>
+          <section className="admin-panel">
             <h2>{t("عدد الدفعات المتحققة", "Verified payment counts")}</h2>
             {data.currencies.map((c) => (
               <p key={c.currency}>
@@ -379,7 +536,16 @@ export function ReportsPanel({ today }: { today: string }) {
                             ? t("تصنيع", "Made to order")
                             : t("جاهز", "Ready made")}
                         </td>
-                        <td>{p.units}</td>
+                        <td>
+                          <span
+                            className="report-bar"
+                            aria-hidden="true"
+                            style={{
+                              width: `${Math.min(100, (p.units * 100) / Math.max(1, ...data.products.map((x) => x.units)))}%`,
+                            }}
+                          />
+                          {p.units}
+                        </td>
                         <td>
                           <bdi>{money(p.valueMinor, p.currency, english ? "en" : "ar-EG")}</bdi>
                         </td>

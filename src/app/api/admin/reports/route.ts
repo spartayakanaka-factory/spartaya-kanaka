@@ -14,7 +14,7 @@ export async function GET(request: Request) {
         { error: "FORBIDDEN" },
         { status: 403, headers: { "Cache-Control": "private, no-store" } },
       );
-    if (!allowReportRequest(actor.id))
+    if (!(await allowReportRequest(actor.id)))
       return Response.json(
         { error: "RATE_LIMITED" },
         { status: 429, headers: { "Cache-Control": "private, no-store", "Retry-After": "60" } },
@@ -25,7 +25,10 @@ export async function GET(request: Request) {
       params.getAll("start").length !== 1 ||
       params.getAll("end").length !== 1
     )
-      return Response.json({ error: "INVALID_INPUT" }, { status: 400 });
+      return Response.json(
+        { error: "INVALID_INPUT" },
+        { status: 400, headers: { "Cache-Control": "private, no-store" } },
+      );
     const data = await ownerReport(actor.id, params.get("start")!, params.get("end")!);
     return Response.json(data, {
       headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow" },

@@ -61,7 +61,9 @@ describe("owner reporting financial facts", () => {
       outstanding: "9007199254740993123",
       collected: "0",
     });
-    expect(result.currencies.find((c) => c.currency === "EGP")?.collected).toBe("5000");
+    expect(result.currencies.find((c) => c.currency === "EGP")).toMatchObject({
+      collected: "5000",
+    });
   });
   it("rejects duplicate or mismatched verified events", () => {
     expect(() => aggregateReports([order], [verified, verified], [payment], [])).toThrow(

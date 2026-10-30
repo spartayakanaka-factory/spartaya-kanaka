@@ -1,5 +1,7 @@
 # Phase 4 local reporting acceptance
 
+> Historical checkpoint. See [FINAL_ACCEPTANCE.md](FINAL_ACCEPTANCE.md) for the current closeout; later changes replace the process-local limiter and add charts.
+
 Status: **PARTIAL**. The locally isolated, single-factory implementation is functional; the requested cross-business isolation cannot be demonstrated because the existing data model has no business/tenant identifier. The query-plan and distributed rate-limit limitations below must be addressed before hosted use. The pre-existing Hostinger routing/security issue is separate and unresolved. No Phase 4 code is authorized for deployment or publication.
 
 ## Reporting contract

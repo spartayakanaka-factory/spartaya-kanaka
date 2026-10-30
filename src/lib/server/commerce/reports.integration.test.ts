@@ -98,6 +98,13 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
       wallet: "5000",
     });
     expect(r.products[0]).toMatchObject({ units: 2, valueMinor: "10000", type: "READY_MADE" });
+    expect(r.daily[0]).toMatchObject({
+      date: day,
+      orders: 1,
+      currencies: [{ currency: "EGP", collected: "5000" }],
+    });
+    const following = await ownerReport(owner, nextDate(day), nextDate(day));
+    expect(following.daily[0]).toMatchObject({ orders: 0, currencies: [] });
     expect(JSON.stringify(r)).not.toContain("private synthetic customer");
   });
   it("rejects managers and newly suspended owners", async () => {

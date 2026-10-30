@@ -2,7 +2,7 @@ import "server-only";
 import { getDatabase } from "../database";
 import { assertCommerceEnvironment } from "@/lib/commerce/runtime";
 import { demand } from "@/lib/commerce/policy";
-import { reportRange } from "@/lib/reports/calendar";
+import { reportRange, cairoDate, nextDate } from "@/lib/reports/calendar";
 import { aggregateReports } from "@/lib/reports/aggregation";
 export async function ownerReport(adminId: string, start: string, end: string) {
   assertCommerceEnvironment();
@@ -105,6 +105,21 @@ export async function ownerReport(adminId: string, start: string, end: string) {
         payments,
         refunds,
       );
+      const daily = Array.from({ length: range.days }, (_, index) => {
+        const day = nextDate(start, index);
+        const dailyEvents = events.filter((e) => cairoDate(e.createdAt) === day);
+        const cash = aggregateReports(
+          [],
+          dailyEvents.map((e) => ({ ...e, order: e.order ? mapOrder(e.order) : null })),
+          payments,
+          refunds,
+        );
+        return {
+          date: day,
+          orders: orders.filter((o) => cairoDate(o.createdAt) === day).length,
+          currencies: cash.currencies,
+        };
+      });
       const manufacturing = { awaitingPayment: 0, pending: 0, inProgress: 0, completed: 0 };
       for (const o of orders) {
         if (["CANCELLED", "EXPIRED", "RETURNED"].includes(o.state)) continue;
@@ -235,6 +250,7 @@ export async function ownerReport(adminId: string, start: string, end: string) {
       demand(balances.length <= 5000, "REPORT_RANGE_TOO_LARGE", 400);
       return {
         ...report,
+        daily,
         products,
         productTypes,
         pendingPayments,

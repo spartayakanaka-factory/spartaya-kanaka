@@ -6,6 +6,18 @@
       "pass": true
     },
     {
+      "name": "valid customer session cannot read owner reports",
+      "pass": true
+    },
+    {
+      "name": "tampered cookie, forged identity and malformed authorization do not grant access",
+      "pass": true
+    },
+    {
+      "name": "clear previous synthetic owner reporting window",
+      "pass": true
+    },
+    {
       "name": "owner API returns correct synthetic values with no customer details",
       "pass": true
     },
@@ -63,6 +75,10 @@
     },
     {
       "name": "visual pass 2 en 1440",
+      "pass": true
+    },
+    {
+      "name": "expired owner session is rejected",
       "pass": true
     },
     {
