@@ -1,0 +1,36 @@
+# Phase 4 local reporting acceptance
+
+Status: **PARTIAL**. The locally isolated, single-factory implementation is functional; the requested cross-business isolation cannot be demonstrated because the existing data model has no business/tenant identifier. The query-plan and distributed rate-limit limitations below must be addressed before hosted use. The pre-existing Hostinger routing/security issue is separate and unresolved. No Phase 4 code is authorized for deployment or publication.
+
+## Reporting contract
+
+`GET /api/admin/reports?start=YYYY-MM-DD&end=YYYY-MM-DD` accepts exactly one of each key, inclusive Cairo calendar dates, at most 31 days. Boundaries are UTC `[Cairo start of first day, Cairo start of day after last]`. Invalid dates, duplicates and additional keys, including a forged `business`, are rejected. Results are aggregate values only, with no customer contact, address or proof. Money is a decimal string in integer minor units, grouped by currency; product values are ordered line-item gross, not paid sales or profit. Ties use deterministic ordering, with the top 20 products displayed.
+
+Orders and their current status, product rankings, unpaid/outstanding and operational item counts use orders created in the selected period; they are current snapshots, not reconstructed past states. Eligible order value excludes cancelled, expired and returned orders. Outstanding is total minus paid minus credit plus refunded, using the existing commerce contract; cancelled obligations are excluded. Current low-stock and unverified-evidence counts are global snapshots, identified as current.
+
+Collections and refunds use the timestamp of the authoritative audit event, which may be in a different period from order creation. A `payment.verified` event must match a succeeded payment, order, amount, currency and method. COD requires its reconciliation event and reconciled shipment; delivery alone is not receipt. Refunds require a reconciled refund request and matching event. Transfer reconciliation does not add a second collection; pending claims and uploaded proof do not constitute cash. Made-to-order initial payments are included once in total receipts and separately labeled as advances. Net collected means verified receipts less reconciled refunds, not profit. Invalid, duplicate or contradictory facts fail closed.
+
+## Authorization and protection
+
+| Actor                                                                 | Reporting access                                                                                     |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Active owner with valid staff session and completed password rotation | Read-only aggregate report                                                                           |
+| Manager or other staff                                                | Denied; no approved reports permission exists                                                        |
+| Customer, anonymous, banned, revoked or rotation-required             | Denied                                                                                               |
+| Other business                                                        | Unsupported: schema is single-factory and has no tenant model; do not use as a multi-tenant boundary |
+
+Both the route and service check owner access; the service rechecks role, ban and password rotation inside its consistent database snapshot. Existing staging gate applies. Query parameters are validated before parameterized Prisma queries; no reporting mutation is provided. Successful responses are private/no-store and noindex; errors do not expose financial tables or internal exceptions. A local per-process rate limit is present; it does not coordinate across processes and is not suitable as the sole production abuse control. Do not trust it as a hosted security boundary.
+
+## Database, performance and recovery
+
+The six pre-existing migrations were applied only to two new, isolated Phase 4 MariaDB 11.8.9 schemas, with a dedicated schema-scoped account; no Phase 4 migration or persistent/Hostinger database change was made. Database and media integration tests use isolated synthetic records and separate local S3-compatible storage. No new paid infrastructure is required. The existing production backup, migration review and restore procedures remain applicable; before any separately approved staging promotion, take and verify an appropriate backup and review all pending migrations. Never restore test data into a merchant database.
+
+Queries use batched reads inside a repeatable-read snapshot, not per-row database calls. Dates and returned records are capped; exceeding 5,000 records fails rather than silently truncating totals. The measured local MariaDB EXPLAIN in `query-plan.json` shows a full scan of 869 event rows (83 ms including connection), so it does not establish scalability. Evaluate a reviewed `(kind, createdAt)` event index and order creation index on representative data before staging, with separate migration approval. Limits bound returned rows, not scan cost.
+
+## Validation and known gaps
+
+See `final-regression.json` and `browser-evidence.json` for exact results, and `screenshots/` for production-mode browser evidence. The suite includes synthetic MariaDB verified and pending wallet/InstaPay, paid/unpaid COD, advance/balance, reconciled refund, duplicate financial fact, owner/manager/ban checks, and Cairo boundaries. These synthetic ledger fixtures validate aggregation; they are not evidence of real external bank or carrier settlement. Existing integration tests exercise the underlying commerce workflows.
+
+The report does not implement multi-tenant isolation, an approved manager-report permission, live integrations, accounting profit, historical status reconstruction, an export, daily chart series or external notifications. No cross-business records can be created meaningfully in the current schema. Some requested adversarial and UX cases, including expired session and actual customer-session rejection specifically at this endpoint, are not independently proven by the reporting browser evidence. Local synthetic tests do not establish Hostinger readiness or production capacity. Live payments and hosted databases remain outside scope.
+
+Final local run: **223/223 automated tests passed, zero skipped**, including 101 passed cases in integration-named suites, of which five are report-specific MariaDB cases; framework request context is mocked in some integration suites. TypeScript, ESLint, Prisma validation and the Node 22 production build passed. Production-server browser acceptance recorded 17 passing checks, two review passes at each requested viewport in both languages, six axe audits with no violations, and no browser exceptions. A repeated high-volume browser run encountered the expected in-process request limit; the final rerun passed without changing that limit. Session revocation and banning of the synthetic owner were exercised locally. Static security and preservation scan results are in `final-security-and-preservation.json`.

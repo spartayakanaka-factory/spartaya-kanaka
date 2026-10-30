@@ -1,10 +1,10 @@
 # Phase 4 — approved local owner reports
 
-No numbered Phase 4 contract was found in the roadmap, architecture/phase documents, original blueprint, deferred registers or open GitHub issues. The original Master Product Blueprint section 5 explicitly requires the owner to view basic daily sales and section 7 lists Reports. Those were previously deferred requirements, not a license for new financial policy. In this execution the Product Owner selected **read-only owner reports** as the first Phase 4 slice. This is the confirmed implementation scope; the broader Phase 4 roadmap remains unapproved.
+No numbered Phase 4 contract was found in the roadmap, architecture/phase documents, original blueprint, deferred registers or open GitHub issues. The original Master Product Blueprint section 5 explicitly requires the owner to view basic daily sales and section 7 lists Reports. Those were previously deferred requirements, not a license for new financial policy. In this execution the Product Owner selected **read-only owner reports** as the first Phase 4 slice. The latest owner instruction expands this slice to financial, product, manufacturing and fulfillment reporting; the broader Phase 4 roadmap remains unapproved.
 
 ## Authorized slice
 
-Owner-only Arabic `/admin/reports` and an independently authenticated aggregate GET API. Date filters use explicit Cairo calendar days, bounded to 31 days. Show recorded order counts/value, canonical verified receipt movements, reconciled refunds and their arithmetic difference per currency. Clearly distinguish order placement, screenshots/claims, COD collection and verified credit. Display current order-state distribution for orders created in the selected interval; it is not a historical status reconstruction. No customer identity/address/proof is needed in aggregate responses.
+Owner-only Arabic/English `/admin/reports` and an independently authenticated aggregate GET API. Date filters use explicit Cairo calendar days, bounded to 31 days. Show recorded order counts/value, canonical verified receipt movements, reconciled refunds and their arithmetic difference per currency. Clearly distinguish order placement, screenshots/claims, COD collection and verified credit. Display current order-state distribution for orders created in the selected interval; it is not a historical status reconstruction. No customer identity/address/proof is needed in aggregate responses.
 
 Reuse Better Auth staff sessions, fresh owner/ban/rotation checks, staging protection, the commerce service models and immutable audit facts. Managers receive no new reporting/financial authority by default. The API performs no writes, does not expire reservations/drain notifications and does not call a payment provider. There is no export endpoint, new settlement, tax, refund or revenue-recognition policy.
 
@@ -20,7 +20,7 @@ No new schema or SQL migration is required. Existing six migrations are applied 
 
 ## Verification
 
-Unit tests: strict dates/range/unknown query keys, Cairo DST boundaries, exact large/negative amount rendering and currency separation. Real DB: verified and pending/manual/COD/refund facts, duplicate callback protection, refund date versus order date, deposits, malformed facts, zero days, transaction consistency, owner-only/fresh-role guards and no writes. Browser: owner session, date presets/empty/error states, manager/customer denial, keyboard filters, two responsive RTL passes at 390/768/1440 and axe audits. Run all available Phase 3.5 DB/storage/security/financial regression, TypeScript/lint/Prisma and production build.
+The executable evidence and limitations are recorded in [acceptance.md](acceptance.md), `final-regression.json`, and `browser-evidence.json`. Tests use disposable schemas and synthetic records. No hosted-data or multi-business isolation claim follows from local results.
 
 ## Deferred/unapproved scope
 

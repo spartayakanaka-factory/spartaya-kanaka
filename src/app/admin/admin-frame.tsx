@@ -53,6 +53,11 @@ export function AdminFrame({ actor, children }: { actor: AdminActor; children: R
               <Link href="/admin/commerce-settings">إعدادات الطلبات والتنبيهات</Link>
             </>
           ) : null}
+          {commerceEnabled() &&
+          process.env.P4_OWNER_REPORTS === "1" &&
+          actor.roleCode === "OWNER" ? (
+            <Link href="/admin/reports">التقارير</Link>
+          ) : null}
           {commerceEnabled() && actor.roleCode === "OWNER" ? (
             <Link href="/admin/customers">حسابات العملاء</Link>
           ) : null}
