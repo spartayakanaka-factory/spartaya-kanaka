@@ -87,7 +87,7 @@ describe.skipIf(!enabled)("Phase 3.5 factory acceptance — real MariaDB and pri
     const u = new URL(process.env.DATABASE_URL!);
     expect(u.hostname).toBe("127.0.0.1");
     expect(u.port).toBe("33078");
-    expect(["/sprtaya_phase3_disposable_test", "/sprtaya_phase35_disposable_test"]).toContain(
+    expect(["/sprtaya_phase3_disposable_test", "/sprtaya_phase35_disposable_test", "/sprtaya_phase4_disposable_test"]).toContain(
       u.pathname,
     );
     vi.stubEnv("P35_PAYMENT_EVIDENCE", "1");

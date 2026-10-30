@@ -14,7 +14,7 @@ const pidFile = path.join(directory, "pid");
 const originals = "sprtaya-phase3-originals";
 const display = "sprtaya-phase3-display";
 const portBase = Number(process.env.P3_MEDIA_PORT_BASE || 39010);
-if (![39010, 39110].includes(portBase))
+if (![39010, 39110, 39210].includes(portBase))
   throw Error("Use a reviewed disposable storage port range.");
 const endpoint = "http://127.0.0.1:" + portBase;
 mkdirSync(directory, { recursive: true, mode: 0o700 });
@@ -99,8 +99,8 @@ if (command === "stop") {
         "-s3.port.iceberg=0",
         "-s3.port.lance=0",
         "-s3.config=" + configuration,
-        "-s3.allowedOrigins=http://localhost:3003,http://localhost:3004,http://localhost:3005",
-        "-filer.allowedOrigins=http://localhost:3003,http://localhost:3004,http://localhost:3005",
+        "-s3.allowedOrigins=http://localhost:3003,http://localhost:3004,http://localhost:3005,http://localhost:3007",
+        "-filer.allowedOrigins=http://localhost:3003,http://localhost:3004,http://localhost:3005,http://localhost:3007",
         "-filer.disableDirListing=true",
       ],
       { cwd: directory, detached: true, stdio: ["ignore", log, log] },

@@ -52,7 +52,9 @@ describe.skipIf(process.env.PHASE3_DB_INTEGRATION !== "1")(
     beforeAll(async () => {
       db = getDatabase();
       expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
-        process.env.P35_WORKSTREAM === "1"
+        process.env.P4_WORKSTREAM === "1"
+          ? "/sprtaya_phase4_disposable_test"
+          : process.env.P35_WORKSTREAM === "1"
           ? "/sprtaya_phase35_disposable_test"
           : "/sprtaya_phase3_disposable_test",
       );

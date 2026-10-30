@@ -17,6 +17,8 @@ export function commerceEnabled(env = process.env) {
         "/sprtaya_phase3_disposable_test",
         "/sprtaya_phase35_disposable_local",
         "/sprtaya_phase35_disposable_test",
+        "/sprtaya_phase4_disposable_local",
+        "/sprtaya_phase4_disposable_test",
       ].includes(u.pathname)
     );
   } catch {
