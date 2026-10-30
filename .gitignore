@@ -1,4 +1,6 @@
 node_modules/
+.local/
+.next-local/
 .agents/
 .pnpm-store/
 .taste-skill/
@@ -18,3 +20,5 @@ scripts/.page-cache/
 scripts/.sprtaya-kanaka-state.json
 __pycache__/
 *.py[cod]
+
+.next-phase3/

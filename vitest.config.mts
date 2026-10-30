@@ -10,6 +10,8 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    include: ["src/**/*.test.ts"],
+    // Integration files share a singleton synthetic policy. Explicit race tests still run concurrent transactions.
+    fileParallelism: false,
+    include: ["src/**/*.test.ts", "scripts/**/*.test.ts"],
   },
 });

@@ -11,8 +11,8 @@ export default async function AdminDashboard() {
   const [published, drafts, outOfStock, balances, madeToOrder] = await Promise.all([
     db.product.count({ where: { status: "PUBLISHED" } }),
     db.product.count({ where: { status: "DRAFT" } }),
-    db.inventoryBalance.count({ where: { quantity: 0 } }),
-    db.inventoryBalance.findMany({ where: { product: { type: "READY_MADE" } }, select: { quantity: true, lowStockAt: true } }),
+    db.inventoryBalance.count({ where: { quantity: 0, variant: { active: true }, product: { type: "READY_MADE", status: { not: "ARCHIVED" } } } }),
+    db.inventoryBalance.findMany({ where: { variant: { active: true }, product: { type: "READY_MADE", status: { not: "ARCHIVED" } } }, select: { quantity: true, lowStockAt: true } }),
     db.product.count({ where: { type: "MADE_TO_ORDER" } }),
   ]);
   const lowStock = balances.filter((balance) => balance.quantity > 0 && balance.quantity <= balance.lowStockAt).length;
@@ -20,7 +20,7 @@ export default async function AdminDashboard() {
     ["منتجات منشورة", published, "ظهرت في واجهة المتجر"],
     ["مسودات", drafts, "تحتاج إلى مراجعة أو استكمال"],
     ["نفد المخزون", outOfStock, "منتجات جاهزة بكمية صفر"],
-    ["مخزون منخفض", lowStock, "3 قطع أو أقل"],
+    ["مخزون منخفض", lowStock, "حسب حد التنبيه لكل متغير"],
     ["تصنيع حسب الطلب", madeToOrder, "إعدادات التصنيع"],
   ] as const;
   return (

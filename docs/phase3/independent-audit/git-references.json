@@ -1,0 +1,10 @@
+{
+  "auditedBase": "6e07948b7b4f47888335b19136813bd610293faf",
+  "sourceFixCommit": "77a8cab30d4062cedacec348456dd79403570fb5",
+  "localBranch": "codex/phase3-local",
+  "canonicalBranch": "codex/hostinger-nextjs-source",
+  "canonicalHead": "254ad4c10cfdd18cf0e1aacc10758ae2206ffa15",
+  "pushed": false,
+  "integrated": false,
+  "note": "Evidence commit follows this source-fix commit; exact final evidence SHA is in git history and the completion response."
+}

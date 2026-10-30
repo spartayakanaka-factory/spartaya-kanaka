@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "name": "anonymous admin and media writes are protected; public signup disabled",
+      "pass": true
+    },
+    {
+      "name": "invalid owner password is rejected",
+      "pass": true
+    },
+    {
+      "name": "owner login and mandatory first-password change",
+      "pass": true
+    },
+    {
+      "name": "Arabic category creation through the real server action",
+      "pass": true
+    },
+    {
+      "name": "real private-original upload, conversion and public display persistence",
+      "pass": true
+    },
+    {
+      "name": "product creation with Arabic price, actual image and counted local fixture stock",
+      "pass": true
+    },
+    {
+      "name": "bulk review updates verified price and publishes without code changes",
+      "pass": true
+    },
+    {
+      "name": "Arabic inventory adjustment commits and records a reason",
+      "pass": true
+    },
+    {
+      "name": "responsive Arabic admin and bilingual storefront: 390, 768 and 1440 pixels",
+      "pass": true
+    },
+    {
+      "name": "accessibility audit of dashboard, review and product form",
+      "pass": true
+    },
+    {
+      "name": "unpublish removes the product immediately; logout invalidates admin access",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "audits": [
+    {
+      "url": "/admin",
+      "violations": []
+    },
+    {
+      "url": "/admin/products/review?q=browser-acceptance-1793232264914",
+      "violations": []
+    },
+    {
+      "url": "/admin/products/32f9b38f-ead9-4c98-ab8e-9b55a0006e0a",
+      "violations": []
+    }
+  ]
+}

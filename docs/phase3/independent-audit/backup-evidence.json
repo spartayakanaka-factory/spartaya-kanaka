@@ -1,0 +1,16 @@
+{
+  "backup": "20261029-193631.sql",
+  "sha256": "c76db9ab7a180193635bf53bfccde3c39e199d3f396a4df07438ddfb42b75d2e",
+  "databases": [
+    "sprtaya_phase3_disposable_local",
+    "sprtaya_phase3_disposable_test"
+  ],
+  "port": 33078,
+  "verified": true,
+  "verifiedAt": 1793291830.72017,
+  "verificationKind": "exact-artifact-v1",
+  "tablesVerified": {
+    "sprtaya_phase3_disposable_local": 45,
+    "sprtaya_phase3_disposable_test": 45
+  }
+}

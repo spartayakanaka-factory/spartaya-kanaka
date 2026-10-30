@@ -1,0 +1,15 @@
+{
+  "auditedWorkspaceHead": "1b0bb030a723949b84a96ffbfd644e1e25ac085c",
+  "auditedWorkspaceClean": true,
+  "originalArchiveFiles": 1753,
+  "archiveChanges": [],
+  "phase2FilesChecked": 229,
+  "rootChangesSinceHistoricalPhase2Snapshot": [
+    "docs/hostinger-deployment.md",
+    "docs/hostinger-investigation-2026-10-29/escalation.md",
+    "docs/hostinger-investigation-2026-10-29/investigation.md",
+    "next.config.mjs",
+    "src/app/assets/[...path]/route.ts"
+  ],
+  "note": "Historical baseline differences pre-exist this integration and include the newer hosting repair; original accepted workspace is not the integration target. Exact current root-file manifest is retained privately for final comparison. Accepted/Hostinger databases were not connected or written."
+}

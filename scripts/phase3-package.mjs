@@ -1,0 +1,22 @@
+// Prepare a reviewable source package. This script has no upload/deploy method.
+import { execFileSync } from "node:child_process";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import path from "node:path";
+const args=process.argv.slice(2),sha=args[0],destination=path.resolve(args[1]||"");
+if(!/^[a-f0-9]{40}$/.test(sha||""))throw Error("Pass the exact reviewed local commit SHA.");
+if(!process.env.P3_STATE_DIR || !destination.startsWith(path.resolve(process.env.P3_STATE_DIR)+path.sep))throw Error("Package output must remain in private local state.");
+if(execFileSync("git",["status","--porcelain"],{encoding:"utf8"}).trim())throw Error("Commit and verify the candidate before packaging.");
+execFileSync("git",["merge-base","--is-ancestor","cea867a0df48d0aa145613b0d491b1a779b4ee3d",sha]);
+const files=execFileSync("git",["ls-tree","-r","--name-only","-z",sha],{encoding:"utf8"}).split("\0").filter(Boolean);
+const roots=new Set(["package.json","pnpm-lock.yaml","pnpm-workspace.yaml","next.config.mjs","next-env.d.ts","tsconfig.json","postcss.config.mjs","eslint.config.mjs","prisma.config.ts","AGENTS.md"]);
+const selected=files.filter(f=>roots.has(f)||/^(?:src|public|prisma|scripts)\//.test(f)||f==="docs/phase3/migration-manifest.json"||/^sprtaya-kanaka-assets\/(?:بيانات|الهوية البصرية)\//.test(f)).filter(f=>!/\.test\.ts$|screenshots|(?:^|\/)\.env|\.local|node_modules|\/المنتجات\//.test(f)||/^sprtaya-kanaka-assets\/الهوية البصرية\//.test(f));
+if(!selected.includes("package.json")||!selected.includes("pnpm-lock.yaml"))throw Error("Required package metadata missing.");
+mkdirSync(destination,{recursive:true,mode:0o700});
+const stamp=new Date().toISOString().replace(/[-:]/g,"").replace("T","_").slice(0,15);
+const archive=path.join(destination,"sprtaya-phase3-"+sha.slice(0,12)+"_"+stamp+".zip");
+execFileSync("git",["archive","--format=zip","--output="+archive,sha,"--",...selected]);
+const body=readFileSync(archive);if(body.length>50*1024*1024)throw Error("Source package exceeds the reviewed hosting limit.");
+const {createHash}=await import("node:crypto");
+const manifest={commit:sha,archive:path.basename(archive),bytes:body.length,sha256:createHash("sha256").update(body).digest("hex"),files:selected,originalProductImagesIncluded:false,credentialsIncluded:false,build:"pnpm build",output:".next",deploymentExecuted:false};
+writeFileSync(path.join(destination,"manifest.json"),JSON.stringify(manifest,null,2)+"\n",{mode:0o600});
+console.log(JSON.stringify({commit:sha,bytes:body.length,sha256:manifest.sha256,files:selected.length,deploymentExecuted:false}));

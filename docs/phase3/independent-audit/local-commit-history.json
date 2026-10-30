@@ -1,0 +1,26 @@
+{
+  "independentSnapshotBase": "a54488513fdbc505367fd35d8db09d42d87eb25d",
+  "canonicalAncestor": false,
+  "commits": [
+    {
+      "sha": "f348a827529eeb8b6f78e122ec80dbc691f4feb3",
+      "subject": "Implement isolated Phase 3 commerce with guarded stock, payments and admin workflows"
+    },
+    {
+      "sha": "c24944512f58f7bab950cf92f0b09b6fdea8c460",
+      "subject": "Make isolated Phase 3 builds reproducible and clean generated source whitespace"
+    },
+    {
+      "sha": "001e1b25f61e6cd979c572093286a0a7b1b358c8",
+      "subject": "Add guarded local reservation-expiry and notification maintenance runner"
+    },
+    {
+      "sha": "6e07948b7b4f47888335b19136813bd610293faf",
+      "subject": "Record Phase 3 local acceptance, responsive evidence and financial authorization checks"
+    },
+    {
+      "sha": "77a8cab30d4062cedacec348456dd79403570fb5",
+      "subject": "Fix adversarial Phase 3 financial, authorization, privacy and recovery defects"
+    }
+  ]
+}

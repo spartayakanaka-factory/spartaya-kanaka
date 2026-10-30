@@ -1,3 +1,6 @@
+import { commerceEnabled } from "@/lib/commerce/runtime";
+import { AddToCart } from "@/components/commerce-client";
+import { getDatabase } from "@/lib/server/database";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,6 +43,8 @@ export default async function ProductPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
   const [product, categories, contacts] = await Promise.all([getStoreProductBySlug(slug), getStoreCategories(), getStoreContactSettings()]);
   if (!product) notFound();
+  const buying = commerceEnabled() ? await getDatabase().product.findUnique({where:{slug},include:{variants:{where:{active:true}}}}) : null;
+  const canTestOrder = buying?.status === "PUBLISHED" && buying.priceMinor !== null;
   const ar = locale === "ar",
     base = "/" + locale;
   const category = categories.find((item) => product.categoryIds?.includes(item.id));
@@ -80,20 +85,21 @@ export default async function ProductPage({ params }: Props) {
           {!ar ? <p className="product-source-note">{getCopy(locale, "inArabic")}</p> : null}
           <p className="detail-price">{product.priceMinor !== null && product.priceMinor !== undefined ? formatMoneyMinor(product.priceMinor, locale, product.sourceCurrency ?? "EGP") : ar ? "السعر عند الاستفسار" : "Price on enquiry"}</p>
           <p className="availability-copy">
-            {ar
-              ? "تواصل مع المصنع لتأكيد السعر والتوافر وخيارات القطعة ومدة التجهيز."
-              : "Contact the factory to confirm price, availability, options and preparation time."}
+            {canTestOrder
+              ? ar ? "تُراجع الكمية وشروط الدفع والتوصيل عند إتمام طلب الاختبار." : "Quantity, payment and delivery terms are checked at test checkout."
+              : ar ? "تواصل مع المصنع لتأكيد السعر والتوافر وخيارات القطعة ومدة التجهيز." : "Contact the factory to confirm price, availability, options and preparation time."}
           </p>
           {product.variants && product.variants.length > 1 ? <section className="variant-details" aria-labelledby="variant-title"><h2 id="variant-title">{ar ? "المتغيرات" : "Available variations"}</h2><ul>{product.variants.map((variant) => <li key={variant.id}><span lang="ar" dir="rtl">{variant.nameAr}</span>{Object.entries(variant.options).length ? <small>{Object.entries(variant.options).map(([key, value]) => `${key}: ${value}`).join(" · ")}</small> : null}{variant.priceMinor !== null ? <strong>{formatMoneyMinor(variant.priceMinor, locale, product.sourceCurrency ?? "EGP")}</strong> : null}</li>)}</ul></section> : null}
+          {canTestOrder && buying ? <AddToCart locale={locale} variants={buying.variants.map(v=>({id:v.id,nameAr:v.nameAr}))}/> : null}
           <div className="product-actions">
             <a className="button" href={"tel:" + contacts.phone}>
               <Icon name="phone" />
               {ar ? "استفسر عن القطعة" : "Enquire about this piece"}
             </a>
             <p className="availability-copy">
-              {ar
-                ? "الطلب والدفع الإلكتروني غير متاحين حالياً."
-                : "Online ordering and payment are not available yet."}
+              {canTestOrder
+                ? ar ? "تجربة طلب محلية فقط؛ لا يوجد تحصيل أو شحن فعلي." : "Local order simulation only; no real collection or shipping."
+                : ar ? "الطلب والدفع الإلكتروني غير متاحين حالياً." : "Online ordering and payment are not available yet."}
             </p>
           </div>
           <details className="product-accordion" open>
@@ -108,9 +114,9 @@ export default async function ProductPage({ params }: Props) {
           <details className="product-accordion">
             <summary>{ar ? "الخيارات والتجهيز" : "Options & preparation"}</summary>
             <p>
-              {ar
-                ? "لا تتوفر خيارات أو مدة تجهيز مؤكدة لهذه القطعة في الموقع. لتحديد المقاس أو الشكل والتأكد من جاهزية القطعة أو إمكانية تصنيعها، اتصل بالمصنع."
-                : "Confirmed variants and lead times are not listed for this piece. Call the factory to discuss sizes, finishes, whether it is ready-made or can be made to order."}
+              {canTestOrder
+                ? ar ? "راجع المتغيرات المعروضة وشروط القطعة والمبلغ والتوصيل في طلب الاختبار." : "Review the listed variants, item terms, amount and delivery at test checkout."
+                : ar ? "لا تتوفر خيارات أو مدة تجهيز مؤكدة لهذه القطعة في الموقع. لتحديد المقاس أو الشكل والتأكد من جاهزية القطعة أو إمكانية تصنيعها، اتصل بالمصنع." : "Confirmed variants and lead times are not listed for this piece. Call the factory to discuss sizes, finishes, whether it is ready-made or can be made to order."}
             </p>
           </details>
           <details className="product-accordion">

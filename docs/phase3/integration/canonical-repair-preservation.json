@@ -1,0 +1,16 @@
+{
+  "canonicalBase": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "exactCanonicalMatches": {
+    "pnpm-workspace.yaml": true,
+    "pnpm-lock.yaml": true,
+    "src/app/assets/[...path]/route.ts": true,
+    "src/app/assets/[...path]/route.test.ts": true,
+    "src/proxy.ts": true,
+    "src/lib/staging-access.ts": true,
+    "src/lib/server/staging-page-access.ts": true,
+    "src/lib/server/auth.ts": true,
+    "docs/hostinger-persistent-media.md": true
+  },
+  "nextConfigMerge": "full SWC helper include, staging-only unoptimized images, noindex retained; add private tracing exclusions",
+  "noRemoteWrite": true
+}

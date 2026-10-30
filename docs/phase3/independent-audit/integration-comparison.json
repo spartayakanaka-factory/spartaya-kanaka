@@ -1,0 +1,1312 @@
+{
+  "canonicalCommit": "254ad4c10cfdd18cf0e1aacc10758ae2206ffa15",
+  "files": [
+    {
+      "path": ".env.example",
+      "remote": "f6ebca988041321c57e6523054382493c4e5f48b",
+      "snapshotBase": "f6ebca988041321c57e6523054382493c4e5f48b",
+      "phase3": "f6ebca988041321c57e6523054382493c4e5f48b"
+    },
+    {
+      "path": ".gitignore",
+      "remote": "5f1166057db2a8e5b219909285ee94651dbf6aed",
+      "snapshotBase": "548e4bad483dd740278cc08e87253d5ed57eced8",
+      "phase3": "06d609b7ce2eb15a7ab29cb0e2098733be639273"
+    },
+    {
+      "path": ".prettierrc.json",
+      "remote": "bccee911b6b0dac9051d360fbc5e0a6303eed8fb",
+      "snapshotBase": "bccee911b6b0dac9051d360fbc5e0a6303eed8fb",
+      "phase3": "bccee911b6b0dac9051d360fbc5e0a6303eed8fb"
+    },
+    {
+      "path": "AGENTS.md",
+      "remote": "af3b7c84114bafeee578bf1adff2ef74af2cc6a2",
+      "snapshotBase": "af3b7c84114bafeee578bf1adff2ef74af2cc6a2",
+      "phase3": "af3b7c84114bafeee578bf1adff2ef74af2cc6a2"
+    },
+    {
+      "path": "PHASE_2_2_REPORT.md",
+      "remote": "c71d538ad08adb1dac3ba0577a9e95e5fae6b82f",
+      "snapshotBase": "c71d538ad08adb1dac3ba0577a9e95e5fae6b82f",
+      "phase3": "c71d538ad08adb1dac3ba0577a9e95e5fae6b82f"
+    },
+    {
+      "path": "PHASE_2_REPORT.md",
+      "remote": "2f3ab1fc88642e8fcf481c58dfbd4a55107d8a19",
+      "snapshotBase": "2f3ab1fc88642e8fcf481c58dfbd4a55107d8a19",
+      "phase3": "2f3ab1fc88642e8fcf481c58dfbd4a55107d8a19"
+    },
+    {
+      "path": "README.md",
+      "remote": "3d9b741ff36343009be5c626c690c8e26397081b",
+      "snapshotBase": "76c99fcd91bac4b92d435d09c74b92ef8b46194d",
+      "phase3": "76c99fcd91bac4b92d435d09c74b92ef8b46194d"
+    },
+    {
+      "path": "docs/architecture.md",
+      "remote": "e136f3355b689d826e186aa64e3371da3510ee48",
+      "snapshotBase": "e136f3355b689d826e186aa64e3371da3510ee48",
+      "phase3": "e136f3355b689d826e186aa64e3371da3510ee48"
+    },
+    {
+      "path": "docs/catalog-inventory.md",
+      "remote": "5673fc8c517a0de913999c2210fdf99253587d14",
+      "snapshotBase": "5673fc8c517a0de913999c2210fdf99253587d14",
+      "phase3": "5673fc8c517a0de913999c2210fdf99253587d14"
+    },
+    {
+      "path": "docs/future-data-model.md",
+      "remote": "f16ed3af6e1976eb2cf15e10ec25bd41b1f92b48",
+      "snapshotBase": "f16ed3af6e1976eb2cf15e10ec25bd41b1f92b48",
+      "phase3": "f16ed3af6e1976eb2cf15e10ec25bd41b1f92b48"
+    },
+    {
+      "path": "docs/hostinger-deployment.md",
+      "remote": "0b96dde2df3be9b9a62157c75fbfaeb24598cb0a",
+      "snapshotBase": "0b96dde2df3be9b9a62157c75fbfaeb24598cb0a",
+      "phase3": "0b96dde2df3be9b9a62157c75fbfaeb24598cb0a"
+    },
+    {
+      "path": "docs/hostinger-phase2-post-migration-verification.sql",
+      "remote": "8e6d545c7746c07aed69d8975d558899d26976c8",
+      "snapshotBase": "8e6d545c7746c07aed69d8975d558899d26976c8",
+      "phase3": "8e6d545c7746c07aed69d8975d558899d26976c8"
+    },
+    {
+      "path": "docs/hostinger-phase2-staging-acceptance.md",
+      "remote": "56307e2b00068ffea6c35a9a506cb371819268ff",
+      "snapshotBase": "56307e2b00068ffea6c35a9a506cb371819268ff",
+      "phase3": "56307e2b00068ffea6c35a9a506cb371819268ff"
+    },
+    {
+      "path": "docs/owner-dashboard.md",
+      "remote": "09d3fd79c941a09ff8ed8989503ca0b3b10911f1",
+      "snapshotBase": "854470fb3c1cc9138dd721a584e57d69569cc742",
+      "phase3": "854470fb3c1cc9138dd721a584e57d69569cc742"
+    },
+    {
+      "path": "docs/phase-1-redesign-report.md",
+      "remote": "edece41f1c0c2108d5e6d9ddc9977bab1535b230",
+      "snapshotBase": "edece41f1c0c2108d5e6d9ddc9977bab1535b230",
+      "phase3": "edece41f1c0c2108d5e6d9ddc9977bab1535b230"
+    },
+    {
+      "path": "docs/phase-1-refinement-report.md",
+      "remote": "da149e9f91daf12966b62d4363a9bf25c86827d7",
+      "snapshotBase": "da149e9f91daf12966b62d4363a9bf25c86827d7",
+      "phase3": "da149e9f91daf12966b62d4363a9bf25c86827d7"
+    },
+    {
+      "path": "docs/phase-2-architecture-decisions.md",
+      "remote": "801c264b1fd404e491a1eff5664194d4841f5413",
+      "snapshotBase": "801c264b1fd404e491a1eff5664194d4841f5413",
+      "phase3": "801c264b1fd404e491a1eff5664194d4841f5413"
+    },
+    {
+      "path": "docs/phase-2-roadmap.md",
+      "remote": "ce35f8fd69dc25ea8f1e9d5ab87b16e7ac7ca708",
+      "snapshotBase": "ce35f8fd69dc25ea8f1e9d5ab87b16e7ac7ca708",
+      "phase3": "ce35f8fd69dc25ea8f1e9d5ab87b16e7ac7ca708"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-1440.png",
+      "remote": "b5b27cbdad635e40ede5b97b24c7aeb9510f068b",
+      "snapshotBase": "b5b27cbdad635e40ede5b97b24c7aeb9510f068b",
+      "phase3": "b5b27cbdad635e40ede5b97b24c7aeb9510f068b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-390.png",
+      "remote": "52eaee1fbc1a4901230876c733d51745dc03e00e",
+      "snapshotBase": "52eaee1fbc1a4901230876c733d51745dc03e00e",
+      "phase3": "52eaee1fbc1a4901230876c733d51745dc03e00e"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-768.png",
+      "remote": "6f7764972371ae7059124e3f87b87339bd737903",
+      "snapshotBase": "6f7764972371ae7059124e3f87b87339bd737903",
+      "phase3": "6f7764972371ae7059124e3f87b87339bd737903"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-1440.png",
+      "remote": "eebc0817b4c40101d263036f18d5f8849daa284c",
+      "snapshotBase": "eebc0817b4c40101d263036f18d5f8849daa284c",
+      "phase3": "eebc0817b4c40101d263036f18d5f8849daa284c"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-390.png",
+      "remote": "31a60dcab9229852352b3568683f58f0d302c745",
+      "snapshotBase": "31a60dcab9229852352b3568683f58f0d302c745",
+      "phase3": "31a60dcab9229852352b3568683f58f0d302c745"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-768.png",
+      "remote": "4def90d2aa9de3b8bde815d5576812adce9f3a22",
+      "snapshotBase": "4def90d2aa9de3b8bde815d5576812adce9f3a22",
+      "phase3": "4def90d2aa9de3b8bde815d5576812adce9f3a22"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-about-390.png",
+      "remote": "957eade009e9edbd1bd5d4ceef3c6502585a6324",
+      "snapshotBase": "957eade009e9edbd1bd5d4ceef3c6502585a6324",
+      "phase3": "957eade009e9edbd1bd5d4ceef3c6502585a6324"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-collections-390.png",
+      "remote": "3158d64c9da544d5da8e5bb815a73f16f6c7fbc1",
+      "snapshotBase": "3158d64c9da544d5da8e5bb815a73f16f6c7fbc1",
+      "phase3": "3158d64c9da544d5da8e5bb815a73f16f6c7fbc1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-collections-atkm-kho-390.png",
+      "remote": "16d456e642d50942aa2d039d9e0154e833956b92",
+      "snapshotBase": "16d456e642d50942aa2d039d9e0154e833956b92",
+      "phase3": "16d456e642d50942aa2d039d9e0154e833956b92"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-contact-390.png",
+      "remote": "28235fc8032aace1ba76fd150a21c6ca77afcecc",
+      "snapshotBase": "28235fc8032aace1ba76fd150a21c6ca77afcecc",
+      "phase3": "28235fc8032aace1ba76fd150a21c6ca77afcecc"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-custom-orders-390.png",
+      "remote": "90d4938b5def40126d18207738df3b8177d6f786",
+      "snapshotBase": "90d4938b5def40126d18207738df3b8177d6f786",
+      "phase3": "90d4938b5def40126d18207738df3b8177d6f786"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-1440.png",
+      "remote": "22d9ff125ef8b9bfc2c4ce2fd56e40416220e155",
+      "snapshotBase": "22d9ff125ef8b9bfc2c4ce2fd56e40416220e155",
+      "phase3": "22d9ff125ef8b9bfc2c4ce2fd56e40416220e155"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-390.png",
+      "remote": "adcace46d64b855e61e9b72cf2a52e487de73e58",
+      "snapshotBase": "adcace46d64b855e61e9b72cf2a52e487de73e58",
+      "phase3": "adcace46d64b855e61e9b72cf2a52e487de73e58"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-768.png",
+      "remote": "b9d7d2d3ef90abf41ebeaf4090a61bc51b980544",
+      "snapshotBase": "b9d7d2d3ef90abf41ebeaf4090a61bc51b980544",
+      "phase3": "b9d7d2d3ef90abf41ebeaf4090a61bc51b980544"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-menu-390.png",
+      "remote": "c70a58340d4aa41ee4c10d4cfae86dffca9a5bcf",
+      "snapshotBase": "c70a58340d4aa41ee4c10d4cfae86dffca9a5bcf",
+      "phase3": "c70a58340d4aa41ee4c10d4cfae86dffca9a5bcf"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-policies-390.png",
+      "remote": "115176e3cc00ef839e6ce826beadfca07ca05dd9",
+      "snapshotBase": "115176e3cc00ef839e6ce826beadfca07ca05dd9",
+      "phase3": "115176e3cc00ef839e6ce826beadfca07ca05dd9"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-product-1440.png",
+      "remote": "970395a9bad4c74e4d209506d89843f8707fd87b",
+      "snapshotBase": "970395a9bad4c74e4d209506d89843f8707fd87b",
+      "phase3": "970395a9bad4c74e4d209506d89843f8707fd87b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-390.png",
+      "remote": "4119889634e13d6cc4dbb3f3034a43ca3a1a8561",
+      "snapshotBase": "4119889634e13d6cc4dbb3f3034a43ca3a1a8561",
+      "phase3": "4119889634e13d6cc4dbb3f3034a43ca3a1a8561"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-filtered-1440.png",
+      "remote": "dde6864beae457c4defdd28636b6cdc532317d8e",
+      "snapshotBase": "dde6864beae457c4defdd28636b6cdc532317d8e",
+      "phase3": "dde6864beae457c4defdd28636b6cdc532317d8e"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-tkm-kho-4ktaa-copy-390.png",
+      "remote": "c86bb3a2497fd8e60c5d50e2f3e286686c88eb4b",
+      "snapshotBase": "c86bb3a2497fd8e60c5d50e2f3e286686c88eb4b",
+      "phase3": "c86bb3a2497fd8e60c5d50e2f3e286686c88eb4b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-reduced-motion-390.png",
+      "remote": "af8856951f5f56339a88c59f0c8f2b2a64bacc17",
+      "snapshotBase": "af8856951f5f56339a88c59f0c8f2b2a64bacc17",
+      "phase3": "af8856951f5f56339a88c59f0c8f2b2a64bacc17"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-search-empty-1440.png",
+      "remote": "f8b05fbf4d699bfe50181782e38b35f91b5e756c",
+      "snapshotBase": "f8b05fbf4d699bfe50181782e38b35f91b5e756c",
+      "phase3": "f8b05fbf4d699bfe50181782e38b35f91b5e756c"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-wholesale-390.png",
+      "remote": "3ec0c4d7bb55d54da0d4d03ca782d83b3b66f6f5",
+      "snapshotBase": "3ec0c4d7bb55d54da0d4d03ca782d83b3b66f6f5",
+      "phase3": "3ec0c4d7bb55d54da0d4d03ca782d83b3b66f6f5"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-about-390.png",
+      "remote": "a4ba76b84ad5429ad2c1ecd4172180538c65480a",
+      "snapshotBase": "a4ba76b84ad5429ad2c1ecd4172180538c65480a",
+      "phase3": "a4ba76b84ad5429ad2c1ecd4172180538c65480a"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-collections-390.png",
+      "remote": "f6d07afd0a1a239a4db2d5b6a6839252b71b65e2",
+      "snapshotBase": "f6d07afd0a1a239a4db2d5b6a6839252b71b65e2",
+      "phase3": "f6d07afd0a1a239a4db2d5b6a6839252b71b65e2"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-collections-atkm-kho-390.png",
+      "remote": "6d0a947bb957e77a1d71f0a81eb33f05a1ee2086",
+      "snapshotBase": "6d0a947bb957e77a1d71f0a81eb33f05a1ee2086",
+      "phase3": "6d0a947bb957e77a1d71f0a81eb33f05a1ee2086"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-contact-390.png",
+      "remote": "bfecbdc577ff3453383878ea163af740bdfe6eed",
+      "snapshotBase": "bfecbdc577ff3453383878ea163af740bdfe6eed",
+      "phase3": "bfecbdc577ff3453383878ea163af740bdfe6eed"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-custom-orders-390.png",
+      "remote": "a815477ea7707b597709b1ddde4aa359806480f3",
+      "snapshotBase": "a815477ea7707b597709b1ddde4aa359806480f3",
+      "phase3": "a815477ea7707b597709b1ddde4aa359806480f3"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-1440.png",
+      "remote": "48b4e8cc1a19574b416865bb3abd15f7f2a38623",
+      "snapshotBase": "48b4e8cc1a19574b416865bb3abd15f7f2a38623",
+      "phase3": "48b4e8cc1a19574b416865bb3abd15f7f2a38623"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-390.png",
+      "remote": "01e03f517e0aa8050d1612347fea0a6f26742f59",
+      "snapshotBase": "01e03f517e0aa8050d1612347fea0a6f26742f59",
+      "phase3": "01e03f517e0aa8050d1612347fea0a6f26742f59"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-768.png",
+      "remote": "c876a1d2fee8957aae0ba463b94949e00ef26566",
+      "snapshotBase": "c876a1d2fee8957aae0ba463b94949e00ef26566",
+      "phase3": "c876a1d2fee8957aae0ba463b94949e00ef26566"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-policies-390.png",
+      "remote": "a238851e02c8f410a1081dd20b7d273fb18bbe2b",
+      "snapshotBase": "a238851e02c8f410a1081dd20b7d273fb18bbe2b",
+      "phase3": "a238851e02c8f410a1081dd20b7d273fb18bbe2b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-products-390.png",
+      "remote": "6a99b74b5d209aedda540b26a3574c81e69c17a1",
+      "snapshotBase": "6a99b74b5d209aedda540b26a3574c81e69c17a1",
+      "phase3": "6a99b74b5d209aedda540b26a3574c81e69c17a1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-products-tkm-kho-4ktaa-copy-390.png",
+      "remote": "c1628fff527a827a3d12876d9b532d2f8700cb12",
+      "snapshotBase": "c1628fff527a827a3d12876d9b532d2f8700cb12",
+      "phase3": "c1628fff527a827a3d12876d9b532d2f8700cb12"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-wholesale-390.png",
+      "remote": "f64d42d15221a3aad5183f19c2fac5ad67c77a60",
+      "snapshotBase": "f64d42d15221a3aad5183f19c2fac5ad67c77a60",
+      "phase3": "f64d42d15221a3aad5183f19c2fac5ad67c77a60"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/report.json",
+      "remote": "727fc3f55f3a50ae6892c968a5fa05542fad717b",
+      "snapshotBase": "727fc3f55f3a50ae6892c968a5fa05542fad717b",
+      "phase3": "727fc3f55f3a50ae6892c968a5fa05542fad717b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/collection-ar-390.png",
+      "remote": "94f2ee70dfb766f335958e749ba4412f2f357e06",
+      "snapshotBase": "94f2ee70dfb766f335958e749ba4412f2f357e06",
+      "phase3": "94f2ee70dfb766f335958e749ba4412f2f357e06"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-1440.png",
+      "remote": "3e048c1ddea25bb61dba1e39184d3615c4bd449f",
+      "snapshotBase": "3e048c1ddea25bb61dba1e39184d3615c4bd449f",
+      "phase3": "3e048c1ddea25bb61dba1e39184d3615c4bd449f"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-390.png",
+      "remote": "38b147f8ef00dcaf8d954da9b96158190b7f6817",
+      "snapshotBase": "38b147f8ef00dcaf8d954da9b96158190b7f6817",
+      "phase3": "38b147f8ef00dcaf8d954da9b96158190b7f6817"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-768.png",
+      "remote": "e69cb215a3c9b84df313fe987c834793bf55de86",
+      "snapshotBase": "e69cb215a3c9b84df313fe987c834793bf55de86",
+      "phase3": "e69cb215a3c9b84df313fe987c834793bf55de86"
+    },
+    {
+      "path": "docs/phase-2-screenshots/product-ar-390.png",
+      "remote": "9dd39e8f0b725ef52f0862adecca0d4edcb99b5a",
+      "snapshotBase": "9dd39e8f0b725ef52f0862adecca0d4edcb99b5a",
+      "phase3": "9dd39e8f0b725ef52f0862adecca0d4edcb99b5a"
+    },
+    {
+      "path": "docs/phase-2-screenshots/product-en-1440.png",
+      "remote": "f99dd6707a2dbae5cae5f0dee0b0584b698df9b1",
+      "snapshotBase": "f99dd6707a2dbae5cae5f0dee0b0584b698df9b1",
+      "phase3": "f99dd6707a2dbae5cae5f0dee0b0584b698df9b1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/products-ar-390.png",
+      "remote": "c92920f9c443be6791ca29c3309f23c5a2bd914a",
+      "snapshotBase": "c92920f9c443be6791ca29c3309f23c5a2bd914a",
+      "phase3": "c92920f9c443be6791ca29c3309f23c5a2bd914a"
+    },
+    {
+      "path": "docs/phase-2-setup.md",
+      "remote": "264eb0c487fe806d3a751d16190741611d38df7a",
+      "snapshotBase": "977171ba0353dda11e1c0c1088c3012b134a9c37",
+      "phase3": "977171ba0353dda11e1c0c1088c3012b134a9c37"
+    },
+    {
+      "path": "docs/phase2.3-staging-security-recovery.md",
+      "remote": "2701f5cc05881ce0d1c89b03ecb9d73bf274d3ad",
+      "snapshotBase": "2701f5cc05881ce0d1c89b03ecb9d73bf274d3ad",
+      "phase3": "2701f5cc05881ce0d1c89b03ecb9d73bf274d3ad"
+    },
+    {
+      "path": "docs/routes-and-scope.md",
+      "remote": "7ba75fd1741ce56fc72c02bdd8e4602abb3887a3",
+      "snapshotBase": "7ba75fd1741ce56fc72c02bdd8e4602abb3887a3",
+      "phase3": "7ba75fd1741ce56fc72c02bdd8e4602abb3887a3"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "remote": "b1f2e05c73cf88f0a4bfbc343442555e4be9d259",
+      "snapshotBase": "075939096ad5bd799e1aa0c8f3b9ad037275d82e",
+      "phase3": "400c9fb3fac6ae36a98529ab9db756a2aaa7c6ad"
+    },
+    {
+      "path": "next-env.d.ts",
+      "remote": "ce4e94a6b10f160ee021fe18939af160d2927dcf",
+      "snapshotBase": "5f72236eda1ca44734646bd62fbf45d3cf2180d2",
+      "phase3": "71f4aef0de0cf94bde6ea33bfb6b95fd8404bc12"
+    },
+    {
+      "path": "next.config.mjs",
+      "remote": "68a1a66508f486bf21c2c72acd199dc76daf1e5e",
+      "snapshotBase": "5805630e288c0a390e120aff5ceae63b37ccdc09",
+      "phase3": "5805630e288c0a390e120aff5ceae63b37ccdc09"
+    },
+    {
+      "path": "package.json",
+      "remote": "d5a454fdbf1b5f7e2e423ab810ab081d8638a02a",
+      "snapshotBase": "d5a454fdbf1b5f7e2e423ab810ab081d8638a02a",
+      "phase3": "db251abb284032e25327346785c81511084b5b10"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "remote": "c060ea39be92eedb3cf7b3a631723ee55ba6ed88",
+      "snapshotBase": "c060ea39be92eedb3cf7b3a631723ee55ba6ed88",
+      "phase3": "c060ea39be92eedb3cf7b3a631723ee55ba6ed88"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "remote": "21b75b409860ec65400933529d929e45875b4213",
+      "snapshotBase": "21b75b409860ec65400933529d929e45875b4213",
+      "phase3": "21b75b409860ec65400933529d929e45875b4213"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "remote": "61e36849cf7cfa9f1f71b4a3964a4953e3e243d3",
+      "snapshotBase": "61e36849cf7cfa9f1f71b4a3964a4953e3e243d3",
+      "phase3": "61e36849cf7cfa9f1f71b4a3964a4953e3e243d3"
+    },
+    {
+      "path": "prisma.config.ts",
+      "remote": "defafd2f80c1f0e023a2f237173e90b54f37cb66",
+      "snapshotBase": "defafd2f80c1f0e023a2f237173e90b54f37cb66",
+      "phase3": "defafd2f80c1f0e023a2f237173e90b54f37cb66"
+    },
+    {
+      "path": "prisma/migrations/20261027000000_phase2_initial/migration.sql",
+      "remote": "fbc0a070e944d97ad83695e7134a45b496c72fbb",
+      "snapshotBase": "fbc0a070e944d97ad83695e7134a45b496c72fbb",
+      "phase3": "fbc0a070e944d97ad83695e7134a45b496c72fbb"
+    },
+    {
+      "path": "prisma/migrations/20261027120000_phase2_2_review_safety/migration.sql",
+      "remote": "0a7c507039045a8beac589e1f2f59308b84a2665",
+      "snapshotBase": "0a7c507039045a8beac589e1f2f59308b84a2665",
+      "phase3": "0a7c507039045a8beac589e1f2f59308b84a2665"
+    },
+    {
+      "path": "prisma/migrations/migration_lock.toml",
+      "remote": "7dec767c1269fb725f6f23f6f7a1a7295e128344",
+      "snapshotBase": "7dec767c1269fb725f6f23f6f7a1a7295e128344",
+      "phase3": "7dec767c1269fb725f6f23f6f7a1a7295e128344"
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "remote": "62992e25f44e7c28c02e7e63f2b700bbb518dee4",
+      "snapshotBase": "62992e25f44e7c28c02e7e63f2b700bbb518dee4",
+      "phase3": "6f33fe162df37fb269182999735edf2a54e5fe8b"
+    },
+    {
+      "path": "scripts/bootstrap-owner.ts",
+      "remote": "d691bfe7aad54da26d278449fc508d1f3d4ec749",
+      "snapshotBase": "d691bfe7aad54da26d278449fc508d1f3d4ec749",
+      "phase3": "d691bfe7aad54da26d278449fc508d1f3d4ec749"
+    },
+    {
+      "path": "scripts/browser-qa.mjs",
+      "remote": "5aff2d6f883f5bb88ac9b532850d7e106cea926e",
+      "snapshotBase": "5aff2d6f883f5bb88ac9b532850d7e106cea926e",
+      "phase3": "5aff2d6f883f5bb88ac9b532850d7e106cea926e"
+    },
+    {
+      "path": "scripts/build_migration_manifest.py",
+      "remote": "8588ed2ef14469b93cd4735235911c5259453b5b",
+      "snapshotBase": "8588ed2ef14469b93cd4735235911c5259453b5b",
+      "phase3": "8588ed2ef14469b93cd4735235911c5259453b5b"
+    },
+    {
+      "path": "scripts/database-target.ts",
+      "remote": "6457d154de3042e86ce66f35d5b543b22af462ef",
+      "snapshotBase": "6457d154de3042e86ce66f35d5b543b22af462ef",
+      "phase3": "6457d154de3042e86ce66f35d5b543b22af462ef"
+    },
+    {
+      "path": "scripts/deploy-migrations.mjs",
+      "remote": "334a70d0cb5c832671f87a705b89800e5e700835",
+      "snapshotBase": null,
+      "phase3": null
+    },
+    {
+      "path": "scripts/deploy-migrations.ts",
+      "remote": "20dbcfdb6841ca9587e68a191ada114547837aea",
+      "snapshotBase": "20dbcfdb6841ca9587e68a191ada114547837aea",
+      "phase3": "43fad8bc1be3dbe0bdd6ad4404484e2f6644e0ae"
+    },
+    {
+      "path": "scripts/extract_assets.py",
+      "remote": "23ece6600ddf2baea5b0859ec03733058f03ee0c",
+      "snapshotBase": "23ece6600ddf2baea5b0859ec03733058f03ee0c",
+      "phase3": "23ece6600ddf2baea5b0859ec03733058f03ee0c"
+    },
+    {
+      "path": "scripts/import-legacy-catalog.ts",
+      "remote": "f4db1c08f3964e667d1a5486b0ce56e6dba37aa7",
+      "snapshotBase": "f4db1c08f3964e667d1a5486b0ce56e6dba37aa7",
+      "phase3": "f4db1c08f3964e667d1a5486b0ce56e6dba37aa7"
+    },
+    {
+      "path": "scripts/migrate-dev.mjs",
+      "remote": "446708abb725febdb2350315dd0f54a2663fa1bc",
+      "snapshotBase": "446708abb725febdb2350315dd0f54a2663fa1bc",
+      "phase3": "70158095e9f91bc3a144f29093d946196b767949"
+    },
+    {
+      "path": "scripts/migration-approval.ts",
+      "remote": "4d164fb8b07e9c2f254159a79b66f2852e4164f6",
+      "snapshotBase": "4d164fb8b07e9c2f254159a79b66f2852e4164f6",
+      "phase3": "4d164fb8b07e9c2f254159a79b66f2852e4164f6"
+    },
+    {
+      "path": "scripts/owner-bootstrap-secret.test.ts",
+      "remote": "2c5f94fbe2ab70100533c1b3f42d5ce8a3a80bf3",
+      "snapshotBase": "47cd9f9392e655f1216578261d85a91fab1b800c",
+      "phase3": "47cd9f9392e655f1216578261d85a91fab1b800c"
+    },
+    {
+      "path": "scripts/owner-bootstrap-secret.ts",
+      "remote": "1c6234812c0d0831dd4ebb28b0c7d1236464ee18",
+      "snapshotBase": "395855037554801b498e67be2cb59fd0014e6d7f",
+      "phase3": "395855037554801b498e67be2cb59fd0014e6d7f"
+    },
+    {
+      "path": "scripts/preflight-hostinger-phase2.ts",
+      "remote": "472b57de07e232f6efbafe714ee946f722b606be",
+      "snapshotBase": "472b57de07e232f6efbafe714ee946f722b606be",
+      "phase3": "472b57de07e232f6efbafe714ee946f722b606be"
+    },
+    {
+      "path": "scripts/refinement-smoke.mjs",
+      "remote": "f8e75225703c1e6eaa7accfa46db8a9bfc086bab",
+      "snapshotBase": "f8e75225703c1e6eaa7accfa46db8a9bfc086bab",
+      "phase3": "f8e75225703c1e6eaa7accfa46db8a9bfc086bab"
+    },
+    {
+      "path": "scripts/refinement-visual.mjs",
+      "remote": "753711179b439cbdd0543252490389af46cc6785",
+      "snapshotBase": "753711179b439cbdd0543252490389af46cc6785",
+      "phase3": "753711179b439cbdd0543252490389af46cc6785"
+    },
+    {
+      "path": "scripts/runtime-db.ts",
+      "remote": "17e74938156d407daf0ac5d115b3a56a2ee35488",
+      "snapshotBase": "17e74938156d407daf0ac5d115b3a56a2ee35488",
+      "phase3": "17e74938156d407daf0ac5d115b3a56a2ee35488"
+    },
+    {
+      "path": "scripts/seed-database.ts",
+      "remote": "7131d89e3a16f9ff47094086d0387fae29f2f804",
+      "snapshotBase": "7131d89e3a16f9ff47094086d0387fae29f2f804",
+      "phase3": "7131d89e3a16f9ff47094086d0387fae29f2f804"
+    },
+    {
+      "path": "scripts/validate_assets.py",
+      "remote": "378371fdb9b7df10b1ee4b58fa4e20646eee8157",
+      "snapshotBase": "378371fdb9b7df10b1ee4b58fa4e20646eee8157",
+      "phase3": "378371fdb9b7df10b1ee4b58fa4e20646eee8157"
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "remote": "81a079407999758f2f17085b243325423914eede",
+      "snapshotBase": "81a079407999758f2f17085b243325423914eede",
+      "phase3": "81a079407999758f2f17085b243325423914eede"
+    },
+    {
+      "path": "skills-lock.json",
+      "remote": "6ab53d8d6a5404d5dede338663678b152315c0ce",
+      "snapshotBase": "6ab53d8d6a5404d5dede338663678b152315c0ce",
+      "phase3": "6ab53d8d6a5404d5dede338663678b152315c0ce"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0628\u0635\u0631\u064a\u0629/\u0627\u0644\u0628\u0646\u0631\u0627\u062a/\u0645\u0643\u0627\u062d\u0644-01.jpg",
+      "remote": "4774082225105c3098d48b5fde0b1811c2a49c2b",
+      "snapshotBase": "4774082225105c3098d48b5fde0b1811c2a49c2b",
+      "phase3": "4774082225105c3098d48b5fde0b1811c2a49c2b"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0628\u064a\u0627\u0646\u0627\u062a/categories.json",
+      "remote": "4f019b514292c2525ff5f302f69261c50619de33",
+      "snapshotBase": "4f019b514292c2525ff5f302f69261c50619de33",
+      "phase3": "4f019b514292c2525ff5f302f69261c50619de33"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0628\u064a\u0627\u0646\u0627\u062a/image-manifest.csv",
+      "remote": "662a4d0bed109a56962559ffc16f9f49ea02cb68",
+      "snapshotBase": "662a4d0bed109a56962559ffc16f9f49ea02cb68",
+      "phase3": "662a4d0bed109a56962559ffc16f9f49ea02cb68"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0628\u064a\u0627\u0646\u0627\u062a/images.json",
+      "remote": "040c365f7f21892be8d18878f7b4f6ae6073f0d8",
+      "snapshotBase": "040c365f7f21892be8d18878f7b4f6ae6073f0d8",
+      "phase3": "040c365f7f21892be8d18878f7b4f6ae6073f0d8"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0628\u064a\u0627\u0646\u0627\u062a/products.csv",
+      "remote": "0c8f021ccbfa354f8c8783fbed952b7ea192ab26",
+      "snapshotBase": "0c8f021ccbfa354f8c8783fbed952b7ea192ab26",
+      "phase3": "0c8f021ccbfa354f8c8783fbed952b7ea192ab26"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u0628\u064a\u0627\u0646\u0627\u062a/products.json",
+      "remote": "a2c7ab3e48414a2d2bd605638ed74e10de865e45",
+      "snapshotBase": "a2c7ab3e48414a2d2bd605638ed74e10de865e45",
+      "phase3": "a2c7ab3e48414a2d2bd605638ed74e10de865e45"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u062a\u0642\u0627\u0631\u064a\u0631/duplicate-images.csv",
+      "remote": "2f93de1b3a8ec8758d3fe5015ce4e07ec77061d2",
+      "snapshotBase": "2f93de1b3a8ec8758d3fe5015ce4e07ec77061d2",
+      "phase3": "2f93de1b3a8ec8758d3fe5015ce4e07ec77061d2"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u062a\u0642\u0627\u0631\u064a\u0631/extraction-report.md",
+      "remote": "2920cf8c08586493162a029aabf9f4e78394b474",
+      "snapshotBase": "2920cf8c08586493162a029aabf9f4e78394b474",
+      "phase3": "2920cf8c08586493162a029aabf9f4e78394b474"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u062a\u0642\u0627\u0631\u064a\u0631/inaccessible-pages.csv",
+      "remote": "3302ac17399a45254b35daac8ea01005cd0db607",
+      "snapshotBase": "3302ac17399a45254b35daac8ea01005cd0db607",
+      "phase3": "3302ac17399a45254b35daac8ea01005cd0db607"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/\u062a\u0642\u0627\u0631\u064a\u0631/missing-images.csv",
+      "remote": "6dce56ffcfac8ea1b5bfa31728077d6e7c04f7ae",
+      "snapshotBase": "6dce56ffcfac8ea1b5bfa31728077d6e7c04f7ae",
+      "phase3": "6dce56ffcfac8ea1b5bfa31728077d6e7c04f7ae"
+    },
+    {
+      "path": "src/app/(entry)/layout.tsx",
+      "remote": "73b18446f92d3973d73f95ede94f6abde6bc94f5",
+      "snapshotBase": "73b18446f92d3973d73f95ede94f6abde6bc94f5",
+      "phase3": "73b18446f92d3973d73f95ede94f6abde6bc94f5"
+    },
+    {
+      "path": "src/app/(entry)/page.tsx",
+      "remote": "31ba9a544077e81fc529abafe4b8985b23c5b66f",
+      "snapshotBase": "31ba9a544077e81fc529abafe4b8985b23c5b66f",
+      "phase3": "31ba9a544077e81fc529abafe4b8985b23c5b66f"
+    },
+    {
+      "path": "src/app/[locale]/about/page.tsx",
+      "remote": "1cc3cbed4a77d3bdb62442b1e258138d7468e7c4",
+      "snapshotBase": "1cc3cbed4a77d3bdb62442b1e258138d7468e7c4",
+      "phase3": "1cc3cbed4a77d3bdb62442b1e258138d7468e7c4"
+    },
+    {
+      "path": "src/app/[locale]/collections/[id]/page.tsx",
+      "remote": "250713a4455c6abedbcbac3b5e812258d7f669a8",
+      "snapshotBase": "250713a4455c6abedbcbac3b5e812258d7f669a8",
+      "phase3": "250713a4455c6abedbcbac3b5e812258d7f669a8"
+    },
+    {
+      "path": "src/app/[locale]/collections/page.tsx",
+      "remote": "299323b23f2d47bf32248bdba10435f1a7faa56c",
+      "snapshotBase": "299323b23f2d47bf32248bdba10435f1a7faa56c",
+      "phase3": "299323b23f2d47bf32248bdba10435f1a7faa56c"
+    },
+    {
+      "path": "src/app/[locale]/contact/page.tsx",
+      "remote": "b379dab67d6ee9f440ef3a47073cace819ef34fa",
+      "snapshotBase": "b379dab67d6ee9f440ef3a47073cace819ef34fa",
+      "phase3": "b379dab67d6ee9f440ef3a47073cace819ef34fa"
+    },
+    {
+      "path": "src/app/[locale]/custom-orders/page.tsx",
+      "remote": "c497f3faf3d002248382feb379d85f4ef186aaad",
+      "snapshotBase": "c497f3faf3d002248382feb379d85f4ef186aaad",
+      "phase3": "c497f3faf3d002248382feb379d85f4ef186aaad"
+    },
+    {
+      "path": "src/app/[locale]/layout.tsx",
+      "remote": "8fead4ee7ebf09acb8b5bbb2739a93a288a7c7be",
+      "snapshotBase": "8fead4ee7ebf09acb8b5bbb2739a93a288a7c7be",
+      "phase3": "7e85abe741e1f612c5de83d6a2123331026675b9"
+    },
+    {
+      "path": "src/app/[locale]/loading.tsx",
+      "remote": "20c471a31a8fb772cff5dfecc2b5c0352fa191e0",
+      "snapshotBase": "20c471a31a8fb772cff5dfecc2b5c0352fa191e0",
+      "phase3": "20c471a31a8fb772cff5dfecc2b5c0352fa191e0"
+    },
+    {
+      "path": "src/app/[locale]/not-found.tsx",
+      "remote": "19741f9eff0ca822222989324fb37ad32ec3aa7d",
+      "snapshotBase": "19741f9eff0ca822222989324fb37ad32ec3aa7d",
+      "phase3": "19741f9eff0ca822222989324fb37ad32ec3aa7d"
+    },
+    {
+      "path": "src/app/[locale]/page.tsx",
+      "remote": "a3fa05c5a5a60233e62ddc93e8e616f39b8dae61",
+      "snapshotBase": "853b85ba44cf5a6ede6aa4073e2d77f7168596bc",
+      "phase3": "853b85ba44cf5a6ede6aa4073e2d77f7168596bc"
+    },
+    {
+      "path": "src/app/[locale]/policies/page.tsx",
+      "remote": "8ef99d43a3dabe96fb4567aaad03608958739be6",
+      "snapshotBase": "8ef99d43a3dabe96fb4567aaad03608958739be6",
+      "phase3": "8ef99d43a3dabe96fb4567aaad03608958739be6"
+    },
+    {
+      "path": "src/app/[locale]/products/[slug]/page.tsx",
+      "remote": "cdf4e750ac57121c015f656b49c5561b07552521",
+      "snapshotBase": "cdf4e750ac57121c015f656b49c5561b07552521",
+      "phase3": "df6de642c4deb4fff39cb1a52291ec82d4010c81"
+    },
+    {
+      "path": "src/app/[locale]/products/page.tsx",
+      "remote": "bbd48ceb8c7fa3ac85b30a7f752217ec8486dee6",
+      "snapshotBase": "bbd48ceb8c7fa3ac85b30a7f752217ec8486dee6",
+      "phase3": "bbd48ceb8c7fa3ac85b30a7f752217ec8486dee6"
+    },
+    {
+      "path": "src/app/[locale]/search/page.tsx",
+      "remote": "e4e71dc190764c3988aabec0acb107f95623169c",
+      "snapshotBase": "e4e71dc190764c3988aabec0acb107f95623169c",
+      "phase3": "e4e71dc190764c3988aabec0acb107f95623169c"
+    },
+    {
+      "path": "src/app/[locale]/wholesale/page.tsx",
+      "remote": "714300c2f114b979f84dd4aa6ce79c5185cb8d10",
+      "snapshotBase": "714300c2f114b979f84dd4aa6ce79c5185cb8d10",
+      "phase3": "714300c2f114b979f84dd4aa6ce79c5185cb8d10"
+    },
+    {
+      "path": "src/app/admin/actions.test.ts",
+      "remote": "fb59bf81042ad43f70ad8c7e4e6406c83196cba5",
+      "snapshotBase": "fb59bf81042ad43f70ad8c7e4e6406c83196cba5",
+      "phase3": "fb59bf81042ad43f70ad8c7e4e6406c83196cba5"
+    },
+    {
+      "path": "src/app/admin/actions.ts",
+      "remote": "5a18083bc4bf10c95019f15c60dbfe80af36aa73",
+      "snapshotBase": "f8bff56b15af09b528cbb2378a151faab7e2d0ae",
+      "phase3": "b0becff1cdb528a90afb6a98409bfdc09b35fe34"
+    },
+    {
+      "path": "src/app/admin/admin-frame.tsx",
+      "remote": "e2f5cff1b04dd2ce28ed11c5933f949d6faa5ca1",
+      "snapshotBase": "d94dba38dc8ed37d215d6dd0d6d48574512c8bb0",
+      "phase3": "e40d3ebca0f801a5fa2ebf26a47024cf5c46552e"
+    },
+    {
+      "path": "src/app/admin/admin.css",
+      "remote": "1a5bc2162d14904b6b8ceb717a158c6b7cb8cf75",
+      "snapshotBase": "8fa2b36bc90b2e5c91c050ced36695e39c77277c",
+      "phase3": "86b4b25987854bcbf25d94cf842e534232da8519"
+    },
+    {
+      "path": "src/app/admin/audit/page.tsx",
+      "remote": "d25f5db66c365b9cbe9e6a4e08857c9282fe89cc",
+      "snapshotBase": "d25f5db66c365b9cbe9e6a4e08857c9282fe89cc",
+      "phase3": "d25f5db66c365b9cbe9e6a4e08857c9282fe89cc"
+    },
+    {
+      "path": "src/app/admin/categories/page.tsx",
+      "remote": "22e4ccd94cca6a275741a38e733d9d4ed5c2e0e2",
+      "snapshotBase": "626c25ae3c6b8509d983e4771339cc11be9f39d9",
+      "phase3": "626c25ae3c6b8509d983e4771339cc11be9f39d9"
+    },
+    {
+      "path": "src/app/admin/inventory/page.tsx",
+      "remote": "ca354335d9be14ab61413c3e54ca951ad45ca09a",
+      "snapshotBase": "cbf1ec4273097b7b7ef118d9d653ee97db620a4d",
+      "phase3": "cbf1ec4273097b7b7ef118d9d653ee97db620a4d"
+    },
+    {
+      "path": "src/app/admin/layout.tsx",
+      "remote": "3a1c548a068f2c187a4c08ea8194b97024d9f904",
+      "snapshotBase": "3a1c548a068f2c187a4c08ea8194b97024d9f904",
+      "phase3": "3a1c548a068f2c187a4c08ea8194b97024d9f904"
+    },
+    {
+      "path": "src/app/admin/login/login-form.tsx",
+      "remote": "c2dc338a3b01467af05eb46b7054e8bdef9737e5",
+      "snapshotBase": "c2dc338a3b01467af05eb46b7054e8bdef9737e5",
+      "phase3": "c2dc338a3b01467af05eb46b7054e8bdef9737e5"
+    },
+    {
+      "path": "src/app/admin/login/page.tsx",
+      "remote": "0517073e53686b1f66c2d23af7fb40486ab39ef6",
+      "snapshotBase": "0517073e53686b1f66c2d23af7fb40486ab39ef6",
+      "phase3": "0517073e53686b1f66c2d23af7fb40486ab39ef6"
+    },
+    {
+      "path": "src/app/admin/logout-button.tsx",
+      "remote": "5dc2e42838d75928ad43819106c880fb6469d9d6",
+      "snapshotBase": "5dc2e42838d75928ad43819106c880fb6469d9d6",
+      "phase3": "5dc2e42838d75928ad43819106c880fb6469d9d6"
+    },
+    {
+      "path": "src/app/admin/page.tsx",
+      "remote": "967da72204630daa7de47264eee571e031c105ac",
+      "snapshotBase": "620a510b57bf30d082d478bbe22754f5ba29e129",
+      "phase3": "620a510b57bf30d082d478bbe22754f5ba29e129"
+    },
+    {
+      "path": "src/app/admin/password/page.tsx",
+      "remote": "907be880d227ab513d22bc38709a7f38779a620e",
+      "snapshotBase": "907be880d227ab513d22bc38709a7f38779a620e",
+      "phase3": "907be880d227ab513d22bc38709a7f38779a620e"
+    },
+    {
+      "path": "src/app/admin/password/password-form.tsx",
+      "remote": "207224f3f54ccb50dca37a6f71ebbc80eaac1322",
+      "snapshotBase": "207224f3f54ccb50dca37a6f71ebbc80eaac1322",
+      "phase3": "207224f3f54ccb50dca37a6f71ebbc80eaac1322"
+    },
+    {
+      "path": "src/app/admin/products/[id]/page.tsx",
+      "remote": "a3c2fab5c6a6e6b2a71f884ce226ee3927c060c3",
+      "snapshotBase": "a3c2fab5c6a6e6b2a71f884ce226ee3927c060c3",
+      "phase3": "a3c2fab5c6a6e6b2a71f884ce226ee3927c060c3"
+    },
+    {
+      "path": "src/app/admin/products/media-picker.tsx",
+      "remote": "6dbd4e8c55bf45edafc58664751f6b1e1796f1bb",
+      "snapshotBase": "a069daa69bef2b1e31872c55fd996f6802f59aea",
+      "phase3": "a069daa69bef2b1e31872c55fd996f6802f59aea"
+    },
+    {
+      "path": "src/app/admin/products/new/page.tsx",
+      "remote": "52da8b5adce9581afb0979dced1986e86f5c44dd",
+      "snapshotBase": "52da8b5adce9581afb0979dced1986e86f5c44dd",
+      "phase3": "52da8b5adce9581afb0979dced1986e86f5c44dd"
+    },
+    {
+      "path": "src/app/admin/products/page.tsx",
+      "remote": "b9201c72abfb2e210d53b18b835749331388c6eb",
+      "snapshotBase": "f24d5db111e5b4bbb6cee2788742febd47f76f8e",
+      "phase3": "f24d5db111e5b4bbb6cee2788742febd47f76f8e"
+    },
+    {
+      "path": "src/app/admin/products/product-form.tsx",
+      "remote": "cc1cf2eaec54144699f06edfd5d3094f3d517b93",
+      "snapshotBase": "954b2a130d7ed8bc140b1639b9934e5b18ed01b5",
+      "phase3": "954b2a130d7ed8bc140b1639b9934e5b18ed01b5"
+    },
+    {
+      "path": "src/app/admin/products/review/page.tsx",
+      "remote": "adc52de73373527d9bf0312a37518a09b8335bed",
+      "snapshotBase": "6a3271b76be3932f8035264a14c06c942112e887",
+      "phase3": "6a3271b76be3932f8035264a14c06c942112e887"
+    },
+    {
+      "path": "src/app/admin/products/variant-editor.tsx",
+      "remote": "107bed80144d9a36617fce646848bfa356177057",
+      "snapshotBase": "663d97050d7f1c649c89cd0c5f8d167a68de6772",
+      "phase3": "663d97050d7f1c649c89cd0c5f8d167a68de6772"
+    },
+    {
+      "path": "src/app/admin/settings/page.tsx",
+      "remote": "d7c784ca7611a66a5353c58be1c53c4bd6e8daa3",
+      "snapshotBase": "d7c784ca7611a66a5353c58be1c53c4bd6e8daa3",
+      "phase3": "d7c784ca7611a66a5353c58be1c53c4bd6e8daa3"
+    },
+    {
+      "path": "src/app/admin/staff/page.tsx",
+      "remote": "e893e9ce310515f0c78f583d7fabd78af8be5350",
+      "snapshotBase": "e893e9ce310515f0c78f583d7fabd78af8be5350",
+      "phase3": "e893e9ce310515f0c78f583d7fabd78af8be5350"
+    },
+    {
+      "path": "src/app/api/admin/media/finalize/route.ts",
+      "remote": "1a961e119224f01c11bdedb04a188e17c08dfb7d",
+      "snapshotBase": "1a961e119224f01c11bdedb04a188e17c08dfb7d",
+      "phase3": "1a961e119224f01c11bdedb04a188e17c08dfb7d"
+    },
+    {
+      "path": "src/app/api/admin/media/upload-url/route.ts",
+      "remote": "b25e0d89fa0b5c02f61771a4a9476c24096f7c41",
+      "snapshotBase": "bae2c797faa0149e92faf09eb9a31c12a5bdf9eb",
+      "phase3": "bae2c797faa0149e92faf09eb9a31c12a5bdf9eb"
+    },
+    {
+      "path": "src/app/api/auth/[...all]/route.ts",
+      "remote": "085fa770c4d7acdad83ae1d12c92c9a3086f50ad",
+      "snapshotBase": "085fa770c4d7acdad83ae1d12c92c9a3086f50ad",
+      "phase3": "085fa770c4d7acdad83ae1d12c92c9a3086f50ad"
+    },
+    {
+      "path": "src/app/assets/[...path]/route.ts",
+      "remote": "f4546976799ceb1aa9a08ec3ff9485d6af0a18a0",
+      "snapshotBase": "f4546976799ceb1aa9a08ec3ff9485d6af0a18a0",
+      "phase3": "f4546976799ceb1aa9a08ec3ff9485d6af0a18a0"
+    },
+    {
+      "path": "src/app/fonts/OFL-CormorantGaramond.txt",
+      "remote": "507d70f4565352dbfcf2dfc9b42eb092b57c0be8",
+      "snapshotBase": "507d70f4565352dbfcf2dfc9b42eb092b57c0be8",
+      "phase3": "507d70f4565352dbfcf2dfc9b42eb092b57c0be8"
+    },
+    {
+      "path": "src/app/fonts/OFL-NotoSansArabic.txt",
+      "remote": "14c589f6384505ede3f8e52627d397513af3662d",
+      "snapshotBase": "14c589f6384505ede3f8e52627d397513af3662d",
+      "phase3": "14c589f6384505ede3f8e52627d397513af3662d"
+    },
+    {
+      "path": "src/app/fonts/cormorant.woff2",
+      "remote": "f0a2695c4f7b473f248222927462b077ced57066",
+      "snapshotBase": "f0a2695c4f7b473f248222927462b077ced57066",
+      "phase3": "f0a2695c4f7b473f248222927462b077ced57066"
+    },
+    {
+      "path": "src/app/fonts/noto-arabic.woff2",
+      "remote": "c3620eba7b0b3f937dec63e9b23b3813a06274a6",
+      "snapshotBase": "c3620eba7b0b3f937dec63e9b23b3813a06274a6",
+      "phase3": "c3620eba7b0b3f937dec63e9b23b3813a06274a6"
+    },
+    {
+      "path": "src/app/globals.css",
+      "remote": "c2c5ed20f15740fdd70ec1528468e41d6757456e",
+      "snapshotBase": "c2c5ed20f15740fdd70ec1528468e41d6757456e",
+      "phase3": "c2c5ed20f15740fdd70ec1528468e41d6757456e"
+    },
+    {
+      "path": "src/app/icon.svg",
+      "remote": "8883b51cd7bb84e98ee283e226c4d9afc158a302",
+      "snapshotBase": "8883b51cd7bb84e98ee283e226c4d9afc158a302",
+      "phase3": "8883b51cd7bb84e98ee283e226c4d9afc158a302"
+    },
+    {
+      "path": "src/app/robots.txt/route.ts",
+      "remote": "a99b477478a5b1884485ec224a1109ef5a2c6855",
+      "snapshotBase": "a99b477478a5b1884485ec224a1109ef5a2c6855",
+      "phase3": "1eced6c7960fd26249d5471d875616c4250acde1"
+    },
+    {
+      "path": "src/app/sitemap.ts",
+      "remote": "c95ce5d9a3c85594c41a46a4a761dc0277820c15",
+      "snapshotBase": "c95ce5d9a3c85594c41a46a4a761dc0277820c15",
+      "phase3": "c95ce5d9a3c85594c41a46a4a761dc0277820c15"
+    },
+    {
+      "path": "src/components/catalog-browser.tsx",
+      "remote": "478399c3837b9d86fac3fc50a08818707a46e0bb",
+      "snapshotBase": "478399c3837b9d86fac3fc50a08818707a46e0bb",
+      "phase3": "478399c3837b9d86fac3fc50a08818707a46e0bb"
+    },
+    {
+      "path": "src/components/header-controls.tsx",
+      "remote": "d98cb57d7812121a6d81903414c608f2531b4c3d",
+      "snapshotBase": "d98cb57d7812121a6d81903414c608f2531b4c3d",
+      "phase3": "27b30fe620a9cc5b5ebdd1f658c95e34f580ca85"
+    },
+    {
+      "path": "src/components/hero-showcase.tsx",
+      "remote": "1f96cdbb53b971b16740cb6490c9197a3e840f28",
+      "snapshotBase": "1f96cdbb53b971b16740cb6490c9197a3e840f28",
+      "phase3": "1f96cdbb53b971b16740cb6490c9197a3e840f28"
+    },
+    {
+      "path": "src/components/icon.tsx",
+      "remote": "d5b9e3c876a3c618ea4903fe42361359e26386bf",
+      "snapshotBase": "d5b9e3c876a3c618ea4903fe42361359e26386bf",
+      "phase3": "d5b9e3c876a3c618ea4903fe42361359e26386bf"
+    },
+    {
+      "path": "src/components/product-gallery.tsx",
+      "remote": "5eecef6d3badcf6e8d0f2987b0b44f6dfed67a14",
+      "snapshotBase": "ab3b814ab94b3b970e814a28cadc017ef340dbf7",
+      "phase3": "ab3b814ab94b3b970e814a28cadc017ef340dbf7"
+    },
+    {
+      "path": "src/components/site-footer.tsx",
+      "remote": "2b7d59f805559427fd21f07fec4c1da316c492cc",
+      "snapshotBase": "2b7d59f805559427fd21f07fec4c1da316c492cc",
+      "phase3": "18c54dd8ea3a240f18f34881ca5b2cd15c42bee1"
+    },
+    {
+      "path": "src/components/site-header.tsx",
+      "remote": "d2fc8ea2dd9d0aa73ed444edf0b0c6eddf3bc317",
+      "snapshotBase": "d2fc8ea2dd9d0aa73ed444edf0b0c6eddf3bc317",
+      "phase3": "2eeabdcb492ff20fdc4b1371be9b0cae2e2f8553"
+    },
+    {
+      "path": "src/components/storefront-ui.tsx",
+      "remote": "c0b0569562f85a31e0eadf71876988228688530f",
+      "snapshotBase": "c0b0569562f85a31e0eadf71876988228688530f",
+      "phase3": "c0b0569562f85a31e0eadf71876988228688530f"
+    },
+    {
+      "path": "src/data/migration-manifest.json",
+      "remote": "ee40719fa3fb496bbd87b95e4e19771143f370c1",
+      "snapshotBase": "ee40719fa3fb496bbd87b95e4e19771143f370c1",
+      "phase3": "ee40719fa3fb496bbd87b95e4e19771143f370c1"
+    },
+    {
+      "path": "src/lib/admin/permissions.test.ts",
+      "remote": "d9daf95225ec6ce48181e2e2913452fee829b5e9",
+      "snapshotBase": "d9daf95225ec6ce48181e2e2913452fee829b5e9",
+      "phase3": "d9daf95225ec6ce48181e2e2913452fee829b5e9"
+    },
+    {
+      "path": "src/lib/admin/permissions.ts",
+      "remote": "cf3668ad37ffb812a08a9a056d26e5554f4430d7",
+      "snapshotBase": "cf3668ad37ffb812a08a9a056d26e5554f4430d7",
+      "phase3": "cf3668ad37ffb812a08a9a056d26e5554f4430d7"
+    },
+    {
+      "path": "src/lib/admin/product-publication.test.ts",
+      "remote": "88208ed92960ad624f1c1a4cb16128c992ee0262",
+      "snapshotBase": "88208ed92960ad624f1c1a4cb16128c992ee0262",
+      "phase3": "88208ed92960ad624f1c1a4cb16128c992ee0262"
+    },
+    {
+      "path": "src/lib/admin/product-publication.ts",
+      "remote": "3b43d19ddd82e67ea042ec4d65d0ec88d7b3d06b",
+      "snapshotBase": "3b43d19ddd82e67ea042ec4d65d0ec88d7b3d06b",
+      "phase3": "3b43d19ddd82e67ea042ec4d65d0ec88d7b3d06b"
+    },
+    {
+      "path": "src/lib/asset-url.ts",
+      "remote": "3d5baea2e18cd5b3f5d62def1a7576a102393fa9",
+      "snapshotBase": "f5dcf638376ae3902464d95dbb5c82ee49081bb0",
+      "phase3": "f5dcf638376ae3902464d95dbb5c82ee49081bb0"
+    },
+    {
+      "path": "src/lib/catalog-import.test.ts",
+      "remote": "8f2885e57536b1094a00e451fd9c0118e9546972",
+      "snapshotBase": "8f2885e57536b1094a00e451fd9c0118e9546972",
+      "phase3": "8f2885e57536b1094a00e451fd9c0118e9546972"
+    },
+    {
+      "path": "src/lib/catalog-import.ts",
+      "remote": "16925f012281ea17de37dd500c91a29ce1f1447f",
+      "snapshotBase": "16925f012281ea17de37dd500c91a29ce1f1447f",
+      "phase3": "16925f012281ea17de37dd500c91a29ce1f1447f"
+    },
+    {
+      "path": "src/lib/catalog.test.ts",
+      "remote": "2b317d4f64a763ba56a328328860a2c2cbc04be6",
+      "snapshotBase": "2b317d4f64a763ba56a328328860a2c2cbc04be6",
+      "phase3": "2b317d4f64a763ba56a328328860a2c2cbc04be6"
+    },
+    {
+      "path": "src/lib/catalog.ts",
+      "remote": "561eca9445b7fecd3f476a21bfccc564ac1fc28a",
+      "snapshotBase": "561eca9445b7fecd3f476a21bfccc564ac1fc28a",
+      "phase3": "561eca9445b7fecd3f476a21bfccc564ac1fc28a"
+    },
+    {
+      "path": "src/lib/client/auth-client.ts",
+      "remote": "a74b84f943645e1a0221e292584931946762b4c2",
+      "snapshotBase": "a74b84f943645e1a0221e292584931946762b4c2",
+      "phase3": "a74b84f943645e1a0221e292584931946762b4c2"
+    },
+    {
+      "path": "src/lib/i18n.ts",
+      "remote": "598043668498cbcafd1d95ba83e7a6e39dde8e6f",
+      "snapshotBase": "598043668498cbcafd1d95ba83e7a6e39dde8e6f",
+      "phase3": "598043668498cbcafd1d95ba83e7a6e39dde8e6f"
+    },
+    {
+      "path": "src/lib/merchandising.ts",
+      "remote": "178d848be19389ee06fa417e447ef3f788dd789c",
+      "snapshotBase": "178d848be19389ee06fa417e447ef3f788dd789c",
+      "phase3": "178d848be19389ee06fa417e447ef3f788dd789c"
+    },
+    {
+      "path": "src/lib/money.test.ts",
+      "remote": "1e0be58fc2ca9fba09a7b16602579fb02179473e",
+      "snapshotBase": "1e0be58fc2ca9fba09a7b16602579fb02179473e",
+      "phase3": "1e0be58fc2ca9fba09a7b16602579fb02179473e"
+    },
+    {
+      "path": "src/lib/money.ts",
+      "remote": "305cfa2b76fca9cc28ebbbbb48dcbfd20a087c8f",
+      "snapshotBase": "305cfa2b76fca9cc28ebbbbb48dcbfd20a087c8f",
+      "phase3": "305cfa2b76fca9cc28ebbbbb48dcbfd20a087c8f"
+    },
+    {
+      "path": "src/lib/server/admin-page.ts",
+      "remote": "5d5d77e6fbc4aec9134c7e16389aad7da7f80d3c",
+      "snapshotBase": "5d5d77e6fbc4aec9134c7e16389aad7da7f80d3c",
+      "phase3": "5d5d77e6fbc4aec9134c7e16389aad7da7f80d3c"
+    },
+    {
+      "path": "src/lib/server/admin-session.test.ts",
+      "remote": "48d1bd0fd576b004ac0e4bd57d206703cd81c4f7",
+      "snapshotBase": "48d1bd0fd576b004ac0e4bd57d206703cd81c4f7",
+      "phase3": "48d1bd0fd576b004ac0e4bd57d206703cd81c4f7"
+    },
+    {
+      "path": "src/lib/server/admin-session.ts",
+      "remote": "bdbb630c3fffd317c292de0ee678cb10339400c6",
+      "snapshotBase": "bdbb630c3fffd317c292de0ee678cb10339400c6",
+      "phase3": "bdbb630c3fffd317c292de0ee678cb10339400c6"
+    },
+    {
+      "path": "src/lib/server/auth.ts",
+      "remote": "dcffa7931c45bb0098edbcad300dbf10ccad4d93",
+      "snapshotBase": "dcffa7931c45bb0098edbcad300dbf10ccad4d93",
+      "phase3": "dcffa7931c45bb0098edbcad300dbf10ccad4d93"
+    },
+    {
+      "path": "src/lib/server/database-engine.test.ts",
+      "remote": "65f89b3b669b32fd98ec5340779866ef52bcd24c",
+      "snapshotBase": "65f89b3b669b32fd98ec5340779866ef52bcd24c",
+      "phase3": "65f89b3b669b32fd98ec5340779866ef52bcd24c"
+    },
+    {
+      "path": "src/lib/server/database-engine.ts",
+      "remote": "988a451a8955a9c4c92d6ce8b1ba46bf349b48d8",
+      "snapshotBase": "988a451a8955a9c4c92d6ce8b1ba46bf349b48d8",
+      "phase3": "988a451a8955a9c4c92d6ce8b1ba46bf349b48d8"
+    },
+    {
+      "path": "src/lib/server/database-target.test.ts",
+      "remote": "fc0c526e597445157f5484f838c654612bd280ce",
+      "snapshotBase": "fc0c526e597445157f5484f838c654612bd280ce",
+      "phase3": "fc0c526e597445157f5484f838c654612bd280ce"
+    },
+    {
+      "path": "src/lib/server/database.ts",
+      "remote": "c1f3c4bb58f0215812d73788415c4fafd28612f5",
+      "snapshotBase": "1e9382ad5944c16ea582d96205d1766f50569a22",
+      "phase3": "1e9382ad5944c16ea582d96205d1766f50569a22"
+    },
+    {
+      "path": "src/lib/server/media-storage.test.ts",
+      "remote": "221afb993b4dfb0f98b52728c763d8d650f8580d",
+      "snapshotBase": "221afb993b4dfb0f98b52728c763d8d650f8580d",
+      "phase3": "221afb993b4dfb0f98b52728c763d8d650f8580d"
+    },
+    {
+      "path": "src/lib/server/media-storage.ts",
+      "remote": "64a020c97a7fc6ad3c9bbeeebc365867a1c79674",
+      "snapshotBase": "485c88a5f73fa03e95638acd43cb4d411f753bd8",
+      "phase3": "485c88a5f73fa03e95638acd43cb4d411f753bd8"
+    },
+    {
+      "path": "src/lib/server/migration-approval.test.ts",
+      "remote": "153d755c787301fb175087a6f1dbc13733cef38d",
+      "snapshotBase": "153d755c787301fb175087a6f1dbc13733cef38d",
+      "phase3": "153d755c787301fb175087a6f1dbc13733cef38d"
+    },
+    {
+      "path": "src/lib/server/mysql.integration.test.ts",
+      "remote": "943cfdc7acf89e937854502d0833df2bc96aaa81",
+      "snapshotBase": "e69916739359dff6cd661dcbc500b8a1f1386cb8",
+      "phase3": "e69916739359dff6cd661dcbc500b8a1f1386cb8"
+    },
+    {
+      "path": "src/lib/server/request-origin.test.ts",
+      "remote": "7403fb590a6a87ea7d0bd70977fb3a8967695ec4",
+      "snapshotBase": "7403fb590a6a87ea7d0bd70977fb3a8967695ec4",
+      "phase3": "7403fb590a6a87ea7d0bd70977fb3a8967695ec4"
+    },
+    {
+      "path": "src/lib/server/request-origin.ts",
+      "remote": "10e183c36a4c6213434e8fe6db0dbd064e98ddaa",
+      "snapshotBase": "10e183c36a4c6213434e8fe6db0dbd064e98ddaa",
+      "phase3": "10e183c36a4c6213434e8fe6db0dbd064e98ddaa"
+    },
+    {
+      "path": "src/lib/server/staging-page-access.ts",
+      "remote": "717b30bfb41f069d9bd1551d45036c842f6352f3",
+      "snapshotBase": "717b30bfb41f069d9bd1551d45036c842f6352f3",
+      "phase3": "717b30bfb41f069d9bd1551d45036c842f6352f3"
+    },
+    {
+      "path": "src/lib/server/store-settings.ts",
+      "remote": "e333c275681fa5ce080c3818a8bab118271c8c88",
+      "snapshotBase": "e333c275681fa5ce080c3818a8bab118271c8c88",
+      "phase3": "e333c275681fa5ce080c3818a8bab118271c8c88"
+    },
+    {
+      "path": "src/lib/server/storefront-catalog.ts",
+      "remote": "ab440f7c2e6296cf81fd7fa8337b5c25bf8821c0",
+      "snapshotBase": "ab440f7c2e6296cf81fd7fa8337b5c25bf8821c0",
+      "phase3": "ab440f7c2e6296cf81fd7fa8337b5c25bf8821c0"
+    },
+    {
+      "path": "src/lib/site-config.ts",
+      "remote": "7f9384ec651530190c74d9505bb5590f41ea9629",
+      "snapshotBase": "7f9384ec651530190c74d9505bb5590f41ea9629",
+      "phase3": "7f9384ec651530190c74d9505bb5590f41ea9629"
+    },
+    {
+      "path": "src/lib/staging-access.test.ts",
+      "remote": "7a0a2b8b460ea81f8488b2081a201aa67bde34cb",
+      "snapshotBase": "7a0a2b8b460ea81f8488b2081a201aa67bde34cb",
+      "phase3": "7a0a2b8b460ea81f8488b2081a201aa67bde34cb"
+    },
+    {
+      "path": "src/lib/staging-access.ts",
+      "remote": "282b60bc7ac6869a51156551da0a46978b633afc",
+      "snapshotBase": "282b60bc7ac6869a51156551da0a46978b633afc",
+      "phase3": "282b60bc7ac6869a51156551da0a46978b633afc"
+    },
+    {
+      "path": "src/lib/types.ts",
+      "remote": "23f417b84dcce82033d87593b428cca453131484",
+      "snapshotBase": "23f417b84dcce82033d87593b428cca453131484",
+      "phase3": "23f417b84dcce82033d87593b428cca453131484"
+    },
+    {
+      "path": "src/proxy.ts",
+      "remote": "3e619649543c38c8f74424b420eb549ec56cfdbb",
+      "snapshotBase": "3e619649543c38c8f74424b420eb549ec56cfdbb",
+      "phase3": "3e619649543c38c8f74424b420eb549ec56cfdbb"
+    },
+    {
+      "path": "src/test/server-only.ts",
+      "remote": "fc5bda409b54fd151d14744b88547f245df8d538",
+      "snapshotBase": "fc5bda409b54fd151d14744b88547f245df8d538",
+      "phase3": "fc5bda409b54fd151d14744b88547f245df8d538"
+    },
+    {
+      "path": "tsconfig.json",
+      "remote": "d7aeda13707527154d3c797ee99ccc9ea5ae7732",
+      "snapshotBase": "c1a1df52b3dc093fdb4562132f744451b423f59b",
+      "phase3": "12b335f55356d5b3b28feabccde7abced920d5cd"
+    },
+    {
+      "path": "vitest.config.mts",
+      "remote": "ac98093a8eb6fa8ea222010641f1f43509924cc5",
+      "snapshotBase": "3f54ea34da9b18ed2cd606b74ca6fb9fe88f1236",
+      "phase3": "3f54ea34da9b18ed2cd606b74ca6fb9fe88f1236"
+    }
+  ],
+  "remoteVsSnapshot": [
+    ".gitignore",
+    "README.md",
+    "docs/owner-dashboard.md",
+    "docs/phase-2-setup.md",
+    "eslint.config.mjs",
+    "next-env.d.ts",
+    "next.config.mjs",
+    "scripts/deploy-migrations.mjs",
+    "scripts/owner-bootstrap-secret.test.ts",
+    "scripts/owner-bootstrap-secret.ts",
+    "src/app/[locale]/page.tsx",
+    "src/app/admin/actions.ts",
+    "src/app/admin/admin-frame.tsx",
+    "src/app/admin/admin.css",
+    "src/app/admin/categories/page.tsx",
+    "src/app/admin/inventory/page.tsx",
+    "src/app/admin/page.tsx",
+    "src/app/admin/products/media-picker.tsx",
+    "src/app/admin/products/page.tsx",
+    "src/app/admin/products/product-form.tsx",
+    "src/app/admin/products/review/page.tsx",
+    "src/app/admin/products/variant-editor.tsx",
+    "src/app/api/admin/media/upload-url/route.ts",
+    "src/components/product-gallery.tsx",
+    "src/lib/asset-url.ts",
+    "src/lib/server/database.ts",
+    "src/lib/server/media-storage.ts",
+    "src/lib/server/mysql.integration.test.ts",
+    "tsconfig.json",
+    "vitest.config.mts"
+  ],
+  "remoteMissingLocally": [
+    "scripts/deploy-migrations.mjs"
+  ],
+  "remoteVsPhase3": [
+    ".gitignore",
+    "README.md",
+    "docs/owner-dashboard.md",
+    "docs/phase-2-setup.md",
+    "eslint.config.mjs",
+    "next-env.d.ts",
+    "next.config.mjs",
+    "package.json",
+    "prisma/schema.prisma",
+    "scripts/deploy-migrations.mjs",
+    "scripts/deploy-migrations.ts",
+    "scripts/migrate-dev.mjs",
+    "scripts/owner-bootstrap-secret.test.ts",
+    "scripts/owner-bootstrap-secret.ts",
+    "src/app/[locale]/layout.tsx",
+    "src/app/[locale]/page.tsx",
+    "src/app/[locale]/products/[slug]/page.tsx",
+    "src/app/admin/actions.ts",
+    "src/app/admin/admin-frame.tsx",
+    "src/app/admin/admin.css",
+    "src/app/admin/categories/page.tsx",
+    "src/app/admin/inventory/page.tsx",
+    "src/app/admin/page.tsx",
+    "src/app/admin/products/media-picker.tsx",
+    "src/app/admin/products/page.tsx",
+    "src/app/admin/products/product-form.tsx",
+    "src/app/admin/products/review/page.tsx",
+    "src/app/admin/products/variant-editor.tsx",
+    "src/app/api/admin/media/upload-url/route.ts",
+    "src/app/robots.txt/route.ts",
+    "src/components/header-controls.tsx",
+    "src/components/product-gallery.tsx",
+    "src/components/site-footer.tsx",
+    "src/components/site-header.tsx",
+    "src/lib/asset-url.ts",
+    "src/lib/server/database.ts",
+    "src/lib/server/media-storage.ts",
+    "src/lib/server/mysql.integration.test.ts",
+    "tsconfig.json",
+    "vitest.config.mts"
+  ]
+}

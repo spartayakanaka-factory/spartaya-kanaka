@@ -25,14 +25,15 @@
     "db:preflight:hostinger": "tsx scripts/preflight-hostinger-phase2.ts",
     "db:seed": "tsx scripts/seed-database.ts",
     "admin:bootstrap": "tsx scripts/bootstrap-owner.ts",
-    "catalog:import": "tsx scripts/import-legacy-catalog.ts"
+    "catalog:import": "tsx scripts/import-legacy-catalog.ts",
+    "phase3": "node scripts/phase3.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1156.0",
     "@aws-sdk/s3-request-presigner": "3.1156.0",
-    "@swc/helpers": "0.5.23",
     "@prisma/adapter-mariadb": "7.10.1",
     "@prisma/client": "7.10.1",
+    "@swc/helpers": "0.5.23",
     "better-auth": "1.7.14",
     "dotenv": "18.0.9",
     "mariadb": "3.5.4",
@@ -50,8 +51,10 @@
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "axe-core": "4.14.0",
     "eslint": "10.13.0",
     "eslint-config-next": "16.4.3",
+    "playwright": "1.62.1",
     "prettier": "3.9.10",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3",

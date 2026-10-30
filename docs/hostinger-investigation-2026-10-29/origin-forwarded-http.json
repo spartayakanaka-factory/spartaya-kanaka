@@ -1,0 +1,34 @@
+[
+  {
+    "case": "origin-forwarded-home",
+    "path": "/",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:20:42 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/?audit=forwarded-origin\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "origin-forwarded-missing",
+    "path": "/nonexistent-hostinger-audit-20261029",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:20:42 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/nonexistent-hostinger-audit-20261029?audit=forwarded-origin\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "origin-forwarded-robots",
+    "path": "/robots.txt",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:20:42 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/robots.txt?audit=forwarded-origin\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "origin-forwarded-admin",
+    "path": "/admin",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:20:42 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/admin?audit=forwarded-origin\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  }
+]

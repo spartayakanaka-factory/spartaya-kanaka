@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { spawnSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertSafeDatabaseTarget } from "./database-target";
@@ -14,6 +15,9 @@ const argumentsList = process.argv.slice(2);
 const hostingerTestTarget = process.env.DATABASE_TARGET === "hostinger-phase2-test";
 
 async function main() {
+  if (existsSync(path.join(root,"prisma/migrations/20261029143000_phase3_local_commerce"))) {
+    throw new Error("Phase 3 promotion is blocked. Use scripts/phase3 migrate for the reviewed disposable-only preflight.");
+  }
   if (hostingerTestTarget) {
     requireHostingerMigrationApproval(argumentsList);
     assertSafeDatabaseTarget({ allowHostingerPhase2Test: true });

@@ -8,6 +8,9 @@ export default defineConfig([
   globalIgnores([
     ".next/**",
     ".next-phase2/**",
+    ".next-local/**",
+    ".next-phase3/**",
+    ".local/**",
     "out/**",
     "build/**",
     "coverage/**",

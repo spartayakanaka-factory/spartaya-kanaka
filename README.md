@@ -1,3 +1,5 @@
+> Current isolated Phase 3 work is documented in [the local guide](docs/phase3/README.md) and [independent audit](docs/phase3/independent-audit/report.md). Historical Phase 1/2 descriptions below are not current feature-status claims. Production and hosted commerce remain disabled.
+
 # spartaya-kanaka
 
 Factory website
@@ -25,7 +27,7 @@ Useful commands:
 - Product and verified category browsing, local Arabic search, product detail galleries, About, wholesale, custom manufacturing, and contact pages.
 - Source product prices are retained in the catalog adapter but are never rendered. Every imported product is explicitly browse-only.
 - Original images are streamed from the preserved **sprtaya-kanaka-assets** folder through an allow-listed image route.
-- No database or staff credentials are configured in this workspace; checkout, payment, and customer accounts are not implemented. The Phase 2 admin requires the setup described below.
+- The isolated local Phase 2 environment now uses MariaDB and private synthetic staff credentials. Checkout, payment, and customer accounts are not implemented. See [local setup and acceptance](docs/phase2-local/README.md).
 
 ## Project notes
 
@@ -42,7 +44,7 @@ Useful commands:
 
 The asset extraction report and original manifests remain in **sprtaya-kanaka-assets**. The app does not edit that archive.
 
-The Next.js application root is this repository root. The original product-photo directory is preserved locally and excluded from Git because it is about 319 MiB; a fresh GitHub checkout therefore needs the approved media package or storage configured before product photography can be served. This source branch is for Hostinger framework detection and review; it has not been deployed.
+The Next.js application root is this repository root. The original product-photo directory is preserved locally and excluded from Git because it is about 319 MiB; a fresh GitHub checkout therefore needs the approved media package or storage configured before product photography can be served. Staging deployment history is documented separately; the local Phase 2 procedure does not deploy or alter a hosted app.
 
 ## Phase 1 visual redesign
 
@@ -54,6 +56,14 @@ See [the Phase 1 redesign report](docs/phase-1-redesign-report.md) for the skill
 
 ## Phase 2 admin and catalog foundation
 
-Phase 2 adds a MySQL/MariaDB schema and migration, an Arabic role-guarded admin console, Better Auth staff sign-in, products/categories/variants, inventory ledger, settings and audit records, a draft-only legacy importer, and an S3-compatible media upload path. No database, staff credentials, or media bucket is configured in this workspace. The local catalog remains the default until an owner provisions and verifies infrastructure and reviews imported records.
+Phase 2 adds the MySQL/MariaDB schema and two migrations, an Arabic role-guarded admin console, Better Auth staff sign-in, products/categories/variants, inventory ledger, settings and audit records, a draft-only legacy importer, and an S3-compatible media upload path. The isolated local runner selects MariaDB; the standard preview still defaults to the archive catalog. See [the local development guide](docs/phase2-local/README.md) for private local services and [the latest acceptance report](docs/phase2-local/acceptance.md) for executed evidence. Earlier reports retain their historical test results.
 
 There is still no checkout, payment, customer account, production deployment, or Phase 3 feature. Follow [the Phase 2 setup guide](docs/phase-2-setup.md); see [PHASE_2_REPORT.md](PHASE_2_REPORT.md) for actual validation and remaining blockers.
+
+## Phase 3 local implementation
+
+Phase 3 now implements customer identity, carts, checkout, reservations, local mock/manual payments, refunds and order operations in an isolated disposable environment. See the [local guide](docs/phase3/README.md), [implementation acceptance](docs/phase3/acceptance.md), and [independent audit](docs/phase3/independent-audit/report.md). Merchant policy, persistent database promotion, live providers and deployment remain gated. The architecture and owner-decision documents retain earlier planning recommendations, not new financial-policy approvals.
+
+## Reconciled Phase 3 integration candidate
+
+This isolated local candidate descends from canonical staging commit `cea867a0df48d0aa145613b0d491b1a779b4ee3d`, retaining its hosting repairs. See the [integration report](docs/phase3/integration/report.md), [30-file ledger](docs/phase3/integration/reconciliation-ledger.md), [merchant decisions](docs/phase3/integration/merchant-decisions.md), and [staging checklist](docs/phase3/integration/staging-checklist.md). It is not pushed or deployed; persistent migrations and hosted commerce remain blocked. Earlier local/audit reports describe their original source snapshots.

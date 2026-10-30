@@ -1,0 +1,50 @@
+[
+  {
+    "case": "origin-http-home",
+    "path": "/",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:19:26 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/?audit=protocol-test\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "origin-http-robots",
+    "path": "/robots.txt",
+    "result": "301 795 62.72.37.195",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nConnection: Keep-Alive\nKeep-Alive: timeout=5, max=100\nContent-Type: text/html\nContent-Length: 795\nDate: Wed, 28 Oct 2026 22:19:27 GMT\nServer: LiteSpeed\nLocation: https://bisque-pheasant-330767.hostingersite.com/robots.txt?audit=protocol-test\nplatform: hostinger\npanel: hpanel\nContent-Security-Policy: upgrade-insecure-requests\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "cdn-http-home",
+    "path": "/",
+    "result": "301 795 92.113.16.133",
+    "error": "",
+    "headers": "HTTP/1.1 301 Moved Permanently\nDate: Wed, 28 Oct 2026 22:19:27 GMT\nContent-Type: text/html\nTransfer-Encoding: chunked\nConnection: keep-alive\nlocation: https://bisque-pheasant-330767.hostingersite.com/?audit=protocol-test\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nServer: hcdn\nx-hcdn-request-id: e3e915cf78b744ba6a3a59270b28ad41-fra-edge8\nx-hcdn-cache-status: MISS\nx-hcdn-upstream-rt: 0.010\n\n",
+    "excerpt": "<!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 301 Moved Permanently\n</title><style>@media (prefers-"
+  },
+  {
+    "case": "cdn-http-robots",
+    "path": "/robots.txt",
+    "result": "200 58 92.113.23.141",
+    "error": "",
+    "headers": "HTTP/1.1 200 OK\nDate: Wed, 28 Oct 2026 22:19:27 GMT\nContent-Type: text/plain\nContent-Length: 58\nConnection: keep-alive\nVary: Accept-Encoding\nServer: hcdn\nx-hcdn-request-id: f0d3db10c7b62d3b4732a1ff23557da7-fra-edge10\nContent-Type: text/plain\n\n",
+    "excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+  },
+  {
+    "case": "cdn-https-home",
+    "path": "/",
+    "result": "200 0 92.113.16.133",
+    "error": "",
+    "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:19:27 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 1e8329265c3f50c97eac52b188bfc0d7-fra-edge8\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.023\n\n",
+    "excerpt": ""
+  },
+  {
+    "case": "cdn-https-robots",
+    "path": "/robots.txt",
+    "result": "200 58 92.113.16.133",
+    "error": "",
+    "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:19:28 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: 9d258bdb1b4fc5392521c21edda9e4d8-fra-edge6\ncontent-type: text/plain\n\n",
+    "excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+  }
+]

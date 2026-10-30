@@ -1,0 +1,39 @@
+{
+  "productionMode": true,
+  "checks": [
+    {
+      "width": 390,
+      "geometry": {
+        "pageOverflow": false,
+        "focused": true,
+        "tableWidth": 1024.9375,
+        "regionWidth": 358
+      },
+      "violations": [],
+      "pass": true
+    },
+    {
+      "width": 768,
+      "geometry": {
+        "pageOverflow": false,
+        "focused": true,
+        "tableWidth": 1115.34375,
+        "regionWidth": 464
+      },
+      "violations": [],
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "geometry": {
+        "pageOverflow": false,
+        "focused": true,
+        "tableWidth": 1115.34375,
+        "regionWidth": 1092
+      },
+      "violations": [],
+      "pass": true
+    }
+  ],
+  "errors": []
+}

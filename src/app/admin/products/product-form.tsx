@@ -36,6 +36,10 @@ type ProductRecord = {
 
 export function ProductForm({ actor, categories, assets, product, error }: { actor: AdminActor; categories: CategoryOption[]; assets: { id: string; altAr: string | null; originalKey: string; publicUrl: string | null }[]; product?: ProductRecord; error?: string }) {
   const canWrite = hasPermission(actor.roleCode, "PRODUCTS_WRITE");
+  const mediaLibrary = new Map(assets.map((asset) => [asset.id, asset]));
+  for (const entry of product?.media ?? []) {
+    mediaLibrary.set(entry.mediaId, { id: entry.mediaId, ...entry.media });
+  }
   const selected = new Set(product?.categories.map((item) => item.categoryId) ?? []);
   const stock = product?.variants.reduce((total, item) => total + (item.inventory?.quantity ?? 0), 0) ?? 0;
   const variantDrafts: VariantDraft[] = product?.variants.map((variant) => {
@@ -62,13 +66,13 @@ export function ProductForm({ actor, categories, assets, product, error }: { act
         <div className="admin-form-grid">
           <label>اسم المنتج بالعربية *<input autoComplete="off" defaultValue={product?.titleAr} maxLength={191} name="titleAr" required /></label>
           <label>التصنيف *<select defaultValue={[...selected]} multiple name="categoryIds" required size={Math.min(Math.max(categories.length, 3), 7)}>{categories.map((category) => <option key={category.id} value={category.id}>{category.nameAr}</option>)}</select><small className="admin-muted">على الكمبيوتر استخدم Ctrl أو ⌘ لاختيار أكثر من تصنيف.</small></label>
-          <label>السعر التشغيلي بالجنيه<input defaultValue={product?.priceMinor === null || !product ? "" : decimalFromMinor(product.priceMinor)} inputMode="decimal" min="0" name="price" placeholder="أدخل السعر بعد التحقق" step="0.01" type="number" /><small className="admin-muted">لا يُستخدم سعر المصدر إلا بعد التحقق منه.</small></label>
+          <label>السعر التشغيلي بالجنيه<input defaultValue={product?.priceMinor === null || !product ? "" : decimalFromMinor(product.priceMinor)} inputMode="decimal" name="price" placeholder="أدخل السعر بعد التحقق" type="text" /><small className="admin-muted">لا يُستخدم سعر المصدر إلا بعد التحقق منه.</small></label>
           <label>نوع المنتج *<select defaultValue={product?.type ?? ""} name="type" required><option disabled value="">اختر النوع بعد المراجعة</option><option value="READY_MADE">جاهز ومتوفر بالمخزون</option><option value="MADE_TO_ORDER">يصنع بعد الطلب</option></select></label>
           <label className="admin-check"><input defaultChecked={Boolean(product?.detailsReviewedAt)} name="detailsReviewed" type="checkbox" />راجعت الاسم والتفاصيل</label>
           <label className="admin-check"><input defaultChecked={product?.featured ?? false} name="featured" type="checkbox" />إظهار ضمن مختارات الصفحة الرئيسية</label>
           {product ? <label>الكمية الحالية<input disabled value={stock} /><small className="admin-muted">تُدار الكمية لكل متغير من صفحة المخزون.</small></label> : null}
           <label className="wide">الوصف بالعربية<textarea defaultValue={product?.descriptionAr} maxLength={10000} name="descriptionAr" rows={5} /></label>
-          <MediaPicker assets={assets.map((asset) => ({ id: asset.id, label: asset.altAr || asset.originalKey.split("/").pop() || "صورة", url: asset.publicUrl }))} selected={product?.media.map((entry) => entry.mediaId) ?? []} />
+          <MediaPicker assets={[...mediaLibrary.values()].map((asset) => ({ id: asset.id, label: asset.altAr || asset.originalKey.split("/").pop() || "صورة", url: asset.publicUrl ?? "/assets/" + asset.originalKey.replace(/^legacy:/, "").split("/").map(encodeURIComponent).join("/") }))} selected={product?.media.map((entry) => entry.mediaId) ?? []} />
           <VariantEditor existingProduct={Boolean(product)} initial={variantDrafts} />
           <details className="wide admin-advanced"><summary>خيارات إضافية</summary><div className="admin-form-grid admin-advanced-grid">
             <label>اسم المنتج بالإنجليزية<input defaultValue={product?.titleEn ?? ""} maxLength={191} name="titleEn" /></label>
@@ -76,7 +80,7 @@ export function ProductForm({ actor, categories, assets, product, error }: { act
             <label className="wide">الوصف بالإنجليزية<textarea defaultValue={product?.descriptionEn ?? ""} maxLength={10000} name="descriptionEn" rows={4} /></label>
           </div></details>
         </div>
-        {canWrite ? <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">حفظ كمسودة</button><Link className="admin-button" href="/admin/products">إلغاء</Link></div> : null}
+        {canWrite ? <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">{product?.status === "PUBLISHED" ? "حفظ التغييرات" : "حفظ كمسودة"}</button><Link className="admin-button" href="/admin/products">إلغاء</Link></div> : null}
       </form>
       {product?.type === "MADE_TO_ORDER" && canWrite ? <ManufacturingForm product={product} /> : null}
       {product ? <GalleryOrderForm product={product} /> : null}

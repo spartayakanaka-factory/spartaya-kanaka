@@ -1,3 +1,4 @@
+import {commerceEnabled} from "@/lib/commerce/runtime";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { AdminActor } from "@/lib/server/admin-session";
@@ -24,7 +25,9 @@ export function AdminFrame({ actor, children }: { actor: AdminActor; children: R
         <nav className="admin-nav">
           {links.filter(([href]) => href === "/admin" || href === "/admin/products" && hasPermission(actor.roleCode, "PRODUCTS_READ") || href === "/admin/categories" && hasPermission(actor.roleCode, "CATEGORIES_READ") || href === "/admin/inventory" && hasPermission(actor.roleCode, "INVENTORY_READ") || href === "/admin/settings" && hasPermission(actor.roleCode, "SETTINGS_READ")).map(([href, label]) => <Link href={href} key={href}>{label}</Link>)}
           {hasPermission(actor.roleCode, "STAFF_MANAGE") ? <Link href="/admin/staff">المستخدمون</Link> : null}
+          {hasPermission(actor.roleCode, "AUDIT_READ") ? <Link href="/admin/audit">سجل العمليات</Link> : null}
           {hasPermission(actor.roleCode, "PRODUCTS_READ") ? <Link href="/admin/products/review">مراجعة الكتالوج</Link> : null}
+          {commerceEnabled() && ["OWNER","MANAGER"].includes(actor.roleCode)?<><Link href="/admin/orders">الطلبات</Link><Link href="/admin/commerce-settings">إعدادات الطلبات والتنبيهات</Link></>:null}
           <Link href="/admin/password">كلمة المرور</Link>
         </nav>
         <div className="admin-user">

@@ -1,0 +1,35 @@
+name: Phase 3 validation (no deployment)
+on:
+  pull_request:
+    branches: [codex/hostinger-nextjs-source]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: phase3-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  disposable-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+      - name: Install exact pnpm and frozen dependencies
+        run: |
+          npm install --global pnpm@11.24.0
+          pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
+      - name: Disposable database, storage, build and browser acceptance
+        run: node scripts/phase3-ci.mjs
+      - name: Save successful synthetic acceptance evidence
+        if: success()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: phase3-synthetic-acceptance
+          path: docs/phase3/master-execution/ci/
+          retention-days: 7

@@ -10,6 +10,32 @@ const hostingerEnvironment = () => ({
 });
 
 describe("one-time owner bootstrap secret", () => {
+  it("accepts a consumed one-time password for an explicitly confirmed isolated local target", () => {
+    const environment = {
+      ...hostingerEnvironment(),
+      DATABASE_TARGET: "local",
+      DATABASE_URL: "mysql://local_user:test@127.0.0.1:33077/sprtaya_phase2_test",
+      APP_ENV: "local",
+      STAGING_SITE: "0",
+    };
+    expect(consumeOwnerBootstrapPassword(environment, ["--confirm-local"], false)).toBe(
+      "long-one-time-owner-password",
+    );
+    expect(environment).not.toHaveProperty("OWNER_BOOTSTRAP_PASSWORD");
+  });
+
+  it("rejects remote and production targets even with a local confirmation flag", () => {
+    const environment = {
+      ...hostingerEnvironment(),
+      DATABASE_TARGET: "local",
+      DATABASE_URL: "mysql://local_user:test@remote.invalid/sprtaya_phase2_test",
+      APP_ENV: "local",
+      STAGING_SITE: "0",
+    };
+    expect(() => consumeOwnerBootstrapPassword(environment, ["--confirm-local"], false)).toThrow(/loopback/);
+    expect(() => consumeOwnerBootstrapPassword({ ...environment, ...hostingerEnvironment(), DATABASE_TARGET: "local", APP_ENV: "local", STAGING_SITE: "0", DATABASE_URL: "mysql://u:p@127.0.0.1/sprtaya_test", NODE_ENV: "production" }, ["--confirm-local"], false)).toThrow(/production/);
+  });
+
   it("accepts a matching secret only for the explicitly confirmed Hostinger staging target", () => {
     const environment = hostingerEnvironment();
     expect(

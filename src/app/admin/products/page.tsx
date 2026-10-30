@@ -8,19 +8,32 @@ import { formatMoneyMinor } from "@/lib/money";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string }> }) {
+export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string; page?: string }> }) {
   const actor = await requireAdminPage("PRODUCTS_READ");
   const query = await searchParams;
   const status = ["DRAFT", "PUBLISHED", "ARCHIVED"].includes(query.status ?? "") ? query.status as "DRAFT" | "PUBLISHED" | "ARCHIVED" : undefined;
-  const rows = await getDatabase().product.findMany({
-    where: {
+  const where = {
       ...(status ? { status } : {}),
       ...(query.q ? { OR: [{ titleAr: { contains: query.q } }, { titleEn: { contains: query.q } }, { slug: { contains: query.q } }] } : {}),
-    },
+    };
+  const pageSize = 50;
+  const count = await getDatabase().product.count({ where });
+  const totalPages = Math.max(1, Math.ceil(count / pageSize));
+  const requestedPage = Number(query.page ?? 1);
+  const page = Math.min(Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1, totalPages);
+  const rows = await getDatabase().product.findMany({
+    where,
     include: { categories: { include: { category: true } }, variants: { include: { inventory: true } }, media: true },
     orderBy: [{ updatedAt: "desc" }, { titleAr: "asc" }],
-    take: 200,
+    take: pageSize,
+    skip: (page - 1) * pageSize,
   });
+  const pageHref = (value: number) => {
+    const params = new URLSearchParams({ page: String(value) });
+    if (query.q) params.set("q", query.q);
+    if (status) params.set("status", status);
+    return "/admin/products?" + params;
+  };
   const canWrite = hasPermission(actor.roleCode, "PRODUCTS_WRITE");
   const canPublish = hasPermission(actor.roleCode, "PRODUCTS_PUBLISH");
   return (
@@ -32,7 +45,7 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
           <label>الحالة<select defaultValue={status ?? ""} name="status"><option value="">كل الحالات</option><option value="DRAFT">مسودة</option><option value="PUBLISHED">منشور</option><option value="ARCHIVED">مؤرشف</option></select></label>
           <button className="admin-button" type="submit">بحث</button>
         </div>
-        <span className="admin-muted">{new Intl.NumberFormat("ar-EG").format(rows.length)} منتج</span>
+        <span className="admin-muted">{new Intl.NumberFormat("ar-EG").format(count)} منتج · صفحة {page} من {totalPages}</span>
       </form>
       <div className="admin-table-wrap">
         {rows.length ? <table className="admin-table"><thead><tr><th>المنتج</th><th>التصنيف</th><th>السعر</th><th>الحالة</th><th>آخر تحديث</th><th>إجراءات</th></tr></thead><tbody>
@@ -51,6 +64,7 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
           </tr>)}
         </tbody></table> : <p className="admin-empty">لا توجد منتجات بهذه المواصفات.</p>}
       </div>
+      {totalPages > 1 ? <nav aria-label="صفحات المنتجات" className="review-pagination"><span>عرض {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, count)} من {count}</span><div>{page > 1 ? <Link className="admin-button" href={pageHref(page - 1)}>السابق</Link> : null}{page < totalPages ? <Link className="admin-button" href={pageHref(page + 1)}>التالي</Link> : null}</div></nav> : null}
     </AdminFrame>
   );
 }

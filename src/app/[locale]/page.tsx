@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon";
 import { getProductImageUrl } from "@/lib/asset-url";
 import { getStoreCategories, getStoreFeaturedProducts, getStoreProductById } from "@/lib/server/storefront-catalog";
 import { merchandising } from "@/lib/merchandising";
+import { getProductById as getEditorialProduct } from "@/lib/catalog";
 import { getCopy, isLocale } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
 import { getStoreContactSettings } from "@/lib/server/store-settings";
@@ -54,20 +55,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     getStoreContactSettings(),
   ]);
   const curatedCategoryIds = new Set(merchandising.homeCategoryIds);
-  const categories = allCategories.filter((category) => category.featured || curatedCategoryIds.has(category.id));
+  const curatedCategories = allCategories.filter((category) => category.featured || curatedCategoryIds.has(category.id));
+  const categories = curatedCategories.length ? curatedCategories : allCategories.slice(0, 8);
   const choices = [
-    { product: heroProducts[0], label: ar ? "طقم القهوة" : "The coffee set" },
-    { product: heroProducts[1], label: ar ? "السبرتاية والكنكة" : "The coffee ritual" },
-    { product: heroProducts[2], label: ar ? "الدلة العربية" : "The Arabic pot" },
-  ].flatMap(({ product, label }) => {
-    const image = product?.images[0];
-    return product && image
+    { product: heroProducts[0], sourceId: merchandising.heroProductId, label: ar ? "طقم القهوة" : "The coffee set" },
+    { product: heroProducts[1], sourceId: merchandising.detailProductId, label: ar ? "السبرتاية والكنكة" : "The coffee ritual" },
+    { product: heroProducts[2], sourceId: merchandising.coffeeProductId, label: ar ? "الدلة العربية" : "The Arabic pot" },
+  ].flatMap(({ product, sourceId, label }) => {
+    // Approved editorial photography remains part of the factory's art
+    // direction while catalog records await review. Draft detail links stay hidden.
+    const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
+    return image
       ? [
           {
             label,
-            name: product.nameAr,
+            name: product?.nameAr ?? label,
             src: getProductImageUrl(image),
-            href: base + "/products/" + product.slug,
+            href: product ? base + "/products/" + product.slug : base + "/products",
             width: image.width ?? 900,
             height: image.height ?? 1200,
             unoptimized: Boolean(image.publicUrl),
@@ -75,7 +79,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         ]
       : [];
   });
-  const detail = detailProduct?.images[0];
+  const detail = detailProduct?.images[0] ?? getEditorialProduct(merchandising.detailProductId)?.images[0];
   return (
     <>
       <section className="hero" aria-labelledby="home-title">
@@ -217,6 +221,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {[
             {
               product: coffee,
+              sourceId: merchandising.coffeeProductId,
               id: "dal-kho-aarby",
               title: ar ? "على مهل، فنجان قهوة" : "Make time for coffee",
               text: ar
@@ -225,22 +230,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             },
             {
               product: shell,
+              sourceId: merchandising.shellProductId,
               id: "mntjat-alsdf-altbyaay",
               title: ar ? "من الصدف، لبيتك" : "Shell for home",
               text: ar
                 ? "علب وقطع صدف، لكل منها حضورها."
                 : "Explore shell boxes and decorative pieces.",
             },
-          ].map(({ product, id, title, text }) => {
-            const image = product?.images[0];
+          ].map(({ product, sourceId, id, title, text }) => {
+            const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
             return (
-              <Link className="collection-feature" key={id} href={base + "/collections/" + id}>
+              <Link className="collection-feature" key={id} href={allCategories.some((category) => category.id === id) ? base + "/collections/" + id : base + "/products"}>
                 <div className="collection-feature-image">
                   {image ? (
                     <Image
                       src={getProductImageUrl(image)}
                       unoptimized={Boolean(image.publicUrl)}
-                      alt={product?.nameAr ?? ""}
+                      alt={product?.nameAr ?? title}
                       width={image.width ?? 900}
                       height={image.height ?? 1200}
                       sizes="(max-width: 700px) 90vw, 46vw"

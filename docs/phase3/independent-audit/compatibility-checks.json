@@ -1,0 +1,11 @@
+{
+  "criticalBaselineMatches": {
+    "prisma/schema.prisma": true,
+    "pnpm-lock.yaml": true,
+    "src/proxy.ts": true,
+    "src/lib/staging-access.ts": true,
+    "src/lib/server/staging-page-access.ts": true,
+    "src/lib/server/auth.ts": true
+  },
+  "missingStaffActions": []
+}

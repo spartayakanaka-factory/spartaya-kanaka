@@ -8,6 +8,7 @@ import { isLocale } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
 import { requireStagingPageAccess } from "@/lib/server/staging-page-access";
 import "../globals.css";
+import "../commerce.css";
 
 const arabic = localFont({
   src: [{ path: "../fonts/noto-arabic.woff2", weight: "400 600", style: "normal" }],

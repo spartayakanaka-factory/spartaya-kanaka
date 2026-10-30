@@ -1,0 +1,2046 @@
+{
+  "sha": "254ad4c10cfdd18cf0e1aacc10758ae2206ffa15",
+  "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/254ad4c10cfdd18cf0e1aacc10758ae2206ffa15",
+  "tree": [
+    {
+      "path": ".env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6ebca988041321c57e6523054382493c4e5f48b",
+      "size": 766,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f6ebca988041321c57e6523054382493c4e5f48b"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f1166057db2a8e5b219909285ee94651dbf6aed",
+      "size": 283,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5f1166057db2a8e5b219909285ee94651dbf6aed"
+    },
+    {
+      "path": ".prettierrc.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bccee911b6b0dac9051d360fbc5e0a6303eed8fb",
+      "size": 90,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/bccee911b6b0dac9051d360fbc5e0a6303eed8fb"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af3b7c84114bafeee578bf1adff2ef74af2cc6a2",
+      "size": 679,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/af3b7c84114bafeee578bf1adff2ef74af2cc6a2"
+    },
+    {
+      "path": "PHASE_2_2_REPORT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c71d538ad08adb1dac3ba0577a9e95e5fae6b82f",
+      "size": 28400,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c71d538ad08adb1dac3ba0577a9e95e5fae6b82f"
+    },
+    {
+      "path": "PHASE_2_REPORT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f3ab1fc88642e8fcf481c58dfbd4a55107d8a19",
+      "size": 12109,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2f3ab1fc88642e8fcf481c58dfbd4a55107d8a19"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d9b741ff36343009be5c626c690c8e26397081b",
+      "size": 4250,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3d9b741ff36343009be5c626c690c8e26397081b"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bfa298757f2b1a6dcff5c7a8f21df7fcf129ea9d",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/bfa298757f2b1a6dcff5c7a8f21df7fcf129ea9d"
+    },
+    {
+      "path": "docs/architecture.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e136f3355b689d826e186aa64e3371da3510ee48",
+      "size": 5670,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e136f3355b689d826e186aa64e3371da3510ee48"
+    },
+    {
+      "path": "docs/catalog-inventory.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5673fc8c517a0de913999c2210fdf99253587d14",
+      "size": 4495,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5673fc8c517a0de913999c2210fdf99253587d14"
+    },
+    {
+      "path": "docs/future-data-model.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f16ed3af6e1976eb2cf15e10ec25bd41b1f92b48",
+      "size": 3804,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f16ed3af6e1976eb2cf15e10ec25bd41b1f92b48"
+    },
+    {
+      "path": "docs/hostinger-deployment.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b96dde2df3be9b9a62157c75fbfaeb24598cb0a",
+      "size": 3406,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/0b96dde2df3be9b9a62157c75fbfaeb24598cb0a"
+    },
+    {
+      "path": "docs/hostinger-phase2-post-migration-verification.sql",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e6d545c7746c07aed69d8975d558899d26976c8",
+      "size": 3965,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8e6d545c7746c07aed69d8975d558899d26976c8"
+    },
+    {
+      "path": "docs/hostinger-phase2-staging-acceptance.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56307e2b00068ffea6c35a9a506cb371819268ff",
+      "size": 26633,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/56307e2b00068ffea6c35a9a506cb371819268ff"
+    },
+    {
+      "path": "docs/owner-dashboard.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09d3fd79c941a09ff8ed8989503ca0b3b10911f1",
+      "size": 2060,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/09d3fd79c941a09ff8ed8989503ca0b3b10911f1"
+    },
+    {
+      "path": "docs/phase-1-redesign-report.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edece41f1c0c2108d5e6d9ddc9977bab1535b230",
+      "size": 19617,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/edece41f1c0c2108d5e6d9ddc9977bab1535b230"
+    },
+    {
+      "path": "docs/phase-1-refinement-report.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da149e9f91daf12966b62d4363a9bf25c86827d7",
+      "size": 6678,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/da149e9f91daf12966b62d4363a9bf25c86827d7"
+    },
+    {
+      "path": "docs/phase-2-architecture-decisions.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "801c264b1fd404e491a1eff5664194d4841f5413",
+      "size": 4758,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/801c264b1fd404e491a1eff5664194d4841f5413"
+    },
+    {
+      "path": "docs/phase-2-roadmap.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce35f8fd69dc25ea8f1e9d5ab87b16e7ac7ca708",
+      "size": 1637,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ce35f8fd69dc25ea8f1e9d5ab87b16e7ac7ca708"
+    },
+    {
+      "path": "docs/phase-2-screenshots",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9bfc9163b2dc1aba2467c33da83c437dbd4bfa39",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/9bfc9163b2dc1aba2467c33da83c437dbd4bfa39"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5b27cbdad635e40ede5b97b24c7aeb9510f068b",
+      "size": 178018,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b5b27cbdad635e40ede5b97b24c7aeb9510f068b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52eaee1fbc1a4901230876c733d51745dc03e00e",
+      "size": 71371,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/52eaee1fbc1a4901230876c733d51745dc03e00e"
+    },
+    {
+      "path": "docs/phase-2-screenshots/admin-768.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f7764972371ae7059124e3f87b87339bd737903",
+      "size": 106562,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6f7764972371ae7059124e3f87b87339bd737903"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eebc0817b4c40101d263036f18d5f8849daa284c",
+      "size": 812182,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/eebc0817b4c40101d263036f18d5f8849daa284c"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31a60dcab9229852352b3568683f58f0d302c745",
+      "size": 274736,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/31a60dcab9229852352b3568683f58f0d302c745"
+    },
+    {
+      "path": "docs/phase-2-screenshots/ar-768.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4def90d2aa9de3b8bde815d5576812adce9f3a22",
+      "size": 509344,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/4def90d2aa9de3b8bde815d5576812adce9f3a22"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "078ec5f7a276227811d50a49f80db422603b2224",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/078ec5f7a276227811d50a49f80db422603b2224"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-about-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "957eade009e9edbd1bd5d4ceef3c6502585a6324",
+      "size": 101143,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/957eade009e9edbd1bd5d4ceef3c6502585a6324"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-collections-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3158d64c9da544d5da8e5bb815a73f16f6c7fbc1",
+      "size": 2391427,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3158d64c9da544d5da8e5bb815a73f16f6c7fbc1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-collections-atkm-kho-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16d456e642d50942aa2d039d9e0154e833956b92",
+      "size": 905696,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/16d456e642d50942aa2d039d9e0154e833956b92"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-contact-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28235fc8032aace1ba76fd150a21c6ca77afcecc",
+      "size": 79620,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/28235fc8032aace1ba76fd150a21c6ca77afcecc"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-custom-orders-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90d4938b5def40126d18207738df3b8177d6f786",
+      "size": 90240,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/90d4938b5def40126d18207738df3b8177d6f786"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22d9ff125ef8b9bfc2c4ce2fd56e40416220e155",
+      "size": 2884000,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/22d9ff125ef8b9bfc2c4ce2fd56e40416220e155"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adcace46d64b855e61e9b72cf2a52e487de73e58",
+      "size": 1208383,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/adcace46d64b855e61e9b72cf2a52e487de73e58"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-home-768.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9d7d2d3ef90abf41ebeaf4090a61bc51b980544",
+      "size": 2299813,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b9d7d2d3ef90abf41ebeaf4090a61bc51b980544"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-menu-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c70a58340d4aa41ee4c10d4cfae86dffca9a5bcf",
+      "size": 45186,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c70a58340d4aa41ee4c10d4cfae86dffca9a5bcf"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-policies-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "115176e3cc00ef839e6ce826beadfca07ca05dd9",
+      "size": 113340,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/115176e3cc00ef839e6ce826beadfca07ca05dd9"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-product-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "970395a9bad4c74e4d209506d89843f8707fd87b",
+      "size": 1946074,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/970395a9bad4c74e4d209506d89843f8707fd87b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4119889634e13d6cc4dbb3f3034a43ca3a1a8561",
+      "size": 1812772,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/4119889634e13d6cc4dbb3f3034a43ca3a1a8561"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-filtered-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dde6864beae457c4defdd28636b6cdc532317d8e",
+      "size": 2522533,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/dde6864beae457c4defdd28636b6cdc532317d8e"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-products-tkm-kho-4ktaa-copy-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c86bb3a2497fd8e60c5d50e2f3e286686c88eb4b",
+      "size": 686944,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c86bb3a2497fd8e60c5d50e2f3e286686c88eb4b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-reduced-motion-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af8856951f5f56339a88c59f0c8f2b2a64bacc17",
+      "size": 1209571,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/af8856951f5f56339a88c59f0c8f2b2a64bacc17"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-search-empty-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8b05fbf4d699bfe50181782e38b35f91b5e756c",
+      "size": 108413,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f8b05fbf4d699bfe50181782e38b35f91b5e756c"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/ar-wholesale-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ec0c4d7bb55d54da0d4d03ca782d83b3b66f6f5",
+      "size": 83526,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3ec0c4d7bb55d54da0d4d03ca782d83b3b66f6f5"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-about-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4ba76b84ad5429ad2c1ecd4172180538c65480a",
+      "size": 116556,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a4ba76b84ad5429ad2c1ecd4172180538c65480a"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-collections-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6d07afd0a1a239a4db2d5b6a6839252b71b65e2",
+      "size": 2389478,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f6d07afd0a1a239a4db2d5b6a6839252b71b65e2"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-collections-atkm-kho-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d0a947bb957e77a1d71f0a81eb33f05a1ee2086",
+      "size": 900819,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6d0a947bb957e77a1d71f0a81eb33f05a1ee2086"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-contact-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfecbdc577ff3453383878ea163af740bdfe6eed",
+      "size": 88305,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/bfecbdc577ff3453383878ea163af740bdfe6eed"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-custom-orders-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a815477ea7707b597709b1ddde4aa359806480f3",
+      "size": 108397,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a815477ea7707b597709b1ddde4aa359806480f3"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48b4e8cc1a19574b416865bb3abd15f7f2a38623",
+      "size": 2904518,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/48b4e8cc1a19574b416865bb3abd15f7f2a38623"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01e03f517e0aa8050d1612347fea0a6f26742f59",
+      "size": 1254685,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/01e03f517e0aa8050d1612347fea0a6f26742f59"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-home-768.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c876a1d2fee8957aae0ba463b94949e00ef26566",
+      "size": 2441304,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c876a1d2fee8957aae0ba463b94949e00ef26566"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-policies-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a238851e02c8f410a1081dd20b7d273fb18bbe2b",
+      "size": 118633,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a238851e02c8f410a1081dd20b7d273fb18bbe2b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-products-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a99b74b5d209aedda540b26a3574c81e69c17a1",
+      "size": 1830089,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6a99b74b5d209aedda540b26a3574c81e69c17a1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-products-tkm-kho-4ktaa-copy-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1628fff527a827a3d12876d9b532d2f8700cb12",
+      "size": 693871,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c1628fff527a827a3d12876d9b532d2f8700cb12"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/en-wholesale-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f64d42d15221a3aad5183f19c2fac5ad67c77a60",
+      "size": 101918,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f64d42d15221a3aad5183f19c2fac5ad67c77a60"
+    },
+    {
+      "path": "docs/phase-2-screenshots/browser-qa/report.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "727fc3f55f3a50ae6892c968a5fa05542fad717b",
+      "size": 15635,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/727fc3f55f3a50ae6892c968a5fa05542fad717b"
+    },
+    {
+      "path": "docs/phase-2-screenshots/collection-ar-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94f2ee70dfb766f335958e749ba4412f2f357e06",
+      "size": 196297,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/94f2ee70dfb766f335958e749ba4412f2f357e06"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e048c1ddea25bb61dba1e39184d3615c4bd449f",
+      "size": 817938,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3e048c1ddea25bb61dba1e39184d3615c4bd449f"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38b147f8ef00dcaf8d954da9b96158190b7f6817",
+      "size": 275144,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/38b147f8ef00dcaf8d954da9b96158190b7f6817"
+    },
+    {
+      "path": "docs/phase-2-screenshots/en-768.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69cb215a3c9b84df313fe987c834793bf55de86",
+      "size": 512569,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e69cb215a3c9b84df313fe987c834793bf55de86"
+    },
+    {
+      "path": "docs/phase-2-screenshots/product-ar-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9dd39e8f0b725ef52f0862adecca0d4edcb99b5a",
+      "size": 284633,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/9dd39e8f0b725ef52f0862adecca0d4edcb99b5a"
+    },
+    {
+      "path": "docs/phase-2-screenshots/product-en-1440.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f99dd6707a2dbae5cae5f0dee0b0584b698df9b1",
+      "size": 769906,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f99dd6707a2dbae5cae5f0dee0b0584b698df9b1"
+    },
+    {
+      "path": "docs/phase-2-screenshots/products-ar-390.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c92920f9c443be6791ca29c3309f23c5a2bd914a",
+      "size": 168943,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c92920f9c443be6791ca29c3309f23c5a2bd914a"
+    },
+    {
+      "path": "docs/phase-2-setup.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "264eb0c487fe806d3a751d16190741611d38df7a",
+      "size": 7398,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/264eb0c487fe806d3a751d16190741611d38df7a"
+    },
+    {
+      "path": "docs/phase2.3-staging-security-recovery.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2701f5cc05881ce0d1c89b03ecb9d73bf274d3ad",
+      "size": 7790,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2701f5cc05881ce0d1c89b03ecb9d73bf274d3ad"
+    },
+    {
+      "path": "docs/routes-and-scope.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ba75fd1741ce56fc72c02bdd8e4602abb3887a3",
+      "size": 2102,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7ba75fd1741ce56fc72c02bdd8e4602abb3887a3"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1f2e05c73cf88f0a4bfbc343442555e4be9d259",
+      "size": 462,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b1f2e05c73cf88f0a4bfbc343442555e4be9d259"
+    },
+    {
+      "path": "next-env.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce4e94a6b10f160ee021fe18939af160d2927dcf",
+      "size": 288,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ce4e94a6b10f160ee021fe18939af160d2927dcf"
+    },
+    {
+      "path": "next.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68a1a66508f486bf21c2c72acd199dc76daf1e5e",
+      "size": 626,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/68a1a66508f486bf21c2c72acd199dc76daf1e5e"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5a454fdbf1b5f7e2e423ab810ab081d8638a02a",
+      "size": 2269,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d5a454fdbf1b5f7e2e423ab810ab081d8638a02a"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c060ea39be92eedb3cf7b3a631723ee55ba6ed88",
+      "size": 228070,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c060ea39be92eedb3cf7b3a631723ee55ba6ed88"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21b75b409860ec65400933529d929e45875b4213",
+      "size": 413,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/21b75b409860ec65400933529d929e45875b4213"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61e36849cf7cfa9f1f71b4a3964a4953e3e243d3",
+      "size": 94,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/61e36849cf7cfa9f1f71b4a3964a4953e3e243d3"
+    },
+    {
+      "path": "prisma.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "defafd2f80c1f0e023a2f237173e90b54f37cb66",
+      "size": 233,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/defafd2f80c1f0e023a2f237173e90b54f37cb66"
+    },
+    {
+      "path": "prisma",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f502ae52de9e13d94c9cf9178dc9a5c5e508e6bc",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/f502ae52de9e13d94c9cf9178dc9a5c5e508e6bc"
+    },
+    {
+      "path": "prisma/migrations",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5881d2adf9fd7a103b93dcc9be3719d82049f9e0",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/5881d2adf9fd7a103b93dcc9be3719d82049f9e0"
+    },
+    {
+      "path": "prisma/migrations/20261027000000_phase2_initial",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "da59ded0be4e700beca2d8f79c0c4ffd9b266c78",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/da59ded0be4e700beca2d8f79c0c4ffd9b266c78"
+    },
+    {
+      "path": "prisma/migrations/20261027000000_phase2_initial/migration.sql",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbc0a070e944d97ad83695e7134a45b496c72fbb",
+      "size": 17493,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/fbc0a070e944d97ad83695e7134a45b496c72fbb"
+    },
+    {
+      "path": "prisma/migrations/20261027120000_phase2_2_review_safety",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0170d3e92d00923f56d7e830e6ddb0052205c548",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/0170d3e92d00923f56d7e830e6ddb0052205c548"
+    },
+    {
+      "path": "prisma/migrations/20261027120000_phase2_2_review_safety/migration.sql",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a7c507039045a8beac589e1f2f59308b84a2665",
+      "size": 370,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/0a7c507039045a8beac589e1f2f59308b84a2665"
+    },
+    {
+      "path": "prisma/migrations/migration_lock.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dec767c1269fb725f6f23f6f7a1a7295e128344",
+      "size": 19,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7dec767c1269fb725f6f23f6f7a1a7295e128344"
+    },
+    {
+      "path": "prisma/schema.prisma",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62992e25f44e7c28c02e7e63f2b700bbb518dee4",
+      "size": 14722,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/62992e25f44e7c28c02e7e63f2b700bbb518dee4"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2785a06c5b76bac65547d3b8928c5a83e747938e",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/2785a06c5b76bac65547d3b8928c5a83e747938e"
+    },
+    {
+      "path": "scripts/bootstrap-owner.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d691bfe7aad54da26d278449fc508d1f3d4ec749",
+      "size": 4385,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d691bfe7aad54da26d278449fc508d1f3d4ec749"
+    },
+    {
+      "path": "scripts/browser-qa.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5aff2d6f883f5bb88ac9b532850d7e106cea926e",
+      "size": 14684,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5aff2d6f883f5bb88ac9b532850d7e106cea926e"
+    },
+    {
+      "path": "scripts/build_migration_manifest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8588ed2ef14469b93cd4735235911c5259453b5b",
+      "size": 1905,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8588ed2ef14469b93cd4735235911c5259453b5b"
+    },
+    {
+      "path": "scripts/database-target.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6457d154de3042e86ce66f35d5b543b22af462ef",
+      "size": 3522,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6457d154de3042e86ce66f35d5b543b22af462ef"
+    },
+    {
+      "path": "scripts/deploy-migrations.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "334a70d0cb5c832671f87a705b89800e5e700835",
+      "size": 1610,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/334a70d0cb5c832671f87a705b89800e5e700835"
+    },
+    {
+      "path": "scripts/deploy-migrations.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20dbcfdb6841ca9587e68a191ada114547837aea",
+      "size": 1536,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/20dbcfdb6841ca9587e68a191ada114547837aea"
+    },
+    {
+      "path": "scripts/extract_assets.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23ece6600ddf2baea5b0859ec03733058f03ee0c",
+      "size": 53643,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/23ece6600ddf2baea5b0859ec03733058f03ee0c"
+    },
+    {
+      "path": "scripts/import-legacy-catalog.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4db1c08f3964e667d1a5486b0ce56e6dba37aa7",
+      "size": 8152,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f4db1c08f3964e667d1a5486b0ce56e6dba37aa7"
+    },
+    {
+      "path": "scripts/migrate-dev.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "446708abb725febdb2350315dd0f54a2663fa1bc",
+      "size": 1175,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/446708abb725febdb2350315dd0f54a2663fa1bc"
+    },
+    {
+      "path": "scripts/migration-approval.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d164fb8b07e9c2f254159a79b66f2852e4164f6",
+      "size": 1727,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/4d164fb8b07e9c2f254159a79b66f2852e4164f6"
+    },
+    {
+      "path": "scripts/owner-bootstrap-secret.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c5f94fbe2ab70100533c1b3f42d5ce8a3a80bf3",
+      "size": 2226,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2c5f94fbe2ab70100533c1b3f42d5ce8a3a80bf3"
+    },
+    {
+      "path": "scripts/owner-bootstrap-secret.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c6234812c0d0831dd4ebb28b0c7d1236464ee18",
+      "size": 1432,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1c6234812c0d0831dd4ebb28b0c7d1236464ee18"
+    },
+    {
+      "path": "scripts/preflight-hostinger-phase2.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "472b57de07e232f6efbafe714ee946f722b606be",
+      "size": 7534,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/472b57de07e232f6efbafe714ee946f722b606be"
+    },
+    {
+      "path": "scripts/refinement-smoke.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8e75225703c1e6eaa7accfa46db8a9bfc086bab",
+      "size": 2894,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f8e75225703c1e6eaa7accfa46db8a9bfc086bab"
+    },
+    {
+      "path": "scripts/refinement-visual.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "753711179b439cbdd0543252490389af46cc6785",
+      "size": 4108,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/753711179b439cbdd0543252490389af46cc6785"
+    },
+    {
+      "path": "scripts/runtime-db.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17e74938156d407daf0ac5d115b3a56a2ee35488",
+      "size": 922,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/17e74938156d407daf0ac5d115b3a56a2ee35488"
+    },
+    {
+      "path": "scripts/seed-database.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7131d89e3a16f9ff47094086d0387fae29f2f804",
+      "size": 2771,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7131d89e3a16f9ff47094086d0387fae29f2f804"
+    },
+    {
+      "path": "scripts/validate_assets.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "378371fdb9b7df10b1ee4b58fa4e20646eee8157",
+      "size": 8432,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/378371fdb9b7df10b1ee4b58fa4e20646eee8157"
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81a079407999758f2f17085b243325423914eede",
+      "size": 3909,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/81a079407999758f2f17085b243325423914eede"
+    },
+    {
+      "path": "skills-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ab53d8d6a5404d5dede338663678b152315c0ce",
+      "size": 545,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6ab53d8d6a5404d5dede338663678b152315c0ce"
+    },
+    {
+      "path": "sprtaya-kanaka-assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5961a695742fc252f6bc88e2ffade7c67b8d45a5",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/5961a695742fc252f6bc88e2ffade7c67b8d45a5"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/الهوية البصرية",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6da8c2efc263069182317e46bf05c0e2e3865974",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/6da8c2efc263069182317e46bf05c0e2e3865974"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/الهوية البصرية/البنرات",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9e86865db9fee4396bc18f4698a239e84b584842",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/9e86865db9fee4396bc18f4698a239e84b584842"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/الهوية البصرية/البنرات/مكاحل-01.jpg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4774082225105c3098d48b5fde0b1811c2a49c2b",
+      "size": 133830,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/4774082225105c3098d48b5fde0b1811c2a49c2b"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99113aca5c95e468544b6505da88b30c914e2427",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/99113aca5c95e468544b6505da88b30c914e2427"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات/categories.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f019b514292c2525ff5f302f69261c50619de33",
+      "size": 66893,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/4f019b514292c2525ff5f302f69261c50619de33"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات/image-manifest.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "662a4d0bed109a56962559ffc16f9f49ea02cb68",
+      "size": 1731223,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/662a4d0bed109a56962559ffc16f9f49ea02cb68"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات/images.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "040c365f7f21892be8d18878f7b4f6ae6073f0d8",
+      "size": 1813027,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/040c365f7f21892be8d18878f7b4f6ae6073f0d8"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات/products.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c8f021ccbfa354f8c8783fbed952b7ea192ab26",
+      "size": 195532,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/0c8f021ccbfa354f8c8783fbed952b7ea192ab26"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/بيانات/products.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2c7ab3e48414a2d2bd605638ed74e10de865e45",
+      "size": 5008874,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a2c7ab3e48414a2d2bd605638ed74e10de865e45"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/تقارير",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b29c26b5c934023286ad617dddbeb8656afa37f7",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/b29c26b5c934023286ad617dddbeb8656afa37f7"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/تقارير/duplicate-images.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f93de1b3a8ec8758d3fe5015ce4e07ec77061d2",
+      "size": 563181,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2f93de1b3a8ec8758d3fe5015ce4e07ec77061d2"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/تقارير/extraction-report.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2920cf8c08586493162a029aabf9f4e78394b474",
+      "size": 7466,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2920cf8c08586493162a029aabf9f4e78394b474"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/تقارير/inaccessible-pages.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3302ac17399a45254b35daac8ea01005cd0db607",
+      "size": 100,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3302ac17399a45254b35daac8ea01005cd0db607"
+    },
+    {
+      "path": "sprtaya-kanaka-assets/تقارير/missing-images.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6dce56ffcfac8ea1b5bfa31728077d6e7c04f7ae",
+      "size": 92,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6dce56ffcfac8ea1b5bfa31728077d6e7c04f7ae"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "644a7be05b7107016ef4cc330008b81117efe61d",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/644a7be05b7107016ef4cc330008b81117efe61d"
+    },
+    {
+      "path": "src/app",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "19560cc138a38c4ab097154ee7ddb5ff77c171bb",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/19560cc138a38c4ab097154ee7ddb5ff77c171bb"
+    },
+    {
+      "path": "src/app/(entry)",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c29a262876e6db6758d2cf331b84fd431e98057d",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/c29a262876e6db6758d2cf331b84fd431e98057d"
+    },
+    {
+      "path": "src/app/(entry)/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73b18446f92d3973d73f95ede94f6abde6bc94f5",
+      "size": 328,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/73b18446f92d3973d73f95ede94f6abde6bc94f5"
+    },
+    {
+      "path": "src/app/(entry)/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31ba9a544077e81fc529abafe4b8985b23c5b66f",
+      "size": 103,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/31ba9a544077e81fc529abafe4b8985b23c5b66f"
+    },
+    {
+      "path": "src/app/[locale]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "867c1fb965400036b11ef27ec2200889b742d8ae",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/867c1fb965400036b11ef27ec2200889b742d8ae"
+    },
+    {
+      "path": "src/app/[locale]/about",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "070fac693799a40f58c66e2851139ebda717ac2e",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/070fac693799a40f58c66e2851139ebda717ac2e"
+    },
+    {
+      "path": "src/app/[locale]/about/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cc3cbed4a77d3bdb62442b1e258138d7468e7c4",
+      "size": 2397,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1cc3cbed4a77d3bdb62442b1e258138d7468e7c4"
+    },
+    {
+      "path": "src/app/[locale]/collections",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bbc5edf1f19c0be94fa2fbf94e10de260ea141df",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/bbc5edf1f19c0be94fa2fbf94e10de260ea141df"
+    },
+    {
+      "path": "src/app/[locale]/collections/[id]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0b8e2cab02a41616f3d4da9598508d0fa82f6f91",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/0b8e2cab02a41616f3d4da9598508d0fa82f6f91"
+    },
+    {
+      "path": "src/app/[locale]/collections/[id]/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "250713a4455c6abedbcbac3b5e812258d7f669a8",
+      "size": 2268,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/250713a4455c6abedbcbac3b5e812258d7f669a8"
+    },
+    {
+      "path": "src/app/[locale]/collections/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "299323b23f2d47bf32248bdba10435f1a7faa56c",
+      "size": 1460,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/299323b23f2d47bf32248bdba10435f1a7faa56c"
+    },
+    {
+      "path": "src/app/[locale]/contact",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bee95ffd9a4a3ccb91b3a1bd8c8b07167a70bde5",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/bee95ffd9a4a3ccb91b3a1bd8c8b07167a70bde5"
+    },
+    {
+      "path": "src/app/[locale]/contact/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b379dab67d6ee9f440ef3a47073cace819ef34fa",
+      "size": 2880,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b379dab67d6ee9f440ef3a47073cace819ef34fa"
+    },
+    {
+      "path": "src/app/[locale]/custom-orders",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a77c772574c862598ff9c5f2e542a8af21c3b056",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/a77c772574c862598ff9c5f2e542a8af21c3b056"
+    },
+    {
+      "path": "src/app/[locale]/custom-orders/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c497f3faf3d002248382feb379d85f4ef186aaad",
+      "size": 2258,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c497f3faf3d002248382feb379d85f4ef186aaad"
+    },
+    {
+      "path": "src/app/[locale]/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fead4ee7ebf09acb8b5bbb2739a93a288a7c7be",
+      "size": 2357,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8fead4ee7ebf09acb8b5bbb2739a93a288a7c7be"
+    },
+    {
+      "path": "src/app/[locale]/loading.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20c471a31a8fb772cff5dfecc2b5c0352fa191e0",
+      "size": 604,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/20c471a31a8fb772cff5dfecc2b5c0352fa191e0"
+    },
+    {
+      "path": "src/app/[locale]/not-found.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19741f9eff0ca822222989324fb37ad32ec3aa7d",
+      "size": 503,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/19741f9eff0ca822222989324fb37ad32ec3aa7d"
+    },
+    {
+      "path": "src/app/[locale]/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3fa05c5a5a60233e62ddc93e8e616f39b8dae61",
+      "size": 12322,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a3fa05c5a5a60233e62ddc93e8e616f39b8dae61"
+    },
+    {
+      "path": "src/app/[locale]/policies",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "057ad2f377793f89b65f7873811025a29140e47c",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/057ad2f377793f89b65f7873811025a29140e47c"
+    },
+    {
+      "path": "src/app/[locale]/policies/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ef99d43a3dabe96fb4567aaad03608958739be6",
+      "size": 2993,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8ef99d43a3dabe96fb4567aaad03608958739be6"
+    },
+    {
+      "path": "src/app/[locale]/products",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e34e9cb514466770ebc0c3479699581e304ac2e2",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/e34e9cb514466770ebc0c3479699581e304ac2e2"
+    },
+    {
+      "path": "src/app/[locale]/products/[slug]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b5fd3a9b57e7a98389d690397bf4389f1311516a",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/b5fd3a9b57e7a98389d690397bf4389f1311516a"
+    },
+    {
+      "path": "src/app/[locale]/products/[slug]/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdf4e750ac57121c015f656b49c5561b07552521",
+      "size": 7941,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/cdf4e750ac57121c015f656b49c5561b07552521"
+    },
+    {
+      "path": "src/app/[locale]/products/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbd48ceb8c7fa3ac85b30a7f752217ec8486dee6",
+      "size": 2147,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/bbd48ceb8c7fa3ac85b30a7f752217ec8486dee6"
+    },
+    {
+      "path": "src/app/[locale]/search",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "064059447826e043ca48b209221566e1196b4283",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/064059447826e043ca48b209221566e1196b4283"
+    },
+    {
+      "path": "src/app/[locale]/search/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4e71dc190764c3988aabec0acb107f95623169c",
+      "size": 2761,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e4e71dc190764c3988aabec0acb107f95623169c"
+    },
+    {
+      "path": "src/app/[locale]/wholesale",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8c3ff30d904d206e42df487a46df15c5e0263aa9",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/8c3ff30d904d206e42df487a46df15c5e0263aa9"
+    },
+    {
+      "path": "src/app/[locale]/wholesale/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "714300c2f114b979f84dd4aa6ce79c5185cb8d10",
+      "size": 2523,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/714300c2f114b979f84dd4aa6ce79c5185cb8d10"
+    },
+    {
+      "path": "src/app/admin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "72e0d1a5fe25b053ff4a539dab112551bfbccb3c",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/72e0d1a5fe25b053ff4a539dab112551bfbccb3c"
+    },
+    {
+      "path": "src/app/admin/actions.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb59bf81042ad43f70ad8c7e4e6406c83196cba5",
+      "size": 5230,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/fb59bf81042ad43f70ad8c7e4e6406c83196cba5"
+    },
+    {
+      "path": "src/app/admin/actions.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a18083bc4bf10c95019f15c60dbfe80af36aa73",
+      "size": 43694,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5a18083bc4bf10c95019f15c60dbfe80af36aa73"
+    },
+    {
+      "path": "src/app/admin/admin-frame.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2f5cff1b04dd2ce28ed11c5933f949d6faa5ca1",
+      "size": 2621,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e2f5cff1b04dd2ce28ed11c5933f949d6faa5ca1"
+    },
+    {
+      "path": "src/app/admin/admin.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a5bc2162d14904b6b8ceb717a158c6b7cb8cf75",
+      "size": 14792,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1a5bc2162d14904b6b8ceb717a158c6b7cb8cf75"
+    },
+    {
+      "path": "src/app/admin/audit",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "df3b61c23f351934fbf53aaaeec9b96c9f2fa82c",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/df3b61c23f351934fbf53aaaeec9b96c9f2fa82c"
+    },
+    {
+      "path": "src/app/admin/audit/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d25f5db66c365b9cbe9e6a4e08857c9282fe89cc",
+      "size": 1445,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d25f5db66c365b9cbe9e6a4e08857c9282fe89cc"
+    },
+    {
+      "path": "src/app/admin/categories",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a11f8a569c3cb164caa5eca801dc178b3c949425",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/a11f8a569c3cb164caa5eca801dc178b3c949425"
+    },
+    {
+      "path": "src/app/admin/categories/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22e4ccd94cca6a275741a38e733d9d4ed5c2e0e2",
+      "size": 5330,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/22e4ccd94cca6a275741a38e733d9d4ed5c2e0e2"
+    },
+    {
+      "path": "src/app/admin/inventory",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99c7a41650450d29bbc569c8a743d89b03ee12a2",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/99c7a41650450d29bbc569c8a743d89b03ee12a2"
+    },
+    {
+      "path": "src/app/admin/inventory/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca354335d9be14ab61413c3e54ca951ad45ca09a",
+      "size": 4603,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ca354335d9be14ab61413c3e54ca951ad45ca09a"
+    },
+    {
+      "path": "src/app/admin/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a1c548a068f2c187a4c08ea8194b97024d9f904",
+      "size": 751,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3a1c548a068f2c187a4c08ea8194b97024d9f904"
+    },
+    {
+      "path": "src/app/admin/login",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "74a28e2b2e532b116beb3a7eb2b57c57094f3fa9",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/74a28e2b2e532b116beb3a7eb2b57c57094f3fa9"
+    },
+    {
+      "path": "src/app/admin/login/login-form.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2dc338a3b01467af05eb46b7054e8bdef9737e5",
+      "size": 2266,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c2dc338a3b01467af05eb46b7054e8bdef9737e5"
+    },
+    {
+      "path": "src/app/admin/login/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0517073e53686b1f66c2d23af7fb40486ab39ef6",
+      "size": 1183,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/0517073e53686b1f66c2d23af7fb40486ab39ef6"
+    },
+    {
+      "path": "src/app/admin/logout-button.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dc2e42838d75928ad43819106c880fb6469d9d6",
+      "size": 450,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5dc2e42838d75928ad43819106c880fb6469d9d6"
+    },
+    {
+      "path": "src/app/admin/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "967da72204630daa7de47264eee571e031c105ac",
+      "size": 2694,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/967da72204630daa7de47264eee571e031c105ac"
+    },
+    {
+      "path": "src/app/admin/password",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ae09df0578b9aaa512638a8b37ce85a362d49714",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/ae09df0578b9aaa512638a8b37ce85a362d49714"
+    },
+    {
+      "path": "src/app/admin/password/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "907be880d227ab513d22bc38709a7f38779a620e",
+      "size": 921,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/907be880d227ab513d22bc38709a7f38779a620e"
+    },
+    {
+      "path": "src/app/admin/password/password-form.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "207224f3f54ccb50dca37a6f71ebbc80eaac1322",
+      "size": 2092,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/207224f3f54ccb50dca37a6f71ebbc80eaac1322"
+    },
+    {
+      "path": "src/app/admin/products",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ea660efffda3bf550193cf7cbb645432d966cc7f",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/ea660efffda3bf550193cf7cbb645432d966cc7f"
+    },
+    {
+      "path": "src/app/admin/products/[id]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ee58b499e8620a33e5c440e3ed30b5ccf71b8801",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/ee58b499e8620a33e5c440e3ed30b5ccf71b8801"
+    },
+    {
+      "path": "src/app/admin/products/[id]/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3c2fab5c6a6e6b2a71f884ce226ee3927c060c3",
+      "size": 2056,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a3c2fab5c6a6e6b2a71f884ce226ee3927c060c3"
+    },
+    {
+      "path": "src/app/admin/products/media-picker.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6dbd4e8c55bf45edafc58664751f6b1e1796f1bb",
+      "size": 4018,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/6dbd4e8c55bf45edafc58664751f6b1e1796f1bb"
+    },
+    {
+      "path": "src/app/admin/products/new",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4f2f0d6b11448b94e9823e4e8335fda3748c609f",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/4f2f0d6b11448b94e9823e4e8335fda3748c609f"
+    },
+    {
+      "path": "src/app/admin/products/new/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52da8b5adce9581afb0979dced1986e86f5c44dd",
+      "size": 1383,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/52da8b5adce9581afb0979dced1986e86f5c44dd"
+    },
+    {
+      "path": "src/app/admin/products/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9201c72abfb2e210d53b18b835749331388c6eb",
+      "size": 4717,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b9201c72abfb2e210d53b18b835749331388c6eb"
+    },
+    {
+      "path": "src/app/admin/products/product-form.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc1cf2eaec54144699f06edfd5d3094f3d517b93",
+      "size": 11637,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/cc1cf2eaec54144699f06edfd5d3094f3d517b93"
+    },
+    {
+      "path": "src/app/admin/products/review",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9a077f68eb8eeb1cef794b96baf08745b46de173",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/9a077f68eb8eeb1cef794b96baf08745b46de173"
+    },
+    {
+      "path": "src/app/admin/products/review/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adc52de73373527d9bf0312a37518a09b8335bed",
+      "size": 12790,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/adc52de73373527d9bf0312a37518a09b8335bed"
+    },
+    {
+      "path": "src/app/admin/products/variant-editor.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "107bed80144d9a36617fce646848bfa356177057",
+      "size": 4145,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/107bed80144d9a36617fce646848bfa356177057"
+    },
+    {
+      "path": "src/app/admin/settings",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3ef953ab1cdcbce66343eeaa2d9e90317c799bdb",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/3ef953ab1cdcbce66343eeaa2d9e90317c799bdb"
+    },
+    {
+      "path": "src/app/admin/settings/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7c784ca7611a66a5353c58be1c53c4bd6e8daa3",
+      "size": 2939,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d7c784ca7611a66a5353c58be1c53c4bd6e8daa3"
+    },
+    {
+      "path": "src/app/admin/staff",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "994f5e6e2aac7ed33707be8fa0504a5b28714119",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/994f5e6e2aac7ed33707be8fa0504a5b28714119"
+    },
+    {
+      "path": "src/app/admin/staff/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e893e9ce310515f0c78f583d7fabd78af8be5350",
+      "size": 2907,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e893e9ce310515f0c78f583d7fabd78af8be5350"
+    },
+    {
+      "path": "src/app/api",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eb78b975b87add602744f5124d030a972aa566d5",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/eb78b975b87add602744f5124d030a972aa566d5"
+    },
+    {
+      "path": "src/app/api/admin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8bb60bb4eb0bcc8beae882e8cad665c0d02a77a0",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/8bb60bb4eb0bcc8beae882e8cad665c0d02a77a0"
+    },
+    {
+      "path": "src/app/api/admin/media",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54042dc931e38abb7d50269fd83f0634a47efe58",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/54042dc931e38abb7d50269fd83f0634a47efe58"
+    },
+    {
+      "path": "src/app/api/admin/media/finalize",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d10879dab069d3de24bd8642a4f10a735f41174c",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/d10879dab069d3de24bd8642a4f10a735f41174c"
+    },
+    {
+      "path": "src/app/api/admin/media/finalize/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a961e119224f01c11bdedb04a188e17c08dfb7d",
+      "size": 7599,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1a961e119224f01c11bdedb04a188e17c08dfb7d"
+    },
+    {
+      "path": "src/app/api/admin/media/upload-url",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e820d4c555735202ec45cf0e7334611b158f410",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/6e820d4c555735202ec45cf0e7334611b158f410"
+    },
+    {
+      "path": "src/app/api/admin/media/upload-url/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b25e0d89fa0b5c02f61771a4a9476c24096f7c41",
+      "size": 2631,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/b25e0d89fa0b5c02f61771a4a9476c24096f7c41"
+    },
+    {
+      "path": "src/app/api/auth",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5a8aa571cb6ced6a24d8888fbb80131e43ec24cf",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/5a8aa571cb6ced6a24d8888fbb80131e43ec24cf"
+    },
+    {
+      "path": "src/app/api/auth/[...all]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "631b56adb5fd020364a38c7840b727ea970ce33f",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/631b56adb5fd020364a38c7840b727ea970ce33f"
+    },
+    {
+      "path": "src/app/api/auth/[...all]/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "085fa770c4d7acdad83ae1d12c92c9a3086f50ad",
+      "size": 982,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/085fa770c4d7acdad83ae1d12c92c9a3086f50ad"
+    },
+    {
+      "path": "src/app/assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "82ae296713785c3bf066692e33e7d6b594c03bbf",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/82ae296713785c3bf066692e33e7d6b594c03bbf"
+    },
+    {
+      "path": "src/app/assets/[...path]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6b7cf0ea98056b667378b73f3dfeccc8e2834b68",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/6b7cf0ea98056b667378b73f3dfeccc8e2834b68"
+    },
+    {
+      "path": "src/app/assets/[...path]/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4546976799ceb1aa9a08ec3ff9485d6af0a18a0",
+      "size": 1622,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f4546976799ceb1aa9a08ec3ff9485d6af0a18a0"
+    },
+    {
+      "path": "src/app/fonts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "250d3f5dd36ff43f30db5739847a59fd15ee0967",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/250d3f5dd36ff43f30db5739847a59fd15ee0967"
+    },
+    {
+      "path": "src/app/fonts/OFL-CormorantGaramond.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "507d70f4565352dbfcf2dfc9b42eb092b57c0be8",
+      "size": 4387,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/507d70f4565352dbfcf2dfc9b42eb092b57c0be8"
+    },
+    {
+      "path": "src/app/fonts/OFL-NotoSansArabic.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14c589f6384505ede3f8e52627d397513af3662d",
+      "size": 4382,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/14c589f6384505ede3f8e52627d397513af3662d"
+    },
+    {
+      "path": "src/app/fonts/cormorant.woff2",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0a2695c4f7b473f248222927462b077ced57066",
+      "size": 14632,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/f0a2695c4f7b473f248222927462b077ced57066"
+    },
+    {
+      "path": "src/app/fonts/noto-arabic.woff2",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3620eba7b0b3f937dec63e9b23b3813a06274a6",
+      "size": 102560,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c3620eba7b0b3f937dec63e9b23b3813a06274a6"
+    },
+    {
+      "path": "src/app/globals.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2c5ed20f15740fdd70ec1528468e41d6757456e",
+      "size": 34806,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c2c5ed20f15740fdd70ec1528468e41d6757456e"
+    },
+    {
+      "path": "src/app/icon.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8883b51cd7bb84e98ee283e226c4d9afc158a302",
+      "size": 295,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8883b51cd7bb84e98ee283e226c4d9afc158a302"
+    },
+    {
+      "path": "src/app/robots.txt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1ae3a3a16ce2727b40eb892dbe9088c52ec05038",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/1ae3a3a16ce2727b40eb892dbe9088c52ec05038"
+    },
+    {
+      "path": "src/app/robots.txt/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a99b477478a5b1884485ec224a1109ef5a2c6855",
+      "size": 933,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a99b477478a5b1884485ec224a1109ef5a2c6855"
+    },
+    {
+      "path": "src/app/sitemap.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c95ce5d9a3c85594c41a46a4a761dc0277820c15",
+      "size": 1276,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c95ce5d9a3c85594c41a46a4a761dc0277820c15"
+    },
+    {
+      "path": "src/components",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "39e15746ef747181d8c9909b5d4865ba846e20f9",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/39e15746ef747181d8c9909b5d4865ba846e20f9"
+    },
+    {
+      "path": "src/components/catalog-browser.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "478399c3837b9d86fac3fc50a08818707a46e0bb",
+      "size": 3637,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/478399c3837b9d86fac3fc50a08818707a46e0bb"
+    },
+    {
+      "path": "src/components/header-controls.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d98cb57d7812121a6d81903414c608f2531b4c3d",
+      "size": 8716,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d98cb57d7812121a6d81903414c608f2531b4c3d"
+    },
+    {
+      "path": "src/components/hero-showcase.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f96cdbb53b971b16740cb6490c9197a3e840f28",
+      "size": 1915,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1f96cdbb53b971b16740cb6490c9197a3e840f28"
+    },
+    {
+      "path": "src/components/icon.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5b9e3c876a3c618ea4903fe42361359e26386bf",
+      "size": 1417,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d5b9e3c876a3c618ea4903fe42361359e26386bf"
+    },
+    {
+      "path": "src/components/product-gallery.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5eecef6d3badcf6e8d0f2987b0b44f6dfed67a14",
+      "size": 3098,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5eecef6d3badcf6e8d0f2987b0b44f6dfed67a14"
+    },
+    {
+      "path": "src/components/site-footer.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b7d59f805559427fd21f07fec4c1da316c492cc",
+      "size": 3732,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2b7d59f805559427fd21f07fec4c1da316c492cc"
+    },
+    {
+      "path": "src/components/site-header.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2fc8ea2dd9d0aa73ed444edf0b0c6eddf3bc317",
+      "size": 3377,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d2fc8ea2dd9d0aa73ed444edf0b0c6eddf3bc317"
+    },
+    {
+      "path": "src/components/storefront-ui.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0b0569562f85a31e0eadf71876988228688530f",
+      "size": 9963,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c0b0569562f85a31e0eadf71876988228688530f"
+    },
+    {
+      "path": "src/data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8d66a77f1b3f286b97aef0509221643c8e0b53be",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/8d66a77f1b3f286b97aef0509221643c8e0b53be"
+    },
+    {
+      "path": "src/data/migration-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee40719fa3fb496bbd87b95e4e19771143f370c1",
+      "size": 174043,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ee40719fa3fb496bbd87b95e4e19771143f370c1"
+    },
+    {
+      "path": "src/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "12d90897700cc6e3b5b161a9bdd49bf94820b0ec",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/12d90897700cc6e3b5b161a9bdd49bf94820b0ec"
+    },
+    {
+      "path": "src/lib/admin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2744b3652f2a08b1651e304c9905b986fc4e81bd",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/2744b3652f2a08b1651e304c9905b986fc4e81bd"
+    },
+    {
+      "path": "src/lib/admin/permissions.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9daf95225ec6ce48181e2e2913452fee829b5e9",
+      "size": 2929,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d9daf95225ec6ce48181e2e2913452fee829b5e9"
+    },
+    {
+      "path": "src/lib/admin/permissions.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf3668ad37ffb812a08a9a056d26e5554f4430d7",
+      "size": 1590,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/cf3668ad37ffb812a08a9a056d26e5554f4430d7"
+    },
+    {
+      "path": "src/lib/admin/product-publication.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88208ed92960ad624f1c1a4cb16128c992ee0262",
+      "size": 1808,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/88208ed92960ad624f1c1a4cb16128c992ee0262"
+    },
+    {
+      "path": "src/lib/admin/product-publication.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b43d19ddd82e67ea042ec4d65d0ec88d7b3d06b",
+      "size": 1316,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3b43d19ddd82e67ea042ec4d65d0ec88d7b3d06b"
+    },
+    {
+      "path": "src/lib/asset-url.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d5baea2e18cd5b3f5d62def1a7576a102393fa9",
+      "size": 440,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3d5baea2e18cd5b3f5d62def1a7576a102393fa9"
+    },
+    {
+      "path": "src/lib/catalog-import.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f2885e57536b1094a00e451fd9c0118e9546972",
+      "size": 5932,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/8f2885e57536b1094a00e451fd9c0118e9546972"
+    },
+    {
+      "path": "src/lib/catalog-import.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16925f012281ea17de37dd500c91a29ce1f1447f",
+      "size": 5361,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/16925f012281ea17de37dd500c91a29ce1f1447f"
+    },
+    {
+      "path": "src/lib/catalog.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b317d4f64a763ba56a328328860a2c2cbc04be6",
+      "size": 3187,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/2b317d4f64a763ba56a328328860a2c2cbc04be6"
+    },
+    {
+      "path": "src/lib/catalog.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "561eca9445b7fecd3f476a21bfccc564ac1fc28a",
+      "size": 5838,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/561eca9445b7fecd3f476a21bfccc564ac1fc28a"
+    },
+    {
+      "path": "src/lib/client",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e38f95f8efa200ac899a027b81bfdf0ed1107744",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/e38f95f8efa200ac899a027b81bfdf0ed1107744"
+    },
+    {
+      "path": "src/lib/client/auth-client.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a74b84f943645e1a0221e292584931946762b4c2",
+      "size": 187,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/a74b84f943645e1a0221e292584931946762b4c2"
+    },
+    {
+      "path": "src/lib/i18n.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "598043668498cbcafd1d95ba83e7a6e39dde8e6f",
+      "size": 7617,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/598043668498cbcafd1d95ba83e7a6e39dde8e6f"
+    },
+    {
+      "path": "src/lib/merchandising.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "178d848be19389ee06fa417e447ef3f788dd789c",
+      "size": 1146,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/178d848be19389ee06fa417e447ef3f788dd789c"
+    },
+    {
+      "path": "src/lib/money.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e0be58fc2ca9fba09a7b16602579fb02179473e",
+      "size": 393,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/1e0be58fc2ca9fba09a7b16602579fb02179473e"
+    },
+    {
+      "path": "src/lib/money.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "305cfa2b76fca9cc28ebbbbb48dcbfd20a087c8f",
+      "size": 1135,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/305cfa2b76fca9cc28ebbbbb48dcbfd20a087c8f"
+    },
+    {
+      "path": "src/lib/server",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "baa5c5f52e7afe29dc508ed3e4a84f303d570c3b",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/baa5c5f52e7afe29dc508ed3e4a84f303d570c3b"
+    },
+    {
+      "path": "src/lib/server/admin-page.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d5d77e6fbc4aec9134c7e16389aad7da7f80d3c",
+      "size": 537,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/5d5d77e6fbc4aec9134c7e16389aad7da7f80d3c"
+    },
+    {
+      "path": "src/lib/server/admin-session.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48d1bd0fd576b004ac0e4bd57d206703cd81c4f7",
+      "size": 4990,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/48d1bd0fd576b004ac0e4bd57d206703cd81c4f7"
+    },
+    {
+      "path": "src/lib/server/admin-session.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdbb630c3fffd317c292de0ee678cb10339400c6",
+      "size": 1576,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/bdbb630c3fffd317c292de0ee678cb10339400c6"
+    },
+    {
+      "path": "src/lib/server/auth.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcffa7931c45bb0098edbcad300dbf10ccad4d93",
+      "size": 2244,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/dcffa7931c45bb0098edbcad300dbf10ccad4d93"
+    },
+    {
+      "path": "src/lib/server/database-engine.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65f89b3b669b32fd98ec5340779866ef52bcd24c",
+      "size": 1205,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/65f89b3b669b32fd98ec5340779866ef52bcd24c"
+    },
+    {
+      "path": "src/lib/server/database-engine.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "988a451a8955a9c4c92d6ce8b1ba46bf349b48d8",
+      "size": 1365,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/988a451a8955a9c4c92d6ce8b1ba46bf349b48d8"
+    },
+    {
+      "path": "src/lib/server/database-target.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc0c526e597445157f5484f838c654612bd280ce",
+      "size": 3065,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/fc0c526e597445157f5484f838c654612bd280ce"
+    },
+    {
+      "path": "src/lib/server/database.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1f3c4bb58f0215812d73788415c4fafd28612f5",
+      "size": 1252,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/c1f3c4bb58f0215812d73788415c4fafd28612f5"
+    },
+    {
+      "path": "src/lib/server/media-storage.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "221afb993b4dfb0f98b52728c763d8d650f8580d",
+      "size": 2514,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/221afb993b4dfb0f98b52728c763d8d650f8580d"
+    },
+    {
+      "path": "src/lib/server/media-storage.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64a020c97a7fc6ad3c9bbeeebc365867a1c79674",
+      "size": 1580,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/64a020c97a7fc6ad3c9bbeeebc365867a1c79674"
+    },
+    {
+      "path": "src/lib/server/migration-approval.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "153d755c787301fb175087a6f1dbc13733cef38d",
+      "size": 2529,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/153d755c787301fb175087a6f1dbc13733cef38d"
+    },
+    {
+      "path": "src/lib/server/mysql.integration.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "943cfdc7acf89e937854502d0833df2bc96aaa81",
+      "size": 20791,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/943cfdc7acf89e937854502d0833df2bc96aaa81"
+    },
+    {
+      "path": "src/lib/server/request-origin.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7403fb590a6a87ea7d0bd70977fb3a8967695ec4",
+      "size": 2196,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7403fb590a6a87ea7d0bd70977fb3a8967695ec4"
+    },
+    {
+      "path": "src/lib/server/request-origin.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10e183c36a4c6213434e8fe6db0dbd064e98ddaa",
+      "size": 606,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/10e183c36a4c6213434e8fe6db0dbd064e98ddaa"
+    },
+    {
+      "path": "src/lib/server/staging-page-access.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "717b30bfb41f069d9bd1551d45036c842f6352f3",
+      "size": 477,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/717b30bfb41f069d9bd1551d45036c842f6352f3"
+    },
+    {
+      "path": "src/lib/server/store-settings.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e333c275681fa5ce080c3818a8bab118271c8c88",
+      "size": 1053,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/e333c275681fa5ce080c3818a8bab118271c8c88"
+    },
+    {
+      "path": "src/lib/server/storefront-catalog.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab440f7c2e6296cf81fd7fa8337b5c25bf8821c0",
+      "size": 8875,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ab440f7c2e6296cf81fd7fa8337b5c25bf8821c0"
+    },
+    {
+      "path": "src/lib/site-config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7f9384ec651530190c74d9505bb5590f41ea9629",
+      "size": 589,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7f9384ec651530190c74d9505bb5590f41ea9629"
+    },
+    {
+      "path": "src/lib/staging-access.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a0a2b8b460ea81f8488b2081a201aa67bde34cb",
+      "size": 4611,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/7a0a2b8b460ea81f8488b2081a201aa67bde34cb"
+    },
+    {
+      "path": "src/lib/staging-access.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "282b60bc7ac6869a51156551da0a46978b633afc",
+      "size": 4844,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/282b60bc7ac6869a51156551da0a46978b633afc"
+    },
+    {
+      "path": "src/lib/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23f417b84dcce82033d87593b428cca453131484",
+      "size": 1216,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/23f417b84dcce82033d87593b428cca453131484"
+    },
+    {
+      "path": "src/proxy.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e619649543c38c8f74424b420eb549ec56cfdbb",
+      "size": 614,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/3e619649543c38c8f74424b420eb549ec56cfdbb"
+    },
+    {
+      "path": "src/test",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4f3708bc293fd316b542f0ab51005732a1d7d85e",
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/trees/4f3708bc293fd316b542f0ab51005732a1d7d85e"
+    },
+    {
+      "path": "src/test/server-only.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc5bda409b54fd151d14744b88547f245df8d538",
+      "size": 102,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/fc5bda409b54fd151d14744b88547f245df8d538"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7aeda13707527154d3c797ee99ccc9ea5ae7732",
+      "size": 819,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/d7aeda13707527154d3c797ee99ccc9ea5ae7732"
+    },
+    {
+      "path": "vitest.config.mts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac98093a8eb6fa8ea222010641f1f43509924cc5",
+      "size": 388,
+      "url": "https://api.github.com/repos/spartayakanaka-factory/spartaya-kanaka/git/blobs/ac98093a8eb6fa8ea222010641f1f43509924cc5"
+    }
+  ],
+  "truncated": false
+}
