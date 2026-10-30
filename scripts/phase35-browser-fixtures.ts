@@ -13,7 +13,10 @@ async function main() {
   try {
     if (await db.legacyProductMapping.count()) throw Error("Imported data must remain unchanged");
     const fixture = JSON.parse(
-      readFileSync(path.join(process.env.P3_STATE_DIR!, "staff.json"), "utf8"),
+      readFileSync(
+        path.join(process.env.P3_STATE_DIR!, process.env.P3_STAFF_FILE || "staff.json"),
+        "utf8",
+      ),
     );
     const policy = await db.commercePolicy.findUniqueOrThrow({ where: { id: "local-synthetic" } });
     const instruction = {
