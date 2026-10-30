@@ -14,7 +14,8 @@ const evidence="docs/phase3/master-execution/ci", assets=path.join(state,"assets
 mkdirSync(evidence,{recursive:true});mkdirSync(path.join(state,"database"),{recursive:true,mode:0o700});
 const secrets=Object.fromEntries(["root","app","auth","s3","s3admin"].map(k=>[k,randomBytes(32).toString("hex")]));
 const owned=[];let app,connection;
-function run(binary,args,env=process.env,capture=false){const r=spawnSync(binary,args,{cwd:root,env,encoding:"utf8",stdio:capture?["ignore","pipe","pipe"]:"inherit"});if(r.status!==0)throw Error("CI command failed: "+binary+" "+args[0]);return r.stdout?.trim();}
+function run(binary,args,env=process.env,capture=false){const r=spawnSync(binary,args,{cwd:root,env,encoding:"utf8",stdio:capture?["ignore","pipe","pipe"]:"inherit"});if(r.status!==0)throw Error("CI command failed: "+binary+" "+args[0]+(capture?"\n"+(r.stderr||""):""));return r.stdout?.trim();}
+function redact(value){let text=String(value);for(const secret of Object.values(secrets))text=text.split(secret).join("[REDACTED]");return text.replace(/mysql:\/\/[^\s]+/g,"[REDACTED_DATABASE_URL]");}
 function file(name,value){writeFileSync(name,value,{mode:0o600});}
 const env={...process.env,P3_STATE_DIR:state,LEGACY_ASSET_ROOT:assets,P3_EVIDENCE_DIR:evidence,P3_BASE_URL:"http://localhost:3003",P3_APP_PORT:"3003",P3_EXTENDED_JOURNEYS:"1",P3_STAFF_FILE:"extended-staff.json"};
 async function main(){
@@ -22,14 +23,17 @@ async function main(){
   const id=run("docker",["run","-d","--label","sprtaya.disposable-ci=1","--publish","127.0.0.1:33078:33078","--env","MARIADB_ROOT_PASSWORD","mariadb:11.8.9","--port=33078","--bind-address=0.0.0.0"],{...env,MARIADB_ROOT_PASSWORD:secrets.root},true);owned.push(id);
   for(let i=0;i<90;i++)try{connection=await mariadb.createConnection({host:"127.0.0.1",port:33078,user:"root",password:secrets.root,connectTimeout:1000});break;}catch{await new Promise(r=>setTimeout(r,1000));}
   if(!connection)throw Error("Fresh MariaDB container did not become ready.");
+  console.log("PASS fresh MariaDB connection; verifying identity and scoped schemas.");
   const identity=await connection.query("SELECT VERSION() v,@@port p");if(!identity[0].v.startsWith("11.8.9-MariaDB")||Number(identity[0].p)!==33078)throw Error("CI database identity mismatch.");
   for(const name of ["sprtaya_phase3_disposable_local","sprtaya_phase3_disposable_test"])await connection.query("CREATE DATABASE `"+name+"` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
   await connection.query("CREATE USER 'sprtaya_phase3'@'%' IDENTIFIED BY ?",[secrets.app]);
   for(const name of ["sprtaya_phase3_disposable_local","sprtaya_phase3_disposable_test"])await connection.query("GRANT ALL ON `"+name+"`.* TO 'sprtaya_phase3'@'%'");
   const s3file=path.join(state,"s3.json");file(s3file,JSON.stringify({identities:[{name:"anonymous",actions:["Read:sprtaya-phase3-display"]},{name:"app",credentials:[{accessKey:"ci-app",secretKey:secrets.s3}],actions:["Read:sprtaya-phase3-originals","Write:sprtaya-phase3-originals","Read:sprtaya-phase3-display","Write:sprtaya-phase3-display"]},{name:"bootstrap",credentials:[{accessKey:"ci-admin",secretKey:secrets.s3admin}],actions:["Admin","Read","Write","List"]}]}));
+  console.log("Starting fresh disposable S3 and checking private/public buckets.");
   const media=run("docker",["run","-d","--label","sprtaya.disposable-ci=1","--publish","127.0.0.1:39010:39010","--mount",`type=bind,source=${s3file},target=/s3.json,readonly`,"chrislusf/seaweedfs:4.51","mini","-dir=/data","-ip=127.0.0.1","-ip.bind=0.0.0.0","-s3.port=39010","-s3.config=/s3.json","-s3.allowedOrigins=http://localhost:3003","-master.telemetry=false","-admin.ui=false","-webdav=false","-s3.iam=false"],env,true);owned.push(media);
   const s3=new S3Client({endpoint:"http://127.0.0.1:39010",region:"us-east-1",forcePathStyle:true,credentials:{accessKeyId:"ci-admin",secretAccessKey:secrets.s3admin}});
   let ready=false;for(let i=0;i<90;i++)try{for(const Bucket of ["sprtaya-phase3-originals","sprtaya-phase3-display"]){try{await s3.send(new HeadBucketCommand({Bucket}));}catch{await s3.send(new CreateBucketCommand({Bucket}));}}ready=true;break;}catch{await new Promise(r=>setTimeout(r,1000));}s3.destroy();if(!ready)throw Error("Fresh S3 container did not become ready.");
+  console.log("PASS fresh disposable S3; applying checked migrations to fresh owned schemas only.");
   for(const test of [false,true]){
     const name=test?"sprtaya_phase3_disposable_test":"sprtaya_phase3_disposable_local";
     const values={DATABASE_URL:`mysql://sprtaya_phase3:${secrets.app}@127.0.0.1:33078/${name}`,DATABASE_TARGET:"local",BETTER_AUTH_SECRET:secrets.auth,MEDIA_S3_ENDPOINT:"http://127.0.0.1:39010",MEDIA_S3_REGION:"us-east-1",MEDIA_S3_FORCE_PATH_STYLE:"true",MEDIA_S3_ORIGINALS_BUCKET:"sprtaya-phase3-originals",MEDIA_S3_DISPLAY_BUCKET:"sprtaya-phase3-display",MEDIA_ACCESS_KEY_ID:"ci-app",MEDIA_SECRET_ACCESS_KEY:secrets.s3,MEDIA_PUBLIC_BASE_URL:"http://127.0.0.1:39010/sprtaya-phase3-display"};
@@ -54,4 +58,4 @@ async function main(){
   for(const script of ["phase3-independent-browser.mjs","phase3-inventory-review.mjs","phase3-staging-http.mjs","phase3-media-browser.mjs"])run(process.execPath,["scripts/phase3.mjs","exec","scripts/"+script],env);
   console.log("PASS fresh disposable CI acceptance; no deployment commands or production credentials used.");
 }
-try{await main();}catch{console.error("CI acceptance failed. Inspect the last named stage; connection secrets are not printed.");process.exitCode=1;}finally{if(app)try{process.kill(-app.pid,"SIGTERM");}catch{}if(connection)await connection.end();for(const id of owned.reverse())spawnSync("docker",["rm","--force",id],{stdio:"ignore"});}
+try{await main();}catch(error){console.error("CI acceptance failed: "+redact(error instanceof Error?error.message:"unknown stage error"));for(const id of owned){for(const args of [["inspect","--format","{{.State.Status}} {{.State.ExitCode}} {{.State.Error}}",id],["logs","--tail","40",id]]){const result=spawnSync("docker",args,{encoding:"utf8"});console.error(redact((result.stdout||"")+(result.stderr||"")));}}process.exitCode=1;}finally{if(app)try{process.kill(-app.pid,"SIGTERM");}catch{}if(connection)await connection.end();for(const id of owned.reverse())spawnSync("docker",["rm","--force",id],{stdio:"ignore"});}
