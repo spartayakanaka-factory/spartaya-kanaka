@@ -225,3 +225,8 @@
     margin-inline-start: auto;
   }
 }
+
+.commerce-line h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

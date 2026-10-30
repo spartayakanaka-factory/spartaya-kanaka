@@ -65,6 +65,7 @@ enum AdminPermission {
 }
 
 model AdminUser {
+  orderNotes CommerceOrderNote[]
   id                  String              @id @default(cuid()) @db.VarChar(191)
   name                String              @db.VarChar(120)
   email               String              @unique @db.VarChar(191)
@@ -434,6 +435,7 @@ model CustomerUser {
  name String @db.VarChar(120)
  email String @unique @db.VarChar(191)
  emailVerified Boolean @default(false)
+ banned Boolean @default(false)
  image String? @db.Text
  phone String? @db.VarChar(32)
  locale String @default("ar") @db.VarChar(2)
@@ -513,6 +515,8 @@ model CustomerAddress {
  country String @db.Char(2)
  region String @db.VarChar(96)
  city String @db.VarChar(96)
+ area String? @db.VarChar(96)
+ deliveryInstructions String? @db.VarChar(500)
  line1 String @db.VarChar(240)
  postalCode String? @db.VarChar(32)
  user CustomerUser @relation(fields:[userId],references:[id],onDelete:Cascade)
@@ -533,6 +537,8 @@ model ShippingRate {
  id String @id @default(uuid()) @db.Char(36)
  country String @db.Char(2)
  region String @db.VarChar(96)
+ city String @default("") @db.VarChar(96)
+ area String @default("") @db.VarChar(96)
  carrier String @db.VarChar(96)
  feeMinor BigInt
  codFeeMinor BigInt?
@@ -542,7 +548,7 @@ model ShippingRate {
  enabled Boolean @default(false)
  leadDays Int
  version Int @default(1)
- @@unique([country,region,carrier])
+ @@unique([country,region,city,area,carrier],map:"shipping_destination_carrier_unique")
  @@map("shipping_rates")
 }
 model CommerceCart {
@@ -591,6 +597,7 @@ model CommerceOrder {
  shipment CommerceShipment?
  recoveryGrants CommerceRecovery[]
  cancellation CommerceCancellation?
+ notes CommerceOrderNote[]
  @@unique([ownerKey,requestKey])
  @@index([ownerKey,createdAt])
  @@index([state,createdAt])
@@ -633,9 +640,13 @@ model CommercePayment {
  currency String @db.Char(3)
  providerReference String @unique @db.VarChar(191)
  claimReference String? @unique(map:"commerce_payment_claim_unique") @db.VarChar(191)
+ evidenceRequired Boolean @default(false)
+ instructionsSnapshot Json?
+ customerExplanation String? @db.VarChar(500)
  createdAt DateTime @default(now()) @db.DateTime(3)
  order CommerceOrder @relation(fields:[orderId],references:[id],onDelete:Restrict)
  paymentEvents CommercePaymentEvent[]
+ evidence CommercePaymentEvidence[]
  @@unique([orderId,requestKey])
  @@map("commerce_payments")
 }
@@ -722,9 +733,44 @@ model CommerceNotification {
  state String @default("PENDING") @db.VarChar(24)
  attempts Int @default(0)
  leaseUntil DateTime? @db.DateTime(3)
+ nextAttemptAt DateTime? @db.DateTime(3)
+ lastErrorCode String? @db.VarChar(64)
  createdAt DateTime @default(now()) @db.DateTime(3)
  @@index([state,leaseUntil])
  @@map("commerce_notifications")
+}
+
+model CommercePaymentEvidence {
+ id String @id @default(uuid()) @db.Char(36)
+ paymentId String @db.Char(36)
+ requestKey String @db.VarChar(64)
+ revision Int
+ ownerKey String @db.VarChar(191)
+ storageKey String @unique @db.VarChar(255)
+ sha256 String @unique @db.Char(64)
+ mime String @db.VarChar(32)
+ byteSize Int
+ width Int
+ height Int
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ payment CommercePayment @relation(fields:[paymentId],references:[id],onDelete:Restrict,onUpdate:Restrict)
+ @@unique([paymentId,requestKey])
+ @@unique([paymentId,revision])
+ @@map("commerce_payment_evidence")
+}
+
+model CommerceOrderNote {
+ id String @id @default(uuid()) @db.Char(36)
+ orderId String @db.Char(36)
+ authorId String @db.VarChar(191)
+ kind String @db.VarChar(24)
+ text String @db.VarChar(1500)
+ requestKey String @unique @db.VarChar(64)
+ createdAt DateTime @default(now()) @db.DateTime(3)
+ order CommerceOrder @relation(fields:[orderId],references:[id],onDelete:Restrict,onUpdate:Restrict)
+ author AdminUser @relation(fields:[authorId],references:[id],onDelete:Restrict,onUpdate:Restrict)
+ @@index([orderId,createdAt])
+ @@map("commerce_order_notes")
 }
 model CommerceRecovery {
  id String @id @default(uuid()) @db.Char(36)

@@ -3,7 +3,16 @@ import { beforeAll, afterAll, describe, it, expect, vi } from "vitest";
 vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 import { getDatabase } from "../database";
 import { fixturePolicy, fixtureProduct, fixtureRate } from "@/lib/commerce/fixtures";
-import { updateCart, quote, checkout, ownedOrder, expireOrders, getCart, transaction, type Tx } from "./store";
+import {
+  updateCart,
+  quote,
+  checkout,
+  ownedOrder,
+  expireOrders,
+  getCart,
+  transaction,
+  type Tx,
+} from "./store";
 import { beginPayment, mockProviderFact, receiveMockEvent, payMock } from "./payments";
 import { requestFinance, financeTransition } from "./admin";
 import { POST as customerPost } from "@/app/api/commerce/route";
@@ -42,7 +51,11 @@ describe.skipIf(process.env.PHASE3_DB_INTEGRATION !== "1")(
   () => {
     beforeAll(async () => {
       db = getDatabase();
-      expect(new URL(process.env.DATABASE_URL!).pathname).toBe("/sprtaya_phase3_disposable_test");
+      expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
+        process.env.P35_WORKSTREAM === "1"
+          ? "/sprtaya_phase35_disposable_test"
+          : "/sprtaya_phase3_disposable_test",
+      );
       await fixturePolicy(db);
       rate = await fixtureRate(db, address.region);
       product = await fixtureProduct(db, "audit-" + key(), "READY_MADE", 100);
@@ -444,33 +457,101 @@ describe.skipIf(process.env.PHASE3_DB_INTEGRATION !== "1")(
       ).toBe(BigInt(0));
     });
     it("rolls back refund reconciliation after the money mutation and then reconciles once under concurrency", async () => {
-      const {s,order}=await place();
-      await payMock(s,order.id,key(),"INITIAL");
-      const r=await requestFinance(admins[0],{orderId:order.id,kind:"REFUND",amount:"10",key:key(),reason:"Synthetic refund rollback test"});
-      await financeTransition(admins[1],r.id,"approve");
-      await financeTransition(admins[1],r.id,"execute");
-      const original=db.$transaction.bind(db);
-      const injected=vi.spyOn(db,"$transaction").mockImplementation(((work: (tx: Tx)=>Promise<unknown>,options: Parameters<typeof db.$transaction>[1])=>original(async(tx)=>work(new Proxy(tx,{get(target,property){
-        if(property==="commerceNotification")return new Proxy(target.commerceNotification,{get(delegate,operation){if(operation==="create")return async()=>{throw Error("MASTER_REFUND_MID_TRANSACTION");};return Reflect.get(delegate,operation);}});
-        return Reflect.get(target,property);
-      }})),options)) as typeof db.$transaction);
-      try{await expect(financeTransition(admins[2],r.id,"reconcile")).rejects.toThrow("MASTER_REFUND_MID_TRANSACTION");}finally{injected.mockRestore();}
-      expect((await db.commerceOrder.findUniqueOrThrow({where:{id:order.id}})).refundedMinor).toBe(BigInt(0));
-      expect((await db.commerceFinanceRequest.findUniqueOrThrow({where:{id:r.id}})).state).toBe("EXECUTED");
-      await Promise.all(Array.from({length:4},()=>financeTransition(admins[2],r.id,"reconcile")));
-      expect((await db.commerceOrder.findUniqueOrThrow({where:{id:order.id}})).refundedMinor).toBe(BigInt(10));
-      expect(await db.commerceEvent.count({where:{orderId:order.id,operationKey:"finance:"+r.id+":reconcile"}})).toBe(1);
+      const { s, order } = await place();
+      await payMock(s, order.id, key(), "INITIAL");
+      const r = await requestFinance(admins[0], {
+        orderId: order.id,
+        kind: "REFUND",
+        amount: "10",
+        key: key(),
+        reason: "Synthetic refund rollback test",
+      });
+      await financeTransition(admins[1], r.id, "approve");
+      await financeTransition(admins[1], r.id, "execute");
+      const original = db.$transaction.bind(db);
+      const injected = vi.spyOn(db, "$transaction").mockImplementation(((
+        work: (tx: Tx) => Promise<unknown>,
+        options: Parameters<typeof db.$transaction>[1],
+      ) =>
+        original(
+          async (tx) =>
+            work(
+              new Proxy(tx, {
+                get(target, property) {
+                  if (property === "commerceNotification")
+                    return new Proxy(target.commerceNotification, {
+                      get(delegate, operation) {
+                        if (operation === "create")
+                          return async () => {
+                            throw Error("MASTER_REFUND_MID_TRANSACTION");
+                          };
+                        return Reflect.get(delegate, operation);
+                      },
+                    });
+                  return Reflect.get(target, property);
+                },
+              }),
+            ),
+          options,
+        )) as typeof db.$transaction);
+      try {
+        await expect(financeTransition(admins[2], r.id, "reconcile")).rejects.toThrow(
+          "MASTER_REFUND_MID_TRANSACTION",
+        );
+      } finally {
+        injected.mockRestore();
+      }
+      expect(
+        (await db.commerceOrder.findUniqueOrThrow({ where: { id: order.id } })).refundedMinor,
+      ).toBe(BigInt(0));
+      expect(
+        (await db.commerceFinanceRequest.findUniqueOrThrow({ where: { id: r.id } })).state,
+      ).toBe("EXECUTED");
+      await Promise.all(
+        Array.from({ length: 4 }, () => financeTransition(admins[2], r.id, "reconcile")),
+      );
+      expect(
+        (await db.commerceOrder.findUniqueOrThrow({ where: { id: order.id } })).refundedMinor,
+      ).toBe(BigInt(10));
+      expect(
+        await db.commerceEvent.count({
+          where: { orderId: order.id, operationKey: "finance:" + r.id + ":reconcile" },
+        }),
+      ).toBe(1);
     });
 
-    it("rejects an unapproved partial transfer and credits simultaneous verified confirmations only once", async()=>{
-      const {s,order}=await place(product.variantId,"INSTAPAY");
-      const payment=await beginPayment(s,order.id,key(),"INITIAL","MASTER-"+key());
-      await expect(requestFinance(admins[0],{orderId:order.id,paymentId:payment.id,kind:"VERIFY_TRANSFER",amount:"1",key:key(),reason:"Synthetic partial transfer"})).rejects.toThrow("TRANSFER_NOT_RECONCILABLE");
-      const r=await requestFinance(admins[0],{orderId:order.id,paymentId:payment.id,kind:"VERIFY_TRANSFER",amount:String(payment.amountMinor),key:key(),reason:"Synthetic full verified transfer"});
-      await financeTransition(admins[1],r.id,"approve");await financeTransition(admins[1],r.id,"execute");
-      await Promise.all(Array.from({length:4},()=>financeTransition(admins[2],r.id,"reconcile")));
-      expect((await db.commerceOrder.findUniqueOrThrow({where:{id:order.id}})).paidMinor).toBe(payment.amountMinor);
-      expect((await db.commercePayment.findUniqueOrThrow({where:{id:payment.id}})).state).toBe("SUCCEEDED");
+    it("rejects an unapproved partial transfer and credits simultaneous verified confirmations only once", async () => {
+      const { s, order } = await place(product.variantId, "INSTAPAY");
+      const payment = await beginPayment(s, order.id, key(), "INITIAL", "MASTER-" + key());
+      await expect(
+        requestFinance(admins[0], {
+          orderId: order.id,
+          paymentId: payment.id,
+          kind: "VERIFY_TRANSFER",
+          amount: "1",
+          key: key(),
+          reason: "Synthetic partial transfer",
+        }),
+      ).rejects.toThrow("TRANSFER_NOT_RECONCILABLE");
+      const r = await requestFinance(admins[0], {
+        orderId: order.id,
+        paymentId: payment.id,
+        kind: "VERIFY_TRANSFER",
+        amount: String(payment.amountMinor),
+        key: key(),
+        reason: "Synthetic full verified transfer",
+      });
+      await financeTransition(admins[1], r.id, "approve");
+      await financeTransition(admins[1], r.id, "execute");
+      await Promise.all(
+        Array.from({ length: 4 }, () => financeTransition(admins[2], r.id, "reconcile")),
+      );
+      expect(
+        (await db.commerceOrder.findUniqueOrThrow({ where: { id: order.id } })).paidMinor,
+      ).toBe(payment.amountMinor);
+      expect(
+        (await db.commercePayment.findUniqueOrThrow({ where: { id: payment.id } })).state,
+      ).toBe("SUCCEEDED");
     });
 
     it("actually uses read-committed isolation rather than retaining a stale snapshot", async () => {

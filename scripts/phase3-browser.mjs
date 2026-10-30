@@ -4,11 +4,9 @@ import { randomBytes } from "node:crypto";
 import assert from "node:assert/strict";
 import path from "node:path";
 const require = createRequire(import.meta.url);
-const {
-  chromium,
-} = require(process.env.P3_PLAYWRIGHT_MODULE || "playwright");
-const base = (process.env.P3_BASE_URL || "http://localhost:3003"),
-  out = "docs/phase3/screenshots";
+const { chromium } = require(process.env.P3_PLAYWRIGHT_MODULE || "playwright");
+const base = process.env.P3_BASE_URL || "http://localhost:3003",
+  out = process.env.P3_SCREENSHOT_DIR || "docs/phase3/screenshots";
 await mkdir(out, { recursive: true });
 const state = process.env.P3_STATE_DIR,
   staffFile = path.join(state, "staff.json"),
@@ -17,9 +15,16 @@ const browser = await chromium.launch({
   executablePath: process.env.P3_CHROME_EXECUTABLE || undefined,
   headless: true,
 });
-const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } }),
+const context = await browser.newContext({
+    extraHTTPHeaders: {
+      "x-forwarded-for":
+        "198.18." + Math.floor(Math.random() * 255) + "." + (1 + Math.floor(Math.random() * 254)),
+    },
+    viewport: { width: 1440, height: 1000 },
+  }),
   page = await context.newPage();
 page.setDefaultTimeout(20000);
+page.on("dialog", (dialog) => dialog.accept());
 const checks = [],
   errors = [],
   audits = [];
@@ -27,7 +32,7 @@ let orderId;
 page.on("pageerror", (e) => errors.push(e.message));
 async function report() {
   await writeFile(
-    "docs/phase3/browser-evidence.json",
+    process.env.P3_BROWSER_EVIDENCE || "docs/phase3/browser-evidence.json",
     JSON.stringify({ base, productionMode: true, checks, errors, audits }, null, 2),
   );
 }
@@ -80,12 +85,13 @@ try {
     await page.getByRole("link", { name: "مراجعة الطلب", exact: true }).click();
     await page.getByLabel("اسم المستلم", { exact: true }).fill("مستلم اصطناعي للاختبار");
     await page.getByLabel("الهاتف", { exact: true }).fill("01000000000");
-    await page.getByLabel("منطقة التوصيل", { exact: true }).selectOption("TEST-CAIRO");
+    await page.getByLabel("المحافظة", { exact: true }).selectOption("TEST-CAIRO");
     await page.getByLabel("المدينة", { exact: true }).fill("مدينة اختبار");
     await page
       .getByLabel("العنوان بالتفصيل", { exact: true })
       .fill("عنوان اصطناعي محلي للاختبار فقط");
     await page.getByLabel("خدمة التوصيل", { exact: true }).selectOption(fixtures.rateId);
+    await page.getByLabel("طريقة دفع الاختبار", { exact: true }).selectOption("MOCK_CARD");
     await page.getByRole("button", { name: "احسب الإجمالي", exact: true }).click();
     await page.getByRole("button", { name: "إنشاء طلب اختباري", exact: true }).waitFor();
     await shot("pass1-ar-checkout-desktop");
@@ -193,38 +199,78 @@ try {
     await page.getByRole("status").filter({ hasText: "تم تسجيل العملية" }).waitFor();
     await shot("pass1-ar-admin-order-desktop");
   });
-  await check("three real staff sessions enforce refund request, approval, execution and reconciliation", async () => {
-    await page.getByLabel("المبلغ بالجنيه المصري", {exact:true}).fill("25.00");
-    await page.getByLabel("سبب موثق", {exact:true}).fill("Synthetic local refund review only");
-    const requested=page.waitForResponse(r=>r.url().endsWith("/api/admin/commerce")&&r.request().method()==="POST");
-    await page.getByRole("button", {name:"إنشاء طلب مراجعة",exact:true}).click();
-    const requestResponse=await requested;
-    assert.equal(requestResponse.status(),200);
-    const finance=await requestResponse.json();
-    assert.equal(finance.amountMinor,"2500");
-    const self=await context.request.post(base+"/api/admin/commerce",{headers:{origin:base},data:{action:"financeTransition",id:finance.id,transition:"approve"}});
-    assert.equal(self.status(),403);
-    async function switchStaff(index){
-      await context.request.post(base+"/api/auth/sign-out",{headers:{origin:base},data:{}});
-      const account=fixtures.staff[index];await goto("/admin/login");
-      await page.getByLabel("البريد الإلكتروني",{exact:true}).fill(account.email);
-      await page.getByLabel("كلمة المرور",{exact:true}).fill(account.password);
-      await page.getByRole("button",{name:"تسجيل الدخول",exact:true}).click();await page.waitForURL(/\/admin(?:\/password)?$/);
-      if(page.url().endsWith("/admin/password")){
-        const rotated=randomBytes(24).toString("base64url");
-        await page.getByLabel("كلمة المرور الحالية").fill(account.password);await page.getByLabel("كلمة المرور الجديدة",{exact:true}).fill(rotated);await page.getByLabel("تأكيد كلمة المرور").fill(rotated);
-        await page.getByRole("button",{name:"تغيير كلمة المرور",exact:true}).click();await page.waitForURL(base+"/admin");account.password=rotated;account.forcePasswordChange=false;await writeFile(staffFile,JSON.stringify(fixtures,null,2),{mode:0o600});
+  await check(
+    "three real staff sessions enforce refund request, approval, execution and reconciliation",
+    async () => {
+      await page.locator('select[name="kind"]').first().selectOption("REFUND");
+      await page.getByLabel("المبلغ بالجنيه المصري", { exact: true }).fill("25.00");
+      await page.getByLabel("سبب موثق", { exact: true }).fill("Synthetic local refund review only");
+      const requested = page.waitForResponse(
+        (r) => r.url().endsWith("/api/admin/commerce") && r.request().method() === "POST",
+      );
+      await page.getByRole("button", { name: "إنشاء طلب مراجعة", exact: true }).click();
+      const requestResponse = await requested;
+      assert.equal(requestResponse.status(), 200);
+      const finance = await requestResponse.json();
+      assert.equal(finance.amountMinor, "2500");
+      const self = await context.request.post(base + "/api/admin/commerce", {
+        headers: { origin: base },
+        data: { action: "financeTransition", id: finance.id, transition: "approve" },
+      });
+      assert.equal(self.status(), 403);
+      async function switchStaff(index) {
+        await context.request.post(base + "/api/auth/sign-out", {
+          headers: { origin: base },
+          data: {},
+        });
+        const account = fixtures.staff[index];
+        await goto("/admin/login");
+        await page.getByLabel("البريد الإلكتروني", { exact: true }).fill(account.email);
+        await page.getByLabel("كلمة المرور", { exact: true }).fill(account.password);
+        await page.getByRole("button", { name: "تسجيل الدخول", exact: true }).click();
+        await page.waitForURL(/\/admin(?:\/password)?$/);
+        if (page.url().endsWith("/admin/password")) {
+          const rotated = randomBytes(24).toString("base64url");
+          await page.getByLabel("كلمة المرور الحالية").fill(account.password);
+          await page.getByLabel("كلمة المرور الجديدة", { exact: true }).fill(rotated);
+          await page.getByLabel("تأكيد كلمة المرور").fill(rotated);
+          await page.getByRole("button", { name: "تغيير كلمة المرور", exact: true }).click();
+          await page.waitForURL(base + "/admin");
+          account.password = rotated;
+          account.forcePasswordChange = false;
+          await writeFile(staffFile, JSON.stringify(fixtures, null, 2), { mode: 0o600 });
+        }
+        await goto("/admin/orders");
       }
-      await goto("/admin/orders");
-    }
-    const row=()=>page.locator(".admin-finance-row").filter({has:page.locator('a[href="/admin/orders/'+orderId+'"]')}).filter({hasText:"استرداد"}).last();
-    async function step(label,transition){const response=page.waitForResponse(r=>r.url().endsWith("/api/admin/commerce")&&r.request().method()==="POST");await row().getByRole("button",{name:label,exact:true}).click();assert.equal((await response).status(),200,transition);await page.getByRole("status").filter({hasText:"تم تسجيل العملية"}).waitFor();}
-    await switchStaff(1);await step("اعتماد","approve");await step("تنفيذ وهمي","execute");
-    const same=await context.request.post(base+"/api/admin/commerce",{headers:{origin:base},data:{action:"financeTransition",id:finance.id,transition:"reconcile"}});assert.equal(same.status(),403);
-    await switchStaff(2);await step("تسوية","reconcile");
-    const detail=await context.request.get(base+"/api/admin/commerce?id="+orderId);assert.equal((await detail.json()).refundedMinor,"2500");
-    await switchStaff(0);
-  });
+      const row = () =>
+        page
+          .locator(".admin-finance-row")
+          .filter({ has: page.locator('a[href="/admin/orders/' + orderId + '"]') })
+          .filter({ hasText: "استرداد" })
+          .last();
+      async function step(label, transition) {
+        const response = page.waitForResponse(
+          (r) => r.url().endsWith("/api/admin/commerce") && r.request().method() === "POST",
+        );
+        await row().getByRole("button", { name: label, exact: true }).click();
+        assert.equal((await response).status(), 200, transition);
+        await page.getByRole("status").filter({ hasText: "تم تسجيل العملية" }).waitFor();
+      }
+      await switchStaff(1);
+      await step("اعتماد", "approve");
+      await step("تنفيذ وهمي", "execute");
+      const same = await context.request.post(base + "/api/admin/commerce", {
+        headers: { origin: base },
+        data: { action: "financeTransition", id: finance.id, transition: "reconcile" },
+      });
+      assert.equal(same.status(), 403);
+      await switchStaff(2);
+      await step("تسوية", "reconcile");
+      const detail = await context.request.get(base + "/api/admin/commerce?id=" + orderId);
+      assert.equal((await detail.json()).refundedMinor, "2500");
+      await switchStaff(0);
+    },
+  );
   await context.request.post(base + "/api/commerce", {
     data: { action: "cart", variantId: fixtures.ready.variantId, quantity: 1 },
     headers: { origin: base },

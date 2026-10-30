@@ -85,7 +85,11 @@ const authRequest = (endpoint: string, body?: unknown, cookie = "") =>
 describe.skipIf(!enabled)("Phase 3 isolated real MariaDB integration", () => {
   beforeAll(async () => {
     db = getDatabase();
-    expect(new URL(process.env.DATABASE_URL!).pathname).toBe("/sprtaya_phase3_disposable_test");
+    expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
+      process.env.P35_WORKSTREAM === "1"
+        ? "/sprtaya_phase35_disposable_test"
+        : "/sprtaya_phase3_disposable_test",
+    );
     await db.customerRateLimit.deleteMany();
     await fixturePolicy(db);
     rate = await fixtureRate(db);

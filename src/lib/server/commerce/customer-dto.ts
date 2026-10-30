@@ -26,6 +26,8 @@ export function customerOrder(
       address: snapshot.address,
       shipping: pick(snapshot.shipping || {}, [
         "carrier",
+        "city",
+        "area",
         "leadDays",
         "feeMinor",
         "codFeeMinor",
@@ -52,6 +54,8 @@ export function customerOrder(
         "gross",
         "initialMinor",
         "manufacturing",
+        "imageUrl",
+        "variantEn",
       ]),
     })),
     payments: order.payments.map((p) => ({
@@ -61,6 +65,9 @@ export function customerOrder(
       amountMinor: p.amountMinor,
       currency: p.currency,
       purpose: p.purpose,
+      evidenceRequired: p.evidenceRequired,
+      instructions: p.instructionsSnapshot,
+      explanation: p.customerExplanation,
       createdAt: p.createdAt,
     })),
   };

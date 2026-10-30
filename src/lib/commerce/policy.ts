@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { egyptianMobileSchema, manualInstructionsSchema } from "./factory-policy";
 
 export const policySchema = z.object({
   currency: z.literal("EGP"),
@@ -23,6 +24,7 @@ export const policySchema = z.object({
   distinctReconciler: z.literal(true),
   international: z.literal(false),
   externalNotifications: z.literal(false),
+  manualInstructions: manualInstructionsSchema.optional(),
 });
 export type CommercePolicy = z.infer<typeof policySchema>;
 export class CommerceError extends Error {
@@ -81,10 +83,12 @@ export type PaymentMethod = (typeof methods)[number];
 export const addressSchema = z.object({
   label: z.string().trim().min(1).max(80),
   recipient: z.string().trim().min(2).max(120),
-  phone: z.string().regex(/^\+?[0-9]{8,15}$/),
+  phone: egyptianMobileSchema,
   country: z.string().regex(/^[A-Z]{2}$/),
   region: z.string().trim().min(1).max(96),
   city: z.string().trim().min(1).max(96),
+  area: z.string().trim().max(96).optional(),
+  deliveryInstructions: z.string().trim().max(500).optional(),
   line1: z.string().trim().min(5).max(240),
   postalCode: z.string().max(32).optional(),
 });

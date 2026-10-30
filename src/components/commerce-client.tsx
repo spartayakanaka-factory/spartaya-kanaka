@@ -6,6 +6,8 @@ import Image from "next/image";
 import { getProductImageUrl } from "@/lib/asset-url";
 import Link from "next/link";
 import type { Address } from "@/lib/commerce/policy";
+import { destinationMatches, egyptianMobile } from "@/lib/commerce/factory-policy";
+import { ManualPaymentCard, type ManualPayment } from "@/components/manual-payment";
 
 type Product = {
   media?: { media: { originalKey: string; publicUrl: string | null } }[];
@@ -42,9 +44,21 @@ type Order = {
     type: string;
     manufacturingState: string;
     quantity: number;
-    snapshot: { titleAr: string; titleEn: string | null; gross: string };
+    snapshot: {
+      titleAr: string;
+      titleEn: string | null;
+      gross: string;
+      variantAr?: string;
+      variantEn?: string;
+      imageUrl?: string;
+      manufacturing?: { minProductionDays?: number; maxProductionDays?: number };
+    };
   }[];
-  payments: { id: string; state: string; amountMinor: string; purpose: string }[];
+  payments: (ManualPayment & { purpose: string })[];
+  snapshot?: {
+    shipping?: { gross?: string; carrier?: string; leadDays?: number };
+    address?: Address;
+  };
   events?: { id: string; kind: string }[];
 };
 type Rate = {
@@ -54,6 +68,8 @@ type Rate = {
   feeMinor: string;
   leadDays: number;
   codEnabled: boolean;
+  city?: string;
+  area?: string;
 };
 const labels: Record<string, [string, string]> = {
   AWAITING_PAYMENT: ["بانتظار دفعة الاختبار", "Awaiting test payment"],
@@ -78,8 +94,8 @@ const errors: Record<string, [string, string]> = {
     "This quantity is no longer available. Review your bag.",
   ],
   SPLIT_CHECKOUT_REQUIRED: [
-    "أكمل طلب القطع الجاهزة والتصنيع في طلبين منفصلين.",
-    "Check out ready-made and made-to-order items separately.",
+    "لا يمكن جمع القطع الجاهزة والتصنيع في طلب واحد حالياً. أزل إحدى المجموعتين للمتابعة.",
+    "Ready-to-ship and made-to-order items cannot share this checkout. Remove one group to continue.",
   ],
   POLICY_REQUIRED: [
     "شروط الضريبة والدفع غير مكتملة. الطلب غير متاح.",
@@ -106,6 +122,14 @@ const errors: Record<string, [string, string]> = {
     "International checkout is disabled. Contact the factory to confirm terms.",
   ],
   ORDER_NOT_FOUND: ["الطلب غير متاح لهذا الحساب.", "This order is not available to this account."],
+  MANUAL_METHOD_NOT_CONFIGURED: [
+    "تعليمات هذه الطريقة غير مفعلة. اختر طريقة متاحة أو تواصل مع المصنع.",
+    "Instructions for this method are disabled. Choose an available method or contact the factory.",
+  ],
+  COD_LIMIT: [
+    "قيمة الطلب تتجاوز الحد المعتمد للدفع عند الاستلام لهذه الوجهة.",
+    "The order exceeds this destination's configured COD limit.",
+  ],
   CANCELLATION_REVIEW_REQUIRED: [
     "يحتاج الإلغاء مراجعة المصنع.",
     "Cancellation requires factory review.",
@@ -225,8 +249,10 @@ function AddressFields({
         type={type}
         autoComplete={autoComplete}
         value={value[key] || ""}
-        required={key !== "postalCode"}
-        maxLength={key === "line1" ? 240 : 120}
+        required={!["postalCode", "area", "deliveryInstructions"].includes(key)}
+        maxLength={key === "line1" ? 240 : key === "deliveryInstructions" ? 500 : 120}
+        inputMode={key === "phone" ? "tel" : undefined}
+        dir={key === "phone" ? "ltr" : undefined}
         onChange={(e) => onChange({ ...value, [key]: e.target.value })}
       />
     </label>
@@ -243,15 +269,17 @@ function AddressFields({
           onChange={(e) => onChange({ ...value, country: e.target.value })}
         >
           <option value="EG">{ar ? "مصر" : "Egypt"}</option>
-          <option value="US">{ar ? "دولي — غير متاح" : "International — unavailable"}</option>
+          <option value="US" disabled>
+            {ar ? "دولي — غير متاح" : "International — unavailable"}
+          </option>
         </select>
       </label>
       {rates ? (
         <label>
-          {ar ? "منطقة التوصيل" : "Delivery area"}
+          {ar ? "المحافظة" : "Governorate"}
           <select
             required
-            aria-label={ar ? "منطقة التوصيل" : "Delivery area"}
+            aria-label={ar ? "المحافظة" : "Governorate"}
             value={value.region}
             onChange={(e) => onChange({ ...value, region: e.target.value })}
           >
@@ -270,7 +298,19 @@ function AddressFields({
         )
       )}
       {field("city", ar ? "المدينة" : "City", "text", "address-level2")}
+      {field(
+        "area",
+        ar ? "الحي / منطقة التسليم (اختياري)" : "District / delivery area (optional)",
+        "text",
+        "address-level3",
+      )}
       {field("line1", ar ? "العنوان بالتفصيل" : "Street address", "text", "street-address")}
+      {field(
+        "deliveryInstructions",
+        ar ? "تعليمات التسليم (اختياري)" : "Delivery instructions (optional)",
+        "text",
+        "off",
+      )}
       {field(
         "postalCode",
         ar ? "الرمز البريدي (اختياري)" : "Postal code (optional)",
@@ -305,7 +345,13 @@ export function CommercePage({
     ),
     [address, setAddress] = useState<Address>(blank),
     [rateId, setRateId] = useState(""),
-    [method, setMethod] = useState("MOCK_CARD"),
+    [method, setMethod] = useState("COD"),
+    [paymentOptions, setPaymentOptions] = useState<Record<string, boolean>>({
+      COD: true,
+      MOCK_CARD: false,
+      WALLET: false,
+      INSTAPAY: false,
+    }),
     [quote, setQuote] = useState<{
       quoteHash: string;
       snapshot: { totalMinor: string; initialMinor: string; balanceMinor: string };
@@ -315,8 +361,32 @@ export function CommercePage({
     [busy, setBusy] = useState(false),
     [authMode, setAuthMode] = useState("login"),
     [reference, setReference] = useState("");
-  const outstandingMinor = order ? BigInt(order.totalMinor) - BigInt(order.creditedMinor) - BigInt(order.paidMinor) + BigInt(order.refundedMinor) : BigInt(0);
-  const paymentUnderReview = order?.payments.some((payment) => ["PENDING", "CLAIMED", "UNKNOWN", "REVIEW_REQUIRED"].includes(payment.state));
+  const outstandingMinor = order
+    ? BigInt(order.totalMinor) -
+      BigInt(order.creditedMinor) -
+      BigInt(order.paidMinor) +
+      BigInt(order.refundedMinor)
+    : BigInt(0);
+  const paymentUnderReview = order?.payments.some((payment) =>
+    ["PENDING", "CLAIMED", "UNKNOWN", "REVIEW_REQUIRED"].includes(payment.state),
+  );
+  const readyOnly =
+    Boolean(cart?.items.length) &&
+    cart!.items.every(
+      (item) =>
+        products.find((p) => p.variants.some((v) => v.id === item.variantId))?.type ===
+        "READY_MADE",
+    );
+  const selectedRate = rates.find(
+    (rate) =>
+      rate.id === rateId && rate.region === address.region && destinationMatches(rate, address),
+  );
+  const availableMethods = ["COD", "WALLET", "INSTAPAY", "MOCK_CARD"].filter(
+    (value) =>
+      paymentOptions[value] &&
+      (value !== "COD" || (readyOnly && selectedRate?.codEnabled !== false)),
+  );
+  const effectiveMethod = availableMethods.includes(method) ? method : availableMethods[0] || "";
   const money = (v: string | number) => formatMoneyMinor(Number(v), ar ? "ar" : "en", "EGP");
   const fail = (e: unknown) =>
     setMessage(
@@ -344,16 +414,20 @@ export function CommercePage({
       } else setOrders(await commerceApi<Order[]>("resource=orders").catch(() => []));
       return;
     }
-    const [p, c, r] = await Promise.all([
+    const [p, c, r, options] = await Promise.all([
       commerceApi<Product[]>("resource=catalog"),
       commerceApi<Cart>("resource=cart").catch(() => null),
       commerceApi<Rate[]>("resource=rates"),
+      view === "checkout"
+        ? commerceApi<Record<string, boolean>>("resource=paymentOptions")
+        : Promise.resolve(null),
     ]);
     setProducts([
       ...new Map([...p, ...(c?.products || [])].map((product) => [product.id, product])).values(),
     ]);
     setCart(c);
     setRates(r);
+    if (options) setPaymentOptions(options);
     if (view === "checkout")
       setAddresses(await commerceApi<typeof addresses>("resource=addresses").catch(() => []));
   }
@@ -516,8 +590,8 @@ export function CommercePage({
               <>
                 <p>
                   {t(
-                    "يتم تحديد الضريبة والتوصيل عند مراجعة الطلب. القطع الجاهزة والتصنيع تحتاج طلبين منفصلين.",
-                    "Tax and delivery are calculated at review. Ready-made and made-to-order pieces need separate checkouts.",
+                    "راجع الضريبة والتوصيل قبل التأكيد. الجمع بين القطع الجاهزة والتصنيع غير متاح حالياً.",
+                    "Review tax and delivery before confirmation. Ready-made and made-to-order items cannot share this checkout.",
                   )}
                 </p>
                 <Link className="button" href={base + "/checkout"}>
@@ -531,12 +605,22 @@ export function CommercePage({
               className="commerce-panel"
               onSubmit={(e) => {
                 e.preventDefault();
+                if (!egyptianMobile(address.phone)) {
+                  setMessage(
+                    t(
+                      "أدخل رقم موبايل مصري صحيحاً يبدأ بـ 010 أو 011 أو 012 أو 015.",
+                      "Enter a valid Egyptian mobile number starting 010, 011, 012 or 015.",
+                    ),
+                  );
+                  (e.currentTarget.elements.namedItem("phone") as HTMLInputElement)?.focus();
+                  return;
+                }
                 void run(async () => {
                   const result = await commerceApi<typeof quote>("", {
                     action: "quote",
                     address,
                     rateId,
-                    method,
+                    method: effectiveMethod,
                     locale,
                   });
                   setQuote(result);
@@ -572,6 +656,12 @@ export function CommercePage({
               <AddressFields
                 value={address}
                 onChange={(v) => {
+                  if (
+                    v.region !== address.region ||
+                    v.city !== address.city ||
+                    v.area !== address.area
+                  )
+                    setRateId("");
                   setAddress(v);
                   setQuote(null);
                 }}
@@ -591,7 +681,7 @@ export function CommercePage({
                 >
                   <option value="">{t("اختر الخدمة", "Select service")}</option>
                   {rates
-                    .filter((r) => r.region === address.region)
+                    .filter((r) => r.region === address.region && destinationMatches(r, address))
                     .map((r) => (
                       <option value={r.id} key={r.id}>
                         {r.carrier} · {money(r.feeMinor)} · {r.leadDays}{" "}
@@ -604,25 +694,32 @@ export function CommercePage({
                 {t("طريقة دفع الاختبار", "Test payment method")}
                 <select
                   aria-label={t("طريقة دفع الاختبار", "Test payment method")}
-                  value={method}
+                  value={effectiveMethod}
+                  required
                   onChange={(e) => {
                     setMethod(e.target.value);
                     setQuote(null);
                   }}
                 >
-                  <option value="MOCK_CARD">{t("بطاقة وهمية محلية", "Local mock card")}</option>
-                  <option value="INSTAPAY">
-                    {t(
-                      "بلاغ تحويل InstaPay — دون تعليمات حقيقية",
-                      "InstaPay claim — no real instructions",
-                    )}
-                  </option>
-                  <option value="WALLET">
-                    {t("بلاغ محفظة — دون تعليمات حقيقية", "Wallet claim — no real instructions")}
-                  </option>
-                  <option value="COD">
-                    {t("عند الاستلام — جاهز فقط", "COD — ready-made only")}
-                  </option>
+                  {!availableMethods.length ? (
+                    <option value="">
+                      {t("لا توجد طريقة دفع مهيأة", "No configured payment method")}
+                    </option>
+                  ) : null}
+                  {availableMethods.map((value) => (
+                    <option value={value} key={value}>
+                      {value === "COD"
+                        ? t(
+                            "الدفع عند الاستلام — للجاهز فقط",
+                            "Cash on delivery — ready-to-ship only",
+                          )
+                        : value === "WALLET"
+                          ? t("تحويل إلى محفظة — مراجعة يدوية", "Mobile wallet — manual review")
+                          : value === "INSTAPAY"
+                            ? "InstaPay — " + t("مراجعة يدوية", "manual review")
+                            : t("بطاقة وهمية محلية", "Local mock card")}
+                    </option>
+                  ))}
                 </select>
               </label>
               <p>
@@ -644,13 +741,19 @@ export function CommercePage({
                       <dd>{money(quote.snapshot.totalMinor)}</dd>
                     </div>
                     <div>
-                      <dt>{t("الدفعة الأولى", "Initial payment")}</dt>
+                      <dt>
+                        {effectiveMethod === "COD"
+                          ? t("المطلوب عند التسليم", "Due on delivery")
+                          : t("الدفعة الأولى", "Initial payment")}
+                      </dt>
                       <dd>{money(quote.snapshot.initialMinor)}</dd>
                     </div>
-                    <div>
-                      <dt>{t("الرصيد قبل الشحن", "Balance before dispatch")}</dt>
-                      <dd>{money(quote.snapshot.balanceMinor)}</dd>
-                    </div>
+                    {effectiveMethod !== "COD" ? (
+                      <div>
+                        <dt>{t("الرصيد قبل الشحن", "Balance before dispatch")}</dt>
+                        <dd>{money(quote.snapshot.balanceMinor)}</dd>
+                      </div>
+                    ) : null}
                   </dl>
                   <button
                     type="button"
@@ -662,7 +765,7 @@ export function CommercePage({
                           action: "checkout",
                           address,
                           rateId,
-                          method,
+                          method: effectiveMethod,
                           locale,
                           quoteHash: quote.quoteHash,
                           requestKey: (() => {
@@ -954,12 +1057,53 @@ export function CommercePage({
             </h2>
             {order.items.map((i) => (
               <article className="commerce-line" key={i.id}>
-                <h3>{ar ? i.snapshot.titleAr : i.snapshot.titleEn || i.snapshot.titleAr}</h3>
+                <div>
+                  {i.snapshot.imageUrl ? (
+                    <Image
+                      src={i.snapshot.imageUrl}
+                      alt=""
+                      width={64}
+                      height={76}
+                      className="commerce-thumb"
+                      unoptimized
+                    />
+                  ) : null}
+                  <div className="commerce-item-copy">
+                    <h3>{ar ? i.snapshot.titleAr : i.snapshot.titleEn || i.snapshot.titleAr}</h3>
+                    {i.snapshot.variantAr ? (
+                      <p>
+                        {ar ? i.snapshot.variantAr : i.snapshot.variantEn || i.snapshot.variantAr}
+                      </p>
+                    ) : null}
+                    {i.snapshot.manufacturing?.minProductionDays &&
+                    i.snapshot.manufacturing.maxProductionDays ? (
+                      <p>
+                        {t("مدة التصنيع المسجلة:", "Configured manufacturing estimate:")}{" "}
+                        {i.snapshot.manufacturing.minProductionDays}–
+                        {i.snapshot.manufacturing.maxProductionDays} {t("يوم", "days")}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
                 <span>× {i.quantity}</span>
                 <strong>{money(i.snapshot.gross)}</strong>
               </article>
             ))}
+            {order.snapshot?.shipping ? (
+              <p>
+                {t("التوصيل", "Delivery")}: {order.snapshot.shipping.carrier} ·{" "}
+                {money(order.snapshot.shipping.gross || "0")}
+              </p>
+            ) : null}
             <dl className="commerce-totals">
+              <div>
+                <dt>
+                  {order.paymentMethod === "COD"
+                    ? t("المبلغ المطلوب عند التسليم", "Amount due on delivery")
+                    : t("الدفعة الأولى المطلوبة", "Required advance")}
+                </dt>
+                <dd>{money(order.initialMinor)}</dd>
+              </div>
               <div>
                 <dt>{t("الإجمالي", "Total")}</dt>
                 <dd>{money(order.totalMinor)}</dd>
@@ -1012,16 +1156,26 @@ export function CommercePage({
           <div className="commerce-panel">
             <h2>{t("الدفعات", "Payments")}</h2>
             {order.payments.map((p) => (
-              <p key={p.id}>
-                {stateLabel(p.state, ar)} · {money(p.amountMinor)}
-              </p>
+              <article key={p.id}>
+                <p>
+                  {stateLabel(p.state, ar)} · {money(p.amountMinor)}
+                </p>
+                {p.evidenceRequired ? (
+                  <ManualPaymentCard payment={p} ar={ar} onChanged={refresh} />
+                ) : null}
+              </article>
             ))}
-            {outstandingMinor > BigInt(0) && !paymentUnderReview && ["AWAITING_PAYMENT", "CONFIRMED", "IN_PRODUCTION", "READY"].includes(order.state) &&
+            {outstandingMinor > BigInt(0) &&
+            !paymentUnderReview &&
+            ["AWAITING_PAYMENT", "CONFIRMED", "IN_PRODUCTION", "READY"].includes(order.state) &&
             order.paymentMethod !== "COD" ? (
               <>
                 {order.paymentMethod !== "MOCK_CARD" ? (
                   <label>
-                    {t("مرجع تحويل اصطناعي فقط", "Synthetic transfer reference only")}
+                    {t(
+                      "مرجع التحويل (اختياري عند توفره)",
+                      "Transfer reference (optional if available)",
+                    )}
                     <input
                       value={reference}
                       onChange={(e) => setReference(e.target.value)}
@@ -1051,7 +1205,7 @@ export function CommercePage({
                 >
                   {order.paymentMethod === "MOCK_CARD"
                     ? t("محاكاة دفع محلي", "Simulate local payment")
-                    : t("تسجيل بلاغ تحويل غير مدفوع", "Record unpaid transfer claim")}
+                    : t("عرض تعليمات التحويل", "View transfer instructions")}
                 </button>
                 <p>
                   {t(
@@ -1065,13 +1219,16 @@ export function CommercePage({
                 {outstandingMinor <= BigInt(0)
                   ? t("لا يوجد رصيد مستحق.", "No outstanding balance.")
                   : order.paymentMethod === "COD"
-                  ? t(
-                      "لا تُثبت دفعة الدفع عند الاستلام إلا بعد مطابقة التحصيل وتسويته.",
-                      "COD is credited only after collection is verified and reconciled.",
-                    )
-                  : paymentUnderReview
-                    ? t("الدفعة قيد التحقق. لن يُطلب دفع جديد قبل حسم حالتها.", "Payment is being verified. No new payment is requested until its status is resolved.")
-                    : t("لا توجد دفعة متاحة حالياً.", "No payment action is available now.")}
+                    ? t(
+                        "لا تُثبت دفعة الدفع عند الاستلام إلا بعد مطابقة التحصيل وتسويته.",
+                        "COD is credited only after collection is verified and reconciled.",
+                      )
+                    : paymentUnderReview
+                      ? t(
+                          "الدفعة قيد التحقق. لن يُطلب دفع جديد قبل حسم حالتها.",
+                          "Payment is being verified. No new payment is requested until its status is resolved.",
+                        )
+                      : t("لا توجد دفعة متاحة حالياً.", "No payment action is available now.")}
               </p>
             )}
           </div>

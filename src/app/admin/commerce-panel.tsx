@@ -1,6 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { ManualPaymentCard } from "@/components/manual-payment";
+import { FactoryPaymentSettings, FactoryShippingSettings } from "./factory-settings";
+import { FactoryWorkQueue } from "./factory-work-queue";
 import { parsePriceMinor } from "@/lib/admin/price";
 import { decimalFromMinor, formatMoneyMinor } from "@/lib/money";
 type Row = {
@@ -9,6 +13,7 @@ type Row = {
   reviewPending?: boolean;
   shipment?: { state: string; collectionState: string } | null;
   snapshot?: {
+    shipping?: { gross?: string; feeMinor?: string; carrier?: string };
     address: {
       recipient: string;
       phone: string;
@@ -16,6 +21,8 @@ type Row = {
       city: string;
       region: string;
       country: string;
+      area?: string;
+      deliveryInstructions?: string;
     };
   };
   id: string;
@@ -30,7 +37,12 @@ type Row = {
     quantity: number;
     type: string;
     manufacturingState: string;
-    snapshot: { titleAr: string };
+    snapshot: {
+      titleAr: string;
+      variantAr?: string;
+      imageUrl?: string;
+      manufacturing?: { minProductionDays?: number; maxProductionDays?: number };
+    };
   }[];
   payments?: {
     id: string;
@@ -38,7 +50,9 @@ type Row = {
     method: string;
     amountMinor: string;
     claimReference?: string | null;
+    evidenceRequired?: boolean;
   }[];
+  notes?: { id: string; kind: string; text: string; createdAt: string; author: { name: string } }[];
   events?: { id: string; kind: string; actorKey: string; createdAt: string }[];
 };
 type Finance = {
@@ -67,6 +81,8 @@ type Data = {
 
   cancellations: { id: string; orderId: string; state: string; reason: string }[];
   orders: Row[];
+  totalOrders: number;
+  page: number;
   finance: Finance[];
   policy: Policy;
   rates: { id: string; region: string; carrier: string; feeMinor: string; enabled: boolean }[];
@@ -155,24 +171,30 @@ export function AdminCommercePanel({
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
     [q, setQ] = useState(""),
-    [filter, setFilter] = useState("");
+    [filter, setFilter] = useState(""),
+    [page, setPage] = useState(0),
+    [financeKind, setFinanceKind] = useState("VERIFY_TRANSFER");
   const money = (n: string) => formatMoneyMinor(Number(n), "ar", "EGP");
   const load = useCallback(async () => {
     const r = await fetch(
       "/api/admin/commerce?" +
-        (orderId ? "id=" + orderId : "q=" + encodeURIComponent(q) + "&state=" + filter),
+        (orderId
+          ? "id=" + orderId
+          : "q=" + encodeURIComponent(q) + "&state=" + filter + "&page=" + page),
       { cache: "no-store" },
     );
     if (!r.ok) throw Error("تعذر تحميل البيانات أو لا توجد صلاحية.");
     const body = await r.json();
     if (orderId) setOrder(body);
     else setData(body);
-  }, [orderId, q, filter]);
+  }, [orderId, q, filter, page]);
   useEffect(() => {
     const controller = new AbortController();
     fetch(
       "/api/admin/commerce?" +
-        (orderId ? "id=" + orderId : "q=" + encodeURIComponent(q) + "&state=" + filter),
+        (orderId
+          ? "id=" + orderId
+          : "q=" + encodeURIComponent(q) + "&state=" + filter + "&page=" + page),
       { cache: "no-store", signal: controller.signal },
     )
       .then(async (r) => {
@@ -187,8 +209,19 @@ export function AdminCommercePanel({
         if (e.name !== "AbortError") setMessage(e.message);
       });
     return () => controller.abort();
-  }, [orderId, q, filter]);
+  }, [orderId, q, filter, page]);
   async function action(body: unknown) {
+    const intent = body as { action?: string; transition?: string; approve?: boolean };
+    if (
+      (intent.action === "financeTransition" ||
+        (intent.action === "cancellation" && intent.approve) ||
+        (intent.action === "fulfill" &&
+          ["cod_collected", "cod_reconciled", "returned", "failed", "delivered"].includes(
+            intent.transition || "",
+          ))) &&
+      !window.confirm("تأكيد تسجيل هذه العملية للطلب؟ ستُحفظ في سجل المتابعة والمراجعة.")
+    )
+      return false;
     setBusy(true);
     setMessage("");
     try {
@@ -209,13 +242,21 @@ export function AdminCommercePanel({
               BALANCE_REQUIRED: "يجب سداد الرصيد قبل الشحن.",
               PRODUCTION_PAYMENT_REQUIRED: "التصنيع يتطلب دفعة أولى متحققة.",
               APPROVAL_REQUIRED: "الموافقة مطلوبة أولاً.",
+              PAYMENT_EVIDENCE_REQUIRED: "يلزم رفع صورة التحويل قبل طلب المطابقة.",
+              CUSTOMER_EXPLANATION_REQUIRED: "اكتب سبباً واضحاً للعميل عند رفض الإثبات.",
+              SETTINGS_CONFLICT: "تغيرت الإعدادات. حدّث الصفحة وراجعها قبل الحفظ.",
+              COD_CONFIGURATION_REQUIRED:
+                "أدخل رسوم التحصيل وسقف الطلب قبل إتاحة الدفع عند الاستلام.",
+              INVALID_INPUT: "راجع الحقول المطلوبة والمبالغ وتعليمات التحويل قبل الحفظ.",
             } as Record<string, string>
           )[result.error] || "العملية غير متاحة في الحالة الحالية. راجع الصلاحيات والمتطلبات.",
         );
       setMessage("تم تسجيل العملية الاختبارية في سجل التدقيق.");
       await load();
+      return true;
     } catch (e) {
       setMessage((e as Error).message);
+      return false;
     } finally {
       setBusy(false);
     }
@@ -227,6 +268,23 @@ export function AdminCommercePanel({
         مالية.
       </p>
       <p role="status">{message}</p>
+      <button
+        type="button"
+        className="admin-button admin-button-secondary"
+        onClick={() => load().catch((e) => setMessage(e.message))}
+      >
+        تحديث البيانات
+      </button>
+      {!data && !order && !message ? <p role="status">جارٍ تحميل البيانات…</p> : null}
+      {!orderId && !settings ? (
+        <FactoryWorkQueue
+          select={(value) => {
+            setFilter(value);
+            setPage(0);
+          }}
+          owner={owner}
+        />
+      ) : null}
       {orderId && order ? (
         <>
           <section className="admin-panel">
@@ -247,13 +305,40 @@ export function AdminCommercePanel({
               · {order.paymentMethod}
             </p>
             {order.items?.map((i) => (
-              <p key={i.id}>
-                {i.snapshot.titleAr} × {i.quantity} ·{" "}
-                {i.manufacturingState === "NOT_STARTED"
-                  ? "لم يبدأ التصنيع"
-                  : states[i.manufacturingState] || i.manufacturingState}
-              </p>
+              <article key={i.id} className="factory-item">
+                {i.snapshot.imageUrl ? (
+                  <Image src={i.snapshot.imageUrl} alt="" width={64} height={76} unoptimized />
+                ) : null}
+                <div>
+                  <h3>
+                    {i.snapshot.titleAr} × {i.quantity}
+                  </h3>
+                  {i.snapshot.variantAr ? <p>الخيار: {i.snapshot.variantAr}</p> : null}
+                  <p>
+                    {i.type === "MADE_TO_ORDER"
+                      ? i.manufacturingState === "NOT_STARTED"
+                        ? "لم يبدأ التصنيع"
+                        : i.manufacturingState === "IN_PROGRESS"
+                          ? "التصنيع جارٍ"
+                          : "اكتمل التصنيع"
+                      : "قطعة جاهزة"}
+                  </p>
+                  {i.snapshot.manufacturing?.minProductionDays &&
+                  i.snapshot.manufacturing.maxProductionDays ? (
+                    <p>
+                      مدة التصنيع المسجلة: {i.snapshot.manufacturing.minProductionDays}–
+                      {i.snapshot.manufacturing.maxProductionDays} يوم
+                    </p>
+                  ) : null}
+                </div>
+              </article>
             ))}
+            {order.snapshot?.shipping ? (
+              <p>
+                خدمة التوصيل: {order.snapshot.shipping.carrier} · الرسوم:{" "}
+                {money(order.snapshot.shipping.gross || order.snapshot.shipping.feeMinor || "0")}
+              </p>
+            ) : null}
             {order.snapshot ? (
               <address>
                 <strong>{order.snapshot.address.recipient}</strong>
@@ -262,14 +347,24 @@ export function AdminCommercePanel({
                 </p>
                 <p>
                   {order.snapshot.address.line1} · {order.snapshot.address.city} ·{" "}
-                  {order.snapshot.address.region} · {order.snapshot.address.country}
+                  {order.snapshot.address.region} · {order.snapshot.address.area} ·{" "}
+                  {order.snapshot.address.country}
                 </p>
+                {order.snapshot.address.deliveryInstructions ? (
+                  <p>تعليمات العميل: {order.snapshot.address.deliveryInstructions}</p>
+                ) : null}
+                <a
+                  href={"tel:" + order.snapshot.address.phone}
+                  className="admin-button admin-button-secondary"
+                >
+                  الاتصال بالعميل
+                </a>
               </address>
             ) : null}
             {order.reviewPending ? (
               <p className="admin-notice">
-                الطلب متوقف للمراجعة بسبب مراجعة دفعة أو طلب إلغاء أو استرداد. لا يبدأ التصنيع أو الشحن قبل حسم
-                المراجعة.
+                الطلب متوقف للمراجعة بسبب مراجعة دفعة أو طلب إلغاء أو استرداد. لا يبدأ التصنيع أو
+                الشحن قبل حسم المراجعة.
               </p>
             ) : null}
             <div className="admin-shortcuts">
@@ -341,15 +436,18 @@ export function AdminCommercePanel({
           <section className="admin-panel">
             <h2>الدفعات والمراجعة المالية</h2>
             {order.payments?.map((p) => (
-              <p key={p.id}>
-                {states[p.state] || p.state} · {money(p.amountMinor)} · <bdi>{p.id}</bdi>
-                {p.claimReference ? (
-                  <>
-                    <br />
-                    مرجع التحويل: <bdi>{p.claimReference}</bdi>
-                  </>
-                ) : null}
-              </p>
+              <article key={p.id}>
+                <p>
+                  {states[p.state] || p.state} · {money(p.amountMinor)} · <bdi>{p.id}</bdi>
+                  {p.claimReference ? (
+                    <>
+                      <br />
+                      مرجع التحويل: <bdi>{p.claimReference}</bdi>
+                    </>
+                  ) : null}
+                </p>
+                {p.evidenceRequired ? <ManualPaymentCard payment={p} ar staff /> : null}
+              </article>
             ))}
             <form
               className="admin-form"
@@ -369,23 +467,58 @@ export function AdminCommercePanel({
             >
               <label>
                 العملية
-                <select name="kind">
+                <select
+                  name="kind"
+                  aria-label="العملية"
+                  value={financeKind}
+                  onChange={(e) => setFinanceKind(e.target.value)}
+                >
+                  <option value="VERIFY_TRANSFER">مطابقة تحويل يدوي</option>
                   <option value="REFUND">طلب استرداد اختباري</option>
-                  <option value="VERIFY_TRANSFER">مطابقة بلاغ تحويل</option>
                 </select>
               </label>
               <label>
                 المبلغ بالجنيه المصري
                 <input
                   name="amount"
+                  readOnly={financeKind === "VERIFY_TRANSFER"}
+                  defaultValue={
+                    order.payments?.find((p) => p.state === "CLAIMED")
+                      ? decimalFromMinor(
+                          Number(order.payments.find((p) => p.state === "CLAIMED")!.amountMinor),
+                        )
+                      : ""
+                  }
                   inputMode="decimal"
                   pattern="[0-9]+([.][0-9]{1,2})?"
                   required
                 />
               </label>
               <label>
-                معرّف الدفعة للتحويل (اختياري للاسترداد)
-                <input name="paymentId" />
+                دفعة التحويل (اختيارية للاسترداد)
+                <select
+                  name="paymentId"
+                  defaultValue={order.payments?.find((p) => p.state === "CLAIMED")?.id || ""}
+                  required={financeKind === "VERIFY_TRANSFER"}
+                  onChange={(e) => {
+                    const payment = order.payments?.find((p) => p.id === e.target.value);
+                    const amount = e.target.form?.elements.namedItem(
+                      "amount",
+                    ) as HTMLInputElement | null;
+                    if (payment && amount && financeKind === "VERIFY_TRANSFER")
+                      amount.value = decimalFromMinor(Number(payment.amountMinor));
+                  }}
+                >
+                  <option value="">اختر دفعة</option>
+                  {order.payments
+                    ?.filter((p) => p.state === "CLAIMED")
+                    .map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.method === "WALLET" ? "محفظة" : "InstaPay"} · {money(p.amountMinor)} ·{" "}
+                        {p.claimReference || p.id.slice(0, 8)}
+                      </option>
+                    ))}
+                </select>
               </label>
               <label>
                 سبب موثق
@@ -398,11 +531,81 @@ export function AdminCommercePanel({
             <Link href="/admin/orders">متابعة الاعتماد والتنفيذ والتسوية</Link>
           </section>
           <section className="admin-panel">
+            <h2>ملاحظات فريق المصنع</h2>
+            <p>هذه الملاحظات داخلية ولا تظهر للعميل.</p>
+            {order.notes?.map((note) => (
+              <article key={note.id} className="factory-note">
+                <strong>
+                  {note.kind === "MANUFACTURING" ? "التصنيع" : "متابعة الطلب"} · {note.author.name}
+                </strong>
+                <p>{note.text}</p>
+                <small>{new Date(note.createdAt).toLocaleString("ar-EG")}</small>
+              </article>
+            ))}
+            <form
+              className="admin-form"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget,
+                  f = new FormData(form);
+                if (
+                  await action({
+                    action: "note",
+                    orderId,
+                    kind: f.get("kind"),
+                    text: f.get("text"),
+                    key: crypto.randomUUID(),
+                  })
+                )
+                  form.reset();
+              }}
+            >
+              <label>
+                نوع الملاحظة
+                <select name="kind">
+                  <option value="INTERNAL">متابعة داخلية</option>
+                  <option value="MANUFACTURING">ملاحظة تصنيع</option>
+                </select>
+              </label>
+              <label>
+                الملاحظة
+                <textarea name="text" required minLength={2} maxLength={1500} />
+              </label>
+              <button className="admin-button" disabled={busy}>
+                إضافة ملاحظة داخلية
+              </button>
+            </form>
             <h2>سجل الطلب</h2>
             {order.events?.map((e) => (
               <p key={e.id}>
-                <bdi>{e.kind}</bdi> · <bdi>{e.actorKey}</bdi> ·{" "}
-                {new Date(e.createdAt).toLocaleString("ar-EG")}
+                {(
+                  {
+                    "order.created": "تسجيل الطلب",
+                    "payment.initiated": "بدء دفعة",
+                    "payment.evidence_submitted": "رفع إثبات تحويل",
+                    "payment.verified": "مطابقة دفعة",
+                    "payment.rejected": "رفض إثبات مع توضيح",
+                    "order.shipped": "تسجيل شحنة",
+                    "order.note_added": "إضافة ملاحظة داخلية",
+                    "order.cancelled": "إلغاء الطلب",
+                    "finance.requested": "طلب مراجعة مالية",
+                    "finance.approve": "اعتماد المراجعة",
+                    "finance.execute": "تنفيذ قرار المراجعة",
+                    "finance.reconcile": "تسوية المراجعة",
+                    "fulfillment.start": "بدء التصنيع",
+                    "fulfillment.ready": "تجهيز للشحن",
+                    "fulfillment.delivered": "تسجيل التسليم",
+                    "fulfillment.cod_collected": "تسجيل تحصيل المندوب",
+                    "fulfillment.cod_reconciled": "تسوية تحصيل المندوب",
+                  } as Record<string, string>
+                )[e.kind] || "تحديث موثق"}{" "}
+                ·{" "}
+                {e.actorKey.startsWith("staff:")
+                  ? "فريق المصنع"
+                  : e.actorKey.startsWith("guest:") || e.actorKey.startsWith("customer:")
+                    ? "العميل"
+                    : "النظام"}{" "}
+                · {new Date(e.createdAt).toLocaleString("ar-EG")}
               </p>
             ))}
           </section>
@@ -416,13 +619,23 @@ export function AdminCommercePanel({
                 بحث برقم الطلب
                 <input
                   value={q}
-                  onChange={(e) => setQ(e.target.value)}
+                  onChange={(e) => {
+                    setQ(e.target.value);
+                    setPage(0);
+                  }}
                   placeholder="أول أحرف الرقم"
                 />
               </label>
               <label>
                 الحالة
-                <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                <select
+                  value={filter}
+                  onChange={(e) => {
+                    setFilter(e.target.value);
+                    setPage(0);
+                  }}
+                >
+                  <option value="PAYMENT_REVIEW">مراجعة التحويلات</option>
                   <option value="">كل الحالات</option>
                   {Object.entries(states)
                     .slice(0, 9)
@@ -434,6 +647,10 @@ export function AdminCommercePanel({
                 </select>
               </label>
             </div>
+            <p>
+              عرض {data.orders.length ? data.page * 30 + 1 : 0}–
+              {data.page * 30 + data.orders.length} من {data.totalOrders} طلباً
+            </p>
             <div className="admin-table-wrap">
               <table className="admin-table">
                 <caption>طلبات الاختبار المحلية</caption>
@@ -463,6 +680,24 @@ export function AdminCommercePanel({
                 </tbody>
               </table>
               {!data.orders.length ? <p>لا توجد طلبات مطابقة.</p> : null}
+              <div className="admin-shortcuts">
+                <button
+                  type="button"
+                  className="admin-button admin-button-secondary"
+                  disabled={page === 0}
+                  onClick={() => setPage(page - 1)}
+                >
+                  السابق
+                </button>
+                <button
+                  type="button"
+                  className="admin-button admin-button-secondary"
+                  disabled={(page + 1) * 30 >= data.totalOrders}
+                  onClick={() => setPage(page + 1)}
+                >
+                  التالي
+                </button>
+              </div>
             </div>
           </section>
           <section className="admin-panel">
@@ -500,76 +735,114 @@ export function AdminCommercePanel({
               طلب ← موافقة من مسؤول مختلف ← تنفيذ وهمي ← تسوية من مسؤول مختلف عن المنفذ. كل خطوة
               تتطلب تفويضاً صريحاً.
             </p>
-            {data.finance.map((f) => (
-              <article className="admin-finance-row" key={f.id}>
-                <p>
-                  <Link href={"/admin/orders/" + f.orderId}>{f.orderId.slice(0, 8)}</Link> ·{" "}
-                  {f.kind === "REFUND" ? "استرداد" : "مطابقة تحويل"} · {money(f.amountMinor)} ·{" "}
-                  {states[f.state] || f.state}
-                </p>
-                <p>{f.reason}</p>
-                <small>
-                  الخطوة المعطلة تتطلب تفويضاً صالحاً، ومراجعاً مختلفاً عن مقدم الطلب، ومسؤول تسوية
-                  مختلفاً عن المنفذ.
-                </small>
-                <div className="admin-shortcuts">
-                  {(
-                    [
-                      ["approve", "اعتماد"],
-                      ["reject", "رفض"],
-                      ["execute", "تنفيذ وهمي"],
-                      ["reconcile", "تسوية"],
-                    ] as const
-                  )
-                    .filter(([transition]) =>
-                      transition === "approve" || transition === "reject"
-                        ? f.state === "REQUESTED"
-                        : transition === "execute"
-                          ? f.state === "APPROVED"
-                          : f.state === "EXECUTED",
+            {data.finance
+              .filter((f) => !["RECONCILED", "REJECTED"].includes(f.state))
+              .map((f) => (
+                <article className="admin-finance-row" key={f.id}>
+                  <p>
+                    <Link href={"/admin/orders/" + f.orderId}>{f.orderId.slice(0, 8)}</Link> ·{" "}
+                    {f.kind === "REFUND" ? "استرداد" : "مطابقة تحويل"} · {money(f.amountMinor)} ·{" "}
+                    {states[f.state] || f.state}
+                  </p>
+                  <p>{f.reason}</p>
+                  <small>
+                    الخطوة المعطلة تتطلب تفويضاً صالحاً، ومراجعاً مختلفاً عن مقدم الطلب، ومسؤول
+                    تسوية مختلفاً عن المنفذ.
+                  </small>
+                  <div className="admin-shortcuts">
+                    {(
+                      [
+                        ["approve", "اعتماد"],
+                        ["reject", "رفض"],
+                        ["execute", "تنفيذ وهمي"],
+                        ["reconcile", "تسوية"],
+                      ] as const
                     )
-                    .map(([transition, label]) => (
-                      <button
-                        disabled={
-                          busy ||
-                          ((transition === "approve" || transition === "reject") &&
-                            f.requestedBy === data.viewerId) ||
-                          (transition === "reconcile" && f.executedBy === data.viewerId) ||
-                          !data.financeGrants.some(
-                            (g) =>
-                              g.adminId === data.viewerId &&
-                              !g.revoked &&
-                              new Date(g.expiresAt) > new Date() &&
-                              BigInt(g.limitMinor) >= BigInt(f.amountMinor) &&
-                              g.operation ===
-                                (f.kind === "VERIFY_TRANSFER"
-                                  ? transition === "reconcile"
-                                    ? "RECONCILE"
-                                    : "PAYMENT_VERIFY"
-                                  : transition === "approve" || transition === "reject"
-                                    ? "REFUND_APPROVE"
-                                    : transition === "execute"
-                                      ? "REFUND_EXECUTE"
-                                      : "RECONCILE"),
-                          )
-                        }
-                        key={transition}
-                        className="admin-button admin-button-secondary"
-                        onClick={() =>
-                          void action({ action: "financeTransition", id: f.id, transition })
-                        }
-                      >
-                        {label}
-                      </button>
-                    ))}
-                </div>
-              </article>
-            ))}
+                      .filter(([transition]) =>
+                        transition === "approve" || transition === "reject"
+                          ? f.state === "REQUESTED"
+                          : transition === "execute"
+                            ? f.state === "APPROVED"
+                            : f.state === "EXECUTED",
+                      )
+                      .map(([transition, label]) => (
+                        <button
+                          disabled={
+                            busy ||
+                            ((transition === "approve" || transition === "reject") &&
+                              f.requestedBy === data.viewerId) ||
+                            (transition === "reconcile" && f.executedBy === data.viewerId) ||
+                            !data.financeGrants.some(
+                              (g) =>
+                                g.adminId === data.viewerId &&
+                                !g.revoked &&
+                                new Date(g.expiresAt) > new Date() &&
+                                BigInt(g.limitMinor) >= BigInt(f.amountMinor) &&
+                                g.operation ===
+                                  (f.kind === "VERIFY_TRANSFER"
+                                    ? transition === "reconcile"
+                                      ? "RECONCILE"
+                                      : "PAYMENT_VERIFY"
+                                    : transition === "approve" || transition === "reject"
+                                      ? "REFUND_APPROVE"
+                                      : transition === "execute"
+                                        ? "REFUND_EXECUTE"
+                                        : "RECONCILE"),
+                            )
+                          }
+                          key={transition}
+                          className="admin-button admin-button-secondary"
+                          onClick={() => {
+                            const explanation =
+                              transition === "reject" && f.kind === "VERIFY_TRANSFER"
+                                ? window.prompt("سبب رفض الإثبات المرسل للعميل (8 أحرف على الأقل)")
+                                : undefined;
+                            if (explanation === null) return;
+                            void action({
+                              action: "financeTransition",
+                              id: f.id,
+                              transition,
+                              ...(explanation ? { customerExplanation: explanation } : {}),
+                            });
+                          }}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                  </div>
+                </article>
+              ))}
           </section>
         </>
       ) : null}
+      {!orderId && !settings && data ? (
+        <section className="admin-panel">
+          <details>
+            <summary>المراجعات المالية المكتملة</summary>
+            {data.finance
+              .filter((f) => ["RECONCILED", "REJECTED"].includes(f.state))
+              .map((f) => (
+                <p key={f.id}>
+                  <Link href={"/admin/orders/" + f.orderId}>
+                    <bdi>{f.orderId.slice(0, 8)}</bdi>
+                  </Link>{" "}
+                  · {f.kind === "REFUND" ? "استرداد" : "مطابقة تحويل"} · {money(f.amountMinor)} ·{" "}
+                  {states[f.state]}
+                </p>
+              ))}
+          </details>
+        </section>
+      ) : null}
       {settings && data ? (
         <>
+          <FactoryPaymentSettings
+            configuration={data.policy?.configuration || {}}
+            version={data.policy?.version || 1}
+            submit={action}
+            busy={busy}
+            owner={owner}
+          />
+          <FactoryShippingSettings rates={data.rates} submit={action} busy={busy} owner={owner} />
           <section className="admin-panel">
             <h2>سياسة التشغيل الاصطناعية</h2>
             <p>
@@ -577,20 +850,22 @@ export function AdminCommercePanel({
               الأسعار السابقة.
             </p>
             <dl>
-              {Object.entries(data.policy?.configuration || {}).map(([k, v]) => (
-                <div key={k}>
-                  <dt>{policyLabels[k] || k}</dt>
-                  <dd>
-                    {k === "taxRateBps"
-                      ? decimalFromMinor(Number(v))
-                      : typeof v === "boolean"
-                        ? v
-                          ? "نعم"
-                          : "لا"
-                        : policyValues[String(v)] || String(v)}
-                  </dd>
-                </div>
-              ))}
+              {Object.entries(data.policy?.configuration || {})
+                .filter(([k]) => k !== "manualInstructions")
+                .map(([k, v]) => (
+                  <div key={k}>
+                    <dt>{policyLabels[k] || k}</dt>
+                    <dd>
+                      {k === "taxRateBps"
+                        ? decimalFromMinor(Number(v))
+                        : typeof v === "boolean"
+                          ? v
+                            ? "نعم"
+                            : "لا"
+                          : policyValues[String(v)] || String(v)}
+                    </dd>
+                  </div>
+                ))}
             </dl>
             {owner ? (
               <form
@@ -724,60 +999,6 @@ export function AdminCommercePanel({
                 </label>
                 <button className="admin-button" disabled={busy}>
                   حفظ التفويض الصريح
-                </button>
-              </form>
-            ) : null}
-            <h2>مناطق التوصيل</h2>
-            {data.rates.map((r) => (
-              <p key={r.id}>
-                {r.region} · {r.carrier} · {money(r.feeMinor)} ·{" "}
-                {r.enabled ? "مفعلة للاختبار" : "معطلة"}
-              </p>
-            ))}
-            {owner ? (
-              <form
-                className="admin-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const f = new FormData(e.currentTarget);
-                  void action({
-                    action: "rate",
-                    country: "EG",
-                    currency: "EGP",
-                    region: f.get("region"),
-                    carrier: f.get("carrier"),
-                    feeMinor: String(formMinor(f.get("feeMinor"))),
-                    leadDays: Number(f.get("leadDays")),
-                    enabled: true,
-                    codEnabled: false,
-                    codFeeMinor: null,
-                    codMaximumMinor: null,
-                  });
-                }}
-              >
-                <label>
-                  منطقة اصطناعية
-                  <input name="region" required maxLength={96} />
-                </label>
-                <label>
-                  شركة توصيل اصطناعية
-                  <input name="carrier" required maxLength={96} />
-                </label>
-                <label>
-                  رسوم التوصيل بالجنيه
-                  <input
-                    name="feeMinor"
-                    inputMode="decimal"
-                    pattern="[0-9]+([.][0-9]{1,2})?"
-                    required
-                  />
-                </label>
-                <label>
-                  أيام التوصيل الاصطناعية
-                  <input name="leadDays" type="number" min="1" max="365" required />
-                </label>
-                <button disabled={busy} className="admin-button">
-                  إضافة خدمة اختبار — دون دفع عند الاستلام
                 </button>
               </form>
             ) : null}
