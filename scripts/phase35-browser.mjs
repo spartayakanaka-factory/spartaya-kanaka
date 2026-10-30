@@ -363,11 +363,9 @@ try {
     "owner shipping/payment settings and customer-account controls persist through real forms",
     async () => {
       await goto(owner.p, "/admin/commerce-settings");
-      const shipping = owner.p
-        .locator("section.admin-panel")
-        .filter({
-          has: owner.p.getByRole("heading", { name: "التوصيل والدفع عند الاستلام", exact: true }),
-        });
+      const shipping = owner.p.locator("section.admin-panel").filter({
+        has: owner.p.getByRole("heading", { name: "التوصيل والدفع عند الاستلام", exact: true }),
+      });
       const region = "SYNTHETIC-UI-" + randomUUID().slice(0, 8);
       for (const [name, value] of [
         ["region", region],
@@ -463,6 +461,16 @@ try {
             );
             if (pass === 2) {
               await audit(p, name + " " + width);
+              if (name === "settings") {
+                const summaries = p.locator("details > summary");
+                for (let index = 0; index < (await summaries.count()); index++) {
+                  await summaries.nth(index).focus();
+                  await summaries.nth(index).press("Enter");
+                }
+                await audit(p, "expanded advanced settings " + width);
+                for (let index = 0; index < (await summaries.count()); index++)
+                  await summaries.nth(index).press("Enter");
+              }
               await p.screenshot({
                 path: out + "/screenshots/factory-" + name + "-" + width + ".png",
                 fullPage: true,

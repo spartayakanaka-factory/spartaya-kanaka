@@ -1060,3 +1060,27 @@
     padding: 14px;
   }
 }
+
+.admin-form input[type="checkbox"] {
+  width: 20px;
+  min-height: 20px;
+  height: 20px;
+  accent-color: #985c39;
+  vertical-align: middle;
+}
+.admin-form fieldset label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.admin-panel summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 10px;
+  font-weight: 600;
+}
+.admin-panel summary:focus-visible {
+  outline: 2px solid #985c39;
+  outline-offset: 3px;
+}

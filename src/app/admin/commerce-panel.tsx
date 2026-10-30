@@ -844,164 +844,170 @@ export function AdminCommercePanel({
           />
           <FactoryShippingSettings rates={data.rates} submit={action} busy={busy} owner={owner} />
           <section className="admin-panel">
-            <h2>سياسة التشغيل الاصطناعية</h2>
-            <p>
-              هذه القيم للاختبار فقط، ولا تمثل سياسة مالية معتمدة للمصنع. تغيير السياسة يُبطل عروض
-              الأسعار السابقة.
-            </p>
-            <dl>
-              {Object.entries(data.policy?.configuration || {})
-                .filter(([k]) => k !== "manualInstructions")
-                .map(([k, v]) => (
-                  <div key={k}>
-                    <dt>{policyLabels[k] || k}</dt>
-                    <dd>
-                      {k === "taxRateBps"
-                        ? decimalFromMinor(Number(v))
-                        : typeof v === "boolean"
-                          ? v
-                            ? "نعم"
-                            : "لا"
-                          : policyValues[String(v)] || String(v)}
-                    </dd>
-                  </div>
-                ))}
-            </dl>
-            {owner ? (
-              <form
-                className="admin-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const f = new FormData(e.currentTarget);
-                  void action({
-                    action: "policy",
-                    version: data.policy.version,
-                    configuration: {
-                      ...data.policy.configuration,
-                      taxMode: f.get("taxMode"),
-                      taxRateBps: formMinor(f.get("taxRateBps")),
-                      holdSeconds: Number(f.get("holdSeconds")),
-                    },
-                  });
-                }}
-              >
-                <label>
-                  طريقة الضريبة
-                  <select name="taxMode" defaultValue={String(data.policy.configuration.taxMode)}>
-                    <option value="INCLUSIVE">شاملة</option>
-                    <option value="EXCLUSIVE">غير شاملة</option>
-                  </select>
-                </label>
-                <label>
-                  نسبة ضريبة اصطناعية (%)
-                  <input
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="0.01"
-                    name="taxRateBps"
-                    defaultValue={decimalFromMinor(Number(data.policy.configuration.taxRateBps))}
-                    required
-                  />
-                </label>
-                <label>
-                  مهلة الحجز بالثواني
-                  <input
-                    type="number"
-                    min="30"
-                    max="86400"
-                    name="holdSeconds"
-                    defaultValue={Number(data.policy.configuration.holdSeconds)}
-                    required
-                  />
-                </label>
-                <button className="admin-button" disabled={busy}>
-                  حفظ سياسة الاختبار
-                </button>
-              </form>
-            ) : null}
+            <details>
+              <summary>سياسة الاختبار — إعدادات متقدمة</summary>
+              <h2>سياسة التشغيل الاصطناعية</h2>
+              <p>
+                هذه القيم للاختبار فقط، ولا تمثل سياسة مالية معتمدة للمصنع. تغيير السياسة يُبطل عروض
+                الأسعار السابقة.
+              </p>
+              <dl>
+                {Object.entries(data.policy?.configuration || {})
+                  .filter(([k]) => k !== "manualInstructions")
+                  .map(([k, v]) => (
+                    <div key={k}>
+                      <dt>{policyLabels[k] || k}</dt>
+                      <dd>
+                        {k === "taxRateBps"
+                          ? decimalFromMinor(Number(v))
+                          : typeof v === "boolean"
+                            ? v
+                              ? "نعم"
+                              : "لا"
+                            : policyValues[String(v)] || String(v)}
+                      </dd>
+                    </div>
+                  ))}
+              </dl>
+              {owner ? (
+                <form
+                  className="admin-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const f = new FormData(e.currentTarget);
+                    void action({
+                      action: "policy",
+                      version: data.policy.version,
+                      configuration: {
+                        ...data.policy.configuration,
+                        taxMode: f.get("taxMode"),
+                        taxRateBps: formMinor(f.get("taxRateBps")),
+                        holdSeconds: Number(f.get("holdSeconds")),
+                      },
+                    });
+                  }}
+                >
+                  <label>
+                    طريقة الضريبة
+                    <select name="taxMode" defaultValue={String(data.policy.configuration.taxMode)}>
+                      <option value="INCLUSIVE">شاملة</option>
+                      <option value="EXCLUSIVE">غير شاملة</option>
+                    </select>
+                  </label>
+                  <label>
+                    نسبة ضريبة اصطناعية (%)
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                      name="taxRateBps"
+                      defaultValue={decimalFromMinor(Number(data.policy.configuration.taxRateBps))}
+                      required
+                    />
+                  </label>
+                  <label>
+                    مهلة الحجز بالثواني
+                    <input
+                      type="number"
+                      min="30"
+                      max="86400"
+                      name="holdSeconds"
+                      defaultValue={Number(data.policy.configuration.holdSeconds)}
+                      required
+                    />
+                  </label>
+                  <button className="admin-button" disabled={busy}>
+                    حفظ سياسة الاختبار
+                  </button>
+                </form>
+              ) : null}
+            </details>
           </section>
           <section className="admin-panel">
-            <h2>التفويضات المالية المحددة</h2>
-            <p>
-              لا يحصل المدير على صلاحيات مالية افتراضياً. كل تفويض محدد بالعملية والسقف والمدة. منع
-              اعتماد الطلب ذاتياً وفصل التسوية عن التنفيذ إلزاميان. هذه الحدود اصطناعية محلية.
-            </p>
-            {data.financeGrants.map((g) => (
-              <p key={g.id}>
-                <bdi>{data.staff.find((s) => s.id === g.adminId)?.name || g.adminId}</bdi> ·{" "}
-                {financialLabels[g.operation] || g.operation} · {money(g.limitMinor)} ·{" "}
-                {g.revoked ? "ملغي" : "محدد المدة"}
+            <details>
+              <summary>تفويض المسؤولين الماليين ومراجعة الحدود</summary>
+              <h2>التفويضات المالية المحددة</h2>
+              <p>
+                لا يحصل المدير على صلاحيات مالية افتراضياً. كل تفويض محدد بالعملية والسقف والمدة.
+                منع اعتماد الطلب ذاتياً وفصل التسوية عن التنفيذ إلزاميان. هذه الحدود اصطناعية محلية.
               </p>
-            ))}
-            {owner ? (
-              <form
-                className="admin-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const f = new FormData(e.currentTarget);
-                  void action({
-                    action: "grant",
-                    adminId: f.get("adminId"),
-                    operation: f.get("operation"),
-                    limitMinor: String(formMinor(f.get("limitMinor"))),
-                    days: Number(f.get("days")),
-                    revoked: f.get("revoked") === "on",
-                    reason: f.get("reason"),
-                  });
-                }}
-              >
-                <label>
-                  المسؤول المفوض
-                  <select name="adminId" required>
-                    {data.staff.map((s) => (
-                      <option key={s.id} value={s.id}>
-                        {s.name} · {s.roleCode === "OWNER" ? "مالك" : "مدير"}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  الصلاحية
-                  <select name="operation" required>
-                    {[
-                      "PAYMENT_VERIFY",
-                      "REFUND_REQUEST",
-                      "REFUND_APPROVE",
-                      "REFUND_EXECUTE",
-                      "RECONCILE",
-                    ].map((o) => (
-                      <option value={o} key={o}>
-                        {financialLabels[o]}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  سقف العملية بالجنيه (حتى 10000 للاختبار)
-                  <input
-                    name="limitMinor"
-                    inputMode="decimal"
-                    pattern="[0-9]+([.][0-9]{1,2})?"
-                    required
-                  />
-                </label>
-                <label>
-                  المدة بالأيام (حتى 30)
-                  <input name="days" type="number" min="1" max="30" required />
-                </label>
-                <label>
-                  سبب التفويض أو الإلغاء
-                  <textarea name="reason" minLength={8} maxLength={500} required />
-                </label>
-                <label>
-                  <input name="revoked" type="checkbox" /> إلغاء التفويض
-                </label>
-                <button className="admin-button" disabled={busy}>
-                  حفظ التفويض الصريح
-                </button>
-              </form>
-            ) : null}
+              {data.financeGrants.map((g) => (
+                <p key={g.id}>
+                  <bdi>{data.staff.find((s) => s.id === g.adminId)?.name || g.adminId}</bdi> ·{" "}
+                  {financialLabels[g.operation] || g.operation} · {money(g.limitMinor)} ·{" "}
+                  {g.revoked ? "ملغي" : "محدد المدة"}
+                </p>
+              ))}
+              {owner ? (
+                <form
+                  className="admin-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const f = new FormData(e.currentTarget);
+                    void action({
+                      action: "grant",
+                      adminId: f.get("adminId"),
+                      operation: f.get("operation"),
+                      limitMinor: String(formMinor(f.get("limitMinor"))),
+                      days: Number(f.get("days")),
+                      revoked: f.get("revoked") === "on",
+                      reason: f.get("reason"),
+                    });
+                  }}
+                >
+                  <label>
+                    المسؤول المفوض
+                    <select name="adminId" required>
+                      {data.staff.map((s) => (
+                        <option key={s.id} value={s.id}>
+                          {s.name} · {s.roleCode === "OWNER" ? "مالك" : "مدير"}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    الصلاحية
+                    <select name="operation" required>
+                      {[
+                        "PAYMENT_VERIFY",
+                        "REFUND_REQUEST",
+                        "REFUND_APPROVE",
+                        "REFUND_EXECUTE",
+                        "RECONCILE",
+                      ].map((o) => (
+                        <option value={o} key={o}>
+                          {financialLabels[o]}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    سقف العملية بالجنيه (حتى 10000 للاختبار)
+                    <input
+                      name="limitMinor"
+                      inputMode="decimal"
+                      pattern="[0-9]+([.][0-9]{1,2})?"
+                      required
+                    />
+                  </label>
+                  <label>
+                    المدة بالأيام (حتى 30)
+                    <input name="days" type="number" min="1" max="30" required />
+                  </label>
+                  <label>
+                    سبب التفويض أو الإلغاء
+                    <textarea name="reason" minLength={8} maxLength={500} required />
+                  </label>
+                  <label>
+                    <input name="revoked" type="checkbox" /> إلغاء التفويض
+                  </label>
+                  <button className="admin-button" disabled={busy}>
+                    حفظ التفويض الصريح
+                  </button>
+                </form>
+              ) : null}
+            </details>
           </section>
           <section className="admin-panel">
             <h2>التنبيهات المحلية ومهام الاستعادة</h2>
@@ -1013,11 +1019,14 @@ export function AdminCommercePanel({
               تحرير الحجوزات المنتهية والتقاط التنبيهات
             </button>
             <p>لا يُرسل بريد أو رسائل خارجية. الالتقاط في ملفات محلية خاصة.</p>
-            {data.notifications.map((n) => (
-              <p key={n.id}>
-                <bdi>{n.kind}</bdi> · {n.locale} · {n.state} · محاولات {n.attempts}
-              </p>
-            ))}
+            <details>
+              <summary>سجل التنبيهات المحلية</summary>
+              {data.notifications.map((n) => (
+                <p key={n.id}>
+                  <bdi>{n.kind}</bdi> · {n.locale} · {n.state} · محاولات {n.attempts}
+                </p>
+              ))}
+            </details>
           </section>
         </>
       ) : null}
