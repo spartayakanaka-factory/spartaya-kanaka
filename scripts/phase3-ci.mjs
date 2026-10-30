@@ -30,6 +30,11 @@ async function main(){
   for(const name of ["sprtaya_phase3_disposable_local","sprtaya_phase3_disposable_test"])await connection.query("GRANT ALL ON `"+name+"`.* TO 'sprtaya_phase3'@'%'");
   const s3file=path.join(state,"s3.json");file(s3file,JSON.stringify({identities:[{name:"anonymous",actions:["Read:sprtaya-phase3-display"]},{name:"app",credentials:[{accessKey:"ci-app",secretKey:secrets.s3}],actions:["Read:sprtaya-phase3-originals","Write:sprtaya-phase3-originals","Read:sprtaya-phase3-display","Write:sprtaya-phase3-display"]},{name:"bootstrap",credentials:[{accessKey:"ci-admin",secretKey:secrets.s3admin}],actions:["Admin","Read","Write","List"]}]}));
   console.log("Starting fresh disposable S3 and checking private/public buckets.");
+  // The official entrypoint drops to seaweed. Keep credentials mode 0600;
+  // grant that image user ownership of this one disposable bind-mounted file.
+  // This short helper has no network; the actual service keeps its normal
+  // unprivileged entrypoint and a read-only configuration mount.
+  run("docker",["run","--rm","--network","none","--user","0:0","--entrypoint","chown","--mount",`type=bind,source=${s3file},target=/s3.json`,"chrislusf/seaweedfs:4.51","seaweed:seaweed","/s3.json"],env,true);
   const media=run("docker",["run","-d","--label","sprtaya.disposable-ci=1","--publish","127.0.0.1:39010:39010","--mount",`type=bind,source=${s3file},target=/s3.json,readonly`,"chrislusf/seaweedfs:4.51","mini","-dir=/data","-ip=127.0.0.1","-ip.bind=0.0.0.0","-s3.port=39010","-s3.config=/s3.json","-s3.allowedOrigins=http://localhost:3003","-master.telemetry=false","-admin.ui=false","-webdav=false","-s3.iam=false"],env,true);owned.push(media);
   const s3=new S3Client({endpoint:"http://127.0.0.1:39010",region:"us-east-1",forcePathStyle:true,credentials:{accessKeyId:"ci-admin",secretAccessKey:secrets.s3admin}});
   let ready=false;for(let i=0;i<90;i++)try{for(const Bucket of ["sprtaya-phase3-originals","sprtaya-phase3-display"]){try{await s3.send(new HeadBucketCommand({Bucket}));}catch{await s3.send(new CreateBucketCommand({Bucket}));}}ready=true;break;}catch{await new Promise(r=>setTimeout(r,1000));}s3.destroy();if(!ready)throw Error("Fresh S3 container did not become ready.");
