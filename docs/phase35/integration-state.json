@@ -1,0 +1,15 @@
+{
+  "localBranch": "codex/phase3-5-local",
+  "implementationCommit": "6c63f7d83f52305e17ab53d67621cfb730849f15",
+  "acceptedBase": "a9b4a08806a498658695bfe89ca119a4ef86693a",
+  "remoteCanonical": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "remoteExistingReview": "a9b4a08806a498658695bfe89ca119a4ef86693a",
+  "reviewPullRequest": "https://github.com/spartayakanaka-factory/spartaya-kanaka/pull/1",
+  "remoteHeadsVerifiedReadOnly": true,
+  "phase35Pushed": false,
+  "pullRequestModified": false,
+  "hostedDeploymentChanged": false,
+  "newGitHubCI": "NOT RUN - no push authorized",
+  "acceptedIntegrationWorktreeClean": true,
+  "acceptedPhase3WorktreeClean": true
+}

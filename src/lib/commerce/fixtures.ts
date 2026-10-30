@@ -77,7 +77,15 @@ export async function fixtureProduct(
 }
 export async function fixtureRate(db: PrismaClient, region = "TEST-CAIRO") {
   return db.shippingRate.upsert({
-    where: { country_region_carrier: { country: "EG", region, carrier: "SYNTHETIC-CARRIER" } },
+    where: {
+      country_region_city_area_carrier: {
+        country: "EG",
+        region,
+        city: "",
+        area: "",
+        carrier: "SYNTHETIC-CARRIER",
+      },
+    },
     create: {
       country: "EG",
       region,

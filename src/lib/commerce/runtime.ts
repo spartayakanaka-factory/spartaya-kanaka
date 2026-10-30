@@ -12,7 +12,12 @@ export function commerceEnabled(env = process.env) {
       u.protocol === "mysql:" &&
       u.hostname === "127.0.0.1" &&
       u.port === "33078" &&
-      ["/sprtaya_phase3_disposable_local", "/sprtaya_phase3_disposable_test"].includes(u.pathname)
+      [
+        "/sprtaya_phase3_disposable_local",
+        "/sprtaya_phase3_disposable_test",
+        "/sprtaya_phase35_disposable_local",
+        "/sprtaya_phase35_disposable_test",
+      ].includes(u.pathname)
     );
   } catch {
     return false;

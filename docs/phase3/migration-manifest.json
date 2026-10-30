@@ -1,12 +1,18 @@
 {
-  "scope": "Only isolated port 33078 disposable Phase 3 databases. Not approved for promotion.",
+  "scope": "Phase 3/3.5 disposable rehearsal only. Persistent execution remains unapproved.",
   "review": {
-    "destructiveStatements": false,
     "existingChanges": [
-      "inventory_balances: additive reserved integer default 0, CHECK reserved between 0 and quantity"
+      "inventory_balances: additive reserved integer default 0, CHECK reserved between 0 and quantity",
+      "shipping_rates: add city/area with empty defaults; replace governorate/carrier uniqueness with destination/carrier uniqueness",
+      "customer_addresses: nullable area/deliveryInstructions",
+      "commerce_payments: evidenceRequired defaults false; nullable instruction snapshot/rejection explanation",
+      "commerce_notifications: nullable retry/error metadata",
+      "customer_users: banned defaults false; no existing account ban"
     ],
     "newData": "Synthetic only; no existing product updates",
-    "recovery": "Verified full dump restoration into separate disposable database; never down-migrate persistent data"
+    "recovery": "Verified full dump restoration into separate disposable database; never down-migrate persistent data",
+    "destructiveDataStatements": false,
+    "schemaIndexReplacement": "DROP INDEX shipping_rates_country_region_carrier_key; replaced by shipping_destination_carrier_unique. No DROP TABLE/DATABASE, TRUNCATE or DELETE."
   },
   "migrations": [
     {
@@ -24,6 +30,14 @@
     {
       "name": "20261029144500_phase3_cancellation_review",
       "sha256": "b5d8b0fc2a6ab5a68fdd844bb551ebcc4ac6557e488668fb91a3a1bc7b65116c"
+    },
+    {
+      "name": "20261030023000_phase35_factory_operations",
+      "sha256": "4c0523bb53f3d703b75de9ce053dffb034e94f8b3712c176fe82822a35022a06"
+    },
+    {
+      "name": "20261030024500_phase35_customer_access",
+      "sha256": "c34b856ae6e0b5bcad2403543c520dad9a83346d3a862b82acec9ee6e88c1950"
     }
   ]
 }

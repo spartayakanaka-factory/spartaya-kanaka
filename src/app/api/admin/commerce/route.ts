@@ -14,6 +14,7 @@ import {
 } from "@/lib/server/commerce/admin";
 import { drainNotifications } from "@/lib/server/commerce/notifications";
 import { expireOrders } from "@/lib/server/commerce/store";
+import { addOrderNote, setCustomerAccess } from "@/lib/server/commerce/factory";
 export const dynamic = "force-dynamic";
 async function actor() {
   assertCommerceEnvironment();
@@ -45,10 +46,71 @@ export async function GET(request: Request) {
     const u = new URL(request.url),
       db = getDatabase(),
       id = u.searchParams.get("id");
+    if (u.searchParams.get("resource") === "customers") {
+      demand(viewer.roleCode === "OWNER", "OWNER_REQUIRED", 403);
+      const page = Math.min(10000, Math.max(0, Number(u.searchParams.get("page")) || 0));
+      const [customers, total] = await Promise.all([
+        db.customerUser.findMany({
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            phone: true,
+            banned: true,
+            emailVerified: true,
+            createdAt: true,
+          },
+          take: 30,
+          skip: Math.floor(page) * 30,
+          orderBy: { createdAt: "desc" },
+        }),
+        db.customerUser.count(),
+      ]);
+      return Response.json(
+        { customers, total, page: Math.floor(page) },
+        { headers: { "Cache-Control": "private, no-store" } },
+      );
+    }
+    if (u.searchParams.get("resource") === "workQueue") {
+      const [states, review, notifications] = await Promise.all([
+        db.commerceOrder.groupBy({ by: ["state"], _count: { _all: true } }),
+        db.commercePayment.count({
+          where: {
+            state: "CLAIMED",
+            OR: [{ evidenceRequired: false }, { evidence: { some: {} } }],
+          },
+        }),
+        db.commerceNotification.findMany({
+          select: {
+            id: true,
+            kind: true,
+            state: true,
+            attempts: true,
+            createdAt: true,
+            payload: true,
+            lastErrorCode: true,
+          },
+          orderBy: { createdAt: "desc" },
+          take: 12,
+        }),
+      ]);
+      return Response.json(jsonValue({ states, review, notifications }), {
+        headers: { "Cache-Control": "private, no-store" },
+      });
+    }
     if (id) {
       const order = await db.commerceOrder.findUnique({
         where: { id },
-        include: { items: true, payments: true, events: { orderBy: { createdAt: "asc" } } },
+        include: {
+          items: true,
+          payments: { orderBy: { createdAt: "asc" } },
+          notes: {
+            include: { author: { select: { name: true } } },
+            orderBy: { createdAt: "desc" },
+            take: 100,
+          },
+          events: { orderBy: { createdAt: "asc" } },
+        },
       });
       demand(order, "NOT_FOUND", 404);
       return Response.json(
@@ -73,6 +135,32 @@ export async function GET(request: Request) {
     }
     const state = u.searchParams.get("state"),
       q = u.searchParams.get("q") || "";
+    const page = Math.min(10000, Math.max(0, Math.floor(Number(u.searchParams.get("page")) || 0)));
+    demand(q.length <= 36, "INVALID_INPUT", 400);
+    const where = {
+      ...(state === "PAYMENT_REVIEW"
+        ? {
+            payments: {
+              some: {
+                state: "CLAIMED",
+                OR: [{ evidenceRequired: false }, { evidence: { some: {} } }],
+              },
+            },
+          }
+        : state
+          ? { state }
+          : {}),
+      ...(q ? { id: { startsWith: q } } : {}),
+    };
+    const [orders, totalOrders] = await Promise.all([
+      db.commerceOrder.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        take: 30,
+        skip: page * 30,
+      }),
+      db.commerceOrder.count({ where }),
+    ]);
     return Response.json(
       jsonValue({
         viewerId: viewer.id,
@@ -86,11 +174,9 @@ export async function GET(request: Request) {
                 select: { id: true, name: true, roleCode: true },
               })
             : [],
-        orders: await db.commerceOrder.findMany({
-          where: { ...(state ? { state } : {}), ...(q ? { id: { startsWith: q } } : {}) },
-          orderBy: { createdAt: "desc" },
-          take: 100,
-        }),
+        orders,
+        totalOrders,
+        page,
         cancellations: await db.commerceCancellation.findMany({
           orderBy: { createdAt: "desc" },
           take: 100,
@@ -122,6 +208,25 @@ export async function GET(request: Request) {
 }
 const schema = z.discriminatedUnion("action", [
   z.object({
+    action: z.literal("retryNotification"),
+    id: z.string().uuid(),
+    key: z.string().regex(/^[A-Za-z0-9_-]{8,64}$/),
+  }),
+  z.object({
+    action: z.literal("customerAccess"),
+    userId: z.string().min(1).max(191),
+    banned: z.boolean(),
+    reason: z.string().trim().min(8).max(500),
+    key: z.string().regex(/^[A-Za-z0-9_-]{8,64}$/),
+  }),
+  z.object({
+    action: z.literal("note"),
+    orderId: z.string().uuid(),
+    kind: z.enum(["INTERNAL", "MANUFACTURING"]),
+    text: z.string().trim().min(2).max(1500),
+    key: z.string().regex(/^[A-Za-z0-9_-]{8,64}$/),
+  }),
+  z.object({
     action: z.literal("grant"),
     adminId: z.string().min(1).max(191),
     operation: z.enum([
@@ -150,6 +255,7 @@ const schema = z.discriminatedUnion("action", [
     action: z.literal("financeTransition"),
     id: z.string().uuid(),
     transition: z.enum(["approve", "execute", "reconcile", "reject"]),
+    customerExplanation: z.string().trim().min(8).max(500).optional(),
   }),
   z.object({
     action: z.literal("fulfill"),
@@ -175,8 +281,11 @@ const schema = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("rate"),
     id: z.string().uuid().optional(),
+    version: z.number().int().min(1).optional(),
     country: z.literal("EG"),
     region: z.string().min(1).max(96),
+    city: z.string().trim().max(96).optional(),
+    area: z.string().trim().max(96).optional(),
     carrier: z.string().min(1).max(96),
     feeMinor: z.string().regex(/^\d{1,12}$/),
     currency: z.literal("EGP"),
@@ -201,11 +310,47 @@ export async function POST(request: Request) {
     const a = await actor();
     const data = schema.parse(await readJson(request));
     let result: unknown;
-    if (data.action === "cancellation")
+    if (data.action === "retryNotification") {
+      demand(a.roleCode === "OWNER", "OWNER_REQUIRED", 403);
+      result = await getDatabase().$transaction(async (tx) => {
+        const current = await staff(a.id, tx);
+        demand(current.roleCode === "OWNER", "OWNER_REQUIRED", 403);
+        const prior = await tx.commerceEvent.findUnique({
+          where: { operationKey: "notification-retry:" + data.key },
+        });
+        if (prior) {
+          demand(
+            prior.actorKey === "staff:" + a.id &&
+              (prior.data as { notificationId?: string }).notificationId === data.id,
+            "IDEMPOTENCY_CONFLICT",
+          );
+          return { ok: true };
+        }
+        const job = await tx.commerceNotification.findUniqueOrThrow({ where: { id: data.id } });
+        demand(job.state === "FAILED", "NOTIFICATION_NOT_FAILED");
+        await tx.commerceNotification.update({
+          where: { id: job.id },
+          data: { state: "PENDING", attempts: 0, nextAttemptAt: null, lastErrorCode: null },
+        });
+        await tx.commerceEvent.create({
+          data: {
+            actorKey: "staff:" + a.id,
+            kind: "notification.retry_requested",
+            operationKey: "notification-retry:" + data.key,
+            data: { notificationId: job.id, previousAttempts: job.attempts },
+          },
+        });
+        return { ok: true };
+      });
+    } else if (data.action === "customerAccess")
+      result = await setCustomerAccess(a.id, data.userId, data.banned, data.reason, data.key);
+    else if (data.action === "note")
+      result = await addOrderNote(a.id, data.orderId, data.kind, data.text, data.key);
+    else if (data.action === "cancellation")
       result = await reviewCancellation(a.id, data.id, data.approve);
     else if (data.action === "financeRequest") result = await requestFinance(a.id, data);
     else if (data.action === "financeTransition")
-      result = await financeTransition(a.id, data.id, data.transition);
+      result = await financeTransition(a.id, data.id, data.transition, data.customerExplanation);
     else if (data.action === "fulfill")
       result = await fulfill(a.id, data.orderId, data.transition, data.reference);
     else if (data.action === "jobs")
@@ -283,7 +428,7 @@ export async function POST(request: Request) {
           return changed;
         });
       } else {
-        const { action: _action, id, ...values } = data;
+        const { action: _action, id, version, ...values } = data;
         void _action;
         demand(
           !values.codEnabled || (values.codFeeMinor !== null && values.codMaximumMinor !== null),
@@ -298,12 +443,15 @@ export async function POST(request: Request) {
         result = await db.$transaction(async (tx) => {
           const current = await staff(a.id, tx);
           demand(current.roleCode === "OWNER", "OWNER_REQUIRED", 403);
-          const row = id
-            ? await tx.shippingRate.update({
-                where: { id },
-                data: { ...value, version: { increment: 1 } },
-              })
-            : await tx.shippingRate.create({ data: value });
+          let row;
+          if (id) {
+            const changed = await tx.shippingRate.updateMany({
+              where: { id, ...(version ? { version } : {}) },
+              data: { ...value, version: { increment: 1 } },
+            });
+            demand(changed.count === 1, "SETTINGS_CONFLICT");
+            row = await tx.shippingRate.findUniqueOrThrow({ where: { id } });
+          } else row = await tx.shippingRate.create({ data: value });
           await tx.commerceEvent.create({
             data: {
               actorKey: "staff:" + a.id,

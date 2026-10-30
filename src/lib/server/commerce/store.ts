@@ -1,4 +1,6 @@
 import "server-only";
+import { getProductImageUrl } from "@/lib/asset-url";
+import { destinationMatches, manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
 import { createHash, randomUUID } from "node:crypto";
 import { Prisma } from "@/generated/prisma/client";
 import { getDatabase } from "../database";
@@ -47,7 +49,10 @@ export async function lockOrder(tx: Tx, id: string) {
   await tx.$queryRaw`SELECT id FROM commerce_orders WHERE id=${id} FOR UPDATE`;
   const order = await tx.commerceOrder.findUnique({
     where: { id },
-    include: { items: { include: { reservation: true } }, payments: true },
+    include: {
+      items: { include: { reservation: true } },
+      payments: { orderBy: { createdAt: "asc" } },
+    },
   });
   demand(order, "ORDER_NOT_FOUND", 404);
   return order;
@@ -281,6 +286,7 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
     rate?.enabled &&
       rate.country === address.country &&
       rate.region === address.region &&
+      destinationMatches(rate, address) &&
       rate.currency === policy.currency,
     "SHIPPING_RATE_REQUIRED",
   );
@@ -290,7 +296,19 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
   for (const item of cart.items) {
     const v = await tx.productVariant.findUnique({
       where: { id: item.variantId },
-      include: { inventory: true, product: { include: { manufacturingPolicy: true } } },
+      include: {
+        inventory: true,
+        product: {
+          include: {
+            manufacturingPolicy: true,
+            media: {
+              select: { media: { select: { provider: true, originalKey: true, publicUrl: true } } },
+              orderBy: { position: "asc" },
+              take: 1,
+            },
+          },
+        },
+      },
     });
     demand(
       v?.active &&
@@ -347,6 +365,16 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
       titleAr: v.product.titleAr,
       titleEn: v.product.titleEn,
       variantAr: v.nameAr,
+      variantEn: v.nameEn,
+      imageUrl: v.product.media[0]
+        ? getProductImageUrl({
+            localPath:
+              v.product.media[0].media.provider === "LEGACY_LOCAL"
+                ? v.product.media[0].media.originalKey.replace(/^legacy:/, "")
+                : "",
+            publicUrl: v.product.media[0].media.publicUrl || undefined,
+          })
+        : null,
       type: v.product.type,
       quantity: item.quantity,
       unitMinor: String(price),
@@ -360,6 +388,11 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
   demand(new Set(lines.map((l) => l.type)).size === 1, "SPLIT_CHECKOUT_REQUIRED");
   const cod = input.method === "COD";
   demand(["COD", "MOCK_CARD", "INSTAPAY", "WALLET"].includes(input.method), "METHOD_DISABLED");
+  if (input.method === "MOCK_CARD") requireFeature("MOCK_PAYMENTS");
+  if (manualEvidenceEnabled() && ["WALLET", "INSTAPAY"].includes(input.method)) {
+    const instruction = policy.manualInstructions?.[input.method as "WALLET" | "INSTAPAY"];
+    demand(instruction?.enabled, "MANUAL_METHOD_NOT_CONFIGURED");
+  }
   if (cod)
     demand(
       lines.every((l) => l.type === "READY_MADE") &&
@@ -386,6 +419,8 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
       id: rate.id,
       version: rate.version,
       carrier: rate.carrier,
+      city: rate.city,
+      area: rate.area,
       feeMinor: String(rate.feeMinor),
       codFeeMinor: cod ? String(rate.codFeeMinor) : "0",
       currency: rate.currency,
@@ -422,7 +457,7 @@ export async function checkout(shopper: Shopper, input: CheckoutInput) {
   return transaction(async (tx) => {
     const previous = await tx.commerceOrder.findUnique({
       where: { ownerKey_requestKey: { ownerKey: shopper.key, requestKey } },
-      include: { items: true, payments: true },
+      include: { items: true, payments: { orderBy: { createdAt: "asc" } } },
     });
     if (previous) {
       demand(previous.requestHash === bodyHash, "IDEMPOTENCY_CONFLICT");
@@ -433,7 +468,7 @@ export async function checkout(shopper: Shopper, input: CheckoutInput) {
     await tx.$queryRaw`SELECT id FROM commerce_carts WHERE id=${cart.id} FOR UPDATE`;
     const committed = await tx.commerceOrder.findUnique({
       where: { ownerKey_requestKey: { ownerKey: shopper.key, requestKey } },
-      include: { items: true, payments: true },
+      include: { items: true, payments: { orderBy: { createdAt: "asc" } } },
     });
     if (committed) {
       demand(committed.requestHash === bodyHash, "IDEMPOTENCY_CONFLICT");
@@ -510,7 +545,7 @@ export async function checkout(shopper: Shopper, input: CheckoutInput) {
     await notify(tx, order.id, "order.created", input.locale, "created:" + order.id);
     return tx.commerceOrder.findUniqueOrThrow({
       where: { id: order.id },
-      include: { items: true, payments: true },
+      include: { items: true, payments: { orderBy: { createdAt: "asc" } } },
     });
   });
 }
@@ -518,7 +553,7 @@ export async function ownedOrder(shopper: Shopper, id: string) {
   assertCommerceEnvironment();
   const order = await getDatabase().commerceOrder.findFirst({
     where: { id, ownerKey: shopper.key },
-    include: { items: true, payments: true },
+    include: { items: true, payments: { orderBy: { createdAt: "asc" } } },
   });
   demand(order, "ORDER_NOT_FOUND", 404);
   return customerOrder(order);
@@ -605,10 +640,16 @@ export async function saveAddress(shopper: Shopper, value: unknown, id?: string)
 export async function getAddresses(shopper: Shopper) {
   assertCommerceEnvironment();
   demand(shopper.userId, "LOGIN_REQUIRED", 401);
-  return getDatabase().customerAddress.findMany({
+  const rows = await getDatabase().customerAddress.findMany({
     where: { userId: shopper.userId },
     orderBy: { createdAt: "desc" },
   });
+  return rows.map((row) => ({
+    ...row,
+    postalCode: row.postalCode || undefined,
+    area: row.area || undefined,
+    deliveryInstructions: row.deliveryInstructions || undefined,
+  }));
 }
 export async function deleteAddress(shopper: Shopper, id: string) {
   assertCommerceEnvironment();

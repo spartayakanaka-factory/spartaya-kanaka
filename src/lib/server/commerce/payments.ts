@@ -1,10 +1,20 @@
 import "server-only";
+import { manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 import { demand, minor } from "@/lib/commerce/policy";
 import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
 import { getDatabase } from "../database";
-import { digest, event, lockOrder, notify, transaction, type Shopper, type Tx } from "./store";
+import {
+  digest,
+  event,
+  getPolicy,
+  lockOrder,
+  notify,
+  transaction,
+  type Shopper,
+  type Tx,
+} from "./store";
 const factSchema = z
   .object({
     id: z.string().uuid(),
@@ -79,11 +89,16 @@ export async function beginPayment(
     const amount = target - o.paidMinor - (inflight._sum.amountMinor || BigInt(0));
     demand(amount > BigInt(0), "PAYMENT_ALREADY_PENDING_OR_SATISFIED");
     if (o.paymentMethod !== "MOCK_CARD") requireFeature("MANUAL_TRANSFERS");
-    if (o.paymentMethod !== "MOCK_CARD")
+    const needsEvidence = o.paymentMethod !== "MOCK_CARD" && manualEvidenceEnabled();
+    if (o.paymentMethod !== "MOCK_CARD" && (!needsEvidence || claimReference))
       demand(
         claimReference && /^[A-Za-z0-9_-]{8,96}$/.test(claimReference),
         "TRANSFER_REFERENCE_REQUIRED",
       );
+    const instructions = needsEvidence
+      ? (await getPolicy(tx)).policy.manualInstructions?.[o.paymentMethod as "WALLET" | "INSTAPAY"]
+      : null;
+    demand(!needsEvidence || instructions?.enabled, "MANUAL_METHOD_NOT_CONFIGURED");
     const p = await tx.commercePayment.create({
       data: {
         orderId,
@@ -94,6 +109,8 @@ export async function beginPayment(
         currency: o.currency,
         providerReference: "mock:" + randomUUID(),
         claimReference: claimReference || null,
+        evidenceRequired: needsEvidence,
+        ...(instructions ? { instructionsSnapshot: instructions } : {}),
         state: o.paymentMethod === "MOCK_CARD" ? "PENDING" : "CLAIMED",
       },
     });

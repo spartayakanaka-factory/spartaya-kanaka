@@ -1,0 +1,73 @@
+.card {
+  border-block-start: 1px solid #d9cfc1;
+  margin-block-start: 20px;
+  padding-block: 20px;
+  min-width: 0;
+}
+.card h3 {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+.card p {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.card form {
+  display: grid;
+  gap: 16px;
+  margin-block: 20px;
+}
+.card label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+.card input {
+  min-height: 44px;
+  padding: 10px;
+  border: 1px solid #b5ab9e;
+  background: #fffdf9;
+  color: #29251f;
+  font: inherit;
+  width: 100%;
+  min-width: 0;
+}
+.card button {
+  min-height: 44px;
+  cursor: pointer;
+}
+.card button:focus-visible,
+.card input:focus-visible {
+  outline: 2px solid #87502e;
+  outline-offset: 3px;
+}
+.card dd {
+  overflow-wrap: anywhere;
+  white-space: normal;
+  min-width: 0;
+  margin-inline: 0;
+}
+.card dt {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.card details {
+  margin-block: 12px;
+}
+.card summary {
+  cursor: pointer;
+  padding-block: 10px;
+}
+.image {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin-block: 16px;
+}
+
+.card dl > div {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.65fr) minmax(0, 1fr);
+  gap: 14px;
+}

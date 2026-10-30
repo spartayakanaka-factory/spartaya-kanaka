@@ -25,6 +25,8 @@ import {
 } from "@/lib/server/commerce/identity";
 import { beginPayment, payMock } from "@/lib/server/commerce/payments";
 import { getDatabase } from "@/lib/server/database";
+import { egyptianMobileSchema, manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
+import { getPolicy, transaction } from "@/lib/server/commerce/store";
 export const dynamic = "force-dynamic";
 const input = z
   .object({
@@ -56,10 +58,7 @@ const input = z
     purpose: z.enum(["INITIAL", "BALANCE"]).default("INITIAL"),
     reference: z.string().max(96).optional(),
     name: z.string().trim().min(2).max(120).optional(),
-    phone: z
-      .string()
-      .regex(/^\+?[0-9]{8,15}$/)
-      .optional(),
+    phone: egyptianMobileSchema.optional(),
     token: z.string().length(64).optional(),
   })
   .strict();
@@ -87,6 +86,15 @@ export async function GET(request: Request) {
     const url = new URL(request.url),
       resource = url.searchParams.get("resource");
     if (resource === "catalog") return response(await catalog());
+    if (resource === "paymentOptions") {
+      const { policy } = await transaction((tx) => getPolicy(tx));
+      return response({
+        COD: true,
+        MOCK_CARD: process.env.P3_MOCK_PAYMENTS === "1",
+        WALLET: !manualEvidenceEnabled() || Boolean(policy.manualInstructions?.WALLET?.enabled),
+        INSTAPAY: !manualEvidenceEnabled() || Boolean(policy.manualInstructions?.INSTAPAY?.enabled),
+      });
+    }
     if (resource === "rates")
       return response(
         await getDatabase().shippingRate.findMany({ where: { enabled: true, country: "EG" } }),

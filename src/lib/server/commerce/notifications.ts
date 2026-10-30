@@ -11,6 +11,11 @@ export const notificationText = (kind: string, locale: string) => {
     "order.cancelled": "تم إلغاء طلب الاختبار.",
     "order.shipped": "تم تسجيل شحن طلب الاختبار.",
     "refund.reconciled": "تمت مطابقة استرداد الاختبار.",
+    "payment.evidence_submitted": "وصل إثبات تحويل جديد للمراجعة. لم تُثبت دفعة بعد.",
+    "payment.rejected": "تحتاج صورة التحويل إلى تصحيح. راجع سبب الرفض في الطلب.",
+    "fulfillment.start": "بدأ تصنيع طلب الاختبار.",
+    "fulfillment.ready": "طلب الاختبار جاهز للتسليم لشركة الشحن.",
+    "fulfillment.delivered": "تم تسجيل تسليم طلب الاختبار.",
   };
   const en: Record<string, string> = {
     "order.created": "Test order recorded. No real payment was collected.",
@@ -18,6 +23,12 @@ export const notificationText = (kind: string, locale: string) => {
     "order.cancelled": "Test order cancelled.",
     "order.shipped": "Test shipment recorded.",
     "refund.reconciled": "Test refund reconciled.",
+    "payment.evidence_submitted":
+      "New transfer evidence needs review. No payment has been credited.",
+    "payment.rejected": "Transfer evidence needs correction. Review the reason on your order.",
+    "fulfillment.start": "Test order manufacturing started.",
+    "fulfillment.ready": "Test order is ready for the carrier.",
+    "fulfillment.delivered": "Test order delivery recorded.",
   };
   return (
     (locale === "ar" ? ar : en)[kind] ||
@@ -44,8 +55,14 @@ export async function drainNotifications() {
   requireFeature("NOTIFICATIONS");
   const db = getDatabase();
   const jobs = await db.commerceNotification.findMany({
-    where: { OR: [{ state: "PENDING" }, { state: "PROCESSING", leaseUntil: { lt: new Date() } }] },
+    where: {
+      OR: [
+        { state: "PENDING", OR: [{ nextAttemptAt: null }, { nextAttemptAt: { lte: new Date() } }] },
+        { state: "PROCESSING", leaseUntil: { lt: new Date() } },
+      ],
+    },
     take: 20,
+    orderBy: { createdAt: "asc" },
   });
   let count = 0;
   for (const job of jobs) {
@@ -75,13 +92,21 @@ export async function drainNotifications() {
       );
       await db.commerceNotification.updateMany({
         where: { id: job.id, state: "PROCESSING", leaseUntil },
-        data: { state: "CAPTURED", leaseUntil: null },
+        data: { state: "CAPTURED", leaseUntil: null, nextAttemptAt: null, lastErrorCode: null },
       });
       count++;
     } catch {
       await db.commerceNotification.updateMany({
         where: { id: job.id, state: "PROCESSING", leaseUntil },
-        data: { state: "PENDING", leaseUntil: null },
+        data: {
+          state: job.attempts + 1 >= 8 ? "FAILED" : "PENDING",
+          leaseUntil: null,
+          nextAttemptAt:
+            job.attempts + 1 >= 8
+              ? null
+              : new Date(Date.now() + Math.min(3600000, 30000 * 2 ** job.attempts)),
+          lastErrorCode: "LOCAL_CAPTURE_UNAVAILABLE",
+        },
       });
     }
   }

@@ -1,0 +1,38 @@
+{
+  "automated": {
+    "passed": 209,
+    "failed": 0,
+    "skipped": 0,
+    "databaseStorage": 96
+  },
+  "browserSuites": {
+    "core-browser.json": {
+      "checks": 18,
+      "failed": 0,
+      "audits": 27
+    },
+    "independent/browser-evidence.json": {
+      "checks": 23,
+      "failed": 0,
+      "audits": 32
+    },
+    "factory-browser.json": {
+      "checks": 8,
+      "failed": 0,
+      "audits": 23
+    },
+    "media-browser.json": {
+      "checks": 1,
+      "failed": 0,
+      "audits": 0
+    },
+    "inventory-final-review.json": {
+      "checks": 3,
+      "failed": 0,
+      "audits": 3
+    }
+  },
+  "browserCheckExecutions": 53,
+  "accessibilityAuditExecutions": 85,
+  "scope": "Local production-mode synthetic regression suites; repeated page audits are counted as executions, not distinct journeys. Hosted Phase 3.5 not deployed."
+}

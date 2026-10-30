@@ -2,11 +2,14 @@ import "server-only";
 import { CommerceError, demand } from "@/lib/commerce/policy";
 /** Bound bytes while reading, including chunked requests with no Content-Length. */
 export async function readBody(request: Request, maximum = 20000) {
+  return (await readBytes(request, maximum)).toString("utf8");
+}
+export async function readBytes(request: Request, maximum: number) {
   const length = request.headers.get("content-length");
   if (length !== null)
     demand(/^\d+$/.test(length) && Number(length) <= maximum, "INPUT_TOO_LARGE", 413);
   const reader = request.body?.getReader();
-  if (!reader) return "";
+  if (!reader) return Buffer.alloc(0);
   const chunks: Uint8Array[] = [];
   let bytes = 0;
   try {
@@ -23,7 +26,7 @@ export async function readBody(request: Request, maximum = 20000) {
   } finally {
     reader.releaseLock();
   }
-  return Buffer.concat(chunks).toString("utf8");
+  return Buffer.concat(chunks);
 }
 export async function readJson(request: Request) {
   try {

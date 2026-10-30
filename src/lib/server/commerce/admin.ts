@@ -16,7 +16,13 @@ export async function staff(adminId: string, tx?: Tx) {
   );
   return a;
 }
-async function grant(tx: Tx, adminId: string, operation: string, amount: bigint, currency: string) {
+export async function grant(
+  tx: Tx,
+  adminId: string,
+  operation: string,
+  amount: bigint,
+  currency: string,
+) {
   await staff(adminId, tx);
   await tx.$queryRaw`SELECT id FROM commerce_finance_grants WHERE adminId=${adminId} AND operation=${operation} AND currency=${currency} FOR UPDATE`;
   const g = await tx.commerceFinanceGrant.findUnique({
@@ -96,6 +102,11 @@ export async function requestFinance(
         p?.orderId === o.id && p.state === "CLAIMED" && p.amountMinor === amount,
         "TRANSFER_NOT_RECONCILABLE",
       );
+      if (p.evidenceRequired)
+        demand(
+          await tx.commercePaymentEvidence.count({ where: { paymentId: p.id } }),
+          "PAYMENT_EVIDENCE_REQUIRED",
+        );
       const active = await tx.commerceFinanceRequest.count({
         where: {
           paymentId: p.id,
@@ -128,6 +139,7 @@ export async function financeTransition(
   adminId: string,
   id: string,
   action: "approve" | "execute" | "reconcile" | "reject",
+  customerExplanation?: string,
 ) {
   await staff(adminId);
   return transaction(async (tx) => {
@@ -174,11 +186,21 @@ export async function financeTransition(
         data: { state: target, approvedBy: adminId },
       });
       if (action === "reject" && r.kind === "VERIFY_TRANSFER" && r.paymentId) {
+        const payment = await tx.commercePayment.findUniqueOrThrow({ where: { id: r.paymentId } });
+        if (payment.evidenceRequired)
+          demand(
+            customerExplanation &&
+              customerExplanation.trim().length >= 8 &&
+              customerExplanation.length <= 500,
+            "CUSTOMER_EXPLANATION_REQUIRED",
+            400,
+          );
         const changed = await tx.commercePayment.updateMany({
           where: { id: r.paymentId, state: "CLAIMED" },
-          data: { state: "FAILED" },
+          data: { state: "FAILED", customerExplanation: customerExplanation?.trim() || null },
         });
         demand(changed.count === 1, "TRANSFER_STATE_CHANGED");
+        await notify(tx, o.id, "payment.rejected", o.locale, "payment-rejected:" + r.id);
       }
     } else if (action === "execute") {
       demand(r.state === "APPROVED", "APPROVAL_REQUIRED");
@@ -234,6 +256,9 @@ export async function financeTransition(
       kind: r.kind,
       amount: String(r.amountMinor),
       simulationOnly: true,
+      ...(action === "reject" && customerExplanation
+        ? { customerExplanation: customerExplanation.trim() }
+        : {}),
     });
     return tx.commerceFinanceRequest.findUniqueOrThrow({ where: { id } });
   });
@@ -392,6 +417,14 @@ export async function fulfill(
       "fulfill:" + orderId + ":" + action,
       { reference: reference || null },
     );
+    if (["start", "ready", "delivered"].includes(action))
+      await notify(
+        tx,
+        orderId,
+        "fulfillment." + action,
+        o.locale,
+        "fulfill:" + orderId + ":" + action,
+      );
     return tx.commerceOrder.findUniqueOrThrow({ where: { id: orderId } });
   });
 }

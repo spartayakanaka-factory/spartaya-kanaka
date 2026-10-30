@@ -97,7 +97,7 @@ def main():
                 raise RuntimeError("Promotion changed existing Phase 2 row data.")
             history = local.query("SELECT migration_name,checksum FROM `" + database + "`._prisma_migrations ORDER BY migration_name;").splitlines()
             manifest = json.loads((ROOT / "docs/phase3/migration-manifest.json").read_text())
-            if len(history) != 4 or not all(row in history for row in initial_history):
+            if len(history) != len(manifest["migrations"]) or not all(row in history for row in initial_history):
                 raise RuntimeError("Migration history preservation failed.")
             if dict(row.split("\t") for row in history) != {m["name"]: m["sha256"] for m in manifest["migrations"]}:
                 raise RuntimeError("Applied migration checksums differ.")

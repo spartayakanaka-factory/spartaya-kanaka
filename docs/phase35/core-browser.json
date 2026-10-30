@@ -1,0 +1,243 @@
+{
+  "base": "http://localhost:3005",
+  "productionMode": true,
+  "checks": [
+    {
+      "name": "production HTTP smoke, noindex, anonymous administrative boundaries",
+      "pass": true
+    },
+    {
+      "name": "guest browse, add, persist and review checkout in Arabic",
+      "pass": true
+    },
+    {
+      "name": "invalid credentials/CSRF and unowned order access are rejected by live server",
+      "pass": true
+    },
+    {
+      "name": "customer registration, private verification, login, profile and saved address persist",
+      "pass": true
+    },
+    {
+      "name": "owner login, password rotation and Arabic order dashboard",
+      "pass": true
+    },
+    {
+      "name": "three real staff sessions enforce refund request, approval, execution and reconciliation",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 1440px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 1440px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 1440px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 1440px",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "audits": [
+    {
+      "view": "account",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders/a3144e71-5ac0-4b13-acfb-7ff7d5d460c3",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/commerce-settings",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "account",
+      "locale": "en",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "en",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "en",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "account",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders/a3144e71-5ac0-4b13-acfb-7ff7d5d460c3",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "/admin/commerce-settings",
+      "locale": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "account",
+      "locale": "en",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "en",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "en",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "view": "account",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders/a3144e71-5ac0-4b13-acfb-7ff7d5d460c3",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "/admin/commerce-settings",
+      "locale": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "account",
+      "locale": "en",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "en",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "en",
+      "width": 1440,
+      "violations": []
+    }
+  ]
+}

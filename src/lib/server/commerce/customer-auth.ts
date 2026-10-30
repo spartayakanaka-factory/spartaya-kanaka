@@ -34,6 +34,17 @@ function buildCustomerAuth() {
       },
     },
     databaseHooks: {
+      session: {
+        create: {
+          before: async (session) => {
+            const user = await getDatabase().customerUser.findUnique({
+              where: { id: session.userId },
+              select: { banned: true },
+            });
+            return user && !user.banned ? { data: session } : false;
+          },
+        },
+      },
       user: {
         create: {
           before: async (user) => {
@@ -43,7 +54,12 @@ function buildCustomerAuth() {
         },
       },
     },
-    user: { modelName: "CustomerUser" },
+    user: {
+      modelName: "CustomerUser",
+      additionalFields: {
+        banned: { type: "boolean", input: false, returned: false, defaultValue: false },
+      },
+    },
     session: { modelName: "CustomerSession", expiresIn: 86400, updateAge: 3600 },
     account: { modelName: "CustomerAccount" },
     verification: { modelName: "CustomerVerification" },
@@ -82,5 +98,12 @@ export async function customerIdentity(headers: Headers) {
   assertCommerceEnvironment();
   requireFeature("CUSTOMER_ACCOUNTS");
   const session = await getCustomerAuth().api.getSession({ headers });
+  if (session) {
+    const current = await getDatabase().customerUser.findUnique({
+      where: { id: session.user.id },
+      select: { banned: true, emailVerified: true },
+    });
+    demand(current && !current.banned && current.emailVerified, "CUSTOMER_ACCESS_DENIED", 403);
+  }
   return session ? { key: "customer:" + session.user.id, user: session.user } : null;
 }
