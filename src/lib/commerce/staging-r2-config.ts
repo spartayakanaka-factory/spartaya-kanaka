@@ -8,7 +8,7 @@ export function stagingR2ConfigIssues(env: Record<string, string | undefined>): 
   if (env.MEDIA_S3_REGION !== "auto") issues.push("MEDIA_S3_REGION");
   if (env.MEDIA_S3_ORIGINALS_BUCKET !== "sprtaya-staging-private")
     issues.push("MEDIA_S3_ORIGINALS_BUCKET");
-  if (env.MEDIA_S3_DISPLAY_BUCKET !== "sprtaya-staging-display")
+  if (env.MEDIA_S3_DISPLAY_BUCKET !== "sprtaya-staging-public")
     issues.push("MEDIA_S3_DISPLAY_BUCKET");
   if (!env.MEDIA_ACCESS_KEY_ID) issues.push("MEDIA_ACCESS_KEY_ID");
   if (!env.MEDIA_SECRET_ACCESS_KEY) issues.push("MEDIA_SECRET_ACCESS_KEY");

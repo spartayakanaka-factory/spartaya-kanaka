@@ -7,7 +7,7 @@ const valid = {
   MEDIA_S3_ENDPOINT: `https://${account}.r2.cloudflarestorage.com`,
   MEDIA_S3_REGION: "auto",
   MEDIA_S3_ORIGINALS_BUCKET: "sprtaya-staging-private",
-  MEDIA_S3_DISPLAY_BUCKET: "sprtaya-staging-display",
+  MEDIA_S3_DISPLAY_BUCKET: "sprtaya-staging-public",
   MEDIA_ACCESS_KEY_ID: "synthetic-key",
   MEDIA_SECRET_ACCESS_KEY: "synthetic-secret",
   MEDIA_PUBLIC_BASE_URL: `https://pub-${"b".repeat(32)}.r2.dev`,
