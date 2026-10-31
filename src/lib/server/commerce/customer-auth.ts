@@ -4,6 +4,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { getDatabase } from "../database";
 import {
   approvedLocalFixture,
+  fixtureRestrictionsEnabled,
   assertCommerceEnvironment,
   requireFeature,
 } from "@/lib/commerce/runtime";
@@ -22,7 +23,7 @@ function buildCustomerAuth() {
     database: prismaAdapter(getDatabase(), { provider: "mysql", transaction: true }),
     emailAndPassword: {
       enabled: true,
-      disableSignUp: process.env.SR_LOCAL_ISOLATION === "1",
+      disableSignUp: fixtureRestrictionsEnabled(),
       minPasswordLength: 12,
       maxPasswordLength: 128,
       requireEmailVerification: true,

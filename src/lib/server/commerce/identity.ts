@@ -1,7 +1,7 @@
 import "server-only";
 import { randomBytes } from "node:crypto";
 import { demand } from "@/lib/commerce/policy";
-import { assertCommerceEnvironment } from "@/lib/commerce/runtime";
+import { assertCommerceEnvironment, fixtureRestrictionsEnabled } from "@/lib/commerce/runtime";
 import { customerIdentity } from "./customer-auth";
 import { digest, type Shopper } from "./store";
 import { getDatabase } from "../database";
@@ -24,7 +24,7 @@ export async function identity(
   assertCommerceEnvironment();
   const customer = await customerIdentity(headers);
   if (customer) return { shopper: { key: customer.key, userId: customer.user.id } };
-  demand(process.env.SR_LOCAL_ISOLATION !== "1", "SYNTHETIC_LOGIN_REQUIRED", 401);
+  demand(!fixtureRestrictionsEnabled(), "SYNTHETIC_LOGIN_REQUIRED", 401);
   const guest = guestShopper(headers);
   if (guest) return { shopper: guest };
   demand(create, "GUEST_SESSION_REQUIRED", 401);
@@ -35,7 +35,7 @@ export async function identity(
   };
 }
 export async function recoveryOrder(headers: Headers, id: string) {
-  if (process.env.SR_LOCAL_ISOLATION === "1") return null;
+  if (fixtureRestrictionsEnabled()) return null;
   const token = cookieValue(headers, "sprtaya-order-session");
   if (!token || !/^[a-f0-9]{64}$/.test(token)) return null;
   const row = await getDatabase().commerceRecovery.findUnique({

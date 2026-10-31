@@ -1,6 +1,7 @@
 import "server-only";
 import { S3Client } from "@aws-sdk/client-s3";
 import { commerceEnabled } from "@/lib/commerce/runtime";
+import { stagingR2ConfigIssues } from "@/lib/commerce/staging-r2-config";
 
 export function getMediaStorage() {
   const {
@@ -23,6 +24,11 @@ export function getMediaStorage() {
       !process.env.SR_LOCAL_MEDIA_SECRET_ACCESS_KEY ||
       accessKeyId !== process.env.SR_LOCAL_MEDIA_ACCESS_KEY_ID ||
       secretAccessKey !== process.env.SR_LOCAL_MEDIA_SECRET_ACCESS_KEY)
+  )
+    throw new Error("MEDIA_STORAGE_UNAVAILABLE");
+  if (
+    process.env.SR_HOSTED_ISOLATION === "1" &&
+    (!commerceEnabled() || stagingR2ConfigIssues(process.env).length !== 0)
   )
     throw new Error("MEDIA_STORAGE_UNAVAILABLE");
   if (

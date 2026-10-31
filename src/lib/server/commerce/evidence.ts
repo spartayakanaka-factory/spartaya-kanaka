@@ -6,6 +6,7 @@ import { demand } from "@/lib/commerce/policy";
 import { manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
 import {
   approvedLocalFixture,
+  fixtureRestrictionsEnabled,
   assertCommerceEnvironment,
   requireFeature,
 } from "@/lib/commerce/runtime";
@@ -29,7 +30,7 @@ function signature(id: string, key: string, expires: string) {
 }
 async function paymentFor(viewer: EvidenceViewer, paymentId: string) {
   enabled();
-  if (process.env.SR_LOCAL_ISOLATION === "1") {
+  if (fixtureRestrictionsEnabled()) {
     const allowed = viewer.adminId
       ? viewer.key === "staff:" + viewer.adminId && approvedLocalFixture("staff", viewer.adminId)
       : viewer.key.startsWith("customer:") &&

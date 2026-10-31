@@ -60,7 +60,7 @@ export function localFixtureInstructionsSafe(
   value: z.infer<typeof manualInstructionsSchema> | undefined,
   env = process.env,
 ) {
-  if (env.SR_LOCAL_ISOLATION !== "1" || !value) return true;
+  if ((env.SR_LOCAL_ISOLATION !== "1" && env.SR_HOSTED_ISOLATION !== "1") || !value) return true;
   const expected = {
     identifier: "LOCAL-TEST-NOT-PAYABLE",
     recipient: "Synthetic recipient - no real transfer",
@@ -73,6 +73,10 @@ export function localFixtureInstructionsSafe(
       Object.keys(expected).every(
         (key) => item[key as keyof typeof expected] === expected[key as keyof typeof expected],
       ) ||
-      (!item.enabled && !item.identifier && !item.recipient && !item.instructionsAr && !item.instructionsEn),
+      (!item.enabled &&
+        !item.identifier &&
+        !item.recipient &&
+        !item.instructionsAr &&
+        !item.instructionsEn),
   );
 }

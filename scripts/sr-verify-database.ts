@@ -26,6 +26,18 @@ async function main() {
     const [who] = await client.query("SELECT DATABASE() AS db, CURRENT_USER() AS account");
     assert.equal(who.db, "sprtaya_sr_staging_local");
     assert.equal(who.account.split("@")[0], "sprtaya_sr_runtime");
+    const rows = await client.query("SHOW GRANTS FOR CURRENT_USER");
+    const grants = rows.map((row: Record<string, unknown>) => String(Object.values(row)[0]));
+    const scoped = grants.find((grant: string) => grant.includes("`sprtaya_sr_staging_local`.*"));
+    assert.ok(scoped);
+    for (const privilege of ["SELECT", "INSERT", "UPDATE", "DELETE"])
+      assert.match(scoped, new RegExp(`\\b${privilege}\\b`));
+    assert.doesNotMatch(scoped, /\b(ALL PRIVILEGES|ALTER|CREATE|DROP|GRANT OPTION)\b/);
+    assert.equal(
+      grants.filter((grant: string) => !grant.startsWith("GRANT USAGE ON *.*") && grant !== scoped)
+        .length,
+      0,
+    );
     await assert.rejects(
       client.query("SELECT COUNT(*) FROM `sprtaya_phase4_disposable_test`.products"),
     );
@@ -41,7 +53,7 @@ async function main() {
     assert.equal(await db.legacyProductMapping.count(), 0);
     assert.equal(Number(migrations[0].count), 7);
     console.log(
-      "PASS local app Prisma read, seven applied migrations, synthetic-only fixture products, and cross-schema denial.",
+      "PASS local app Prisma read, seven applied migrations, synthetic-only fixtures, scoped DML privileges, and cross-schema denial.",
     );
   } finally {
     await db.$disconnect();

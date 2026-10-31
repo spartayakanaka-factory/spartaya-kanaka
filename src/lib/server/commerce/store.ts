@@ -22,6 +22,7 @@ import {
 } from "@/lib/commerce/policy";
 import {
   approvedLocalFixture,
+  fixtureRestrictionsEnabled,
   assertCommerceEnvironment,
   requireFeature,
 } from "@/lib/commerce/runtime";
@@ -29,7 +30,7 @@ import { customerOrder } from "./customer-dto";
 export type Tx = Prisma.TransactionClient;
 export type Shopper = { key: string; userId?: string };
 export function assertLocalShopper(shopper: Shopper) {
-  if (process.env.SR_LOCAL_ISOLATION === "1")
+  if (fixtureRestrictionsEnabled())
     demand(
       Boolean(
         shopper.userId &&
