@@ -1,5 +1,7 @@
 # Restricted staging promotion runbook — BLOCKED
 
+The separate local `codex/hostinger-staging-readiness` branch adds a staging sitemap defense and infrastructure investigations on top of Phase 4. It is not a reviewed or deployable release; identify the eventual exact candidate SHA from its approved review and revalidate after any changes. See `HOSTINGER_ENVIRONMENT_INVENTORY.md`, `HOSTINGER_DATABASE_BACKUP_RECOVERY.md`, `HOSTINGER_MEDIA_PERSISTENCE.md`, `HOSTINGER_ROUTING_DIAGNOSIS.md`, `RESTRICTED_STAGING_RUNTIME.md` and `HOSTINGER_DEPENDENCY_SECURITY.md`. In particular, hosted commerce remains denied, a current dependency audit reports an advisory, and separate approval is required for every hosted change.
+
 This is preparation, not authorization to merge, deploy, access a persistent database, or run migrations. The approved release candidate must be the exact reviewed Phase 4 PR head after CI; record that SHA from the PR and verify it against the checked-out commit with `git rev-parse HEAD`. The integration baseline used to prepare this document is `1a07b2f49fecafd5dfeb303a4a605cf22bf0c1d6`; it is not a claim that this document itself is in that commit. Merge order is Phase 3 PR #1, Phase 3.5 PR #2, then Phase 4 PR #3, each only with separate approval.
 
 ## Stop conditions before scheduling

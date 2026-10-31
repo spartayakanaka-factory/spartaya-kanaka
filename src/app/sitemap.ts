@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
 import { getStoreProducts, getStoreCategories } from "@/lib/server/storefront-catalog";
 import { site } from "@/lib/site-config";
+import { commerceEnabled } from "@/lib/commerce/runtime";
+import { getStagingAccessConfig, getStagingRequestHostname } from "@/lib/staging-access";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const hostname = getStagingRequestHostname(await headers());
+  if (getStagingAccessConfig(process.env, hostname).mode !== "disabled" || commerceEnabled()) {
+    return [];
+  }
   const [products, categories] = await Promise.all([getStoreProducts(), getStoreCategories()]);
   const root = site.siteUrl;
   const locales = ["ar", "en"];

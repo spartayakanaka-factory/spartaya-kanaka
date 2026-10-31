@@ -75,7 +75,7 @@ async function scenario(configured) {
       });
       return r;
     }
-    for (const route of ["/", "/admin", "/robots.txt", "/api/commerce"]) {
+    for (const route of ["/", "/admin", "/robots.txt", "/sitemap.xml", "/api/commerce"]) {
       await check(route, configured ? 401 : 503);
       await check(
         route,
@@ -112,6 +112,8 @@ async function scenario(configured) {
 
       const robots = await check("/robots.txt", 200, valid);
       assert.match(await robots.text(), /User-agent: \*\nDisallow: \//);
+      const sitemap = await check("/sitemap.xml", 200, valid);
+      assert.doesNotMatch(await sitemap.text(), /<loc>/);
       await check("/api/admin/commerce", 503, valid, "POST");
       await check("/api/admin/media/upload-url", [401, 403], valid, "POST");
       await check("/api/customer-auth/get-session", 503, valid);
