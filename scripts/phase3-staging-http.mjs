@@ -115,6 +115,7 @@ async function scenario(configured) {
       const sitemap = await check("/sitemap.xml", 200, valid);
       assert.doesNotMatch(await sitemap.text(), /<loc>/);
       await check("/api/admin/commerce", 503, valid, "POST");
+      await check("/api/admin/reports?start=2050-01-01&end=2050-01-01", 503, valid);
       await check("/api/admin/media/upload-url", [401, 403], valid, "POST");
       await check("/api/customer-auth/get-session", 503, valid);
     }

@@ -70,29 +70,31 @@ export async function assertStagingDatabaseIdentity(
   try {
     const c = expectedConfiguration(env);
     const rows = await db.$queryRaw<
-      { databaseName: string; currentUser: string; serverPort: number | bigint }[]
+      {
+        databaseName: string;
+        currentUser: string;
+        serverPort: number | bigint;
+        markerId: string;
+        signature: string;
+      }[]
     >`
-      SELECT DATABASE() AS databaseName, CURRENT_USER() AS currentUser, @@port AS serverPort`;
+      SELECT DATABASE() AS databaseName, CURRENT_USER() AS currentUser, @@port AS serverPort,
+             marker_id AS markerId, signature
+      FROM staging_identity WHERE marker_id = ${c.marker} LIMIT 2`;
     if (
       rows.length !== 1 ||
       rows[0].databaseName !== c.name ||
       rows[0].currentUser.split("@", 1)[0] !== c.username ||
-      Number(rows[0].serverPort) !== c.port
+      Number(rows[0].serverPort) !== c.port ||
+      rows[0].markerId !== c.marker ||
+      !/^[a-f0-9]{64}$/.test(rows[0].signature)
     )
       throw new Error("mismatch");
 
-    const markers = await db.$queryRaw<{ markerId: string; signature: string }[]>`
-      SELECT marker_id AS markerId, signature FROM staging_identity WHERE marker_id = ${c.marker} LIMIT 2`;
-    if (
-      markers.length !== 1 ||
-      markers[0].markerId !== c.marker ||
-      !/^[a-f0-9]{64}$/.test(markers[0].signature)
-    )
-      throw new Error("marker");
     const expected = createHmac("sha256", c.secret!)
       .update(JSON.stringify(["sprtaya-staging-v1", c.marker, c.host, c.port, c.name, c.username]))
       .digest();
-    if (!timingSafeEqual(expected, Buffer.from(markers[0].signature, "hex")))
+    if (!timingSafeEqual(expected, Buffer.from(rows[0].signature, "hex")))
       throw new Error("signature");
   } catch {
     throw new Error("STAGING_IDENTITY_UNAVAILABLE");

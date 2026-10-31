@@ -34,8 +34,15 @@ const signature = createHmac("sha256", secret)
   .digest("hex");
 function client(
   rows: unknown[] = [
-    [{ databaseName: "isolated_test", currentUser: "stage_user@localhost", serverPort: 33078 }],
-    [{ markerId: marker, signature }],
+    [
+      {
+        databaseName: "isolated_test",
+        currentUser: "stage_user@localhost",
+        serverPort: 33078,
+        markerId: marker,
+        signature,
+      },
+    ],
   ],
 ) {
   const query = vi.fn().mockImplementation(async () => rows.shift());
@@ -45,8 +52,22 @@ describe("read-only staging database attestation", () => {
   it("accepts only matching connection identity and authenticated marker", async () => {
     const { db, query } = client();
     await expect(assertStagingDatabaseIdentity(db, env)).resolves.toBeUndefined();
-    expect(query).toHaveBeenCalledTimes(2);
-    expect(query.mock.calls[1][1]).toBe(marker);
+    expect(query).toHaveBeenCalledTimes(1);
+    expect(query.mock.calls[0][1]).toBe(marker);
+  });
+  it("reads server identity and the marker in a single database statement", async () => {
+    const row = {
+      databaseName: "isolated_test",
+      currentUser: "stage_user@localhost",
+      serverPort: 33078,
+      markerId: marker,
+      signature,
+    };
+    const { db, query } = client([[row]]);
+    await expect(assertStagingDatabaseIdentity(db, env)).resolves.toBeUndefined();
+    expect(query).toHaveBeenCalledTimes(1);
+    expect(query.mock.calls[0][0].join("?")).toMatch(/DATABASE\(\)/);
+    expect(query.mock.calls[0][0].join("?")).toMatch(/staging_identity/);
   });
   it.each([
     { APP_ENV: "production" },
@@ -65,16 +86,50 @@ describe("read-only staging database attestation", () => {
     expect(query).not.toHaveBeenCalled();
   });
   it.each([
-    [[{ databaseName: "other", currentUser: "stage_user@localhost", serverPort: 33078 }]],
-    [[{ databaseName: "isolated_test", currentUser: "other@localhost", serverPort: 33078 }]],
-    [[{ databaseName: "isolated_test", currentUser: "stage_user@localhost", serverPort: 3306 }]],
     [
-      [{ databaseName: "isolated_test", currentUser: "stage_user@localhost", serverPort: 33078 }],
-      [],
+      [
+        {
+          databaseName: "other",
+          currentUser: "stage_user@localhost",
+          serverPort: 33078,
+          markerId: marker,
+          signature,
+        },
+      ],
     ],
     [
-      [{ databaseName: "isolated_test", currentUser: "stage_user@localhost", serverPort: 33078 }],
-      [{ markerId: marker, signature: "b".repeat(64) }],
+      [
+        {
+          databaseName: "isolated_test",
+          currentUser: "other@localhost",
+          serverPort: 33078,
+          markerId: marker,
+          signature,
+        },
+      ],
+    ],
+    [
+      [
+        {
+          databaseName: "isolated_test",
+          currentUser: "stage_user@localhost",
+          serverPort: 3306,
+          markerId: marker,
+          signature,
+        },
+      ],
+    ],
+    [[]],
+    [
+      [
+        {
+          databaseName: "isolated_test",
+          currentUser: "stage_user@localhost",
+          serverPort: 33078,
+          markerId: marker,
+          signature: "b".repeat(64),
+        },
+      ],
     ],
   ])("rejects identity, marker and signature mismatches %#", async (...rows) => {
     const { db } = client(rows);

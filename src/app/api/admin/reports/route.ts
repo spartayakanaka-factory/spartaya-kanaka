@@ -4,11 +4,13 @@ import { ownerReport } from "@/lib/server/commerce/reports";
 import { allowReportRequest } from "@/lib/server/commerce/report-rate";
 import { reportAuthGuard, reportDatabaseGuard } from "@/lib/server/commerce/report-auth-guard";
 import { CommerceError } from "@/lib/commerce/policy";
+import { assertCommerceEnvironment } from "@/lib/commerce/runtime";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const blocked = getStagingAccessResponse(request.headers);
   if (blocked) return blocked;
   try {
+    assertCommerceEnvironment();
     const auth = await reportAuthGuard(getAdminActor);
     if (!auth.ok)
       return Response.json(
