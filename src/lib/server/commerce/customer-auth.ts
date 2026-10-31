@@ -2,7 +2,11 @@ import "server-only";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { getDatabase } from "../database";
-import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
+import {
+  approvedLocalFixture,
+  assertCommerceEnvironment,
+  requireFeature,
+} from "@/lib/commerce/runtime";
 import { demand } from "@/lib/commerce/policy";
 import { capturePrivate } from "./notifications";
 function buildCustomerAuth() {
@@ -18,6 +22,7 @@ function buildCustomerAuth() {
     database: prismaAdapter(getDatabase(), { provider: "mysql", transaction: true }),
     emailAndPassword: {
       enabled: true,
+      disableSignUp: process.env.SR_LOCAL_ISOLATION === "1",
       minPasswordLength: 12,
       maxPasswordLength: 128,
       requireEmailVerification: true,
@@ -37,6 +42,7 @@ function buildCustomerAuth() {
       session: {
         create: {
           before: async (session) => {
+            if (!approvedLocalFixture("customer", session.userId)) return false;
             const user = await getDatabase().customerUser.findUnique({
               where: { id: session.userId },
               select: { banned: true },
@@ -99,6 +105,7 @@ export async function customerIdentity(headers: Headers) {
   requireFeature("CUSTOMER_ACCOUNTS");
   const session = await getCustomerAuth().api.getSession({ headers });
   if (session) {
+    demand(approvedLocalFixture("customer", session.user.id), "CUSTOMER_ACCESS_DENIED", 403);
     const current = await getDatabase().customerUser.findUnique({
       where: { id: session.user.id },
       select: { banned: true, emailVerified: true },

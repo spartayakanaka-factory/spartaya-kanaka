@@ -15,6 +15,7 @@ import {
 import { drainNotifications } from "@/lib/server/commerce/notifications";
 import { expireOrders } from "@/lib/server/commerce/store";
 import { addOrderNote, setCustomerAccess } from "@/lib/server/commerce/factory";
+import { localFixtureInstructionsSafe } from "@/lib/commerce/factory-policy";
 export const dynamic = "force-dynamic";
 async function actor() {
   assertCommerceEnvironment();
@@ -409,6 +410,11 @@ export async function POST(request: Request) {
           return row;
         });
       } else if (data.action === "policy") {
+        demand(
+          localFixtureInstructionsSafe(data.configuration.manualInstructions),
+          "SYNTHETIC_INSTRUCTIONS_REQUIRED",
+          400,
+        );
         result = await db.$transaction(async (tx) => {
           const current = await staff(a.id, tx);
           demand(current.roleCode === "OWNER", "OWNER_REQUIRED", 403);

@@ -4,7 +4,11 @@ import sharp from "sharp";
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { demand } from "@/lib/commerce/policy";
 import { manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
-import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
+import {
+  approvedLocalFixture,
+  assertCommerceEnvironment,
+  requireFeature,
+} from "@/lib/commerce/runtime";
 import { getDatabase } from "../database";
 import { getMediaStorage } from "../media-storage";
 import { grant, staff } from "./admin";
@@ -25,6 +29,13 @@ function signature(id: string, key: string, expires: string) {
 }
 async function paymentFor(viewer: EvidenceViewer, paymentId: string) {
   enabled();
+  if (process.env.SR_LOCAL_ISOLATION === "1") {
+    const allowed = viewer.adminId
+      ? viewer.key === "staff:" + viewer.adminId && approvedLocalFixture("staff", viewer.adminId)
+      : viewer.key.startsWith("customer:") &&
+        approvedLocalFixture("customer", viewer.key.slice("customer:".length));
+    demand(allowed, "FORBIDDEN", 403);
+  }
   const payment = await getDatabase().commercePayment.findUnique({
     where: { id: paymentId },
     include: { order: true },

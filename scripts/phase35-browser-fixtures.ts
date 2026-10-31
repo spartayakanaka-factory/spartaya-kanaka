@@ -9,9 +9,11 @@ async function main() {
   const u = new URL(process.env.DATABASE_URL!);
   if (
     u.pathname !==
-    (process.env.P4_WORKSTREAM === "1"
-      ? "/sprtaya_phase4_disposable_local"
-      : "/sprtaya_phase35_disposable_local")
+    (process.env.SR_LOCAL_ISOLATION === "1" && u.username === "sprtaya_sr_runtime"
+      ? "/sprtaya_sr_staging_local"
+      : process.env.P4_WORKSTREAM === "1"
+        ? "/sprtaya_phase4_disposable_local"
+        : "/sprtaya_phase35_disposable_local")
   )
     throw Error("Phase 3.5 fixture target required");
   const db = createRuntimeDatabase();

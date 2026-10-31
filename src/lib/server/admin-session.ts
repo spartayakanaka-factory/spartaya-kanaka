@@ -5,6 +5,7 @@ import { getAuth } from "@/lib/server/auth";
 import type { AdminPermission, AdminRoleCode } from "@/lib/admin/permissions";
 import { hasPermission } from "@/lib/admin/permissions";
 import { getStagingAccessDecision } from "@/lib/staging-access";
+import { approvedLocalFixture } from "@/lib/commerce/runtime";
 
 export type AdminActor = {
   id: string;
@@ -29,6 +30,7 @@ export async function getAdminActor(): Promise<AdminActor | null> {
       roleCode?: string;
       forcePasswordChange?: boolean;
     };
+    if (!approvedLocalFixture("staff", user.id)) return null;
     if (
       !user.roleCode ||
       !["OWNER", "MANAGER", "CATALOG_EDITOR", "INVENTORY_STAFF"].includes(user.roleCode)

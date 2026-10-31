@@ -1,13 +1,18 @@
 import "server-only";
 import { demand } from "@/lib/commerce/policy";
-import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
+import {
+  approvedLocalFixture,
+  assertCommerceEnvironment,
+  requireFeature,
+} from "@/lib/commerce/runtime";
 import { getDatabase } from "../database";
 import { creditPayment } from "./payments";
 import { event, getPolicy, lockOrder, notify, release, stock, transaction, type Tx } from "./store";
 export async function staff(adminId: string, tx?: Tx) {
+  assertCommerceEnvironment();
+  demand(approvedLocalFixture("staff", adminId), "FORBIDDEN", 403);
   const source = tx || getDatabase();
   if (tx) await tx.$queryRaw`SELECT id FROM admin_users WHERE id=${adminId} FOR UPDATE`;
-  assertCommerceEnvironment();
   const a = await source.adminUser.findUnique({ where: { id: adminId } });
   demand(
     a && !a.banned && !a.forcePasswordChange && ["OWNER", "MANAGER"].includes(a.roleCode),

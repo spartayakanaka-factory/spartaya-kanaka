@@ -1,5 +1,6 @@
 import "server-only";
 import { S3Client } from "@aws-sdk/client-s3";
+import { commerceEnabled } from "@/lib/commerce/runtime";
 
 export function getMediaStorage() {
   const {
@@ -10,6 +11,20 @@ export function getMediaStorage() {
     MEDIA_SECRET_ACCESS_KEY: secretAccessKey,
   } = process.env;
   const publicBase = process.env.MEDIA_PUBLIC_BASE_URL;
+  if (
+    process.env.SR_LOCAL_ISOLATION === "1" &&
+    (!commerceEnabled() ||
+      endpoint !== "http://127.0.0.1:39310" ||
+      originalsBucket !== "sprtaya-phase3-originals" ||
+      displayBucket !== "sprtaya-phase3-display" ||
+      publicBase !== "http://127.0.0.1:39310/sprtaya-phase3-display" ||
+      process.env.MEDIA_S3_FORCE_PATH_STYLE !== "true" ||
+      !process.env.SR_LOCAL_MEDIA_ACCESS_KEY_ID ||
+      !process.env.SR_LOCAL_MEDIA_SECRET_ACCESS_KEY ||
+      accessKeyId !== process.env.SR_LOCAL_MEDIA_ACCESS_KEY_ID ||
+      secretAccessKey !== process.env.SR_LOCAL_MEDIA_SECRET_ACCESS_KEY)
+  )
+    throw new Error("MEDIA_STORAGE_UNAVAILABLE");
   if (
     !endpoint ||
     !originalsBucket ||

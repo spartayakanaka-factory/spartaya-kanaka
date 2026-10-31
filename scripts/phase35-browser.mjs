@@ -9,8 +9,24 @@ const require = createRequire(import.meta.url),
   sharp = require("sharp");
 const base = process.env.P3_BASE_URL,
   out = process.env.P35_EVIDENCE_DIR || "docs/phase35";
+const localSandbox =
+  process.env.SR_LOCAL_ISOLATION === "1" &&
+  (() => {
+    const u = new URL(process.env.DATABASE_URL || "");
+    return (
+      u.hostname === "127.0.0.1" &&
+      u.port === "33078" &&
+      u.username === "sprtaya_sr_runtime" &&
+      u.pathname === "/sprtaya_sr_staging_local"
+    );
+  })();
 if (
-  base !== (process.env.P4_WORKSTREAM === "1" ? "http://localhost:3007" : "http://localhost:3005")
+  base !==
+  (localSandbox
+    ? "http://localhost:3008"
+    : process.env.P4_WORKSTREAM === "1"
+      ? "http://localhost:3007"
+      : "http://localhost:3005")
 )
   throw Error("Only the isolated Phase 3.5 server is permitted");
 const file = path.join(process.env.P3_STATE_DIR, process.env.P35_STAFF_FILE || "staff.json"),
@@ -101,6 +117,17 @@ async function audit(p, name) {
 async function checkout(slug, method, locale = "ar") {
   const a = await ctx(),
     p = a.p;
+  if (localSandbox) {
+    const customer = JSON.parse(
+      await readFile(path.join(process.env.P3_STATE_DIR, "customer.json"), "utf8"),
+    );
+    const login = await post(
+      a.c,
+      { email: customer.email, password: customer.password },
+      "/api/customer-auth/sign-in/email",
+    );
+    assert.equal(login.status(), 200, "synthetic customer login");
+  }
   await goto(p, "/" + locale + "/products/" + slug);
   await p
     .getByRole("button", {
@@ -441,6 +468,16 @@ try {
       await customer.getByRole("button", { name: "إيقاف وصول الحساب", exact: true }).waitFor();
     },
   );
+  if (localSandbox)
+    await check(
+      "unpaid synthetic made-to-order remains visible as an outstanding balance",
+      async () => {
+        const pending = await checkout(fixture.made.slug, "INSTAPAY");
+        const order = await read(owner.c, pending.id);
+        assert.equal(order.paidMinor, "0");
+        assert.ok(BigInt(order.totalMinor) > 0n);
+      },
+    );
   for (const pass of [1, 2])
     await check(
       "visual review pass " + pass + " - new factory/payment screens at 390/768/1440",

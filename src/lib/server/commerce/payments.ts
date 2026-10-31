@@ -6,6 +6,7 @@ import { demand, minor } from "@/lib/commerce/policy";
 import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
 import { getDatabase } from "../database";
 import {
+  assertLocalShopper,
   digest,
   event,
   getPolicy,
@@ -58,6 +59,7 @@ export async function beginPayment(
   purpose: "INITIAL" | "BALANCE" = "INITIAL",
   claimReference?: string,
 ) {
+  assertLocalShopper(shopper);
   demand(/^[A-Za-z0-9_-]{8,64}$/.test(key), "IDEMPOTENCY_KEY_REQUIRED", 400);
   return transaction(async (tx) => {
     const o = await lockOrder(tx, orderId);

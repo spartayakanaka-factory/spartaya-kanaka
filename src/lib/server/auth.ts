@@ -2,6 +2,7 @@ import "server-only";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { getDatabase } from "@/lib/server/database";
+import { approvedLocalFixture } from "@/lib/commerce/runtime";
 
 const production = process.env.NODE_ENV === "production";
 
@@ -33,10 +34,23 @@ function buildAuth() {
       maxPasswordLength: 128,
       revokeSessionsOnPasswordReset: true,
     },
+    databaseHooks: {
+      session: {
+        create: {
+          before: async (session) =>
+            approvedLocalFixture("staff", session.userId) ? { data: session } : false,
+        },
+      },
+    },
     user: {
       modelName: "AdminUser",
       additionalFields: {
-        roleCode: { type: "string", required: false, input: false, defaultValue: "INVENTORY_STAFF" },
+        roleCode: {
+          type: "string",
+          required: false,
+          input: false,
+          defaultValue: "INVENTORY_STAFF",
+        },
         forcePasswordChange: {
           type: "boolean",
           required: false,

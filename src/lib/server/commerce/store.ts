@@ -1,6 +1,10 @@
 import "server-only";
 import { getProductImageUrl } from "@/lib/asset-url";
-import { destinationMatches, manualEvidenceEnabled } from "@/lib/commerce/factory-policy";
+import {
+  destinationMatches,
+  localFixtureInstructionsSafe,
+  manualEvidenceEnabled,
+} from "@/lib/commerce/factory-policy";
 import { createHash, randomUUID } from "node:crypto";
 import { Prisma } from "@/generated/prisma/client";
 import { getDatabase } from "../database";
@@ -16,10 +20,26 @@ import {
   type Address,
   type PaymentMethod,
 } from "@/lib/commerce/policy";
-import { assertCommerceEnvironment, requireFeature } from "@/lib/commerce/runtime";
+import {
+  approvedLocalFixture,
+  assertCommerceEnvironment,
+  requireFeature,
+} from "@/lib/commerce/runtime";
 import { customerOrder } from "./customer-dto";
 export type Tx = Prisma.TransactionClient;
 export type Shopper = { key: string; userId?: string };
+export function assertLocalShopper(shopper: Shopper) {
+  if (process.env.SR_LOCAL_ISOLATION === "1")
+    demand(
+      Boolean(
+        shopper.userId &&
+        shopper.key === "customer:" + shopper.userId &&
+        approvedLocalFixture("customer", shopper.userId),
+      ),
+      "SYNTHETIC_LOGIN_REQUIRED",
+      401,
+    );
+}
 export const digest = (value: unknown) =>
   createHash("sha256")
     .update(JSON.stringify(jsonValue(value)))
@@ -102,6 +122,11 @@ export async function getPolicy(tx: Tx) {
   demand(row?.simulationOnly, "POLICY_REQUIRED");
   const parsed = policySchema.safeParse(row.configuration);
   demand(parsed.success, "POLICY_REQUIRED");
+  demand(
+    localFixtureInstructionsSafe(parsed.data.manualInstructions),
+    "SYNTHETIC_INSTRUCTIONS_REQUIRED",
+    503,
+  );
   return { policy: parsed.data, version: row.version };
 }
 const catalogSelect = {
@@ -152,6 +177,7 @@ export async function catalog() {
   ).map(publicProduct);
 }
 export async function getCart(shopper: Shopper) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   const db = getDatabase();
   const cart = await db.commerceCart.findUnique({
@@ -174,6 +200,7 @@ export async function getCart(shopper: Shopper) {
   };
 }
 export async function updateCart(shopper: Shopper, variantId: string, quantity: number) {
+  assertLocalShopper(shopper);
   demand(Number.isInteger(quantity) && quantity >= 0 && quantity <= 99, "INVALID_QUANTITY", 400);
   return transaction(async (tx) => {
     const cart = await tx.commerceCart.upsert({
@@ -218,6 +245,8 @@ export async function updateCart(shopper: Shopper, variantId: string, quantity: 
   });
 }
 export async function mergeCart(guest: Shopper, customer: Shopper) {
+  assertLocalShopper(guest);
+  assertLocalShopper(customer);
   demand(guest.key.startsWith("guest:") && customer.key.startsWith("customer:"), "FORBIDDEN", 403);
   return transaction(async (tx) => {
     const target = await tx.commerceCart.upsert({
@@ -439,12 +468,14 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
   return { cart, policy, snapshot, lines, total, initial, quoteHash: digest(snapshot) };
 }
 export async function quote(shopper: Shopper, input: CheckoutInput) {
+  assertLocalShopper(shopper);
   return transaction(async (tx) => {
     const q = await prepare(tx, shopper, input);
     return { snapshot: q.snapshot, quoteHash: q.quoteHash };
   });
 }
 export async function checkout(shopper: Shopper, input: CheckoutInput) {
+  assertLocalShopper(shopper);
   requireFeature("CHECKOUT");
   demand(
     input.requestKey && /^[a-zA-Z0-9_-]{8,64}$/.test(input.requestKey),
@@ -550,6 +581,7 @@ export async function checkout(shopper: Shopper, input: CheckoutInput) {
   });
 }
 export async function ownedOrder(shopper: Shopper, id: string) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   const order = await getDatabase().commerceOrder.findFirst({
     where: { id, ownerKey: shopper.key },
@@ -559,6 +591,7 @@ export async function ownedOrder(shopper: Shopper, id: string) {
   return customerOrder(order);
 }
 export async function cancelOrder(shopper: Shopper, id: string) {
+  assertLocalShopper(shopper);
   return transaction(async (tx) => {
     const o = await lockOrder(tx, id);
     demand(o.ownerKey === shopper.key, "ORDER_NOT_FOUND", 404);
@@ -624,6 +657,7 @@ export async function expireOrders() {
   return count;
 }
 export async function saveAddress(shopper: Shopper, value: unknown, id?: string) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   demand(shopper.userId, "LOGIN_REQUIRED", 401);
   const address = addressSchema.parse(value);
@@ -638,6 +672,7 @@ export async function saveAddress(shopper: Shopper, value: unknown, id?: string)
   return getDatabase().customerAddress.create({ data: { ...address, userId: shopper.userId } });
 }
 export async function getAddresses(shopper: Shopper) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   demand(shopper.userId, "LOGIN_REQUIRED", 401);
   const rows = await getDatabase().customerAddress.findMany({
@@ -652,11 +687,13 @@ export async function getAddresses(shopper: Shopper) {
   }));
 }
 export async function deleteAddress(shopper: Shopper, id: string) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   demand(shopper.userId, "LOGIN_REQUIRED", 401);
   return getDatabase().customerAddress.deleteMany({ where: { id, userId: shopper.userId } });
 }
 export async function listOrders(shopper: Shopper) {
+  assertLocalShopper(shopper);
   assertCommerceEnvironment();
   return getDatabase().commerceOrder.findMany({
     where: { ownerKey: shopper.key },

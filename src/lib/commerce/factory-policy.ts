@@ -54,3 +54,25 @@ export const destinationMatches = (
   (!rate.area ||
     rate.area.trim().toLocaleLowerCase() === (address.area || "").trim().toLocaleLowerCase());
 export const manualEvidenceEnabled = (env = process.env) => env.P35_PAYMENT_EVIDENCE === "1";
+
+/** Prevent real transfer details from being stored or served in the local fixture sandbox. */
+export function localFixtureInstructionsSafe(
+  value: z.infer<typeof manualInstructionsSchema> | undefined,
+  env = process.env,
+) {
+  if (env.SR_LOCAL_ISOLATION !== "1" || !value) return true;
+  const expected = {
+    identifier: "LOCAL-TEST-NOT-PAYABLE",
+    recipient: "Synthetic recipient - no real transfer",
+    instructionsAr: "Local test only. Do not transfer real funds.",
+    instructionsEn: "Local test only. Do not transfer real funds.",
+  };
+  return [value.WALLET, value.INSTAPAY].every(
+    (item) =>
+      !item ||
+      Object.keys(expected).every(
+        (key) => item[key as keyof typeof expected] === expected[key as keyof typeof expected],
+      ) ||
+      (!item.enabled && !item.identifier && !item.recipient && !item.instructionsAr && !item.instructionsEn),
+  );
+}
