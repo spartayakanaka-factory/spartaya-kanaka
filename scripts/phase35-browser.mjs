@@ -9,7 +9,9 @@ const require = createRequire(import.meta.url),
   sharp = require("sharp");
 const base = process.env.P3_BASE_URL,
   out = process.env.P35_EVIDENCE_DIR || "docs/phase35";
-if (base !== "http://localhost:3005")
+if (
+  base !== (process.env.P4_WORKSTREAM === "1" ? "http://localhost:3007" : "http://localhost:3005")
+)
   throw Error("Only the isolated Phase 3.5 server is permitted");
 const file = path.join(process.env.P3_STATE_DIR, process.env.P35_STAFF_FILE || "staff.json"),
   fixture = JSON.parse(await readFile(file, "utf8"));

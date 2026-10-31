@@ -1,7 +1,7 @@
 name: Phase 3 and 3.5 validation (no deployment)
 on:
   pull_request:
-    branches: [codex/hostinger-nextjs-source, review/phase3-integration-20261029]
+    branches: [codex/hostinger-nextjs-source, review/phase3-integration-20261029, review/phase3-5-factory-commerce-20261030]
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,12 +24,18 @@ jobs:
           npm install --global pnpm@11.24.0
           pnpm install --frozen-lockfile
           pnpm exec playwright install --with-deps chromium
-      - name: Disposable database, storage, build and browser acceptance
+      - name: Disposable Phase 3.5 acceptance
+        if: ${{ github.base_ref != 'review/phase3-5-factory-commerce-20261030' }}
         run: node scripts/phase3-ci.mjs --phase35
+      - name: Disposable Phase 4 acceptance
+        if: ${{ github.base_ref == 'review/phase3-5-factory-commerce-20261030' }}
+        run: node scripts/phase3-ci.mjs --phase4
       - name: Save successful synthetic acceptance evidence
         if: success()
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: phase35-synthetic-acceptance
-          path: docs/phase35/integration-ci/
+          path: |
+            docs/phase35/integration-ci/
+            docs/phase4/integration-ci/
           retention-days: 7

@@ -7,9 +7,9 @@ import { fixtureProduct } from "@/lib/commerce/fixtures";
 const enabled = process.env.P4_WORKSTREAM === "1" && process.env.PHASE3_DB_INTEGRATION === "1";
 describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
   const db = getDatabase(),
-    id = () => randomUUID(),
-    day = nextDate("2060-01-01", Math.floor(Math.random() * 10000)),
-    dayStart = cairoDayStart(day);
+    id = () => randomUUID();
+  let day = "",
+    dayStart = new Date(0);
   let owner: string, manager: string, order: string, payment: string;
   beforeAll(async () => {
     expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
@@ -17,6 +17,25 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
         ? "/sprtaya_phase4_recovery_v3"
         : "/sprtaya_phase4_disposable_test",
     );
+    // These tests assert whole-day aggregates. Repeated local runs retain synthetic
+    // records, so reserve an unoccupied interval before creating this run's facts.
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const candidate = nextDate("2060-01-01", Math.floor(Math.random() * 10000));
+      const window = {
+        gte: cairoDayStart(nextDate(candidate, -2)),
+        lt: cairoDayStart(nextDate(candidate, 15)),
+      };
+      const [orders, events] = await Promise.all([
+        db.commerceOrder.count({ where: { createdAt: window } }),
+        db.commerceEvent.count({ where: { createdAt: window } }),
+      ]);
+      if (orders === 0 && events === 0) {
+        day = candidate;
+        dayStart = cairoDayStart(day);
+        break;
+      }
+    }
+    if (!day) throw Error("No unoccupied synthetic report test interval found");
     owner = (
       await db.adminUser.create({
         data: {
