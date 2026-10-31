@@ -1,0 +1,94 @@
+.report-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.report-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 14px;
+  margin-top: 20px;
+}
+.report-filters label {
+  display: grid;
+  gap: 8px;
+  flex: 1 1 150px;
+}
+.report-filters input {
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid #b4a89b;
+  background: #fff;
+  font: inherit;
+}
+.report-filters input:focus-visible {
+  outline: 2px solid #985c39;
+  outline-offset: 3px;
+}
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.report-grid > div {
+  display: block !important;
+  padding: 16px !important;
+  background: #f6f0e7;
+  border: 1px solid #ded3c4 !important;
+}
+.report-grid dt {
+  font-size: 14px;
+}
+.report-grid dd {
+  margin: 8px 0 0 !important;
+  font-size: 20px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .report-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .report-grid dd {
+    font-size: 17px;
+  }
+}
+
+.report-image {
+  object-fit: cover;
+  vertical-align: middle;
+  margin-inline-end: 10px;
+}
+.report-chart {
+  overflow-x: auto;
+}
+.report-chart:focus-visible {
+  outline: 3px solid #855235;
+  outline-offset: 3px;
+}
+.report-bar {
+  display: inline-block;
+  height: 0.55rem;
+  max-width: 7rem;
+  min-width: 0;
+  background: #985f3b;
+  margin-inline: 0.4rem;
+}
+.report-breakdown {
+  list-style: none;
+  padding: 0;
+}
+.report-breakdown li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-block: 0.35rem;
+}
+
+.report-product-table:focus {
+  outline: 3px solid #855235;
+  outline-offset: 3px;
+}

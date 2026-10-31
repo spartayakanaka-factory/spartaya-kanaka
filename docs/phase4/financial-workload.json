@@ -1,0 +1,34 @@
+{
+  "scope": "100 synthetic orders across 31 Cairo days, including partial advances, unpaid and paid COD, cancelled orders, 60 completed and 40 pending refunds",
+  "period": [
+    "2055-01-15",
+    "2055-02-14"
+  ],
+  "orders": 100,
+  "completedRefunds": 60,
+  "pendingRefunds": 40,
+  "expected": {
+    "orderValue": "800000",
+    "collected": "600000",
+    "wallet": "200000",
+    "instapay": "200000",
+    "cod": "200000",
+    "refunded": "80000",
+    "netCollected": "520000",
+    "outstanding": "300000",
+    "deposits": "100000"
+  },
+  "actual": {
+    "orderValue": "800000",
+    "collected": "600000",
+    "wallet": "200000",
+    "instapay": "200000",
+    "cod": "200000",
+    "refunded": "80000",
+    "netCollected": "520000",
+    "outstanding": "300000",
+    "deposits": "100000"
+  },
+  "dailyCollected": "600000",
+  "dailyRefunds": "80000"
+}

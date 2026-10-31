@@ -8,8 +8,12 @@ const require = createRequire(import.meta.url),
 const base = process.env.P3_BASE_URL || "http://localhost:3003",
   evidence = process.env.P3_EVIDENCE_DIR || "docs/phase3/master-execution/qa";
 if (
-  !/^http:\/\/localhost:300[345]$/.test(base) ||
-  !["http://127.0.0.1:39010", "http://127.0.0.1:39110"].includes(process.env.MEDIA_S3_ENDPOINT)
+  !(process.env.P4_WORKSTREAM === "1"
+    ? base === "http://localhost:3007"
+    : /^http:\/\/localhost:300[345]$/.test(base)) ||
+  !(process.env.P4_WORKSTREAM === "1"
+    ? process.env.MEDIA_S3_ENDPOINT === "http://127.0.0.1:39210"
+    : ["http://127.0.0.1:39010", "http://127.0.0.1:39110"].includes(process.env.MEDIA_S3_ENDPOINT))
 )
   throw Error("Only the isolated local browser/storage target is permitted.");
 const fixtures = JSON.parse(

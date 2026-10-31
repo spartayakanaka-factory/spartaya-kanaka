@@ -1,0 +1,43 @@
+# Restricted staging promotion runbook — BLOCKED
+
+This is preparation, not authorization to merge, deploy, access a persistent database, or run migrations. The approved release candidate must be the exact reviewed Phase 4 PR head after CI; record that SHA from the PR and verify it against the checked-out commit with `git rev-parse HEAD`. The integration baseline used to prepare this document is `1a07b2f49fecafd5dfeb303a4a605cf22bf0c1d6`; it is not a claim that this document itself is in that commit. Merge order is Phase 3 PR #1, Phase 3.5 PR #2, then Phase 4 PR #3, each only with separate approval.
+
+## Stop conditions before scheduling
+
+- Commerce and reports currently require a local-only simulation database at `127.0.0.1:33078`, mock payments and `APP_ENV=local`. They intentionally reject Hostinger staging. A separately designed and reviewed staging runtime is required; do not bypass this guard by setting local flags on a hosted server.
+- Verify staging access control at the actual HTTP boundary. The last anonymous check returned 401 for pages, but the hosting-layer `robots.txt` allowed wildcard crawlers. Correct and independently retest before allowing sensitive data.
+- Verify the intended MariaDB connection and its association with the app. On 2026-10-31 hPanel listed `u858869017_sprtaya_phase2` under the magenta site, while the staging app showed no associated database. phpMyAdmin identified that database on `127.0.0.1:3306` and reported no tables, so there was no Prisma ledger or application data visible at that time. Repeat the inventory immediately before any operation; do not reassign it without review.
+- Obtain a verified database export and a restore test into a separately authorized isolated database. A website backup is not proof of a database backup. Record identity, time, checksum, storage location, privileges and restoration result privately.
+- Configure and test durable private-original/public-display media storage and backup, including upload, retrieval, authorization, restart/redeployment persistence and recovery. Preserve all 1,753 original image files and their mappings; no new paid service without approval.
+- Determine staging-only owner provisioning, credentials, server-side environment variables, protected URL, synthetic test data, financial settings and explicit migration/deployment approvals. Never put credentials in Git or logs. Keep real payment providers disabled.
+
+## Migration inventory and preflight
+
+Use the exact migration names and SHA-256 checksums in `docs/phase4/migration-manifest.json`; never infer pending migrations from this list alone. In a read-only connection, record `SELECT DATABASE(), CURRENT_USER(), VERSION(), @@hostname, @@port;`, the table inventory, and all rows of `_prisma_migrations` if present. Compare applied names and checksums with the manifest, check for failed/incomplete migrations and unknown objects, and stop on any mismatch. Confirm MariaDB, InnoDB, privileges, capacity and server version. Test a fresh export's restoration and preservation of catalog, accounts, inventory, orders, payments and media references before any change.
+
+| Migration                                   | Purpose and dependencies                                                    | Impact and recovery                                                                                    |
+| ------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `20261027000000_phase2_initial`             | Initial catalog, identity, inventory and admin schema. First migration.     | Creates baseline tables and indexes. Empty or existing targets must be assessed independently.         |
+| `20261027120000_phase2_2_review_safety`     | Phase 2 safety constraints and indexes; follows initial schema.             | Validate existing rows against constraints.                                                            |
+| `20261029143000_phase3_local_commerce`      | Commerce, customers, orders, payments and related indexes; follows Phase 2. | Additive schema and associated constraints; verify existing rows and references.                       |
+| `20261029144500_phase3_cancellation_review` | Cancellation and financial-review support; follows Phase 3 commerce.        | Review migration SQL and relationships before scheduling.                                              |
+| `20261030023000_phase35_factory_operations` | Factory operations, reservations and destination settings; follows Phase 3. | Adds columns and replaces a shipping-rate uniqueness index. Check pre-existing data and lock duration. |
+| `20261030024500_phase35_customer_access`    | Customer access extensions; follows factory operations.                     | Check existing account compatibility.                                                                  |
+| `20261031000000_phase4_report_indexes`      | Report indexes on event kind/time and order creation; follows Phase 3.5.    | Index creation can lock or load tables; measure with representative data.                              |
+
+Inspect each checked-in SQL file for the exact tables, indexes and transformations; estimate locking and storage against the real inventory. Prisma migrations are forward-only here: recover using the tested pre-change backup into an isolated replacement and a separately approved cutover, not an improvised down migration. The integration review also rehearsed the full seven-migration chain from a verified local Phase 3 backup in two fresh disposable databases, checking preservation, a second deploy and backup recovery. That synthetic baseline did not contain the 487 imported drafts. Neither it nor `docs/phase35/integration-promotion-from-phase3.json` and `docs/phase4/recovery-evidence.json` verifies the current Hostinger database or an actual Hostinger backup.
+
+## Only after separate written approval
+
+1. Freeze the exact reviewed commit, disable automatic deployment and verify the target URL and environment names. Document a private execution method supported by the host and an approved maintenance window. Do not use a permanent migration build hook.
+2. Repeat identity, history, backup and restore checks immediately before any schema change. A reviewer must approve the exact target and pending migration set. Execute the reviewed migration procedure once; record logs without secrets and inspect migration history and application health. Stop on any error; do not blindly rerun or mark failed migrations applied.
+3. After separate deployment approval, build and manually deploy the exact candidate to the temporary staging app only. Confirm the deployed SHA and restore normal build settings; keep auto-deployment disabled. Never touch the original domain or DNS.
+4. Verify anonymous and invalid authentication fail for pages, routes, API and static assets; valid staging credentials allow viewing but never grant staff permissions. Check `robots.txt`, noindex headers, cache behavior and protected assets independently.
+5. With synthetic accounts and explicitly enabled sandbox-only features, verify Arabic and English mobile/desktop checkout, COD eligibility and reconciliation, wallet/InstaPay claims and staff verification, deposits/balances, manufacturing, stock, cancellation/refund permissions and owner reports. Confirm customer and manager denial, audit trails, accessibility and no real notifications or financial transfers. Do not treat mock results as real-provider acceptance.
+6. Compare product, category, account, inventory, order, payment and media-reference counts and representative hashes against the preflight. Inspect errors and performance. Record all results and remaining unknowns.
+
+## Rollback and acceptance
+
+Stop for authentication bypass, indexing exposure, unexpected migration state, missing media, financial discrepancies, loss of records or runtime errors. Disable access using the already-approved host control; preserve logs and evidence. A code rollback alone does not undo a database change. Restore the verified backup only to a separately authorized recovery target, validate it, and obtain explicit approval before any persistent replacement or cutover.
+
+Staging acceptance requires all blockers above resolved, exact deployed SHA and migration history verified, protected and non-indexable responses, recoverable database and durable media, and successful synthetic end-to-end and security checks. Production requires a separate review, approved commercial policies, provider arrangements and explicit production authorization.

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 import { ciTargets } from "./ci-targets.mjs";
 describe("validation-only CI isolation", () => {
-  it.each([{ args: [] }, { args: ["--phase35"] }])(
+  it.each([{ args: [] }, { args: ["--phase35"] }, { args: ["--phase4"] }])(
     "refuses ordinary execution before starting Docker or a database (%j)",
     ({ args }) => {
       const result = spawnSync(process.execPath, ["scripts/phase3-ci.mjs", ...args], {
@@ -25,7 +25,7 @@ describe("validation-only CI isolation", () => {
     );
     expect(workflow).toContain("node scripts/phase3-ci.mjs");
   });
-  it("supports only the two finite disposable namespaces and matching local ports", () => {
+  it("supports only the three finite disposable namespaces and matching local ports", () => {
     const phase3 = ciTargets("phase3"),
       phase35 = ciTargets("phase35");
     expect(phase3.schemas).toEqual([
@@ -43,12 +43,21 @@ describe("validation-only CI isolation", () => {
       stagingPort: 3006,
       runner: "scripts/phase35-local.mjs",
     });
-    for (const unknown of ["hostinger", "production", "phase4", "mysql://example.com/db"])
+    expect(ciTargets("phase4")).toMatchObject({
+      user: "sprtaya_phase4",
+      schemas: ["sprtaya_phase4_disposable_local", "sprtaya_phase4_disposable_test"],
+      runner: "scripts/phase4-local.mjs",
+      appPort: 3007,
+      storagePort: 39210,
+    });
+    for (const unknown of ["hostinger", "production", "phase5", "mysql://example.com/db"])
       expect(() => ciTargets(unknown)).toThrow("Unknown disposable CI workstream");
   });
   it("validates stacked PRs without adding a deployment trigger or merchant secrets", () => {
     const workflow = readFileSync(".github/workflows/phase3-validation.yml", "utf8");
     expect(workflow).toContain("review/phase3-integration-20261029");
+    expect(workflow).toContain("review/phase3-5-factory-commerce-20261030");
+    expect(workflow).toContain("node scripts/phase3-ci.mjs --phase4");
     expect(workflow).toContain("node scripts/phase3-ci.mjs --phase35");
     expect(workflow).toContain("docs/phase35/integration-ci/");
     const script = readFileSync("scripts/phase3-ci.mjs", "utf8");

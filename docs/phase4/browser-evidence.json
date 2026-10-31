@@ -1,0 +1,150 @@
+{
+  "productionMode": true,
+  "checks": [
+    {
+      "name": "anonymous and manager report access is rejected",
+      "pass": true
+    },
+    {
+      "name": "valid customer session cannot read owner reports",
+      "pass": true
+    },
+    {
+      "name": "tampered cookie, forged identity and malformed authorization do not grant access",
+      "pass": true
+    },
+    {
+      "name": "clear previous synthetic owner reporting window",
+      "pass": true
+    },
+    {
+      "name": "owner API returns correct synthetic values with no customer details",
+      "pass": true
+    },
+    {
+      "name": "concurrent owner sessions share the report rate limit",
+      "pass": true
+    },
+    {
+      "name": "separate Node processes make authenticated report requests",
+      "pass": true
+    },
+    {
+      "name": "missing limiter table rejects and recovery restores report access",
+      "pass": true
+    },
+    {
+      "name": "a blocked limiter query times out safely and recovers",
+      "pass": true
+    },
+    {
+      "name": "database connection interrupted during report fails closed and recovers",
+      "pass": true
+    },
+    {
+      "name": "owner can filter and switch language, including a genuinely empty period",
+      "pass": true
+    },
+    {
+      "name": "suspending the existing owner session immediately blocks report access",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 390",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 390",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 768",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 768",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 1440",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 1440",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 390",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 390",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 768",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 768",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 1440",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 en 1440",
+      "pass": true
+    },
+    {
+      "name": "keyboard navigation and text alternatives in Arabic and English",
+      "pass": true
+    },
+    {
+      "name": "deleted synthetic owner with existing cookie is denied",
+      "pass": true
+    },
+    {
+      "name": "expired owner session is rejected",
+      "pass": true
+    },
+    {
+      "name": "revoked owner session is rejected",
+      "pass": true
+    }
+  ],
+  "audits": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "lang": "ar",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "errors": []
+}

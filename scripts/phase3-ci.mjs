@@ -2,15 +2,25 @@
 // hosted DB connections or use of an existing database/container are supported.
 import { spawn, spawnSync } from "node:child_process";
 import { randomBytes, createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import mariadb from "mariadb";
 import sharp from "sharp";
 import { S3Client, CreateBucketCommand, HeadBucketCommand } from "@aws-sdk/client-s3";
 import { ciTargets } from "./ci-targets.mjs";
-if (process.argv.slice(2).some((a) => a !== "--phase35")) throw Error("Unknown CI option");
-const target = ciTargets(process.argv.includes("--phase35") ? "phase35" : "phase3"),
+if (
+  process.argv.slice(2).some((a) => !["--phase35", "--phase4"].includes(a)) ||
+  process.argv.slice(2).length > 1
+)
+  throw Error("Unknown CI option");
+const target = ciTargets(
+    process.argv.includes("--phase4")
+      ? "phase4"
+      : process.argv.includes("--phase35")
+        ? "phase35"
+        : "phase3",
+  ),
   runner = target.runner,
   base = "http://localhost:" + target.appPort,
   endpoint = "http://127.0.0.1:" + target.storagePort;
@@ -64,6 +74,7 @@ const env = {
   ...process.env,
   P3_STATE_DIR: state,
   P35_STATE_DIR: state,
+  P4_STATE_DIR: state,
   LEGACY_ASSET_ROOT: assets,
   P3_EVIDENCE_DIR: evidence,
   P35_EVIDENCE_DIR: evidence + "/factory",
@@ -245,7 +256,19 @@ async function main() {
     if (!test) run(process.execPath, [runner, "generate"], env);
     // Direct deploy is confined to brand-new, privately generated containers
     // and the two app-user schemas; it cannot be used for hosted promotion.
-    const manifest = JSON.parse(readFileSync("docs/phase3/migration-manifest.json"));
+    const manifest = JSON.parse(
+      readFileSync(
+        target.phase4
+          ? "docs/phase4/migration-manifest.json"
+          : "docs/phase3/migration-manifest.json",
+      ),
+    );
+    const folders = readdirSync("prisma/migrations", { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+    if (JSON.stringify(folders) !== JSON.stringify(manifest.migrations.map((m) => m.name).sort()))
+      throw Error("CI migration directory differs from its reviewed manifest.");
     for (const m of manifest.migrations)
       if (
         createHash("sha256")
@@ -285,8 +308,20 @@ async function main() {
     env,
   );
   const report = JSON.parse(readFileSync(evidence + "/regression-tests.json"));
-  if (report.numFailedTests || report.numPendingTests)
+  if (report.numFailedTests || report.numFailedTestSuites || report.numPendingTests)
     throw Error("CI requires all database/storage tests enabled and passing.");
+  if (target.phase4) {
+    for (const required of [
+      "reports.integration.test.ts",
+      "factory.integration.test.ts",
+      "local-db.integration.test.ts",
+      "commerce.integration.test.ts",
+    ]) {
+      const suite = report.testResults.find((result) => result.name.endsWith("/" + required));
+      if (!suite || suite.status !== "passed" || !suite.assertionResults.length)
+        throw Error("Required integration suite missing or unsuccessful: " + required);
+    }
+  }
   app = spawn(process.execPath, [runner, "start"], { env, stdio: "inherit", detached: true });
   let healthy = false;
   for (let i = 0; i < 100; i++)
@@ -311,6 +346,10 @@ async function main() {
   if (target.phase35) {
     run(process.execPath, [runner, "exec", "scripts/phase35-browser-fixtures.ts", "--fresh"], env);
     run(process.execPath, [runner, "exec", "scripts/phase35-browser.mjs"], env);
+  }
+  if (target.phase4) {
+    run(process.execPath, [runner, "exec", "scripts/phase4-browser-fixtures.ts"], env);
+    run(process.execPath, [runner, "exec", "scripts/phase4-ci-browser.mjs"], env);
   }
   console.log(
     "PASS fresh disposable CI acceptance; no deployment commands or production credentials used.",

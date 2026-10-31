@@ -1,0 +1,16 @@
+{
+  "scope": "Exact backup of disposable Phase 4 test schema restored into a fresh isolated local schema; no existing schema migrated",
+  "backupSha256": "f77afd7e4f655a29db9f3c4d43d860f0d75550c87ac6457bbd3c93b32cd89799",
+  "tablesCompared": 47,
+  "beforeAndAfterDataDigestMatch": true,
+  "migrationSha256": "57120ac7f295ab1911b4508310d3103a5b37da3918ceec759a0f8eafa264bf32",
+  "indexes": [
+    "p4_events_kind_created_idx",
+    "p4_orders_created_idx"
+  ],
+  "secondDeploy": "no pending migrations",
+  "recoverySchema": "sprtaya_phase4_recovery_v3",
+  "reportDigestMatch": true,
+  "reportComparedDate": "2050-04-01",
+  "financialIntegrationTestsAfterMigration": 9
+}

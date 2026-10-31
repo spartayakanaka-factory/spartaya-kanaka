@@ -7,7 +7,12 @@ import { createRuntimeDatabase } from "./runtime-db";
 async function main() {
   assertCommerceEnvironment();
   const u = new URL(process.env.DATABASE_URL!);
-  if (u.pathname !== "/sprtaya_phase35_disposable_local")
+  if (
+    u.pathname !==
+    (process.env.P4_WORKSTREAM === "1"
+      ? "/sprtaya_phase4_disposable_local"
+      : "/sprtaya_phase35_disposable_local")
+  )
     throw Error("Phase 3.5 fixture target required");
   const db = createRuntimeDatabase();
   try {

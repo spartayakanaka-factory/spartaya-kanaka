@@ -109,7 +109,9 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
       url.hostname !== "127.0.0.1" ||
       url.port !== "33078" ||
       url.pathname !==
-        (process.env.P35_WORKSTREAM === "1"
+        (process.env.P4_WORKSTREAM === "1"
+          ? "/sprtaya_phase4_disposable_test"
+          : process.env.P35_WORKSTREAM === "1"
           ? "/sprtaya_phase35_disposable_test"
           : "/sprtaya_phase3_disposable_test")
     )
@@ -447,7 +449,7 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
   it("uses real S3 signed uploads, rejects altered ownership and non-images, and persists a derivative", async () => {
     const storage = getMediaStorage();
     if (
-      !["http://127.0.0.1:39010", "http://127.0.0.1:39110"].includes(
+      !["http://127.0.0.1:39010", "http://127.0.0.1:39110", "http://127.0.0.1:39210"].includes(
         process.env.MEDIA_S3_ENDPOINT || "",
       ) ||
       new URL(storage.publicBase).hostname !== "127.0.0.1"
