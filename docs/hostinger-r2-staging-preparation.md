@@ -1,0 +1,46 @@
+# Hostinger staging and Cloudflare R2 preparation
+
+Status: **blocked; configuration review only**. No R2 account, subscription, bucket, token, hosted environment variable, database grant, or deployment has been created or changed. Commerce remains local-only. This document is not permission to apply changes.
+
+## Proposed R2 setup
+
+After the separate hosted-change approval and any required Cloudflare subscription/checkout approval, create two new Standard-class buckets in the approved staging account. Confirm the proposed names are available in that account: `sprtaya-staging-private` and `sprtaya-staging-display`. The first holds product originals and synthetic payment evidence; never enable public access, a public domain, or `r2.dev` on it. The second may use an R2-managed public development URL, but only for synthetic display images. Public URLs bypass website Basic Auth and must not contain private or real customer data. Do not add either bucket to a production service.
+
+Create an R2 Object Read & Write token scoped to those two buckets only. The current application uses one access-key pair for both buckets; do not give it account-wide or bucket administration permissions. Store the key pair only in server-side Hostinger environment variables, never in source, command arguments, chat, or logs. Provider checkout, credentials and permissions require separately approved actions. Enable usage alerts and assess charges; free allowances do not guarantee a zero bill.
+
+The current admin product-media uploader sends a signed browser PUT to the private bucket. Proposed Cloudflare dashboard CORS JSON for that bucket (verify using an actual upload after provisioning):
+
+```json
+[
+  {
+    "AllowedOrigins": ["https://bisque-pheasant-330767.hostingersite.com"],
+    "AllowedMethods": ["PUT"],
+    "AllowedHeaders": ["content-type", "if-none-match", "x-amz-meta-owner"],
+    "MaxAgeSeconds": 300
+  }
+]
+```
+
+CORS is not access control. The evidence upload goes through the application server, not directly from a browser. Confirm the app SDK's actual signed headers in a browser, conditional PUT behavior, CORS, and private-object denial before acceptance. Test use of the public development URL with synthetic images only; it is rate-limited and is not a production solution. Establish a separate backup and tested restore method for both buckets; R2 configuration alone does not verify recovery.
+
+## Hostinger environment variable inventory (do not set yet)
+
+The current site has only `APP_ENV`, `STAGING_SITE`, `STAGING_ACCESS_USERNAME`, `STAGING_ACCESS_PASSWORD`, and `LEGACY_ASSET_ROOT`. Names are known; values have not been inspected. Hostinger's replace operation can replace the entire set, so retain verified existing entries and do not submit masked placeholders.
+
+- Staging access: `APP_ENV=staging`, `STAGING_SITE=1`, and unique private `STAGING_ACCESS_USERNAME` / `STAGING_ACCESS_PASSWORD`.
+- Database: `DATABASE_URL` with the approved least-privilege staging user, and `DATABASE_TARGET` selected only after reviewing the migration/runtime guards. The existing `u858869017_sprtaya_test` user has all privileges on its database and must not be assumed to be a least-privilege runtime account.
+- Authentication: unique staging-only `BETTER_AUTH_SECRET`, `CUSTOMER_AUTH_SECRET`, and the exact HTTPS staging origin in `BETTER_AUTH_URL`, `CUSTOMER_AUTH_URL`, and `AUTH_TRUSTED_ORIGINS`; configure the approved test identity registry when its hosted implementation exists.
+- Media: `STAGING_R2_ACCOUNT_ID` (configuration-check input only), `MEDIA_S3_ENDPOINT=https://<account-id>.r2.cloudflarestorage.com`, `MEDIA_S3_REGION=auto`, `MEDIA_S3_ORIGINALS_BUCKET=sprtaya-staging-private`, `MEDIA_S3_DISPLAY_BUCKET=sprtaya-staging-display`, `MEDIA_ACCESS_KEY_ID`, `MEDIA_SECRET_ACCESS_KEY`, `MEDIA_PUBLIC_BASE_URL` set to the display bucket's HTTPS `r2.dev` URL, and `MEDIA_S3_FORCE_PATH_STYLE` set to the tested SDK setting. No credential values belong in this document.
+- Payments, notifications and commerce flags: all off until a reviewed hosted implementation enforces mock-only operation, approved identities, test-only notifications, correct storage isolation, and protected staging access. The current local-only runtime does not support hosted commerce. `P3_STATE_DIR` would need an approved private writable location if the existing notification sink is reused; do not assume that Hostinger deployment directories survive redeployments.
+
+Run `node --import tsx scripts/check-staging-r2-config.ts` only inside a private process with the relevant environment supplied. It checks configuration shape and prints field names only; it does **not** connect to R2, validate credentials, inspect bucket policy, prove isolation, verify DNS, or enable commerce.
+
+## Database, access and rollout gates
+
+The Hostinger phpMyAdmin view reported the named test database has no tables on 2026-11-01 and a backup entry exists; recheck identity and migration history immediately before any approved migration. Verify an export and rehearse restore to a separate isolated target. Inventory the seven migrations in `docs/phase4/migration-manifest.json`. The current migration deploy script intentionally rejects Phase 3; do not bypass it with raw Prisma, SQL, or build hooks. A separately reviewed exact-target migration mechanism is needed.
+
+Anonymous and invalid-auth requests to `/` and `/admin` returned 401, but `/robots.txt` was served publicly with wildcard allow. Resolve Hostinger routing and verify all paths plus authenticated access, noindex headers, and independent admin authorization before storing secrets or enabling commerce. Exact runtime delivery of environment variables, staging storage, scoped database access and notification persistence still require testing.
+
+Proposed rollout after an explicit approval: establish isolated resources, independently verify private and scoped access, verify backup and restore, use a reviewed exact-target migration procedure, configure complete server-side environment, publish the reviewed exact candidate with auto-deployment disabled, then run synthetic hosted tests. Rollback requires a verified database backup and separately reviewed restoration into an isolated target, plus a controlled return to the prior `cea867a0df48d0aa145613b0d491b1a779b4ee3d` application build; returning application code alone is not a database rollback.
+
+References: [R2 S3 API compatibility](https://developers.cloudflare.com/r2/api/s3/api/), [R2 tokens](https://developers.cloudflare.com/r2/api/tokens/), [R2 CORS](https://developers.cloudflare.com/r2/buckets/cors/), [R2 pricing](https://developers.cloudflare.com/r2/pricing/), [public bucket access](https://developers.cloudflare.com/r2/buckets/public-buckets/).
