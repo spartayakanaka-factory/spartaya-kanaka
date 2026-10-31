@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { createRuntimeDatabase } from "./runtime-db";
 import { assertCommerceEnvironment } from "../src/lib/commerce/runtime";
@@ -32,7 +32,7 @@ async function main() {
     >`SELECT COUNT(*) n FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE()`;
     // This entry point initializes only fresh empty schemas. Existing data uses
     // the separately reviewed backup/promotion rehearsal, never an implicit reset.
-    const manifest = JSON.parse(readFileSync("docs/phase3/migration-manifest.json", "utf8"));
+    const manifest = JSON.parse(readFileSync("docs/phase4/migration-manifest.json", "utf8"));
     if (Number(inventory[0].n) !== 0) {
       const tables = await db.$queryRaw<
         { name: string }[]
@@ -64,6 +64,15 @@ async function main() {
         if (Number(rows[0].n)) throw Error("Existing rows: use backup/rehearsal procedure.");
       }
     }
+    const folders = readdirSync("prisma/migrations", { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+    if (
+      JSON.stringify(folders) !==
+      JSON.stringify(manifest.migrations.map((m: { name: string }) => m.name).sort())
+    )
+      throw Error("Unreviewed migration directory.");
     for (const m of manifest.migrations) {
       const sql = readFileSync(`prisma/migrations/${m.name}/migration.sql`);
       if (
@@ -88,8 +97,6 @@ async function main() {
   }
 }
 main().catch(() => {
-  console.error(
-    "Phase 4 fresh disposable migration guard refused/failed; no credentials logged.",
-  );
+  console.error("Phase 4 fresh disposable migration guard refused/failed; no credentials logged.");
   process.exitCode = 1;
 });

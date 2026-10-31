@@ -500,7 +500,7 @@ export function ReportsPanel({ today }: { today: string }) {
             </p>
             {data.products.length ? (
               <div
-                className="admin-table-wrap"
+                className="admin-table-wrap report-product-table"
                 tabIndex={0}
                 role="region"
                 aria-label={t("جدول المنتجات", "Product table")}

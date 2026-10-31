@@ -25,9 +25,13 @@ async function check(name, run) {
     await run();
     checks.push({ name, pass: true });
     console.log("PASS " + name);
-  } catch (e) {
-    checks.push({ name, pass: false, error: e.message });
-    throw e;
+  } catch (error) {
+    const detail =
+      error instanceof assert.AssertionError && error.message.startsWith("product chart")
+        ? error.message
+        : "Check failed; request diagnostics withheld.";
+    checks.push({ name, pass: false, error: detail });
+    throw new Error("Browser check failed: " + name);
   } finally {
     await writeFile(
       "docs/phase4/browser-evidence.json",
@@ -170,6 +174,200 @@ try {
       400,
     );
   });
+  await check("concurrent owner sessions share the report rate limit", async () => {
+    const { createHash } = await import("node:crypto"),
+      key = "p4-report:" + createHash("sha256").update(fixtures.staff[0].id).digest("hex"),
+      db = getDatabase();
+    const other = await session(0),
+      observations = [];
+    try {
+      await db.authRateLimit.deleteMany({ where: { key } });
+      for (let batch = 0; batch < 6; batch++)
+        await Promise.all(
+          Array.from({ length: 6 }, async (_, index) => {
+            const day = (batch * 6 + index) % 2 ? "1901-01-01" : data.day;
+            const started = performance.now(),
+              response = await (index % 2 ? owner.c : other.c).request.get(
+                base + "/api/admin/reports?start=" + day + "&end=" + day,
+              );
+            observations.push({
+              status: response.status(),
+              ms: Math.round(performance.now() - started),
+            });
+          }),
+        );
+      const successes = observations.filter((x) => x.status === 200).length,
+        throttles = observations.filter((x) => x.status === 429).length;
+      assert.equal(successes, 30);
+      assert.equal(throttles, 6);
+      const latencies = observations.map((x) => x.ms).sort((a, b) => a - b);
+      await writeFile(
+        "docs/phase4/concurrency-evidence.json",
+        JSON.stringify(
+          {
+            requests: 36,
+            concurrency: 6,
+            ownerSessions: 2,
+            successes,
+            throttles,
+            errors: 36 - successes - throttles,
+            medianMs: latencies[Math.floor(latencies.length / 2)],
+            p95Ms: latencies[Math.ceil(latencies.length * 0.95) - 1],
+          },
+          null,
+          2,
+        ) + "\n",
+      );
+    } finally {
+      await db.authRateLimit.deleteMany({ where: { key } });
+      await db.$disconnect();
+    }
+  });
+  await check("separate Node processes make authenticated report requests", async () => {
+    const { spawn } = await import("node:child_process"),
+      { createHash } = await import("node:crypto");
+    const db = getDatabase(),
+      key = "p4-report:" + createHash("sha256").update(fixtures.staff[0].id).digest("hex");
+    try {
+      await db.authRateLimit.deleteMany({ where: { key } });
+      const cookie = (await owner.c.cookies()).map((c) => c.name + "=" + c.value).join("; ");
+      const worker = () =>
+        new Promise((resolve, reject) => {
+          const child = spawn(process.execPath, ["scripts/phase4-http-worker.mjs"], {
+            stdio: ["pipe", "pipe", "ignore"],
+          });
+          let output = "";
+          child.stdout.on("data", (part) => {
+            output += part.toString();
+          });
+          child.on("error", reject);
+          child.on("exit", (code) => {
+            if (code !== 0) return reject(Error("worker failed"));
+            try {
+              resolve(JSON.parse(output));
+            } catch {
+              reject(Error("invalid worker result"));
+            }
+          });
+          child.stdin.end(
+            JSON.stringify({
+              url: base + "/api/admin/reports?start=" + data.day + "&end=" + data.day,
+              cookie,
+            }),
+          );
+        });
+      const responses = (await Promise.all(Array.from({ length: 4 }, worker))).flat();
+      assert.equal(responses.length, 12);
+      assert.equal(responses.filter((x) => x.status === 200).length, 12);
+      await writeFile(
+        "docs/phase4/cross-process-http.json",
+        JSON.stringify(
+          { processes: 4, requests: 12, successes: 12, statuses: responses.map((x) => x.status) },
+          null,
+          2,
+        ) + "\n",
+      );
+    } finally {
+      await db.authRateLimit.deleteMany({ where: { key } });
+      await db.$disconnect();
+    }
+  });
+  await check("missing limiter table rejects and recovery restores report access", async () => {
+    const u = new URL(process.env.DATABASE_URL || "");
+    assert.equal(u.pathname, "/sprtaya_phase4_disposable_local");
+    assert.equal(u.hostname, "127.0.0.1");
+    assert.equal(u.port, "33078");
+    const db = getDatabase(),
+      url = base + "/api/admin/reports?start=" + data.day + "&end=" + data.day;
+    let moved = false;
+    try {
+      const existing =
+        await db.$queryRaw`SELECT COUNT(*) AS n FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='p4_rate_limit_outage_test'`;
+      assert.equal(Number(existing[0].n), 0);
+      await db.$executeRaw`RENAME TABLE auth_rate_limits TO p4_rate_limit_outage_test`;
+      moved = true;
+      const response = await owner.c.request.get(url, { timeout: 12000 });
+      assert.ok([403, 500, 503].includes(response.status()));
+      assert.doesNotMatch(await response.text(), /collected|outstanding|currencies/);
+    } finally {
+      if (moved) await db.$executeRaw`RENAME TABLE p4_rate_limit_outage_test TO auth_rate_limits`;
+      await db.$disconnect();
+    }
+    assert.equal((await owner.c.request.get(url)).status(), 200);
+  });
+  await check("a blocked limiter query times out safely and recovers", async () => {
+    const { createHash } = await import("node:crypto"),
+      key = "p4-report:" + createHash("sha256").update(fixtures.staff[0].id).digest("hex"),
+      db = getDatabase();
+    const url = base + "/api/admin/reports?start=" + data.day + "&end=" + data.day;
+    let unlock, ready;
+    const hold = new Promise((resolve) => {
+        unlock = resolve;
+      }),
+      locked = new Promise((resolve) => {
+        ready = resolve;
+      });
+    const transaction = db.$transaction(
+      async (tx) => {
+        await tx.$queryRaw`SELECT id FROM auth_rate_limits WHERE \`key\`=${key} FOR UPDATE`;
+        ready();
+        await hold;
+      },
+      { timeout: 15000 },
+    );
+    try {
+      await locked;
+      const response = await owner.c.request.get(url, { timeout: 12000 });
+      assert.equal(response.status(), 503);
+      assert.doesNotMatch(await response.text(), /collected|outstanding|currencies/);
+    } finally {
+      unlock();
+      await transaction;
+      await db.$disconnect();
+    }
+    assert.equal((await owner.c.request.get(url)).status(), 200);
+  });
+  await check(
+    "database connection interrupted during report fails closed and recovers",
+    async () => {
+      const { createHash } = await import("node:crypto"),
+        { execFile } = await import("node:child_process"),
+        { promisify } = await import("node:util");
+      const key = "p4-report:" + createHash("sha256").update(fixtures.staff[0].id).digest("hex"),
+        db = getDatabase(),
+        url = base + "/api/admin/reports?start=" + data.day + "&end=" + data.day;
+      let unlock, ready;
+      const hold = new Promise((resolve) => {
+          unlock = resolve;
+        }),
+        locked = new Promise((resolve) => {
+          ready = resolve;
+        });
+      const transaction = db.$transaction(
+        async (tx) => {
+          await tx.$queryRaw`SELECT id FROM auth_rate_limits WHERE \`key\`=${key} FOR UPDATE`;
+          ready();
+          await hold;
+        },
+        { timeout: 15000 },
+      );
+      try {
+        await locked;
+        const request = owner.c.request.get(url, { timeout: 12000 });
+        await promisify(execFile)("python3", ["scripts/phase4-interrupt-query.py"], {
+          timeout: 5000,
+        });
+        const response = await request;
+        assert.ok([500, 503].includes(response.status()));
+        assert.doesNotMatch(await response.text(), /collected|outstanding|currencies/);
+      } finally {
+        unlock();
+        await transaction;
+        await db.$disconnect();
+      }
+      assert.equal((await owner.c.request.get(url)).status(), 200);
+    },
+  );
   await check(
     "owner can filter and switch language, including a genuinely empty period",
     async () => {
@@ -245,6 +443,39 @@ try {
             assert.ok(
               await owner.p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
             );
+            const productRegion = owner.p.getByRole("region", {
+              name: lang === "ar" ? "جدول المنتجات" : "Product table",
+            });
+            const dailyRegion = owner.p.getByRole("region", {
+              name: lang === "ar" ? "الطلبات والتحصيل لكل يوم" : "Orders and collections by day",
+            });
+            await dailyRegion.focus();
+            for (
+              let i = 0;
+              i < 12 && !(await productRegion.evaluate((e) => e === document.activeElement));
+              i++
+            )
+              await owner.p.keyboard.press("Tab");
+            assert.equal(await productRegion.evaluate((e) => e === document.activeElement), true);
+            assert.notEqual(
+              await productRegion.evaluate((e) => getComputedStyle(e).outlineStyle),
+              "none",
+            );
+            assert.equal(await productRegion.getByRole("table").count(), 1);
+            for (const heading of lang === "ar"
+              ? [
+                  "الطلبات والتحصيل اليومي",
+                  "التحصيل حسب وسيلة الدفع",
+                  "القطع الجاهزة والتصنيع",
+                  "القطع الأكثر طلباً",
+                ]
+              : [
+                  "Daily orders and collections",
+                  "Collections by payment method",
+                  "Ready-made and made-to-order",
+                  "Most ordered products",
+                ])
+              await owner.p.getByRole("heading", { name: heading }).waitFor();
             await owner.p.addScriptTag({ path: require.resolve("axe-core/axe.min.js") });
             const violations = await owner.p.evaluate(async () =>
               (
@@ -265,6 +496,83 @@ try {
             });
           }
         });
+  await check("keyboard navigation and text alternatives in Arabic and English", async () => {
+    for (const lang of ["ar", "en"]) {
+      await owner.p.goto(base + "/admin/reports", { waitUntil: "networkidle" });
+      if (lang === "en")
+        await owner.p.getByRole("button", { name: "English", exact: true }).click();
+      const from = owner.p.getByLabel(lang === "ar" ? "من" : "From", { exact: true });
+      const to = owner.p.getByLabel(lang === "ar" ? "إلى" : "To", { exact: true });
+      await from.focus();
+      const reach = async (target) => {
+        for (let i = 0; i < 8; i++) {
+          await owner.p.keyboard.press("Tab");
+          if (await target.evaluate((e) => e === document.activeElement)) return;
+        }
+        assert.fail("Keyboard focus could not reach the expected control");
+      };
+      await reach(to);
+      await reach(
+        owner.p.getByRole("button", {
+          name: lang === "ar" ? "عرض التقرير" : "Show report",
+          exact: true,
+        }),
+      );
+      const region = owner.p.getByRole("region", {
+        name: lang === "ar" ? "الطلبات والتحصيل لكل يوم" : "Orders and collections by day",
+      });
+      await region.focus();
+      assert.equal(await region.evaluate((e) => e === document.activeElement), true);
+      const outline = await region.evaluate((e) => getComputedStyle(e).outlineStyle);
+      assert.notEqual(outline, "none");
+      assert.ok(await region.getByRole("table").count());
+      await owner.p
+        .getByRole("heading", {
+          name: lang === "ar" ? "التحصيل حسب وسيلة الدفع" : "Collections by payment method",
+        })
+        .waitFor();
+    }
+  });
+  await check("deleted synthetic owner with existing cookie is denied", async () => {
+    const { hashPassword } = await import("better-auth/crypto");
+    const db = getDatabase(),
+      password = "Local-" + randomBytes(20).toString("hex"),
+      email = "deleted-owner-" + randomBytes(10).toString("hex") + "@factory.invalid";
+    let synthetic;
+    try {
+      synthetic = await db.adminUser.create({
+        data: {
+          name: "Synthetic deleted owner",
+          email,
+          roleCode: "OWNER",
+          emailVerified: true,
+          forcePasswordChange: false,
+        },
+      });
+      await db.authAccount.create({
+        data: {
+          id: randomBytes(16).toString("hex"),
+          accountId: synthetic.id,
+          userId: synthetic.id,
+          providerId: "credential",
+          password: await hashPassword(password),
+        },
+      });
+      fixtures.staff.push({ id: synthetic.id, email, password, forcePasswordChange: false });
+      const removed = await session(fixtures.staff.length - 1);
+      const url = base + "/api/admin/reports?start=" + data.day + "&end=" + data.day;
+      assert.equal((await removed.c.request.get(url)).status(), 200);
+      assert.ok((await removed.c.cookies()).length > 0);
+      await db.adminUser.delete({ where: { id: synthetic.id } });
+      synthetic = null;
+      const denied = await removed.c.request.get(url);
+      assert.equal(denied.status(), 403);
+      assert.doesNotMatch(await denied.text(), /collected|outstanding|currencies/);
+    } finally {
+      if (synthetic) await db.adminUser.deleteMany({ where: { id: synthetic.id } });
+      await db.$disconnect();
+    }
+  });
   await check("expired owner session is rejected", async () => {
     const db = getDatabase();
     try {

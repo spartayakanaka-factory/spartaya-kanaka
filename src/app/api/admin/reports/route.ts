@@ -2,19 +2,32 @@ import { getStagingAccessResponse } from "@/lib/staging-access";
 import { getAdminActor } from "@/lib/server/admin-session";
 import { ownerReport } from "@/lib/server/commerce/reports";
 import { allowReportRequest } from "@/lib/server/commerce/report-rate";
+import { reportAuthGuard, reportDatabaseGuard } from "@/lib/server/commerce/report-auth-guard";
 import { CommerceError } from "@/lib/commerce/policy";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const blocked = getStagingAccessResponse(request.headers);
   if (blocked) return blocked;
   try {
-    const actor = await getAdminActor();
+    const auth = await reportAuthGuard(getAdminActor);
+    if (!auth.ok)
+      return Response.json(
+        { error: "REPORT_UNAVAILABLE" },
+        { status: 503, headers: { "Cache-Control": "private, no-store" } },
+      );
+    const actor = auth.value;
     if (!actor || actor.forcePasswordChange || actor.roleCode !== "OWNER")
       return Response.json(
         { error: "FORBIDDEN" },
         { status: 403, headers: { "Cache-Control": "private, no-store" } },
       );
-    if (!(await allowReportRequest(actor.id)))
+    const rate = await reportDatabaseGuard(() => allowReportRequest(actor.id));
+    if (!rate.ok)
+      return Response.json(
+        { error: "REPORT_UNAVAILABLE" },
+        { status: 503, headers: { "Cache-Control": "private, no-store" } },
+      );
+    if (!rate.value)
       return Response.json(
         { error: "RATE_LIMITED" },
         { status: 429, headers: { "Cache-Control": "private, no-store", "Retry-After": "60" } },
@@ -29,8 +42,15 @@ export async function GET(request: Request) {
         { error: "INVALID_INPUT" },
         { status: 400, headers: { "Cache-Control": "private, no-store" } },
       );
-    const data = await ownerReport(actor.id, params.get("start")!, params.get("end")!);
-    return Response.json(data, {
+    const result = await reportDatabaseGuard(() =>
+      ownerReport(actor.id, params.get("start")!, params.get("end")!),
+    );
+    if (!result.ok)
+      return Response.json(
+        { error: "REPORT_UNAVAILABLE" },
+        { status: 503, headers: { "Cache-Control": "private, no-store" } },
+      );
+    return Response.json(result.value, {
       headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow" },
     });
   } catch (e) {

@@ -1,4 +1,6 @@
 import { randomUUID } from "node:crypto";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import { PrismaClient } from "../src/generated/prisma/client";
 import { writeFileSync } from "node:fs";
 import { getDatabase } from "../src/lib/server/database";
 import { fixtureProduct } from "../src/lib/commerce/fixtures";
@@ -10,10 +12,35 @@ async function main() {
   if (
     u.hostname !== "127.0.0.1" ||
     u.port !== "33078" ||
-    u.pathname !== "/sprtaya_phase4_disposable_test" ||
+    u.pathname !==
+      (process.env.P4_RECOVERY_TEST === "1"
+        ? "/sprtaya_phase4_recovery_v3"
+        : "/sprtaya_phase4_disposable_test") ||
     u.username !== "sprtaya_phase4"
   )
     throw Error("Disposable test target required");
+  const adapter = new PrismaMariaDb({
+    host: u.hostname,
+    port: Number(u.port),
+    user: decodeURIComponent(u.username),
+    password: decodeURIComponent(u.password),
+    database: u.pathname.slice(1),
+    connectionLimit: 5,
+    acquireTimeout: 10000,
+    idleTimeout: 60,
+    connectTimeout: 10000,
+  });
+  const traced = new PrismaClient({ adapter, log: [{ emit: "event", level: "query" }] });
+  let traceEnabled = false,
+    queryMs = 0,
+    queryCount = 0;
+  traced.$on("query", (event) => {
+    if (traceEnabled) {
+      queryMs += event.duration;
+      queryCount++;
+    }
+  });
+  (globalThis as unknown as { prisma: typeof traced }).prisma = traced;
   const db = getDatabase(),
     id = () => randomUUID(),
     date = "2098-07-15",
@@ -30,7 +57,7 @@ async function main() {
   const made = await fixtureProduct(db, "workload-made-" + id(), "MADE_TO_ORDER", 0);
   const results = [];
   try {
-    for (const size of [100, 1000, 4000]) {
+    for (const size of [100, 1000, 4000, 4900]) {
       const orders = [],
         items = [],
         payments = [],
@@ -110,26 +137,87 @@ async function main() {
         if (payments.length) await db.commercePayment.createMany({ data: payments });
         if (shipments.length) await db.commerceShipment.createMany({ data: shipments });
         if (events.length) await db.commerceEvent.createMany({ data: events });
-        const memoryBefore = process.memoryUsage().heapUsed,
-          started = performance.now();
-        const report = await ownerReport(owner.id, date, date);
-        const elapsedMs = performance.now() - started,
-          memoryAfter = process.memoryUsage().heapUsed;
-        if (
-          report.totalOrders !== size ||
-          report.currencies[0].collected !== String((size / 4) * 3 * 10000) ||
-          report.currencies[0].outstanding !== String((size / 4) * 10000)
-        )
-          throw Error("Workload totals mismatch");
+        if (!global.gc) throw Error("Run with P4_EXPOSE_GC=1");
+        const dbTimes: number[] = [],
+          queryCounts: number[] = [],
+          cpuTimes: number[] = [];
+        const timings: number[] = [],
+          retained: number[] = [],
+          sampledPeaks: number[] = [];
+        for (let iteration = -2; iteration < 7; iteration++) {
+          global.gc();
+          const before = process.memoryUsage().heapUsed;
+          let peak = before;
+          const sampler = setInterval(() => {
+            peak = Math.max(peak, process.memoryUsage().heapUsed);
+          }, 5);
+          const started = performance.now(),
+            cpuStart = process.cpuUsage();
+          queryMs = 0;
+          queryCount = 0;
+          traceEnabled = true;
+          let report;
+          try {
+            report = await ownerReport(owner.id, date, date);
+          } finally {
+            clearInterval(sampler);
+          }
+          const elapsedMs = performance.now() - started,
+            cpu = process.cpuUsage(cpuStart);
+          traceEnabled = false;
+          peak = Math.max(peak, process.memoryUsage().heapUsed);
+          if (
+            report.totalOrders !== size ||
+            report.currencies[0].collected !== String((size / 4) * 3 * 10000) ||
+            report.currencies[0].outstanding !== String((size / 4) * 10000)
+          )
+            throw Error("Workload totals mismatch");
+          global.gc();
+          const after = process.memoryUsage().heapUsed;
+          if (iteration >= 0) {
+            timings.push(elapsedMs);
+            retained.push(after - before);
+            sampledPeaks.push(peak);
+            dbTimes.push(queryMs);
+            queryCounts.push(queryCount);
+            cpuTimes.push((cpu.user + cpu.system) / 1000);
+          }
+        }
+        const rangeStart = cairoDayStart(date),
+          rangeEnd = new Date(rangeStart.getTime() + 86400000);
+        const eventPlanRows = await db.$queryRaw<
+          { ANALYZE: string }[]
+        >`ANALYZE FORMAT=JSON SELECT id FROM commerce_events WHERE createdAt >= ${rangeStart} AND createdAt < ${rangeEnd} AND kind IN ('payment.verified','fulfillment.cod_reconciled','finance.reconcile') ORDER BY id LIMIT 5001`;
+        const orderPlanRows = await db.$queryRaw<
+          { ANALYZE: string }[]
+        >`ANALYZE FORMAT=JSON SELECT id FROM commerce_orders WHERE createdAt >= ${rangeStart} AND createdAt < ${rangeEnd} ORDER BY id LIMIT 5001`;
+        const groupPlanRows = await db.$queryRaw<
+          { ANALYZE: string }[]
+        >`ANALYZE FORMAT=JSON SELECT p.currency,p.method,p.state,p.evidenceRequired,COUNT(*),SUM(p.amountMinor) FROM commerce_payments p JOIN commerce_orders o ON o.id=p.orderId WHERE o.createdAt >= ${rangeStart} AND o.createdAt < ${rangeEnd} AND o.state NOT IN ('CANCELLED','EXPIRED','RETURNED') AND p.state IN ('PENDING','CLAIMED','FAILED') GROUP BY p.currency,p.method,p.state,p.evidenceRequired`;
+        const sorted = [...timings].sort((a, b) => a - b);
         results.push({
           orders: size,
           items: items.length,
           payments: payments.length,
           shipments: shipments.length,
           financialEvents: events.length,
-          reportMs: Math.round(elapsedMs),
-          heapDeltaBytes: memoryAfter - memoryBefore,
+          warmups: 2,
+          iterations: timings.length,
+          latenciesMs: timings.map((n) => Math.round(n)),
+          medianMs: Math.round(sorted[Math.floor(sorted.length / 2)]),
+          databaseQueryMs: dbTimes,
+          databaseQueryCounts: queryCounts,
+          nodeProcessCpuMs: cpuTimes,
+          estimatedNonQueryMs: timings.map((elapsed, index) =>
+            Math.round(Math.max(0, elapsed - dbTimes[index])),
+          ),
+          p95Ms: Math.round(sorted[Math.ceil(sorted.length * 0.95) - 1]),
+          sampledPeakHeapBytes: Math.max(...sampledPeaks),
+          postGcHeapDeltaBytes: retained,
           totalsVerified: true,
+          eventPlan: JSON.parse(eventPlanRows[0].ANALYZE),
+          orderPlan: JSON.parse(orderPlanRows[0].ANALYZE),
+          pendingGroupPlan: JSON.parse(groupPlanRows[0].ANALYZE),
         });
       } finally {
         await db.commerceEvent.deleteMany({ where: { orderId: { in: ids } } });
@@ -140,12 +228,16 @@ async function main() {
       }
     }
     writeFileSync(
-      "docs/phase4/workload-benchmark.json",
+      process.env.P4_RECOVERY_TEST === "1"
+        ? "docs/phase4/workload-indexed.json"
+        : "docs/phase4/workload-benchmark.json",
       JSON.stringify(
         {
           scope:
-            "Actual ownerReport against synthetic isolated MariaDB data; 31-day maximum and refund-heavy workload not tested",
+            "Actual ownerReport; 2 warmups and 7 samples, 5ms heap sampling, forced GC. Query-event time includes driver overhead; elapsed minus summed query durations is an estimate. Node CPU includes Prisma driver and Node processing, not database-server CPU.",
           engine: "MariaDB 11.8.9",
+          environment:
+            "Apple M1, 8 GB RAM, macOS 15.6.1, Node 22.23.4; local single-process synthetic run",
           results,
         },
         null,

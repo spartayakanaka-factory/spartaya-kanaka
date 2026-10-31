@@ -87,3 +87,8 @@
   flex-wrap: wrap;
   padding-block: 0.35rem;
 }
+
+.report-product-table:focus {
+  outline: 3px solid #855235;
+  outline-offset: 3px;
+}

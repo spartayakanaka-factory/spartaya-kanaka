@@ -601,6 +601,7 @@ model CommerceOrder {
  @@unique([ownerKey,requestKey])
  @@index([ownerKey,createdAt])
  @@index([state,createdAt])
+ @@index([createdAt], map:"p4_orders_created_idx")
  @@map("commerce_orders")
 }
 model CommerceOrderItem {
@@ -710,6 +711,7 @@ model CommerceEvent {
  createdAt DateTime @default(now()) @db.DateTime(3)
  order CommerceOrder? @relation(fields:[orderId],references:[id],onDelete:Restrict)
  @@index([orderId,createdAt])
+ @@index([kind,createdAt], map:"p4_events_kind_created_idx")
  @@map("commerce_events")
 }
 model CommerceStockEvent {

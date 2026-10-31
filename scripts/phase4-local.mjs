@@ -86,12 +86,18 @@ async function main() {
       u.username !== "sprtaya_phase4"
     )
       throw Error("Exact Phase 4 disposable target required.");
+    if (test && process.env.P4_RECOVERY_TEST === "1") {
+      u.pathname = "/sprtaya_phase4_recovery_v3";
+      values.DATABASE_URL = u.toString();
+    }
     const secrets = JSON.parse(readFileSync(path.join(state, "secrets.json")));
     const env = {
       ...process.env,
       ...values,
       PATH: path.dirname(process.execPath) + ":" + process.env.PATH,
-      P35_WORKSTREAM: "1",P4_WORKSTREAM:"1",P4_OWNER_REPORTS:"1",
+      P35_WORKSTREAM: "1",
+      P4_WORKSTREAM: "1",
+      P4_OWNER_REPORTS: "1",
       P3_STATE_DIR: state,
       P3_APP_PORT: "3007",
       P3_BASE_URL: "http://localhost:3007",
@@ -139,10 +145,20 @@ async function main() {
     else if (command === "seed")
       run(node, ["--import", "tsx", "scripts/phase3-seed.ts", ...args], env);
     else if (command === "exec")
-      run(node, ["--conditions=react-server", "--import", "tsx", ...args], {
-        ...env,
-        NODE_PATH: path.join(root, "node_modules/next/dist/compiled"),
-      });
+      run(
+        node,
+        [
+          "--conditions=react-server",
+          ...(process.env.P4_EXPOSE_GC === "1" ? ["--expose-gc"] : []),
+          "--import",
+          "tsx",
+          ...args,
+        ],
+        {
+          ...env,
+          NODE_PATH: path.join(root, "node_modules/next/dist/compiled"),
+        },
+      );
     else
       console.log(
         "Phase 4 local: init, media, generate, validate, lint, typecheck, test, build, start, seed, exec",

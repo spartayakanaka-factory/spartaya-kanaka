@@ -7,7 +7,7 @@ def collect(x):
         for v in x.values(): collect(v)
     elif isinstance(x,list):
         for v in x: collect(v)
-for private_root in [state,root.parents[1]/'phase3/runtime',root.parents[1]/'phase35/runtime']:
+for private_root in [state,state/'outage-isolated',root.parents[1]/'phase3/runtime',root.parents[1]/'phase35/runtime']:
     for name in ['secrets.json','database/credentials.json','media/credentials.json']:
         file=private_root/name
         if file.exists():collect(json.loads(file.read_text()))

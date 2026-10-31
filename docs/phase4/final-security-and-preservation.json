@@ -1,10 +1,10 @@
 {
   "scope": "Known private local secrets/passwords, credential patterns, tracked/untracked candidate text, reachable history text/ZIPs and generated build text; no hosted secret values accessed",
-  "knownPrivateValuesChecked": 34,
+  "knownPrivateValuesChecked": 37,
   "counts": {
-    "workingTextFiles": 414,
+    "workingTextFiles": 444,
     "buildFiles": 296,
-    "historyBlobs": 567,
+    "historyBlobs": 587,
     "archiveMembers": 20
   },
   "swcTraceManifests": 51,

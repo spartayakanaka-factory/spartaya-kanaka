@@ -12,7 +12,11 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
     dayStart = cairoDayStart(day);
   let owner: string, manager: string, order: string, payment: string;
   beforeAll(async () => {
-    expect(new URL(process.env.DATABASE_URL!).pathname).toBe("/sprtaya_phase4_disposable_test");
+    expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
+      process.env.P4_RECOVERY_TEST === "1"
+        ? "/sprtaya_phase4_recovery_v3"
+        : "/sprtaya_phase4_disposable_test",
+    );
     owner = (
       await db.adminUser.create({
         data: {
@@ -180,6 +184,301 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
     });
     expect(result.pendingPayments[0]).toMatchObject({ method: "INSTAPAY", pendingMinor: "6000" });
   });
+  it("attributes an order and its verified collection on opposite sides of Cairo midnight", async () => {
+    const date = nextDate(day, 8),
+      boundary = cairoDayStart(date),
+      prior = nextDate(date, -1);
+    const o = await db.commerceOrder.create({
+      data: {
+        ownerKey: "guest:" + id(),
+        requestKey: id(),
+        requestHash: id(),
+        state: "CONFIRMED",
+        paymentMethod: "WALLET",
+        currency: "EGP",
+        totalMinor: 7000,
+        initialMinor: 7000,
+        paidMinor: 7000,
+        snapshot: {},
+        locale: "ar",
+        expiresAt: new Date(boundary.getTime() + 86400000),
+        createdAt: new Date(boundary.getTime() - 1),
+      },
+    });
+    const p = await db.commercePayment.create({
+      data: {
+        orderId: o.id,
+        requestKey: id(),
+        method: "WALLET",
+        purpose: "INITIAL",
+        state: "SUCCEEDED",
+        amountMinor: 7000,
+        currency: "EGP",
+        providerReference: id(),
+      },
+    });
+    await db.commerceEvent.create({
+      data: {
+        orderId: o.id,
+        actorKey: "staff:" + owner,
+        kind: "payment.verified",
+        operationKey: "boundary:" + id(),
+        data: { paymentId: p.id, amount: "7000", currency: "EGP" },
+        createdAt: boundary,
+      },
+    });
+    const before = await ownerReport(owner, prior, prior),
+      after = await ownerReport(owner, date, date),
+      both = await ownerReport(owner, prior, date);
+    expect(before.totalOrders).toBe(1);
+    expect(before.currencies[0]).toMatchObject({ collected: "0" });
+    expect(after.totalOrders).toBe(0);
+    expect(after.currencies[0]).toMatchObject({ collected: "7000" });
+    expect(both.totalOrders).toBe(1);
+    expect(both.currencies[0]).toMatchObject({ collected: "7000" });
+  });
+  it("keeps collections and refunds in their event days across leap, year and Cairo DST boundaries", async () => {
+    for (const date of ["2040-03-01", "2041-01-01", "2040-04-27", "2040-10-26"]) {
+      const boundary = cairoDayStart(date),
+        prior = nextDate(date, -1),
+        after = nextDate(date),
+        nextBoundary = cairoDayStart(after);
+      const o = await db.commerceOrder.create({
+        data: {
+          ownerKey: "guest:" + id(),
+          requestKey: id(),
+          requestHash: id(),
+          state: "CONFIRMED",
+          paymentMethod: "WALLET",
+          currency: "EGP",
+          totalMinor: 7000,
+          initialMinor: 7000,
+          paidMinor: 7000,
+          refundedMinor: 1000,
+          creditedMinor: 1000,
+          snapshot: {},
+          locale: "ar",
+          expiresAt: new Date(boundary.getTime() + 86400000),
+          createdAt: new Date(boundary.getTime() - 1),
+        },
+      });
+      try {
+        const p = await db.commercePayment.create({
+          data: {
+            orderId: o.id,
+            requestKey: id(),
+            method: "WALLET",
+            purpose: "INITIAL",
+            state: "SUCCEEDED",
+            amountMinor: 7000,
+            currency: "EGP",
+            providerReference: id(),
+          },
+        });
+        const f = await db.commerceFinanceRequest.create({
+          data: {
+            orderId: o.id,
+            kind: "REFUND",
+            amountMinor: 1000,
+            state: "RECONCILED",
+            requestKey: id(),
+            requestedBy: owner,
+            approvedBy: manager,
+            executedBy: manager,
+            reconciledBy: owner,
+            reason: "Boundary refund",
+          },
+        });
+        await db.commerceEvent.createMany({
+          data: [
+            {
+              orderId: o.id,
+              actorKey: "staff:" + owner,
+              kind: "payment.verified",
+              operationKey: "boundary-payment:" + id(),
+              data: { paymentId: p.id, amount: "7000", currency: "EGP" },
+              createdAt: boundary,
+            },
+            {
+              orderId: o.id,
+              actorKey: "staff:" + owner,
+              kind: "finance.reconcile",
+              operationKey: "boundary-refund:" + id(),
+              data: { requestId: f.id, kind: "REFUND", amount: "1000" },
+              createdAt: nextBoundary,
+            },
+          ],
+        });
+        const a = await ownerReport(owner, prior, prior),
+          b = await ownerReport(owner, date, date),
+          c = await ownerReport(owner, after, after),
+          all = await ownerReport(owner, prior, after);
+        expect(a.totalOrders).toBe(1);
+        expect(a.currencies[0]).toMatchObject({ collected: "0", refunded: "0" });
+        expect(b.currencies[0]).toMatchObject({
+          collected: "7000",
+          refunded: "0",
+          netCollected: "7000",
+        });
+        expect(c.currencies[0]).toMatchObject({
+          collected: "0",
+          refunded: "1000",
+          netCollected: "-1000",
+        });
+        expect(all.currencies[0]).toMatchObject({
+          collected: "7000",
+          refunded: "1000",
+          netCollected: "6000",
+        });
+      } finally {
+        await db.commerceEvent.deleteMany({ where: { orderId: o.id } });
+        await db.commerceFinanceRequest.deleteMany({ where: { orderId: o.id } });
+        await db.commercePayment.deleteMany({ where: { orderId: o.id } });
+        await db.commerceOrder.delete({ where: { id: o.id } });
+      }
+    }
+  });
+  it("excludes cancelled obligations while retaining verified payment movements", async () => {
+    const date = nextDate(day, 10),
+      when = new Date(cairoDayStart(date).getTime() + 3600000);
+    const o = await db.commerceOrder.create({
+      data: {
+        ownerKey: "guest:" + id(),
+        requestKey: id(),
+        requestHash: id(),
+        state: "CANCELLED",
+        paymentMethod: "WALLET",
+        currency: "EGP",
+        totalMinor: 10000,
+        initialMinor: 5000,
+        paidMinor: 5000,
+        snapshot: {},
+        locale: "ar",
+        expiresAt: new Date(when.getTime() + 86400000),
+        createdAt: when,
+      },
+    });
+    const p = await db.commercePayment.create({
+      data: {
+        orderId: o.id,
+        requestKey: id(),
+        method: "WALLET",
+        purpose: "INITIAL",
+        state: "SUCCEEDED",
+        amountMinor: 5000,
+        currency: "EGP",
+        providerReference: id(),
+      },
+    });
+    await db.commerceEvent.create({
+      data: {
+        orderId: o.id,
+        actorKey: "staff:" + owner,
+        kind: "payment.verified",
+        operationKey: "cancelled:" + id(),
+        data: { paymentId: p.id, amount: "5000", currency: "EGP" },
+        createdAt: when,
+      },
+    });
+    const r = await ownerReport(owner, date, date);
+    expect(r.totalOrders).toBe(1);
+    expect(r.currencies[0]).toMatchObject({
+      orderValue: "0",
+      outstanding: "0",
+      collected: "5000",
+      wallet: "5000",
+    });
+  });
+  it("counts multiple completed partial refunds against a single payment and excludes a pending refund", async () => {
+    const date = nextDate(day, 12),
+      when = new Date(cairoDayStart(date).getTime() + 3600000);
+    const o = await db.commerceOrder.create({
+      data: {
+        ownerKey: "guest:" + id(),
+        requestKey: id(),
+        requestHash: id(),
+        state: "CONFIRMED",
+        paymentMethod: "INSTAPAY",
+        currency: "EGP",
+        totalMinor: 10000,
+        initialMinor: 5000,
+        paidMinor: 5000,
+        refundedMinor: 3000,
+        creditedMinor: 3000,
+        snapshot: {},
+        locale: "ar",
+        expiresAt: new Date(when.getTime() + 86400000),
+        createdAt: when,
+      },
+    });
+    const p = await db.commercePayment.create({
+      data: {
+        orderId: o.id,
+        requestKey: id(),
+        method: "INSTAPAY",
+        purpose: "INITIAL",
+        state: "SUCCEEDED",
+        amountMinor: 5000,
+        currency: "EGP",
+        providerReference: id(),
+      },
+    });
+    await db.commerceEvent.create({
+      data: {
+        orderId: o.id,
+        actorKey: "staff:" + owner,
+        kind: "payment.verified",
+        operationKey: "single-payment:" + id(),
+        data: { paymentId: p.id, amount: "5000", currency: "EGP" },
+        createdAt: when,
+      },
+    });
+    for (const amount of [1000, 2000]) {
+      const f = await db.commerceFinanceRequest.create({
+        data: {
+          orderId: o.id,
+          kind: "REFUND",
+          amountMinor: amount,
+          state: "RECONCILED",
+          requestKey: id(),
+          requestedBy: owner,
+          approvedBy: manager,
+          executedBy: manager,
+          reconciledBy: owner,
+          reason: "Synthetic partial refund",
+        },
+      });
+      await db.commerceEvent.create({
+        data: {
+          orderId: o.id,
+          actorKey: "staff:" + owner,
+          kind: "finance.reconcile",
+          operationKey: "refund:" + f.id,
+          data: { requestId: f.id, kind: "REFUND", amount: String(amount) },
+          createdAt: when,
+        },
+      });
+    }
+    await db.commerceFinanceRequest.create({
+      data: {
+        orderId: o.id,
+        kind: "REFUND",
+        amountMinor: 500,
+        state: "REQUESTED",
+        requestKey: id(),
+        requestedBy: owner,
+        reason: "Unreconciled",
+      },
+    });
+    const report = await ownerReport(owner, date, date);
+    expect(report.currencies[0]).toMatchObject({
+      collected: "5000",
+      instapay: "5000",
+      refunded: "3000",
+      netCollected: "2000",
+      outstanding: "5000",
+    });
+  });
   it("distinguishes unpaid COD from separately reconciled COD", async () => {
     const date = nextDate(day, 2),
       when = new Date(cairoDayStart(date).getTime() + 3600000);
@@ -246,8 +545,8 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
         totalMinor: 10000,
         initialMinor: 5000,
         paidMinor: 6000,
-        refundedMinor: 2000,
-        creditedMinor: 2000,
+        refundedMinor: 3000,
+        creditedMinor: 3000,
         snapshot: {},
         locale: "ar",
         expiresAt: new Date(when.getTime() + 86400000),
@@ -329,6 +628,41 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
         createdAt: when,
       },
     });
+    const secondRefund = await db.commerceFinanceRequest.create({
+      data: {
+        orderId: o.id,
+        kind: "REFUND",
+        amountMinor: 1000,
+        state: "RECONCILED",
+        requestKey: id(),
+        requestedBy: owner,
+        approvedBy: manager,
+        executedBy: manager,
+        reconciledBy: owner,
+        reason: "Second synthetic partial refund",
+      },
+    });
+    await db.commerceEvent.create({
+      data: {
+        orderId: o.id,
+        actorKey: "staff:" + owner,
+        kind: "finance.reconcile",
+        operationKey: "finance:" + secondRefund.id + ":reconcile",
+        data: { requestId: secondRefund.id, kind: "REFUND", amount: "1000" },
+        createdAt: when,
+      },
+    });
+    await db.commerceFinanceRequest.create({
+      data: {
+        orderId: o.id,
+        kind: "REFUND",
+        amountMinor: 500,
+        state: "REQUESTED",
+        requestKey: id(),
+        requestedBy: owner,
+        reason: "Pending synthetic refund",
+      },
+    });
     const before = await db.commerceEvent.count();
     const r = await ownerReport(owner, date, date);
     expect(await db.commerceEvent.count()).toBe(before);
@@ -337,11 +671,29 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
       wallet: "6000",
       walletCount: "2",
       deposits: "5000",
-      refunded: "2000",
-      netCollected: "4000",
+      refunded: "3000",
+      netCollected: "3000",
       outstanding: "4000",
     });
     expect(r.pendingPayments[0]).toMatchObject({ method: "WALLET", pendingMinor: "4000" });
+    const duplicateRefund = await db.commerceEvent.create({
+      data: {
+        orderId: o.id,
+        actorKey: "staff:" + owner,
+        kind: "finance.reconcile",
+        operationKey: "duplicate-refund:" + id(),
+        data: { requestId: secondRefund.id, kind: "REFUND", amount: "1000" },
+        createdAt: when,
+      },
+    });
+    try {
+      await expect(ownerReport(owner, date, date)).rejects.toThrow(
+        "REPORT_DUPLICATE_FINANCIAL_FACT",
+      );
+    } finally {
+      await db.commerceEvent.delete({ where: { id: duplicateRefund.id } });
+    }
+
     expect(r.productTypes[0]).toMatchObject({
       type: "MADE_TO_ORDER",
       units: 1,
