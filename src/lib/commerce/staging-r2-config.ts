@@ -12,7 +12,10 @@ export function stagingR2ConfigIssues(env: Record<string, string | undefined>): 
     issues.push("MEDIA_S3_DISPLAY_BUCKET");
   if (!env.MEDIA_ACCESS_KEY_ID) issues.push("MEDIA_ACCESS_KEY_ID");
   if (!env.MEDIA_SECRET_ACCESS_KEY) issues.push("MEDIA_SECRET_ACCESS_KEY");
-  if (!/^https:\/\/pub-[a-f0-9]{32}\.r2\.dev$/.test(env.MEDIA_PUBLIC_BASE_URL || ""))
+  if (
+    env.MEDIA_PUBLIC_BASE_URL !==
+    "https://bisque-pheasant-330767.hostingersite.com/api/staging-media"
+  )
     issues.push("MEDIA_PUBLIC_BASE_URL");
   if (!["true", "false"].includes(env.MEDIA_S3_FORCE_PATH_STYLE || ""))
     issues.push("MEDIA_S3_FORCE_PATH_STYLE");

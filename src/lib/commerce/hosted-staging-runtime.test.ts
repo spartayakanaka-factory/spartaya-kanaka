@@ -43,7 +43,7 @@ const env = {
   MEDIA_S3_DISPLAY_BUCKET: "sprtaya-staging-public",
   MEDIA_ACCESS_KEY_ID: "synthetic",
   MEDIA_SECRET_ACCESS_KEY: "synthetic",
-  MEDIA_PUBLIC_BASE_URL: `https://pub-${"b".repeat(32)}.r2.dev`,
+  MEDIA_PUBLIC_BASE_URL: "https://bisque-pheasant-330767.hostingersite.com/api/staging-media",
   MEDIA_S3_FORCE_PATH_STYLE: "true",
 };
 afterEach(() => vi.unstubAllEnvs());
