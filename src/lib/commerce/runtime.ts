@@ -2,6 +2,10 @@ import { CommerceError } from "./policy";
 import { stagingR2ConfigIssues } from "./staging-r2-config";
 
 const stagingOrigin = "https://bisque-pheasant-330767.hostingersite.com";
+const hostedStagingDatabase = "u858869017_sprtaya_phase2";
+const hostedStagingDatabaseUser = "u858869017_sprtaya_test";
+const hostedStagingDatabaseHost = "127.0.0.1";
+const hostedStagingDatabasePort = 3306;
 const fixtureIds = (value: string | undefined) =>
   Boolean(
     value &&
@@ -15,7 +19,6 @@ const fixtureIds = (value: string | undefined) =>
 /** Explicit operator attestations are gates, not proof of infrastructure isolation. */
 export function hostedStagingConfigured(env: NodeJS.ProcessEnv = process.env) {
   try {
-    const url = new URL(env.DATABASE_URL || "");
     return (
       env.SR_HOSTED_ISOLATION === "1" &&
       env.SR_LOCAL_ISOLATION !== "1" &&
@@ -27,14 +30,7 @@ export function hostedStagingConfigured(env: NodeJS.ProcessEnv = process.env) {
       env.STAGING_R2_ISOLATION_VERIFIED === "1" &&
       (env.STAGING_ACCESS_USERNAME?.length || 0) >= 4 &&
       (env.STAGING_ACCESS_PASSWORD?.length || 0) >= 24 &&
-      url.protocol === "mysql:" &&
-      url.hostname === "127.0.0.1" &&
-      Number(url.port || 3306) === 3306 &&
-      decodeURIComponent(url.username) === "u858869017_sprtaya_run" &&
-      Boolean(url.password) &&
-      url.pathname === "/u858869017_sprtaya_phase2" &&
-      !url.search &&
-      !url.hash &&
+      hostedStagingDatabaseConfigured(env) &&
       env.P3_ENABLED === "1" &&
       env.P3_SIMULATION === "1" &&
       env.P3_DISPOSABLE === "1" &&
@@ -53,6 +49,29 @@ export function hostedStagingConfigured(env: NodeJS.ProcessEnv = process.env) {
       fixtureIds(env.SR_HOSTED_ALLOWED_STAFF_IDS) &&
       fixtureIds(env.SR_HOSTED_ALLOWED_CUSTOMER_IDS) &&
       stagingR2ConfigIssues(env).length === 0
+    );
+  } catch {
+    return false;
+  }
+}
+
+/** Exact database target gate shared by hosted commerce and the temporary read-only preflight. */
+export function hostedStagingDatabaseConfigured(env: NodeJS.ProcessEnv = process.env) {
+  try {
+    const url = new URL(env.DATABASE_URL || "");
+    return (
+      env.DATABASE_TARGET === "hostinger-phase2-test" &&
+      env.APP_ENV === "staging" &&
+      env.STAGING_SITE === "1" &&
+      env.NODE_ENV === "production" &&
+      url.protocol === "mysql:" &&
+      url.hostname === hostedStagingDatabaseHost &&
+      Number(url.port || hostedStagingDatabasePort) === hostedStagingDatabasePort &&
+      decodeURIComponent(url.username) === hostedStagingDatabaseUser &&
+      Boolean(decodeURIComponent(url.password)) &&
+      url.pathname === `/${hostedStagingDatabase}` &&
+      !url.search &&
+      !url.hash
     );
   } catch {
     return false;

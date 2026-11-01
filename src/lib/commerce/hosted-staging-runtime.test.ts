@@ -21,7 +21,9 @@ const env = {
   STAGING_R2_ISOLATION_VERIFIED: "1",
   STAGING_ACCESS_USERNAME: "synthetic",
   STAGING_ACCESS_PASSWORD: "synthetic-staging-password-long",
-  DATABASE_URL: "mysql://u858869017_sprtaya_run:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2",
+  DATABASE_TARGET: "hostinger-phase2-test",
+  DATABASE_URL:
+    "mysql://u858869017_sprtaya_test:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2",
   P3_ENABLED: "1",
   P3_SIMULATION: "1",
   P3_DISPOSABLE: "1",
@@ -68,9 +70,27 @@ describe("hosted restricted commerce configuration", () => {
     ["STAGING_R2_ISOLATION_VERIFIED", "0"],
     [
       "DATABASE_URL",
-      "mysql://u858869017_sprtaya_test:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2",
+      "mysql://u858869017_sprtaya_run:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2",
     ],
-    ["DATABASE_URL", "mysql://u858869017_sprtaya_run:synthetic@127.0.0.1:3306/production"],
+    ["DATABASE_URL", "mysql://u858869017_sprtaya_test:synthetic@127.0.0.1:3306/production"],
+    [
+      "DATABASE_URL",
+      "mysql://u858869017_unexpected:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2",
+    ],
+    ["DATABASE_URL", "mysql://u858869017_sprtaya_test@127.0.0.1:3306/u858869017_sprtaya_phase2"],
+    [
+      "DATABASE_URL",
+      "mysql://u858869017_sprtaya_test:synthetic@example.invalid:3306/u858869017_sprtaya_phase2",
+    ],
+    [
+      "DATABASE_URL",
+      "mysql://u858869017_sprtaya_test:synthetic@127.0.0.1:3307/u858869017_sprtaya_phase2",
+    ],
+    [
+      "DATABASE_URL",
+      "mysql://u858869017_sprtaya_test:synthetic@127.0.0.1:3306/u858869017_sprtaya_phase2?connection_limit=1",
+    ],
+    ["DATABASE_TARGET", "production"],
     ["PAYMENT_MODE", "LIVE"],
     ["P3_SIMULATION", "0"],
     ["P3_NOTIFICATIONS", "1"],
@@ -86,6 +106,12 @@ describe("hosted restricted commerce configuration", () => {
   ])("fails closed when %s is unsafe", (key, value) => {
     expect(hostedStagingConfigured({ ...env, [key]: value })).toBe(false);
     expect(commerceEnabled({ ...env, [key]: value })).toBe(false);
+  });
+  it("fails closed when the exact Hostinger target label is missing", () => {
+    const incomplete: NodeJS.ProcessEnv = { ...env };
+    delete incomplete.DATABASE_TARGET;
+    expect(hostedStagingConfigured(incomplete)).toBe(false);
+    expect(commerceEnabled(incomplete)).toBe(false);
   });
   it("enforces hosted customer identities before database access", () => {
     for (const [key, value] of Object.entries(env)) vi.stubEnv(key, value);

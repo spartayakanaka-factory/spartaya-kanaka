@@ -50,6 +50,16 @@ describe("database target safety guard", () => {
         DATABASE_URL:
           "mysql://u858869017_other:test-password@127.0.0.1:3306/u858869017_sprtaya_phase2",
       },
+      {
+        ...hostingerEnvironment,
+        DATABASE_URL:
+          "mysql://U858869017_SPRTAYA_TEST:test-password@127.0.0.1:3306/u858869017_sprtaya_phase2",
+      },
+      {
+        ...hostingerEnvironment,
+        DATABASE_URL:
+          "mysql://u858869017_sprtaya_test:test-password@127.0.0.1:3306/u858869017_sprtaya_phase2?connection_limit=1",
+      },
     ]) {
       expect(() =>
         assertSafeDatabaseTarget({ allowHostingerPhase2Test: true, environment }),
