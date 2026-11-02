@@ -532,6 +532,130 @@ try {
       await customer.getByRole("button", { name: "إيقاف وصول الحساب", exact: true }).waitFor();
     },
   );
+  await check(
+    "paid cancellation, released reservation and separately authorized mock refund through Arabic forms",
+    async () => {
+      const { getDatabase } = await import("../src/lib/server/database.ts"),
+        db = getDatabase();
+      try {
+        const before = await db.inventoryBalance.findUniqueOrThrow({
+          where: { variantId: fixture.ready.variantId },
+        });
+        const restoredCustomer = JSON.parse(
+          await readFile(path.join(process.env.P3_STATE_DIR, "customer.json")),
+        );
+        assert.equal(
+          (await post(wallet.c, restoredCustomer, "/api/customer-auth/sign-in/email")).status(),
+          200,
+        );
+        await goto(wallet.p, "/ar/orders/" + wallet.id);
+        await wallet.p.getByRole("button", { name: "طلب الإلغاء", exact: true }).click();
+        await wallet.p
+          .getByText("تم تسجيل طلب الإلغاء للمراجعة دون استرداد أو خصم تلقائي.", { exact: true })
+          .waitFor();
+        await goto(owner.p, "/admin/orders");
+        const cancel = owner.p
+          .locator("article.admin-finance-row")
+          .filter({ hasText: wallet.id.slice(0, 8) })
+          .filter({
+            has: owner.p.getByRole("button", {
+              name: "مراجعة واعتماد الإلغاء دون استرداد تلقائي",
+              exact: true,
+            }),
+          });
+        const reviewed = owner.p.waitForResponse(
+          (r) => r.url().endsWith("/api/admin/commerce") && r.request().method() === "POST",
+        );
+        await cancel
+          .getByRole("button", { name: "مراجعة واعتماد الإلغاء دون استرداد تلقائي", exact: true })
+          .click();
+        assert.equal((await reviewed).status(), 200);
+        let order = await read(owner.c, wallet.id);
+        assert.equal(order.state, "CANCELLED");
+        assert.equal(order.refundedMinor, "0");
+        const after = await db.inventoryBalance.findUniqueOrThrow({
+          where: { variantId: fixture.ready.variantId },
+        });
+        assert.equal(after.quantity, before.quantity);
+        assert.equal(after.reserved, before.reserved - 1);
+        await goto(owner.p, "/admin/orders/" + wallet.id);
+        await owner.p.getByLabel("العملية", { exact: true }).selectOption("REFUND");
+        const decimal =
+          BigInt(order.paidMinor) / 100n +
+          "." +
+          String(BigInt(order.paidMinor) % 100n).padStart(2, "0");
+        const arabic = decimal.replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[Number(d)]).replace(".", "٫");
+        await owner.p.locator('input[name="amount"]').fill(arabic);
+        await owner.p
+          .locator('textarea[name="reason"]')
+          .fill("استرداد اصطناعي بعد مراجعة إلغاء الطلب — لا توجد أموال حقيقية");
+        const requested = owner.p.waitForResponse(
+          (r) => r.url().endsWith("/api/admin/commerce") && r.request().method() === "POST",
+        );
+        await owner.p.getByRole("button", { name: "إنشاء طلب مراجعة", exact: true }).click();
+        const response = await requested;
+        assert.equal(response.status(), 200);
+        const finance = await response.json();
+        assert.equal(
+          (
+            await post(owner.c, {
+              action: "financeTransition",
+              id: finance.id,
+              transition: "approve",
+            })
+          ).status(),
+          403,
+        );
+        for (const [actor, label] of [
+          [approver, "اعتماد"],
+          [approver, "تنفيذ وهمي"],
+          [reconciler, "تسوية"],
+        ]) {
+          await goto(actor.p, "/admin/orders");
+          const row = actor.p
+            .locator("article.admin-finance-row")
+            .filter({ hasText: wallet.id.slice(0, 8) })
+            .filter({ hasText: "استرداد" });
+          const changed = actor.p.waitForResponse(
+            (r) => r.url().endsWith("/api/admin/commerce") && r.request().method() === "POST",
+          );
+          await row.getByRole("button", { name: label, exact: true }).click();
+          assert.equal((await changed).status(), 200);
+        }
+        order = await read(owner.c, wallet.id);
+        assert.equal(order.refundedMinor, order.paidMinor);
+        assert.equal(order.creditedMinor, order.totalMinor);
+        assert.ok(order.events.some((e) => e.kind === "cancellation.approved"));
+        assert.ok(order.events.some((e) => e.kind === "finance.reconcile"));
+        assert.equal(
+          (
+            await post(reconciler.c, {
+              action: "financeTransition",
+              id: finance.id,
+              transition: "reconcile",
+            })
+          ).status(),
+          200,
+        );
+        assert.equal((await read(owner.c, wallet.id)).refundedMinor, order.refundedMinor);
+        assert.equal(
+          (
+            await post(owner.c, {
+              action: "financeRequest",
+              kind: "REFUND",
+              orderId: wallet.id,
+              amount: order.paidMinor,
+              key: randomUUID(),
+              reason: "Duplicate synthetic refund must be denied",
+            })
+          ).status(),
+          409,
+        );
+      } finally {
+        await db.$disconnect();
+      }
+    },
+  );
   if (localSandbox)
     await check(
       "unpaid synthetic made-to-order remains visible as an outstanding balance",

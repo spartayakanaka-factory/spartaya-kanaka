@@ -1,4 +1,5 @@
 """Local source/build secret scan and original-media preservation. No hosted access."""
+import os
 import hashlib
 import json
 import pathlib
@@ -6,7 +7,7 @@ import re
 import subprocess
 
 root = pathlib.Path.cwd()
-state = root.parent / 'runtime'
+state = pathlib.Path(os.environ.get('P5_STATE_DIR',str(root.parent / 'runtime'))).resolve()
 secrets = set()
 
 def collect(value, key=''):
@@ -74,6 +75,6 @@ migration_changes = subprocess.check_output(['git', 'diff', '--name-only', '--',
 if migration_changes:
     findings.append({'kind': 'unexpected-schema-or-migration-change'})
 report = {'scope': 'Local candidate source, generated production build, known private local credentials, trace paths and original media checksums; no hosted values retrieved', 'counts': counts, 'knownPrivateValuesChecked': len(secrets), 'originalMediaManifestEntries': len(manifest), 'originalMediaChanges': len(changed), 'schemaOrMigrationChanges': len(migration_changes), 'findings': findings}
-(root / 'docs/phase5/security-and-preservation.json').write_text(json.dumps(report, indent=2) + '\n')
+(root / os.environ.get('P5_ACCEPTANCE_DIR','docs/phase5') / 'security-and-preservation.json').write_text(json.dumps(report, indent=2) + '\n')
 print(json.dumps(report, indent=2))
 raise SystemExit(bool(findings))

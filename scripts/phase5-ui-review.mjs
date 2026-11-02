@@ -10,7 +10,7 @@ const base = "http://localhost:3008",
 if (process.env.P5_WORKSTREAM !== "1" || process.env.P3_BASE_URL !== base)
   throw Error("Phase 5 local only");
 const fixture = JSON.parse(await readFile(path.join(process.env.P3_STATE_DIR, "staff.json")));
-const out = `docs/phase5/visual-pass-${pass}`;
+const out = `${process.env.P5_UI_EVIDENCE_DIR || "docs/phase5"}/visual-pass-${pass}`;
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({
   executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",

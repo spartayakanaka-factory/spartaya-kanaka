@@ -26,7 +26,8 @@
     "db:seed": "tsx scripts/seed-database.ts",
     "admin:bootstrap": "tsx scripts/bootstrap-owner.ts",
     "catalog:import": "tsx scripts/import-legacy-catalog.ts",
-    "phase3": "node scripts/phase3.mjs"
+    "phase3": "node scripts/phase3.mjs",
+    "db:migrate:phase55": "tsx scripts/phase55-deploy-migrations.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1156.0",

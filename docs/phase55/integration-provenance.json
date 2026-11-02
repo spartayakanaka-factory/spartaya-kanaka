@@ -1,0 +1,35 @@
+{
+  "acceptedCommits": {
+    "Phase 3": {
+      "commit": "d1b07976643a8e48092b3d233eb795e2cee8473a",
+      "ancestorOfPhase55": true
+    },
+    "Phase 3.5": {
+      "commit": "3658316e27f517441367c7915744745bbd67393e",
+      "ancestorOfPhase55": true
+    },
+    "Phase 4": {
+      "commit": "04f070aaa8897adf7dc185055469a18b1b6ae445",
+      "ancestorOfPhase55": true
+    },
+    "Restricted staging": {
+      "commit": "aa593e5370bf77986e8c4f6aeae48fe2cfce3c3d",
+      "ancestorOfPhase55": true
+    },
+    "Phase 5": {
+      "commit": "95717e2d5fd7c49d2be63ea287eaf14b151624dd",
+      "ancestorOfPhase55": true
+    }
+  },
+  "changesSincePhase5": {
+    "prisma": [],
+    "package.json": [],
+    "pnpm-lock.yaml": [],
+    "pnpm-workspace.yaml": [],
+    "next.config.mjs": [],
+    "src/lib/server/commerce": [],
+    "src/lib/reports": []
+  },
+  "remoteInspected": "cached local refs only; no remote mutation or fetch",
+  "sourceGitHistoryPreserved": true
+}

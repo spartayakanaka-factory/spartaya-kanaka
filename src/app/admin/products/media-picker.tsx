@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 type MediaOption = { id: string; label: string; url?: string | null };
@@ -17,12 +17,49 @@ export function MediaPicker({
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [query, setQuery] = useState("");
-  const [limit, setLimit] = useState(36);
-  const available = library.filter(
-    (asset) =>
-      !selected.includes(asset.id) &&
-      asset.label.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()),
-  );
+  const [page, setPage] = useState(0),
+    [total, setTotal] = useState<number | null>(null),
+    [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<MediaOption[]>([]);
+  const [libraryError, setLibraryError] = useState(""),
+    [retry, setRetry] = useState(0);
+  useEffect(() => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      setLoading(true);
+      setLibraryError("");
+      fetch("/api/admin/media?q=" + encodeURIComponent(query) + "&page=" + page, {
+        signal: controller.signal,
+        cache: "no-store",
+      })
+        .then(async (r) => {
+          if (!r.ok) throw Error("تعذر تحميل المكتبة. أعد المحاولة أو ارفع صورة جديدة.");
+          return r.json();
+        })
+        .then((data) => {
+          if (controller.signal.aborted) return;
+          setResults(data.assets);
+          setTotal(data.total);
+          setLibrary((items) => [
+            ...new Map([...items, ...data.assets].map((item) => [item.id, item])).values(),
+          ]);
+          setLoading(false);
+        })
+        .catch((error) => {
+          if (error.name !== "AbortError") {
+            setLibraryError("تعذر تحميل مكتبة الصور. تحقق من الاتصال ثم أعد المحاولة.");
+            setResults([]);
+            setTotal(null);
+            setLoading(false);
+          }
+        });
+    }, 250);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query, page, retry]);
+  const available = results.filter((asset) => !selected.includes(asset.id));
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
@@ -149,11 +186,13 @@ export function MediaPicker({
             maxLength={120}
             onChange={(e) => {
               setQuery(e.target.value);
-              setLimit(36);
+              setPage(0);
+              setResults([]);
+              setLoading(true);
             }}
             placeholder="اسم الصورة"
           />
-          <small className="admin-muted">البحث في الصور المحملة بهذه الصفحة.</small>
+          <small className="admin-muted">البحث في مكتبة صور المصنع كاملة.</small>
         </label>
         <label>
           رفع صور جديدة
@@ -172,9 +211,17 @@ export function MediaPicker({
           </small>
         </label>
       </div>
+      {libraryError ? (
+        <div role="alert" className="admin-error">
+          {libraryError}
+          <button type="button" className="admin-button" onClick={() => setRetry(retry + 1)}>
+            إعادة تحميل المكتبة
+          </button>
+        </div>
+      ) : null}
       <div className="admin-media-library" role="region" aria-label="مكتبة صور المنتج" tabIndex={0}>
         <ul>
-          {available.slice(0, limit).map((asset) => (
+          {available.map((asset) => (
             <li key={asset.id}>
               <button
                 type="button"
@@ -192,15 +239,43 @@ export function MediaPicker({
             </li>
           ))}
         </ul>
-        {!available.length ? (
+        {!loading && !available.length ? (
           <p className="admin-muted">لا توجد صور أخرى مطابقة. يمكنك رفع صورة جديدة.</p>
         ) : null}
       </div>
-      {available.length > limit ? (
-        <button type="button" className="admin-button" onClick={() => setLimit(limit + 36)}>
-          عرض صور أكثر
+      <div className="admin-shortcuts" aria-label="صفحات مكتبة الصور">
+        <button
+          type="button"
+          className="admin-button"
+          disabled={loading || page === 0}
+          onClick={() => {
+            setLoading(true);
+            setResults([]);
+            setPage(page - 1);
+          }}
+        >
+          الصور السابقة
         </button>
-      ) : null}
+        <button
+          type="button"
+          className="admin-button"
+          disabled={loading || total === null || (page + 1) * 36 >= total}
+          onClick={() => {
+            setLoading(true);
+            setResults([]);
+            setPage(page + 1);
+          }}
+        >
+          الصور التالية
+        </button>
+        <span className="admin-muted" role="status">
+          {loading
+            ? "جارٍ تحميل الصور…"
+            : total === null
+              ? "المكتبة غير متاحة"
+              : total.toLocaleString("ar-EG") + " صورة مطابقة"}
+        </span>
+      </div>
       <p className="admin-muted" role="status">
         {selected.length.toLocaleString("ar-EG")} من ٣٠ صورة مختارة
       </p>

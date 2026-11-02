@@ -69,7 +69,8 @@ async function main() {
         outstanding: 0n,
         orderValue: 0n,
       };
-      total.orderValue += order.totalMinor;
+      if (!["CANCELLED", "EXPIRED", "RETURNED"].includes(order.state))
+        total.orderValue += order.totalMinor;
       if (!["CANCELLED", "EXPIRED", "RETURNED"].includes(order.state))
         total.outstanding +=
           order.totalMinor - order.paidMinor - order.creditedMinor + order.refundedMinor;
@@ -122,7 +123,10 @@ async function main() {
       reviewedMigrations: ledger.length,
       newMigrations: 0,
     };
-    await writeFile("docs/phase5/data-acceptance.json", JSON.stringify(evidence, null, 2));
+    await writeFile(
+      path.join(process.env.P5_ACCEPTANCE_DIR || "docs/phase5", "data-acceptance.json"),
+      JSON.stringify(evidence, null, 2),
+    );
     console.log(
       "PASS draft preservation, inventory conservation, report-to-ledger reconciliation and all seven migration checksums",
     );

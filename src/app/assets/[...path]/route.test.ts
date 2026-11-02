@@ -1,9 +1,11 @@
-import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, rm, writeFile, symlink } from "node:fs/promises";
+import sharp from "sharp";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 let temporaryDirectory: string;
+let sample: Buffer;
 const username = "stage-reviewer";
 const password = "test-password-with-at-least-24-characters";
 const authorization = `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`;
@@ -12,7 +14,10 @@ beforeEach(async () => {
   temporaryDirectory = await mkdtemp(path.join(os.tmpdir(), "codex-assets-"));
   const root = path.join(temporaryDirectory, "media");
   await mkdir(path.join(root, "المنتجات"), { recursive: true });
-  await writeFile(path.join(root, "المنتجات", "sample.jpg"), new Uint8Array([1, 2, 3]));
+  sample = await sharp({ create: { width: 8, height: 8, channels: 3, background: "#815133" } })
+    .jpeg()
+    .toBuffer();
+  await writeFile(path.join(root, "المنتجات", "sample.jpg"), sample);
   await writeFile(path.join(temporaryDirectory, "outside.jpg"), "outside");
   vi.stubEnv("LEGACY_ASSET_ROOT", root);
   vi.stubEnv("APP_ENV", "staging");
@@ -45,11 +50,31 @@ describe("persistent catalog assets", () => {
   it("serves the configured media root with private staging cache headers", async () => {
     const response = await request(["المنتجات", "sample.jpg"]);
     expect(response.status).toBe(200);
-    expect(new Uint8Array(await response.arrayBuffer())).toEqual(new Uint8Array([1, 2, 3]));
+    expect(new Uint8Array(await response.arrayBuffer())).toEqual(new Uint8Array(sample));
     expect(response.headers.get("content-type")).toBe("image/jpeg");
     expect(response.headers.get("cache-control")).toBe("private, no-store");
   });
 
+  it("delivers WebP bytes stored under an Arabic jpg name without changing content", async () => {
+    const bytes = await sharp(sample).webp().toBuffer();
+    await writeFile(path.join(temporaryDirectory, "media", "المنتجات", "نحاس.jpg"), bytes);
+    const response = await request(["المنتجات", "نحاس.jpg"]);
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toBe("image/webp");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(bytes);
+  });
+  it("rejects non-image content and symlinks escaping the media root", async () => {
+    await writeFile(
+      path.join(temporaryDirectory, "media", "المنتجات", "fake.jpg"),
+      "<script>bad()</script>",
+    );
+    expect((await request(["المنتجات", "fake.jpg"])).status).toBe(404);
+    await symlink(
+      path.join(temporaryDirectory, "outside.jpg"),
+      path.join(temporaryDirectory, "media", "المنتجات", "link.jpg"),
+    );
+    expect((await request(["المنتجات", "link.jpg"])).status).toBe(404);
+  });
   it("denies anonymous access before returning an existing image", async () => {
     const response = await request(["المنتجات", "sample.jpg"], false);
     expect(response.status).toBe(401);

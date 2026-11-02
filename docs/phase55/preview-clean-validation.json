@@ -1,0 +1,11 @@
+{
+  "results": {
+    "install": 0,
+    "build": 0,
+    "typecheck": 0
+  },
+  "lockfileFrozen": true,
+  "credentialsProvided": false,
+  "hostedAccess": false,
+  "offlineAttempt": "cache missing one or more tarballs; retried with frozen network install"
+}

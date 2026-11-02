@@ -1,0 +1,13 @@
+{
+  "scope": "Local candidate source, generated production build, known private local credentials, trace paths and original media checksums; no hosted values retrieved",
+  "counts": {
+    "sourceText": 525,
+    "buildText": 315,
+    "traces": 55
+  },
+  "knownPrivateValuesChecked": 11,
+  "originalMediaManifestEntries": 1753,
+  "originalMediaChanges": 0,
+  "schemaOrMigrationChanges": 0,
+  "findings": []
+}

@@ -8,7 +8,7 @@ import sharp from "sharp";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_PACKAGE || "playwright");
 const base = "http://localhost:3008";
-const out = "docs/phase5/product-browser";
+const out = process.env.P5_PRODUCT_EVIDENCE_DIR || "docs/phase5/product-browser";
 await mkdir(out, { recursive: true });
 const ownerFile = path.join(process.env.P3_STATE_DIR, "staff.json");
 const fixture = JSON.parse(await readFile(ownerFile, "utf8"));
@@ -210,9 +210,15 @@ try {
       assert.equal(await chosen.count(), 1);
       const uploaded = await page.locator('input[name="mediaIds"]').first().inputValue();
       const search = page.getByRole("searchbox", { name: /بحث في مكتبة الصور/ });
+      const searched = page.waitForResponse((r) =>
+        r.url().includes("/api/admin/media?q=SYNTHETIC-NO-MATCH-XYZ"),
+      );
       await search.fill("SYNTHETIC-NO-MATCH-XYZ");
+      await searched;
       assert.equal(await page.locator(".admin-media-library button").count(), 0);
+      const reset = page.waitForResponse((r) => r.url().includes("/api/admin/media?q=&page=0"));
       await search.fill("");
+      await reset;
       await page.locator(".admin-media-library button").first().click();
       assert.equal(await chosen.count(), 2);
       await chosen.nth(1).getByRole("button", { name: "اجعلها رئيسية", exact: true }).click();
@@ -253,6 +259,28 @@ try {
       );
       const draft = await context.request.get(base + "/ar/products/" + slug);
       await unavailable(draft);
+    },
+  );
+  await check(
+    "owner finds and edits a synthetic draft, and recovers from media-library network failure",
+    async () => {
+      await goto("/admin/products?q=" + slug);
+      await page.getByRole("link", { name: "تعديل", exact: true }).click();
+      await page.waitForURL(base + "/admin/products/" + productId);
+      await page
+        .locator('[name="descriptionAr"]')
+        .fill("وصف اصطناعي تمت مراجعته من شاشة تعديل المنتج؛ دون تغيير أي سجل أصلي.");
+      await page.getByRole("button", { name: "حفظ كمسودة", exact: true }).click();
+      await page.waitForURL(/saved=1/);
+      await page.getByText("تم حفظ التغييرات.", { exact: true }).waitFor();
+      await page.route("**/api/admin/media?**", (route) => route.abort("failed"));
+      await page.getByRole("searchbox", { name: /بحث في مكتبة الصور/ }).fill("test network");
+      await page.getByRole("button", { name: "إعادة تحميل المكتبة", exact: true }).waitFor();
+      await page.unroute("**/api/admin/media?**");
+      await page.getByRole("button", { name: "إعادة تحميل المكتبة", exact: true }).click();
+      await page.getByRole("searchbox", { name: /بحث في مكتبة الصور/ }).fill("");
+      await page.locator(".admin-media-library button").first().waitFor();
+      assert.equal((await context.request.get(base + "/api/admin/media?page=7")).status(), 200);
     },
   );
   await check("bulk review updates verified price and publishes without code changes", async () => {

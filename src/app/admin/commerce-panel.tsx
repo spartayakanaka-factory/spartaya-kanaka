@@ -523,7 +523,6 @@ export function AdminCommercePanel({
                       : ""
                   }
                   inputMode="decimal"
-                  pattern="[0-9]+([.][0-9]{1,2})?"
                   required
                 />
               </label>
@@ -1019,12 +1018,7 @@ export function AdminCommercePanel({
                   </label>
                   <label>
                     سقف العملية بالجنيه (حتى 10000 للاختبار)
-                    <input
-                      name="limitMinor"
-                      inputMode="decimal"
-                      pattern="[0-9]+([.][0-9]{1,2})?"
-                      required
-                    />
+                    <input name="limitMinor" inputMode="decimal" required />
                   </label>
                   <label>
                     المدة بالأيام (حتى 30)

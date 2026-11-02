@@ -1,5 +1,5 @@
-import { existsSync, statSync } from "node:fs";
-import { extname, resolve } from "node:path";
+import { existsSync, statSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { createRuntimeDatabase } from "./runtime-db";
 import { assertSafeDatabaseTarget } from "./database-target";
 import {
@@ -12,10 +12,13 @@ import {
   type LegacyCategory,
   type LegacyProduct,
 } from "../src/lib/catalog-import";
+import { imageContentType } from "../src/lib/image-content-type";
 import rawProducts from "../sprtaya-kanaka-assets/بيانات/products.json";
 import rawCategories from "../sprtaya-kanaka-assets/بيانات/categories.json";
 
-const assetRoot = resolve(process.env.LEGACY_ASSET_ROOT || resolve(process.cwd(), "sprtaya-kanaka-assets"));
+const assetRoot = resolve(
+  process.env.LEGACY_ASSET_ROOT || resolve(process.cwd(), "sprtaya-kanaka-assets"),
+);
 const products = rawProducts as LegacyProduct[];
 const categoryData = rawCategories as { categories: LegacyCategory[] };
 const categories = categoryData.categories;
@@ -84,20 +87,10 @@ async function main() {
     for (const path of paths) {
       const full = resolveLegacyAssetPath(assetRoot, path);
       if (!existsSync(full)) continue;
-      const source = products
-        .flatMap((row) => row.images ?? [])
-        .find((image) => image.local_path === path);
       const exists = existsSync(full);
       const stat = exists ? statSync(full) : null;
-      const extension = extname(path).toLowerCase();
-      const mime =
-        source?.mime_type && /^image\/[a-z0-9.+-]+$/.test(source.mime_type)
-          ? source.mime_type
-          : extension === ".png"
-            ? "image/png"
-            : extension === ".webp"
-              ? "image/webp"
-              : "image/jpeg";
+      const mime = imageContentType(readFileSync(full));
+      if (!mime) throw new Error("Unsupported original image bytes; preserved file unchanged.");
       const existingMedia = await db.mediaAsset.findUnique({
         where: { originalKey: "legacy:" + path },
         select: { id: true },

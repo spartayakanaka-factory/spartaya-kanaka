@@ -1,0 +1,4204 @@
+{
+  "numTotalTestSuites": 97,
+  "numPassedTestSuites": 97,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 338,
+  "numPassedTests": 338,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1793621857100,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret accepts a consumed one-time password for an explicitly confirmed isolated local target",
+          "status": "passed",
+          "title": "accepts a consumed one-time password for an explicitly confirmed isolated local target",
+          "duration": 1.9841249999999917,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret rejects remote and production targets even with a local confirmation flag",
+          "status": "passed",
+          "title": "rejects remote and production targets even with a local confirmation flag",
+          "duration": 0.9171669999999921,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret accepts a matching secret only for the explicitly confirmed Hostinger staging target",
+          "status": "passed",
+          "title": "accepts a matching secret only for the explicitly confirmed Hostinger staging target",
+          "duration": 0.21995800000000543,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret rejects an unconfirmed or different database target and consumes the secret",
+          "status": "passed",
+          "title": "rejects an unconfirmed or different database target and consumes the secret",
+          "duration": 0.5084159999999969,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret rejects a missing or mismatched confirmation without printing secret values",
+          "status": "passed",
+          "title": "rejects a missing or mismatched confirmation without printing secret values",
+          "duration": 0.3094999999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["one-time owner bootstrap secret"],
+          "fullName": "one-time owner bootstrap secret rejects weak passwords and non-interactive runs without environment secrets",
+          "status": "passed",
+          "title": "rejects weak passwords and non-interactive runs without environment secrets",
+          "duration": 0.21583299999998928,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887341,
+      "endTime": 1793621887345.3096,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/scripts/owner-bootstrap-secret.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation refuses ordinary execution before starting Docker or a database ({\"args\":[]})",
+          "status": "passed",
+          "title": "refuses ordinary execution before starting Docker or a database ({\"args\":[]})",
+          "duration": 248.38754100000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation refuses ordinary execution before starting Docker or a database ({\"args\":[\"--phase35\"]})",
+          "status": "passed",
+          "title": "refuses ordinary execution before starting Docker or a database ({\"args\":[\"--phase35\"]})",
+          "duration": 227.641958,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation refuses ordinary execution before starting Docker or a database ({\"args\":[\"--phase4\"]})",
+          "status": "passed",
+          "title": "refuses ordinary execution before starting Docker or a database ({\"args\":[\"--phase4\"]})",
+          "duration": 239.08291699999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation has no push trigger, write permission, persisted Git credentials or deployment operation",
+          "status": "passed",
+          "title": "has no push trigger, write permission, persisted Git credentials or deployment operation",
+          "duration": 1.7269999999999754,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation supports only the three finite disposable namespaces and matching local ports",
+          "status": "passed",
+          "title": "supports only the three finite disposable namespaces and matching local ports",
+          "duration": 2.120207999999934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["validation-only CI isolation"],
+          "fullName": "validation-only CI isolation validates stacked PRs without adding a deployment trigger or merchant secrets",
+          "status": "passed",
+          "title": "validates stacked PRs without adding a deployment trigger or merchant secrets",
+          "duration": 0.48850000000004457,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621877630,
+      "endTime": 1793621878350.4885,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/scripts/phase3-ci.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Phase 3 cannot leak through accepted migration entry points"],
+          "fullName": "Phase 3 cannot leak through accepted migration entry points blocks scripts/deploy-migrations.ts before spawning Prisma or connecting",
+          "status": "passed",
+          "title": "blocks scripts/deploy-migrations.ts before spawning Prisma or connecting",
+          "duration": 178.76995799999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 cannot leak through accepted migration entry points"],
+          "fullName": "Phase 3 cannot leak through accepted migration entry points blocks scripts/migrate-dev.mjs before spawning Prisma or connecting",
+          "status": "passed",
+          "title": "blocks scripts/migrate-dev.mjs before spawning Prisma or connecting",
+          "duration": 97.48899999999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 cannot leak through accepted migration entry points"],
+          "fullName": "Phase 3 cannot leak through accepted migration entry points blocks scripts/deploy-migrations.mjs before spawning Prisma or connecting",
+          "status": "passed",
+          "title": "blocks scripts/deploy-migrations.mjs before spawning Prisma or connecting",
+          "duration": 106.09408299999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621880728,
+      "endTime": 1793621881111.094,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/scripts/phase3-entrypoints.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline retains Phase 2 as the default and requires an explicit Phase 3 selection",
+          "status": "passed",
+          "title": "retains Phase 2 as the default and requires an explicit Phase 3 selection",
+          "duration": 1.82866700000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline production",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline production",
+          "duration": 0.7977090000000118,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline phase35",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline phase35",
+          "duration": 0.15766699999998934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline auto",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline auto",
+          "duration": 0.3597919999999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline latest",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline latest",
+          "duration": 0.24979199999999935,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline 4",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline 4",
+          "duration": 0.12112499999999216,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit read-only promotion baseline"],
+          "fullName": "explicit read-only promotion baseline rejects unknown or inferred baseline hostinger",
+          "status": "passed",
+          "title": "rejects unknown or inferred baseline hostinger",
+          "duration": 0.1946670000000097,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886961,
+      "endTime": 1793621886965.1946,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/scripts/promotion-baseline.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["sitemap environment boundary"],
+          "fullName": "sitemap environment boundary never queries or lists products on a staging host even when configuration is missing",
+          "status": "passed",
+          "title": "never queries or lists products on a staging host even when configuration is missing",
+          "duration": 15.435834,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["sitemap environment boundary"],
+          "fullName": "sitemap environment boundary returns no URLs in explicitly configured staging",
+          "status": "passed",
+          "title": "returns no URLs in explicitly configured staging",
+          "duration": 0.5286250000000052,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["sitemap environment boundary"],
+          "fullName": "sitemap environment boundary preserves the ordinary storefront sitemap",
+          "status": "passed",
+          "title": "preserves the ordinary storefront sitemap",
+          "duration": 0.7926249999999868,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884845,
+      "endTime": 1793621884862.7927,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/sitemap.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["catalog image URLs"],
+          "fullName": "catalog image URLs serves configured HTTPS displays and loopback-only development storage",
+          "status": "passed",
+          "title": "serves configured HTTPS displays and loopback-only development storage",
+          "duration": 1.4478749999999962,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["catalog image URLs"],
+          "fullName": "catalog image URLs rejects insecure remote and executable URLs, preserving encoded archive paths",
+          "status": "passed",
+          "title": "rejects insecure remote and executable URLs, preserving encoded archive paths",
+          "duration": 0.4147909999999939,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621888465,
+      "endTime": 1793621888466.4478,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/asset-url.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["legacy catalog importer (mocked persistence only)"],
+          "fullName": "legacy catalog importer (mocked persistence only) keeps extracted source prices as evidence while building a non-publishable draft",
+          "status": "passed",
+          "title": "keeps extracted source prices as evidence while building a non-publishable draft",
+          "duration": 3.4861250000000013,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["legacy catalog importer (mocked persistence only)"],
+          "fullName": "legacy catalog importer (mocked persistence only) summarizes only mapped categories and non-failed gallery paths",
+          "status": "passed",
+          "title": "summarizes only mapped categories and non-failed gallery paths",
+          "duration": 0.6250829999999894,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["legacy catalog importer (mocked persistence only)"],
+          "fullName": "legacy catalog importer (mocked persistence only) does not replace an existing mapped product on rerun",
+          "status": "passed",
+          "title": "does not replace an existing mapped product on rerun",
+          "duration": 1.7793330000000083,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["legacy catalog importer (mocked persistence only)"],
+          "fullName": "legacy catalog importer (mocked persistence only) rolls back the product if its legacy mapping cannot be written",
+          "status": "passed",
+          "title": "rolls back the product if its legacy mapping cannot be written",
+          "duration": 1.1806669999999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["legacy catalog importer (mocked persistence only)"],
+          "fullName": "legacy catalog importer (mocked persistence only) rejects asset paths that escape the preserved archive",
+          "status": "passed",
+          "title": "rejects asset paths that escape the preserved archive",
+          "duration": 0.24412499999999682,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886432,
+      "endTime": 1793621886439.2441,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/catalog-import.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter exposes the extracted products as browse-only records",
+          "status": "passed",
+          "title": "exposes the extracted products as browse-only records",
+          "duration": 1.7129170000000045,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter includes only categories that are linked to products",
+          "status": "passed",
+          "title": "includes only categories that are linked to products",
+          "duration": 2.137458000000038,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter searches the Arabic source titles and descriptions",
+          "status": "passed",
+          "title": "searches the Arabic source titles and descriptions",
+          "duration": 6.543707999999981,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter matches Arabic diacritics, alef and common spelling differences",
+          "status": "passed",
+          "title": "matches Arabic diacritics, alef and common spelling differences",
+          "duration": 10.996291999999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter finds English collection terms without inventing product translations",
+          "status": "passed",
+          "title": "finds English collection terms without inventing product translations",
+          "duration": 8.636082999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["local catalog adapter"],
+          "fullName": "local catalog adapter sorts a copy of the catalog and keeps related pieces in verified categories",
+          "status": "passed",
+          "title": "sorts a copy of the catalog and keeps related pieces in verified categories",
+          "duration": 17.102833000000032,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621882330,
+      "endTime": 1793621882378.1028,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/catalog.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["minor-unit money formatting"],
+          "fullName": "minor-unit money formatting keeps whole and fractional units exact",
+          "status": "passed",
+          "title": "keeps whole and fractional units exact",
+          "duration": 20.568749999999994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["large and signed ledger displays"],
+          "fullName": "large and signed ledger displays uses Egyptian Arabic digits and currency text for the Arabic interface",
+          "status": "passed",
+          "title": "uses Egyptian Arabic digits and currency text for the Arabic interface",
+          "duration": 0.5469579999999894,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["large and signed ledger displays"],
+          "fullName": "large and signed ledger displays formats integer strings without losing minor units above Number precision",
+          "status": "passed",
+          "title": "formats integer strings without losing minor units above Number precision",
+          "duration": 0.22408300000000736,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["large and signed ledger displays"],
+          "fullName": "large and signed ledger displays formats negative reconciled values with one sign and an absolute fraction",
+          "status": "passed",
+          "title": "formats negative reconciled values with one sign and an absolute fraction",
+          "duration": 0.7530000000000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883547,
+      "endTime": 1793621883569.753,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/money.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate stays disabled unless explicitly enabled",
+          "status": "passed",
+          "title": "stays disabled unless explicitly enabled",
+          "duration": 1.7192919999999958,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate fails closed for invalid flags or missing credentials",
+          "status": "passed",
+          "title": "fails closed for invalid flags or missing credentials",
+          "duration": 0.6387910000000119,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate fails closed on the known Hostinger staging hostname until access is configured",
+          "status": "passed",
+          "title": "fails closed on the known Hostinger staging hostname until access is configured",
+          "duration": 0.37220800000000054,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate accepts only the configured HTTP Basic credentials",
+          "status": "passed",
+          "title": "accepts only the configured HTTP Basic credentials",
+          "duration": 1.1735830000000078,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate passes the target hostname into the credential check",
+          "status": "passed",
+          "title": "passes the target hostname into the credential check",
+          "duration": 0.27554100000000403,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate uses any known staging host even when proxy host headers disagree",
+          "status": "passed",
+          "title": "uses any known staging host even when proxy host headers disagree",
+          "duration": 14.327666999999991,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate returns no-store 401 responses for missing and invalid credentials",
+          "status": "passed",
+          "title": "returns no-store 401 responses for missing and invalid credentials",
+          "duration": 1.8572499999999934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate allows valid staging credentials and fails closed when a staging host is misconfigured",
+          "status": "passed",
+          "title": "allows valid staging credentials and fails closed when a staging host is misconfigured",
+          "duration": 0.5681249999999949,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging access gate"],
+          "fullName": "staging access gate keeps local non-staging requests accessible",
+          "status": "passed",
+          "title": "keeps local non-staging requests accessible",
+          "duration": 0.7780830000000094,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883685,
+      "endTime": 1793621883706.778,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/staging-access.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["admin permission matrix"],
+          "fullName": "admin permission matrix matches the complete role-to-permission policy",
+          "status": "passed",
+          "title": "matches the complete role-to-permission policy",
+          "duration": 2.951915999999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["admin permission matrix"],
+          "fullName": "admin permission matrix keeps inventory staff limited to inventory",
+          "status": "passed",
+          "title": "keeps inventory staff limited to inventory",
+          "duration": 0.33629200000000026,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["admin permission matrix"],
+          "fullName": "admin permission matrix lets catalog editors manage catalog content without inventory or settings",
+          "status": "passed",
+          "title": "lets catalog editors manage catalog content without inventory or settings",
+          "duration": 0.13879099999999767,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["admin permission matrix"],
+          "fullName": "admin permission matrix prevents managers from granting staff roles or changing owner-only settings",
+          "status": "passed",
+          "title": "prevents managers from granting staff roles or changing owner-only settings",
+          "duration": 0.3432909999999936,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887579,
+      "endTime": 1793621887582.3433,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/admin/permissions.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Phase 5 disposable boundary"],
+          "fullName": "Phase 5 disposable boundary requires the explicit workstream, exact account, loopback port and target",
+          "status": "passed",
+          "title": "requires the explicit workstream, exact account, loopback port and target",
+          "duration": 1.6712080000000071,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 5 disposable boundary"],
+          "fullName": "Phase 5 disposable boundary uses the service's canonical production and dispatch states",
+          "status": "passed",
+          "title": "uses the service's canonical production and dispatch states",
+          "duration": 0.4070000000000107,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621888348,
+      "endTime": 1793621888350.407,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/admin/phase5-boundary.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses 123.45 into integer minor units",
+          "status": "passed",
+          "title": "parses 123.45 into integer minor units",
+          "duration": 1.5024999999999977,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses ١٢٣٫٤٥ into integer minor units",
+          "status": "passed",
+          "title": "parses ١٢٣٫٤٥ into integer minor units",
+          "duration": 0.4973329999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses ۱۲۳٫۴۵ into integer minor units",
+          "status": "passed",
+          "title": "parses ۱۲۳٫۴۵ into integer minor units",
+          "duration": 0.13416700000000503,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses 1,234.5 into integer minor units",
+          "status": "passed",
+          "title": "parses 1,234.5 into integer minor units",
+          "duration": 0.3647500000000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses ١٬٢٣٤٫٥٠ into integer minor units",
+          "status": "passed",
+          "title": "parses ١٬٢٣٤٫٥٠ into integer minor units",
+          "duration": 0.1736670000000089,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses 0 into integer minor units",
+          "status": "passed",
+          "title": "parses 0 into integer minor units",
+          "duration": 0.2026249999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses 9999999.99 into integer minor units",
+          "status": "passed",
+          "title": "parses 9999999.99 into integer minor units",
+          "duration": 0.16416599999999448,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review parses  25.01  into integer minor units",
+          "status": "passed",
+          "title": "parses  25.01  into integer minor units",
+          "duration": 0.08358400000000188,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review keeps missing prices unapproved",
+          "status": "passed",
+          "title": "keeps missing prices unapproved",
+          "duration": 0.8913329999999888,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid 123,45",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid 123,45",
+          "duration": 0.6605419999999924,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid -1",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid -1",
+          "duration": 0.22579199999999844,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid 1.001",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid 1.001",
+          "duration": 0.09220900000001109,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid 1e3",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid 1e3",
+          "duration": 0.07745900000000461,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid 10000000",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid 10000000",
+          "duration": 0.07358299999999929,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid 1 2",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid 1 2",
+          "duration": 0.06700000000000728,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid ١٢ج.م",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid ١٢ج.م",
+          "duration": 0.15100000000001046,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit EGP price review"],
+          "fullName": "explicit EGP price review rejects ambiguous or invalid NaN",
+          "status": "passed",
+          "title": "rejects ambiguous or invalid NaN",
+          "duration": 0.0917090000000087,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621885775,
+      "endTime": 1793621885780.2258,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/admin/price.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["product publication requirements"],
+          "fullName": "product publication requirements accepts an explicitly reviewed ready-made product with a zero stock balance",
+          "status": "passed",
+          "title": "accepts an explicitly reviewed ready-made product with a zero stock balance",
+          "duration": 1.7562499999999943,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["product publication requirements"],
+          "fullName": "product publication requirements blocks incomplete imported records without guessing price, type, review, or stock",
+          "status": "passed",
+          "title": "blocks incomplete imported records without guessing price, type, review, or stock",
+          "duration": 0.4144579999999962,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["product publication requirements"],
+          "fullName": "product publication requirements requires an available manufacturing policy for made-to-order products",
+          "status": "passed",
+          "title": "requires an available manufacturing policy for made-to-order products",
+          "duration": 0.6474169999999901,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["product publication requirements"],
+          "fullName": "product publication requirements requires a balance for every active ready-made variant, while zero is a valid reviewed balance",
+          "status": "passed",
+          "title": "requires a balance for every active ready-made variant, while zero is a valid reviewed balance",
+          "duration": 0.4359589999999969,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887811,
+      "endTime": 1793621887814.436,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/admin/product-publication.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy normalizes supported Egyptian mobile input 01012345678",
+          "status": "passed",
+          "title": "normalizes supported Egyptian mobile input 01012345678",
+          "duration": 1.4541250000000048,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy normalizes supported Egyptian mobile input +201012345678",
+          "status": "passed",
+          "title": "normalizes supported Egyptian mobile input +201012345678",
+          "duration": 0.29570800000001896,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy normalizes supported Egyptian mobile input 00201012345678",
+          "status": "passed",
+          "title": "normalizes supported Egyptian mobile input 00201012345678",
+          "duration": 0.11137500000000955,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy normalizes supported Egyptian mobile input ٠١٠١٢٣٤٥٦٧٨",
+          "status": "passed",
+          "title": "normalizes supported Egyptian mobile input ٠١٠١٢٣٤٥٦٧٨",
+          "duration": 0.4626670000000104,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy normalizes supported Egyptian mobile input ۰۱۰۱۲۳۴۵۶۷۸",
+          "status": "passed",
+          "title": "normalizes supported Egyptian mobile input ۰۱۰۱۲۳۴۵۶۷۸",
+          "duration": 0.12399999999999523,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input +14155552671",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input +14155552671",
+          "duration": 0.23762499999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input 0212345678",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input 0212345678",
+          "duration": 0.16770800000000463,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input 01312345678",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input 01312345678",
+          "duration": 0.07908299999999713,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input 0101234567",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input 0101234567",
+          "duration": 0.8367910000000052,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input 010123456789",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input 010123456789",
+          "duration": 0.14775000000000205,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects invalid or unsupported mobile input <script>",
+          "status": "passed",
+          "title": "rejects invalid or unsupported mobile input <script>",
+          "duration": 0.18074999999998909,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy requires configured city/area matches and preserves explicitly governorate-wide rates",
+          "status": "passed",
+          "title": "requires configured city/area matches and preserves explicitly governorate-wide rates",
+          "duration": 0.1320829999999944,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy permits a disabled unconfigured method but requires complete instructions before enablement",
+          "status": "passed",
+          "title": "permits a disabled unconfigured method but requires complete instructions before enablement",
+          "duration": 2.576750000000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy allows only exact isolated target names and retains staging/production protection",
+          "status": "passed",
+          "title": "allows only exact isolated target names and retains staging/production protection",
+          "duration": 0.23529199999998696,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy allows the dedicated local fixture database only with its exact user and explicit opt-in",
+          "status": "passed",
+          "title": "allows the dedicated local fixture database only with its exact user and explicit opt-in",
+          "duration": 0.28112499999997453,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy accepts only separately provisioned IDs in the dedicated local sandbox",
+          "status": "passed",
+          "title": "accepts only separately provisioned IDs in the dedicated local sandbox",
+          "duration": 0.22179199999999355,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Egypt-first factory checkout policy"],
+          "fullName": "Egypt-first factory checkout policy rejects real-looking transfer instructions in the dedicated local sandbox",
+          "status": "passed",
+          "title": "rejects real-looking transfer instructions in the dedicated local sandbox",
+          "duration": 0.16754199999999742,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886069,
+      "endTime": 1793621886077.2217,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/commerce/factory-policy.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration allows only the explicitly configured synthetic target",
+          "status": "passed",
+          "title": "allows only the explicitly configured synthetic target",
+          "duration": 2.318040999999994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when SR_HOSTED_ISOLATION is unsafe",
+          "status": "passed",
+          "title": "fails closed when SR_HOSTED_ISOLATION is unsafe",
+          "duration": 0.5012920000000065,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when SR_LOCAL_ISOLATION is unsafe",
+          "status": "passed",
+          "title": "fails closed when SR_LOCAL_ISOLATION is unsafe",
+          "duration": 0.24291600000000813,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when APP_ENV is unsafe",
+          "status": "passed",
+          "title": "fails closed when APP_ENV is unsafe",
+          "duration": 0.45245800000000713,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when NODE_ENV is unsafe",
+          "status": "passed",
+          "title": "fails closed when NODE_ENV is unsafe",
+          "duration": 0.24004200000001674,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when STAGING_SITE is unsafe",
+          "status": "passed",
+          "title": "fails closed when STAGING_SITE is unsafe",
+          "duration": 0.09633300000001555,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when STAGING_ACCESS_CONTROL_VERIFIED is unsafe",
+          "status": "passed",
+          "title": "fails closed when STAGING_ACCESS_CONTROL_VERIFIED is unsafe",
+          "duration": 0.0832499999999925,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when STAGING_DATABASE_ISOLATION_VERIFIED is unsafe",
+          "status": "passed",
+          "title": "fails closed when STAGING_DATABASE_ISOLATION_VERIFIED is unsafe",
+          "duration": 0.0730840000000228,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when STAGING_R2_ISOLATION_VERIFIED is unsafe",
+          "status": "passed",
+          "title": "fails closed when STAGING_R2_ISOLATION_VERIFIED is unsafe",
+          "duration": 0.7997080000000096,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.23512499999998226,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.22875000000001933,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.07829200000000469,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.06720799999999372,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.06179200000002538,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.059459000000003925,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_URL is unsafe",
+          "duration": 0.06945800000002578,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when DATABASE_TARGET is unsafe",
+          "status": "passed",
+          "title": "fails closed when DATABASE_TARGET is unsafe",
+          "duration": 0.05575000000001751,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when PAYMENT_MODE is unsafe",
+          "status": "passed",
+          "title": "fails closed when PAYMENT_MODE is unsafe",
+          "duration": 0.06112499999997567,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when P3_SIMULATION is unsafe",
+          "status": "passed",
+          "title": "fails closed when P3_SIMULATION is unsafe",
+          "duration": 0.05679099999997561,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when P3_NOTIFICATIONS is unsafe",
+          "status": "passed",
+          "title": "fails closed when P3_NOTIFICATIONS is unsafe",
+          "duration": 0.058166999999997415,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when CATALOG_SOURCE is unsafe",
+          "status": "passed",
+          "title": "fails closed when CATALOG_SOURCE is unsafe",
+          "duration": 0.05612500000000864,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when SR_HOSTED_ALLOWED_STAFF_IDS is unsafe",
+          "status": "passed",
+          "title": "fails closed when SR_HOSTED_ALLOWED_STAFF_IDS is unsafe",
+          "duration": 0.060167000000006965,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when SR_HOSTED_ALLOWED_CUSTOMER_IDS is unsafe",
+          "status": "passed",
+          "title": "fails closed when SR_HOSTED_ALLOWED_CUSTOMER_IDS is unsafe",
+          "duration": 0.06129199999998036,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when STAGING_ACCESS_PASSWORD is unsafe",
+          "status": "passed",
+          "title": "fails closed when STAGING_ACCESS_PASSWORD is unsafe",
+          "duration": 0.04616699999999696,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when BETTER_AUTH_URL is unsafe",
+          "status": "passed",
+          "title": "fails closed when BETTER_AUTH_URL is unsafe",
+          "duration": 0.21170900000001325,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when MOCK_PAYMENT_SECRET is unsafe",
+          "status": "passed",
+          "title": "fails closed when MOCK_PAYMENT_SECRET is unsafe",
+          "duration": 0.06270899999998392,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when MOCK_PAYMENT_SECRET is unsafe",
+          "status": "passed",
+          "title": "fails closed when MOCK_PAYMENT_SECRET is unsafe",
+          "duration": 0.057041999999995596,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when MEDIA_S3_ORIGINALS_BUCKET is unsafe",
+          "status": "passed",
+          "title": "fails closed when MEDIA_S3_ORIGINALS_BUCKET is unsafe",
+          "duration": 0.06575000000000841,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when MEDIA_S3_ENDPOINT is unsafe",
+          "status": "passed",
+          "title": "fails closed when MEDIA_S3_ENDPOINT is unsafe",
+          "duration": 0.06808300000000145,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration fails closed when the exact Hostinger target label is missing",
+          "status": "passed",
+          "title": "fails closed when the exact Hostinger target label is missing",
+          "duration": 0.08662499999999795,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration enforces hosted customer identities before database access",
+          "status": "passed",
+          "title": "enforces hosted customer identities before database access",
+          "duration": 1.3638750000000073,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["hosted restricted commerce configuration"],
+          "fullName": "hosted restricted commerce configuration rejects real-looking transfer instructions under hosted isolation",
+          "status": "passed",
+          "title": "rejects real-looking transfer instructions under hosted isolation",
+          "duration": 0.14483400000000302,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621885486,
+      "endTime": 1793621885494.3638,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/commerce/hosted-staging-runtime.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["explicit money and local boundaries"],
+          "fullName": "explicit money and local boundaries never supplies absent tax policy",
+          "status": "passed",
+          "title": "never supplies absent tax policy",
+          "duration": 4.006208000000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit money and local boundaries"],
+          "fullName": "explicit money and local boundaries calculates inclusive/exclusive tax without floats",
+          "status": "passed",
+          "title": "calculates inclusive/exclusive tax without floats",
+          "duration": 1.1169999999999902,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit money and local boundaries"],
+          "fullName": "explicit money and local boundaries ceilings only new template deposits and preserves full advance",
+          "status": "passed",
+          "title": "ceilings only new template deposits and preserves full advance",
+          "duration": 0.7114590000000192,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit money and local boundaries"],
+          "fullName": "explicit money and local boundaries rejects unsafe amounts",
+          "status": "passed",
+          "title": "rejects unsafe amounts",
+          "duration": 0.5596250000000111,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["explicit money and local boundaries"],
+          "fullName": "explicit money and local boundaries rejects persistent/remote/hosted targets even with flags",
+          "status": "passed",
+          "title": "rejects persistent/remote/hosted targets even with flags",
+          "duration": 0.7395829999999819,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621885649,
+      "endTime": 1793621885656.7395,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/commerce/policy.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration accepts the required shape without claiming remote verification",
+          "status": "passed",
+          "title": "accepts the required shape without claiming remote verification",
+          "duration": 1.8017499999999984,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe STAGING_R2_ACCOUNT_ID",
+          "status": "passed",
+          "title": "rejects an unsafe STAGING_R2_ACCOUNT_ID",
+          "duration": 0.8698329999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_ENDPOINT",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_ENDPOINT",
+          "duration": 0.158457999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_ENDPOINT",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_ENDPOINT",
+          "duration": 0.4032090000000039,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_ORIGINALS_BUCKET",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_ORIGINALS_BUCKET",
+          "duration": 0.14270799999999895,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_DISPLAY_BUCKET",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_DISPLAY_BUCKET",
+          "duration": 0.24345800000000395,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_ACCESS_KEY_ID",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_ACCESS_KEY_ID",
+          "duration": 0.19045800000000668,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_SECRET_ACCESS_KEY",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_SECRET_ACCESS_KEY",
+          "duration": 0.20024999999999693,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_PUBLIC_BASE_URL",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_PUBLIC_BASE_URL",
+          "duration": 0.8526249999999891,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_REGION",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_REGION",
+          "duration": 0.37187499999998863,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["reviewed staging R2 configuration"],
+          "fullName": "reviewed staging R2 configuration rejects an unsafe MEDIA_S3_FORCE_PATH_STYLE",
+          "status": "passed",
+          "title": "rejects an unsafe MEDIA_S3_FORCE_PATH_STYLE",
+          "duration": 0.2048340000000053,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886724,
+      "endTime": 1793621886729.3718,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/commerce/staging-r2-config.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["owner reporting financial facts"],
+          "fullName": "owner reporting financial facts separates order value, verified deposit and remaining balance without double counting",
+          "status": "passed",
+          "title": "separates order value, verified deposit and remaining balance without double counting",
+          "duration": 2.6570839999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting financial facts"],
+          "fullName": "owner reporting financial facts keeps currencies separate and preserves very large integer amounts",
+          "status": "passed",
+          "title": "keeps currencies separate and preserves very large integer amounts",
+          "duration": 11.632000000000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting financial facts"],
+          "fullName": "owner reporting financial facts rejects duplicate or mismatched verified events",
+          "status": "passed",
+          "title": "rejects duplicate or mismatched verified events",
+          "duration": 0.8295829999999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting financial facts"],
+          "fullName": "owner reporting financial facts does not include cancelled obligations or unverified proof in cash",
+          "status": "passed",
+          "title": "does not include cancelled obligations or unverified proof in cash",
+          "duration": 0.5357920000000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting financial facts"],
+          "fullName": "owner reporting financial facts subtracts only reconciled refunds and preserves integer precision",
+          "status": "passed",
+          "title": "subtracts only reconciled refunds and preserves integer precision",
+          "duration": 0.6848750000000052,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884974,
+      "endTime": 1793621884990.6848,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/reports/aggregation.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Cairo owner-report calendar"],
+          "fullName": "Cairo owner-report calendar finds the first instant of the local day at daylight-saving transitions",
+          "status": "passed",
+          "title": "finds the first instant of the local day at daylight-saving transitions",
+          "duration": 2.84729200000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Cairo owner-report calendar"],
+          "fullName": "Cairo owner-report calendar crosses leap years, months and years without overlapping boundaries",
+          "status": "passed",
+          "title": "crosses leap years, months and years without overlapping boundaries",
+          "duration": 1.0884999999999962,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Cairo owner-report calendar"],
+          "fullName": "Cairo owner-report calendar rejects invalid calendar dates and ranges longer than 31 inclusive days",
+          "status": "passed",
+          "title": "rejects invalid calendar dates and ranges longer than 31 inclusive days",
+          "duration": 1.0241660000000081,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887096,
+      "endTime": 1793621887101.0242,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/reports/calendar.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Full inventory search and pagination against disposable MariaDB"],
+          "fullName": "Full inventory search and pagination against disposable MariaDB finds the last product beyond the previous 300-row bound and searches SKU/slug",
+          "status": "passed",
+          "title": "finds the last product beyond the previous 300-row bound and searches SKU/slug",
+          "duration": 76.70775000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Full inventory search and pagination against disposable MariaDB"],
+          "fullName": "Full inventory search and pagination against disposable MariaDB paginates all matching balances without repeats and clamps invalid pages",
+          "status": "passed",
+          "title": "paginates all matching balances without repeats and clamps invalid pages",
+          "duration": 56.794208000000026,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Full inventory search and pagination against disposable MariaDB"],
+          "fullName": "Full inventory search and pagination against disposable MariaDB filters available stock after reservations and treats wildcard characters literally",
+          "status": "passed",
+          "title": "filters available stock after reservations and treats wildcard characters literally",
+          "duration": 16.360667000000035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621880437,
+      "endTime": 1793621880586.3606,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/admin-inventory.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) fails closed when authentication configuration or the session is missing",
+          "status": "passed",
+          "title": "fails closed when authentication configuration or the session is missing",
+          "duration": 18.171832999999992,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) rejects missing or invalid staging Basic Auth before looking up an admin session",
+          "status": "passed",
+          "title": "rejects missing or invalid staging Basic Auth before looking up an admin session",
+          "duration": 0.9488340000000051,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) accepts only known roles from the session",
+          "status": "passed",
+          "title": "accepts only known roles from the session",
+          "duration": 2.1156660000000045,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) enforces positive and negative role checks at the shared server guard",
+          "status": "passed",
+          "title": "enforces positive and negative role checks at the shared server guard",
+          "duration": 1.4401249999999948,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) blocks all admin permissions until the first password change is complete",
+          "status": "passed",
+          "title": "blocks all admin permissions until the first password change is complete",
+          "duration": 0.6526250000000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) fails closed if session lookup throws",
+          "status": "passed",
+          "title": "fails closed if session lookup throws",
+          "duration": 0.5139999999999816,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": [
+            "admin session authorization boundary (mocked session; no persistence claim)"
+          ],
+          "fullName": "admin session authorization boundary (mocked session; no persistence claim) rejects a banned current row and uses a changed role instead of session privileges",
+          "status": "passed",
+          "title": "rejects a banned current row and uses a changed role instead of session privileges",
+          "duration": 0.5437499999999886,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883261,
+      "endTime": 1793621883285.5437,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/admin-session.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["staging database engine compatibility"],
+          "fullName": "staging database engine compatibility accepts the verified Hostinger MariaDB 11.8.9 version string",
+          "status": "passed",
+          "title": "accepts the verified Hostinger MariaDB 11.8.9 version string",
+          "duration": 1.8798749999999984,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging database engine compatibility"],
+          "fullName": "staging database engine compatibility extracts the MariaDB version from a MySQL-compatible version prefix",
+          "status": "passed",
+          "title": "extracts the MariaDB version from a MySQL-compatible version prefix",
+          "duration": 0.44533400000000256,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging database engine compatibility"],
+          "fullName": "staging database engine compatibility accepts only engines new enough to enforce the inventory CHECK constraints",
+          "status": "passed",
+          "title": "accepts only engines new enough to enforce the inventory CHECK constraints",
+          "duration": 0.7491660000000024,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["staging database engine compatibility"],
+          "fullName": "staging database engine compatibility fails closed for an unknown version string",
+          "status": "passed",
+          "title": "fails closed for an unknown version string",
+          "duration": 0.4502920000000046,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886843,
+      "endTime": 1793621886846.4502,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/database-engine.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["database target safety guard"],
+          "fullName": "database target safety guard permits the exact designated Hostinger test identity in staging mode",
+          "status": "passed",
+          "title": "permits the exact designated Hostinger test identity in staging mode",
+          "duration": 2.588791999999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["database target safety guard"],
+          "fullName": "database target safety guard requires explicit target approval and exact connection identity",
+          "status": "passed",
+          "title": "requires explicit target approval and exact connection identity",
+          "duration": 0.9255420000000072,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["database target safety guard"],
+          "fullName": "database target safety guard rejects unknown targets and any different database or database user",
+          "status": "passed",
+          "title": "rejects unknown targets and any different database or database user",
+          "duration": 0.4348329999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["database target safety guard"],
+          "fullName": "database target safety guard requires the Hostinger staging markers and local database endpoint",
+          "status": "passed",
+          "title": "requires the Hostinger staging markers and local database endpoint",
+          "duration": 0.9438339999999954,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["database target safety guard"],
+          "fullName": "database target safety guard continues to reject production database maintenance",
+          "status": "passed",
+          "title": "continues to reject production database maintenance",
+          "duration": 0.1826250000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887219,
+      "endTime": 1793621887224.1826,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/database-target.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects wrong storage endpoint, bucket and credentials in the local sandbox",
+          "status": "passed",
+          "title": "rejects wrong storage endpoint, bucket and credentials in the local sandbox",
+          "duration": 7.3657910000000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621885216,
+      "endTime": 1793621885223.3657,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/local-media-isolation.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["S3-compatible media configuration (no persistence claim)"],
+          "fullName": "S3-compatible media configuration (no persistence claim) requires distinct private-original and public-display buckets",
+          "status": "passed",
+          "title": "requires distinct private-original and public-display buckets",
+          "duration": 2.4310839999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["S3-compatible media configuration (no persistence claim)"],
+          "fullName": "S3-compatible media configuration (no persistence claim) accepts a complete HTTPS configuration without contacting storage",
+          "status": "passed",
+          "title": "accepts a complete HTTPS configuration without contacting storage",
+          "duration": 4.996667000000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["S3-compatible media configuration (no persistence claim)"],
+          "fullName": "S3-compatible media configuration (no persistence claim) encodes object-key path segments for public delivery URLs",
+          "status": "passed",
+          "title": "encodes object-key path segments for public delivery URLs",
+          "duration": 0.546166999999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886306,
+      "endTime": 1793621886314.5461,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/media-storage.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Hostinger migration approval gate"],
+          "fullName": "Hostinger migration approval gate requires an exact target confirmation, reviewed-staging approval, and backup digest",
+          "status": "passed",
+          "title": "requires an exact target confirmation, reviewed-staging approval, and backup digest",
+          "duration": 2.1094169999999934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Hostinger migration approval gate"],
+          "fullName": "Hostinger migration approval gate rejects placeholders and malformed backup digests",
+          "status": "passed",
+          "title": "rejects placeholders and malformed backup digests",
+          "duration": 0.5693339999999978,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Hostinger migration approval gate"],
+          "fullName": "Hostinger migration approval gate allows only the empty initial target with both reviewed migrations pending",
+          "status": "passed",
+          "title": "allows only the empty initial target with both reviewed migrations pending",
+          "duration": 0.6183750000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887696,
+      "endTime": 1793621887699.6184,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/migration-approval.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["MySQL/MariaDB integration acceptance"],
+          "fullName": "MySQL/MariaDB integration acceptance uses the migrated schema with required tables, indexes, and foreign keys",
+          "status": "passed",
+          "title": "uses the migrated schema with required tables, indexes, and foreign keys",
+          "duration": 95.32883300000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["MySQL/MariaDB integration acceptance"],
+          "fullName": "MySQL/MariaDB integration acceptance exercises role permissions, session rows, catalog relations, and minor-unit prices with rollback",
+          "status": "passed",
+          "title": "exercises role permissions, session rows, catalog relations, and minor-unit prices with rollback",
+          "duration": 103.34724999999992,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["MySQL/MariaDB integration acceptance"],
+          "fullName": "MySQL/MariaDB integration acceptance authenticates a synthetic admin and persists a Better Auth session",
+          "status": "passed",
+          "title": "authenticates a synthetic admin and persists a Better Auth session",
+          "duration": 403.26466700000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["MySQL/MariaDB integration acceptance"],
+          "fullName": "MySQL/MariaDB integration acceptance applies a synthetic catalog mapping once and preserves edits on importer rerun",
+          "status": "passed",
+          "title": "applies a synthetic catalog mapping once and preserves edits on importer rerun",
+          "duration": 40.19816700000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["MySQL/MariaDB integration acceptance"],
+          "fullName": "MySQL/MariaDB integration acceptance serializes concurrent stock adjustments and rejects negative balances and duplicate request keys",
+          "status": "passed",
+          "title": "serializes concurrent stock adjustments and rejects negative balances and duplicate request keys",
+          "duration": 37.062625000000025,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621879060,
+      "endTime": 1793621879739.0627,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/mysql.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Separately approved seven-migration staging initialization"],
+          "fullName": "Separately approved seven-migration staging initialization accepts the exact reviewed empty plan and matching backup/restore/source attestations",
+          "status": "passed",
+          "title": "accepts the exact reviewed empty plan and matching backup/restore/source attestations",
+          "duration": 2.5044169999999895,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Separately approved seven-migration staging initialization"],
+          "fullName": "Separately approved seven-migration staging initialization rejects every missing attestation before any migration can be invoked",
+          "status": "passed",
+          "title": "rejects every missing attestation before any migration can be invoked",
+          "duration": 1.269625000000019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Separately approved seven-migration staging initialization"],
+          "fullName": "Separately approved seven-migration staging initialization rejects existing tables, applied history, partial plans, unknown source and mismatched restore digest",
+          "status": "passed",
+          "title": "rejects existing tables, applied history, partial plans, unknown source and mismatched restore digest",
+          "duration": 0.6681669999999826,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Separately approved seven-migration staging initialization"],
+          "fullName": "Separately approved seven-migration staging initialization rejects changed SQL or unknown migration directories in a disposable copy",
+          "status": "passed",
+          "title": "rejects changed SQL or unknown migration directories in a disposable copy",
+          "duration": 7.266249999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621886593,
+      "endTime": 1793621886605.2664,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/phase55-migration-approval.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Real isolated connection-loss recovery"],
+          "fullName": "Real isolated connection-loss recovery rolls back an interrupted stock transaction, reconnects and prevents a duplicate event",
+          "status": "passed",
+          "title": "rolls back an interrupted stock transaction, reconnects and prevents a duplicate event",
+          "duration": 190.348334,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621881385,
+      "endTime": 1793621881575.3484,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/phase55-recovery.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["trusted request origins"],
+          "fullName": "trusted request origins accepts only configured origins and normalizes a trailing slash",
+          "status": "passed",
+          "title": "accepts only configured origins and normalizes a trailing slash",
+          "duration": 17.488874999999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["trusted request origins"],
+          "fullName": "trusted request origins rejects absent, malformed, and non-origin request headers",
+          "status": "passed",
+          "title": "rejects absent, malformed, and non-origin request headers",
+          "duration": 1.0546670000000091,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["trusted request origins"],
+          "fullName": "trusted request origins falls back to Better Auth's configured base URL",
+          "status": "passed",
+          "title": "falls back to Better Auth's configured base URL",
+          "duration": 0.46862499999998875,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884235,
+      "endTime": 1793621884253.4685,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/request-origin.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["bulk product review action (mocked database; no persistence claim)"],
+          "fullName": "bulk product review action (mocked database; no persistence claim) saves reviewed fields and publishes only the selected eligible product",
+          "status": "passed",
+          "title": "saves reviewed fields and publishes only the selected eligible product",
+          "duration": 10.922792000000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["bulk product review action (mocked database; no persistence claim)"],
+          "fullName": "bulk product review action (mocked database; no persistence claim) keeps an incomplete product unpublished and rolls back the mocked transaction",
+          "status": "passed",
+          "title": "keeps an incomplete product unpublished and rolls back the mocked transaction",
+          "duration": 1.5748749999999916,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["bulk product review action (mocked database; no persistence claim)"],
+          "fullName": "bulk product review action (mocked database; no persistence claim) does not open the database when the caller lacks catalog-write permission",
+          "status": "passed",
+          "title": "does not open the database when the caller lacks catalog-write permission",
+          "duration": 0.7516250000000184,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884481,
+      "endTime": 1793621884494.7517,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/admin/actions.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) rejects anonymous writes and enforces real role authorization",
+          "status": "passed",
+          "title": "rejects anonymous writes and enforces real role authorization",
+          "duration": 47.27562500000022,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) immediately rejects a banned administrator's existing real session",
+          "status": "passed",
+          "title": "immediately rejects a banned administrator's existing real session",
+          "duration": 345.11400000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) requires password rotation, verifies the old password, and revokes other sessions",
+          "status": "passed",
+          "title": "requires password rotation, verifies the old password, and revokes other sessions",
+          "duration": 962.8542909999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) creates and updates categories, rejects duplicate slugs and hierarchy cycles",
+          "status": "passed",
+          "title": "creates and updates categories, rejects duplicate slugs and hierarchy cycles",
+          "duration": 38.28662499999973,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) creates a real draft with Arabic minor-unit price and opening inventory",
+          "status": "passed",
+          "title": "creates a real draft with Arabic minor-unit price and opening inventory",
+          "duration": 63.43383300000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) bulk reviews and publishes into the database storefront without a rebuild",
+          "status": "passed",
+          "title": "bulk reviews and publishes into the database storefront without a rebuild",
+          "duration": 53.30308299999979,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) rolls back a mixed eligible/incomplete bulk publication atomically",
+          "status": "passed",
+          "title": "rolls back a mixed eligible/incomplete bulk publication atomically",
+          "duration": 30.70445800000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) edits a published product transactionally and rejects incomplete edits without changing stock",
+          "status": "passed",
+          "title": "edits a published product transactionally and rejects incomplete edits without changing stock",
+          "duration": 79.72904199999994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) replaces empty variants repeatedly without colliding with retired variant positions",
+          "status": "passed",
+          "title": "replaces empty variants repeatedly without colliding with retired variant positions",
+          "duration": 108.2891669999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) allows only the owner to provision limited staff with mandatory password rotation",
+          "status": "passed",
+          "title": "allows only the owner to provision limited staff with mandatory password rotation",
+          "duration": 265.2937500000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) persists inventory adjustments once, rejects negative stock and synchronizes availability",
+          "status": "passed",
+          "title": "persists inventory adjustments once, rejects negative stock and synchronizes availability",
+          "duration": 28.657499999999345,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) creates independent per-product manufacturing policies without overwriting the global policy",
+          "status": "passed",
+          "title": "creates independent per-product manufacturing policies without overwriting the global policy",
+          "duration": 31.2647079999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) uses real S3 signed uploads, rejects altered ownership and non-images, and persists a derivative",
+          "status": "passed",
+          "title": "uses real S3 signed uploads, rejects altered ownership and non-images, and persists a derivative",
+          "duration": 179.03416599999946,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) finalizes the same S3 upload concurrently without deleting the committed display",
+          "status": "passed",
+          "title": "finalizes the same S3 upload concurrently without deleting the committed display",
+          "duration": 84.02874999999949,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) does not permit a reused presigned URL to overwrite an uploaded original",
+          "status": "passed",
+          "title": "does not permit a reused presigned URL to overwrite an uploaded original",
+          "duration": 17.359416999999667,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) bounds chunked media JSON and rejects oversized declarations and invalid MIME types",
+          "status": "passed",
+          "title": "bounds chunked media JSON and rejects oversized declarations and invalid MIME types",
+          "duration": 30.38395799999944,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) recovers exact saved upload objects and rejects missing or interrupted originals",
+          "status": "passed",
+          "title": "recovers exact saved upload objects and rejects missing or interrupted originals",
+          "duration": 69.59445799999958,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) replaces product media without overwriting or deleting the previous upload",
+          "status": "passed",
+          "title": "replaces product media without overwriting or deleting the previous upload",
+          "duration": 126.70300000000043,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) unpublishes immediately, protects linked categories and archives products",
+          "status": "passed",
+          "title": "unpublishes immediately, protects linked categories and archives products",
+          "duration": 67.54937500000051,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) rejects a database-expired session and a revoked session",
+          "status": "passed",
+          "title": "rejects a database-expired session and a revoked session",
+          "duration": 20.178416999999172,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Local MariaDB admin acceptance (real auth/actions/database)"],
+          "fullName": "Local MariaDB admin acceptance (real auth/actions/database) rate-limits repeated failed logins using the database-backed limiter",
+          "status": "passed",
+          "title": "rate-limits repeated failed logins using the database-backed limiter",
+          "duration": 590.9190829999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621860075,
+      "endTime": 1793621863315.9192,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/admin/local-db.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets serves the configured media root with private staging cache headers",
+          "status": "passed",
+          "title": "serves the configured media root with private staging cache headers",
+          "duration": 69.80166700000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets delivers WebP bytes stored under an Arabic jpg name without changing content",
+          "status": "passed",
+          "title": "delivers WebP bytes stored under an Arabic jpg name without changing content",
+          "duration": 7.022542000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets rejects non-image content and symlinks escaping the media root",
+          "status": "passed",
+          "title": "rejects non-image content and symlinks escaping the media root",
+          "duration": 5.72829200000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets denies anonymous access before returning an existing image",
+          "status": "passed",
+          "title": "denies anonymous access before returning an existing image",
+          "duration": 3.8240419999999915,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets rejects traversal beyond the configured root",
+          "status": "passed",
+          "title": "rejects traversal beyond the configured root",
+          "duration": 3.234291999999982,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["persistent catalog assets"],
+          "fullName": "persistent catalog assets retains immutable image caching when staging protection is disabled",
+          "status": "passed",
+          "title": "retains immutable image caching when staging protection is disabled",
+          "duration": 3.51916700000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621881730,
+      "endTime": 1793621881823.5193,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/assets/[...path]/route.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight rejects anonymous requests before database access",
+          "status": "passed",
+          "title": "rejects anonymous requests before database access",
+          "duration": 17.883167000000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight rejects the wrong host and missing or invalid preflight tokens",
+          "status": "passed",
+          "title": "rejects the wrong host and missing or invalid preflight tokens",
+          "duration": 2.4438340000000096,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight fails closed for an unrelated database target before connecting",
+          "status": "passed",
+          "title": "fails closed for an unrelated database target before connecting",
+          "duration": 1.0413330000000087,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight runs only read-only identity and inventory queries in the Node handler",
+          "status": "passed",
+          "title": "runs only read-only identity and inventory queries in the Node handler",
+          "duration": 3.9793750000000045,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight reports a present migration ledger without changing its history",
+          "status": "passed",
+          "title": "reports a present migration ledger without changing its history",
+          "duration": 1.2106249999999932,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["temporary Hostinger database preflight"],
+          "fullName": "temporary Hostinger database preflight rejects a connected database with an unexpected identity and hides connection errors",
+          "status": "passed",
+          "title": "rejects a connected database with an unexpected identity and hides connection errors",
+          "duration": 2.0764580000000024,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621882547,
+      "endTime": 1793621882576.0764,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/api/staging-database-preflight/route.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration registers customer separately, blocks unverified login and captures verification privately",
+          "status": "passed",
+          "title": "registers customer separately, blocks unverified login and captures verification privately",
+          "duration": 623.2736249999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration persists profiles and addresses with ownership checks",
+          "status": "passed",
+          "title": "persists profiles and addresses with ownership checks",
+          "duration": 12.28270899999984,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration rejects customer cookies at administrative endpoints and rejects cross-origin mutation",
+          "status": "passed",
+          "title": "rejects customer cookies at administrative endpoints and rejects cross-origin mutation",
+          "duration": 3.657791999999972,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration persists cart changes and performs retry-safe guest merge",
+          "status": "passed",
+          "title": "persists cart changes and performs retry-safe guest merge",
+          "duration": 48.440667000000076,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration requires configured tax and shipping; does not silently use zero",
+          "status": "passed",
+          "title": "requires configured tax and shipping; does not silently use zero",
+          "duration": 17.70112499999982,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration rejects international, mixed schedules, and manufacturing COD",
+          "status": "passed",
+          "title": "rejects international, mixed schedules, and manufacturing COD",
+          "duration": 32.27337499999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration rejects stale quotes and snapshots tax/shipping/rounding atomically",
+          "status": "passed",
+          "title": "rejects stale quotes and snapshots tax/shipping/rounding atomically",
+          "duration": 68.4358749999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration makes checkout idempotent and rejects conflicting key payloads",
+          "status": "passed",
+          "title": "makes checkout idempotent and rejects conflicting key payloads",
+          "duration": 35.80441700000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration prevents overselling across simultaneous independent checkouts",
+          "status": "passed",
+          "title": "prevents overselling across simultaneous independent checkouts",
+          "duration": 48.103832999999895,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration enforces reservation constraints even through direct SQL",
+          "status": "passed",
+          "title": "enforces reservation constraints even through direct SQL",
+          "duration": 4.562249999999949,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration releases cancellation holds once and denies a different guest",
+          "status": "passed",
+          "title": "releases cancellation holds once and denies a different guest",
+          "duration": 54.328874999999925,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration expires reservations and refuses late success without reclaiming stock",
+          "status": "passed",
+          "title": "expires reservations and refuses late success without reclaiming stock",
+          "duration": 237.515042,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration verifies signed mock events once; rejects tampering and wrong amount",
+          "status": "passed",
+          "title": "verifies signed mock events once; rejects tampering and wrong amount",
+          "duration": 48.7790829999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration tracks unknown/failure safely and permits a deliberate retry after failure",
+          "status": "passed",
+          "title": "tracks unknown/failure safely and permits a deliberate retry after failure",
+          "duration": 48.12437499999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration rounds a new 50% deposit, keeps balance separate, and blocks premature production/dispatch",
+          "status": "passed",
+          "title": "rounds a new 50% deposit, keeps balance separate, and blocks premature production/dispatch",
+          "duration": 75.85716700000012,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration never converts an existing FULL_ADVANCE policy",
+          "status": "passed",
+          "title": "never converts an existing FULL_ADVANCE policy",
+          "duration": 23.841791999999714,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration manual transfer claims require separate granted request, approval, execution and reconciliation",
+          "status": "passed",
+          "title": "manual transfer claims require separate granted request, approval, execution and reconciliation",
+          "duration": 73.79670800000031,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration denies ungranted managers, editors, banned staff, and limits",
+          "status": "passed",
+          "title": "denies ungranted managers, editors, banned staff, and limits",
+          "duration": 54.49320799999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration reserves refund capacity across concurrent requests and reconciles exactly once",
+          "status": "passed",
+          "title": "reserves refund capacity across concurrent requests and reconciles exactly once",
+          "duration": 78.2482500000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration COD records collection separately from remittance; dispatch consumes stock once",
+          "status": "passed",
+          "title": "COD records collection separately from remittance; dispatch consumes stock once",
+          "duration": 65.36879200000021,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration failed COD delivery requires inspected return before restoring stock exactly once",
+          "status": "passed",
+          "title": "failed COD delivery requires inspected return before restoring stock exactly once",
+          "duration": 48.47804200000019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration captures bilingual outbox records without external delivery or duplicate files",
+          "status": "passed",
+          "title": "captures bilingual outbox records without external delivery or duplicate files",
+          "duration": 80.619416,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration binds recovery sessions to one order and consumes tokens only once",
+          "status": "passed",
+          "title": "binds recovery sessions to one order and consumes tokens only once",
+          "duration": 40.70024999999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration customer session logout invalidates the persisted session",
+          "status": "passed",
+          "title": "customer session logout invalidates the persisted session",
+          "duration": 14.453417000000172,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration anonymous order IDs do not disclose private order data",
+          "status": "passed",
+          "title": "anonymous order IDs do not disclose private order data",
+          "duration": 18.709124999999858,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration persists paid cancellation review without automatic refunds or forfeiture",
+          "status": "passed",
+          "title": "persists paid cancellation review without automatic refunds or forfeiture",
+          "duration": 68.0416250000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration feature flags stop checkout and payment initiation before writes",
+          "status": "passed",
+          "title": "feature flags stop checkout and payment initiation before writes",
+          "duration": 23.68320900000026,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration customer recovery captures a private token, rotates the password, rejects replay and revokes sessions",
+          "status": "passed",
+          "title": "customer recovery captures a private token, rotates the password, rejects replay and revokes sessions",
+          "duration": 502.7386670000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration persists customer login throttling and rejects brute-force retries",
+          "status": "passed",
+          "title": "persists customer login throttling and rejects brute-force retries",
+          "duration": 640.4041669999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration rejects client monetary/status/owner injection before creating a cart",
+          "status": "passed",
+          "title": "rejects client monetary/status/owner injection before creating a cart",
+          "duration": 10.428209000000152,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3 isolated real MariaDB integration"],
+          "fullName": "Phase 3 isolated real MariaDB integration a distinct success event cannot double-credit a successful payment",
+          "status": "passed",
+          "title": "a distinct success event cannot double-credit a successful payment",
+          "duration": 72.11774999999989,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621864169,
+      "endTime": 1793621867345.1177,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/commerce.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 keeps COD unpaid through delivery and collection, credits once after separate reconciliation",
+          "status": "passed",
+          "title": "keeps COD unpaid through delivery and collection, credits once after separate reconciliation",
+          "duration": 277.9810000000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 rejects made-to-order COD and destinations outside a configured city/area",
+          "status": "passed",
+          "title": "rejects made-to-order COD and destinations outside a configured city/area",
+          "duration": 35.266333999999915,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 requires configured instructions and preserves snapshots when settings change",
+          "status": "passed",
+          "title": "requires configured instructions and preserves snapshots when settings change",
+          "duration": 77.11845900000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 stores re-encoded images privately, supplies viewer-bound expiring reads and never credits money",
+          "status": "passed",
+          "title": "stores re-encoded images privately, supplies viewer-bound expiring reads and never credits money",
+          "duration": 171.25733400000013,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 serializes duplicate concurrent uploads into one immutable revision and one notification",
+          "status": "passed",
+          "title": "serializes duplicate concurrent uploads into one immutable revision and one notification",
+          "duration": 132.82345899999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 blocks cross-order image and transfer-reference reuse without deleting the accepted evidence",
+          "status": "passed",
+          "title": "blocks cross-order image and transfer-reference reuse without deleting the accepted evidence",
+          "duration": 202.28158400000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 rejects spoofed MIME, invalid bytes, oversized images and unowned evidence access",
+          "status": "passed",
+          "title": "rejects spoofed MIME, invalid bytes, oversized images and unowned evidence access",
+          "duration": 61.92741699999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 enforces CSRF in the real route without writing evidence",
+          "status": "passed",
+          "title": "enforces CSRF in the real route without writing evidence",
+          "duration": 3.5505829999999605,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 requires evidence and explicit grants before reconciliation, and locks evidence during/after review",
+          "status": "passed",
+          "title": "requires evidence and explicit grants before reconciliation, and locks evidence during/after review",
+          "duration": 189.24416699999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 preserves rejected revisions, requires a customer explanation and permits audited correction",
+          "status": "passed",
+          "title": "preserves rejected revisions, requires a customer explanation and permits audited correction",
+          "duration": 224.5986670000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 recovers the exact private object after deletion and fails closed while it is missing",
+          "status": "passed",
+          "title": "recovers the exact private object after deletion and fails closed while it is missing",
+          "duration": 119.60570899999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 keeps internal manufacturing notes private from the shopper and idempotent in the audit trail",
+          "status": "passed",
+          "title": "keeps internal manufacturing notes private from the shopper and idempotent in the audit trail",
+          "duration": 62.61695899999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 blocks manufacturing without verified advance and dispatch without the remaining balance",
+          "status": "passed",
+          "title": "blocks manufacturing without verified advance and dispatch without the remaining balance",
+          "duration": 294.68566699999974,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 revokes banned customer sessions, rejects fresh login and denies manager access changes",
+          "status": "passed",
+          "title": "revokes banned customer sessions, rejects fresh login and denies manager access changes",
+          "duration": 683.439292,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 bounds chunked request bodies even with missing or dishonest length headers",
+          "status": "passed",
+          "title": "bounds chunked request bodies even with missing or dishonest length headers",
+          "duration": 10.907874999999876,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 rate limits proof attempts without accepting forged bytes or creating evidence",
+          "status": "passed",
+          "title": "rate limits proof attempts without accepting forged bytes or creating evidence",
+          "duration": 99.71354199999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 does not resurrect rejected evidence while another payment claim is pending",
+          "status": "passed",
+          "title": "does not resurrect rejected evidence while another payment claim is pending",
+          "duration": 127.90887500000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Phase 3.5 factory acceptance — real MariaDB and private S3"],
+          "fullName": "Phase 3.5 factory acceptance — real MariaDB and private S3 retries failed captures, bounds attempts, recovers expired leases and writes one private capture",
+          "status": "passed",
+          "title": "retries failed captures, bounds attempts, recovers expired leases and writes one private capture",
+          "duration": 159.90395799999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621868296,
+      "endTime": 1793621871232.904,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/factory.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["New API defenses independent of Next Proxy execution"],
+          "fullName": "New API defenses independent of Next Proxy execution rejects anonymous and invalid staging auth on every new handler before runtime/database access",
+          "status": "passed",
+          "title": "rejects anonymous and invalid staging auth on every new handler before runtime/database access",
+          "duration": 22.164084000000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["New API defenses independent of Next Proxy execution"],
+          "fullName": "New API defenses independent of Next Proxy execution rejects a chunked oversized body without trusting Content-Length",
+          "status": "passed",
+          "title": "rejects a chunked oversized body without trusting Content-Length",
+          "duration": 5.601707999999974,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["New API defenses independent of Next Proxy execution"],
+          "fullName": "New API defenses independent of Next Proxy execution counts UTF-8 bytes rather than characters",
+          "status": "passed",
+          "title": "counts UTF-8 bytes rather than characters",
+          "duration": 0.8157919999999876,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883048,
+      "endTime": 1793621883075.8157,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/http-security.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance records a failed-attempt late success for review while a replacement is pending",
+          "status": "passed",
+          "title": "records a failed-attempt late success for review while a replacement is pending",
+          "duration": 223.674083,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance requires a RECONCILE grant even for a manager allowed to verify transfer proof",
+          "status": "passed",
+          "title": "requires a RECONCILE grant even for a manager allowed to verify transfer proof",
+          "duration": 128.38374999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance does not expose internal financial audit notes, staff identities or request digests to customers",
+          "status": "passed",
+          "title": "does not expose internal financial audit notes, staff identities or request digests to customers",
+          "duration": 93.80604100000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance uses the same 404 for nonexistent and foreign order mutations",
+          "status": "passed",
+          "title": "uses the same 404 for nonexistent and foreign order mutations",
+          "duration": 95.24074999999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance rejects malformed JSON with 400, not a runtime 500",
+          "status": "passed",
+          "title": "rejects malformed JSON with 400, not a runtime 500",
+          "duration": 0.9247920000000249,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance does not create payment attempts after reservation expiry even before the sweeper",
+          "status": "passed",
+          "title": "does not create payment attempts after reservation expiry even before the sweeper",
+          "duration": 57.21945900000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance snapshots product-specific manufacturing terms and shipping components",
+          "status": "passed",
+          "title": "snapshots product-specific manufacturing terms and shipping components",
+          "duration": 39.01495899999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance rolls back a real transaction after stock and cart mutation, then retries the original checkout",
+          "status": "passed",
+          "title": "rolls back a real transaction after stock and cart mutation, then retries the original checkout",
+          "duration": 85.70637499999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance rolls back payment ledger credit if the transactional notification insert fails",
+          "status": "passed",
+          "title": "rolls back payment ledger credit if the transactional notification insert fails",
+          "duration": 100.00658300000009,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance allows only one of five simultaneous checkouts to reserve the last item",
+          "status": "passed",
+          "title": "allows only one of five simultaneous checkouts to reserve the last item",
+          "duration": 108.89562499999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance credits once across twenty concurrent identical provider callbacks",
+          "status": "passed",
+          "title": "credits once across twenty concurrent identical provider callbacks",
+          "duration": 129.96004200000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance preserves exactly one full-refund capacity across eight competing requests",
+          "status": "passed",
+          "title": "preserves exactly one full-refund capacity across eight competing requests",
+          "duration": 105.82991700000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance races expiry against a late provider callback without recreating stock",
+          "status": "passed",
+          "title": "races expiry against a late provider callback without recreating stock",
+          "duration": 72.17158400000017,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance resolves a cart's older product outside the public catalog's first 100 entries",
+          "status": "passed",
+          "title": "resolves a cart's older product outside the public catalog's first 100 entries",
+          "duration": 19.139250000000175,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance checks registered customer ownership independently of valid account identifiers",
+          "status": "passed",
+          "title": "checks registered customer ownership independently of valid account identifiers",
+          "duration": 34.556959000000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance freezes replacement payment credit and new attempts when a contradictory receipt requires review",
+          "status": "passed",
+          "title": "freezes replacement payment credit and new attempts when a contradictory receipt requires review",
+          "duration": 74.57000000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance does not manufacture a success when replaying a failed mock-payment request key",
+          "status": "passed",
+          "title": "does not manufacture a success when replaying a failed mock-payment request key",
+          "duration": 45.340584000000035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance allows a corrected transfer claim after an authorized rejection without crediting either proof",
+          "status": "passed",
+          "title": "allows a corrected transfer claim after an authorized rejection without crediting either proof",
+          "duration": 63.38470899999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance rolls back refund reconciliation after the money mutation and then reconciles once under concurrency",
+          "status": "passed",
+          "title": "rolls back refund reconciliation after the money mutation and then reconciles once under concurrency",
+          "duration": 125.11700000000019,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance rejects an unapproved partial transfer and credits simultaneous verified confirmations only once",
+          "status": "passed",
+          "title": "rejects an unapproved partial transfer and credits simultaneous verified confirmations only once",
+          "duration": 122.08504200000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Independent adversarial Phase 3 acceptance"],
+          "fullName": "Independent adversarial Phase 3 acceptance actually uses read-committed isolation rather than retaining a stale snapshot",
+          "status": "passed",
+          "title": "actually uses read-committed isolation rather than retaining a stale snapshot",
+          "duration": 10.49329200000011,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621874698,
+      "endTime": 1793621876434.4934,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/independent-audit.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects guest, unapproved, and forged shopper keys before database operations",
+          "status": "passed",
+          "title": "rejects guest, unapproved, and forged shopper keys before database operations",
+          "duration": 2.8557080000000212,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621888066,
+      "endTime": 1793621888068.8557,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/local-fixture-boundary.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["report authentication deadline"],
+          "fullName": "report authentication deadline fails closed on timeout and bounds outstanding work until it settles",
+          "status": "passed",
+          "title": "fails closed on timeout and bounds outstanding work until it settles",
+          "duration": 4.220457999999994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621887458,
+      "endTime": 1793621887462.2205,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/report-auth-guard.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["shared limiter backend failure"],
+          "fullName": "shared limiter backend failure does not allow a request when the shared backend is unavailable",
+          "status": "passed",
+          "title": "does not allow a request when the shared backend is unavailable",
+          "duration": 2.5124160000000018,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621888188,
+      "endTime": 1793621888190.5125,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/report-rate-failure.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["shared report rate limit against disposable MariaDB"],
+          "fullName": "shared report rate limit against disposable MariaDB enforces concurrent requests from independent calls and expires its fixed window",
+          "status": "passed",
+          "title": "enforces concurrent requests from independent calls and expires its fixed window",
+          "duration": 284.8697920000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["shared report rate limit against disposable MariaDB"],
+          "fullName": "shared report rate limit against disposable MariaDB shares its threshold across independent Node processes",
+          "status": "passed",
+          "title": "shares its threshold across independent Node processes",
+          "duration": 1757.6114589999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621871630,
+      "endTime": 1793621873672.6116,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/report-rate.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB uses the Cairo event date, exact values, and excludes customer data",
+          "status": "passed",
+          "title": "uses the Cairo event date, exact values, and excludes customer data",
+          "duration": 58.52200000000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB rejects managers and newly suspended owners",
+          "status": "passed",
+          "title": "rejects managers and newly suspended owners",
+          "duration": 18.61616700000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB counts verified InstaPay on its event day without treating a pending claim as cash",
+          "status": "passed",
+          "title": "counts verified InstaPay on its event day without treating a pending claim as cash",
+          "duration": 28.686208999999963,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB attributes an order and its verified collection on opposite sides of Cairo midnight",
+          "status": "passed",
+          "title": "attributes an order and its verified collection on opposite sides of Cairo midnight",
+          "duration": 48.003541999999925,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB keeps collections and refunds in their event days across leap, year and Cairo DST boundaries",
+          "status": "passed",
+          "title": "keeps collections and refunds in their event days across leap, year and Cairo DST boundaries",
+          "duration": 233.37737500000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB excludes cancelled obligations while retaining verified payment movements",
+          "status": "passed",
+          "title": "excludes cancelled obligations while retaining verified payment movements",
+          "duration": 12.317499999999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB counts multiple completed partial refunds against a single payment and excludes a pending refund",
+          "status": "passed",
+          "title": "counts multiple completed partial refunds against a single payment and excludes a pending refund",
+          "duration": 22.269374999999968,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB distinguishes unpaid COD from separately reconciled COD",
+          "status": "passed",
+          "title": "distinguishes unpaid COD from separately reconciled COD",
+          "duration": 17.317958999999973,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner reporting against disposable MariaDB"],
+          "fullName": "owner reporting against disposable MariaDB tracks partial verified payments, pending claims and reconciled refunds exactly once",
+          "status": "passed",
+          "title": "tracks partial verified payments, pending claims and reconciled refunds exactly once",
+          "duration": 58.14654099999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621876995,
+      "endTime": 1793621877493.1465,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/reports.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["staging identity using an isolated MariaDB session"],
+          "fullName": "staging identity using an isolated MariaDB session checks a signed temporary marker and fails closed after tampering or disconnection",
+          "status": "passed",
+          "title": "checks a signed temporary marker and fails closed after tampering or disconnection",
+          "duration": 17.61099999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884661,
+      "endTime": 1793621884678.611,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/staging-database-identity.integration.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation accepts only matching connection identity and authenticated marker",
+          "status": "passed",
+          "title": "accepts only matching connection identity and authenticated marker",
+          "duration": 2.612958000000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation reads server identity and the marker in a single database statement",
+          "status": "passed",
+          "title": "reads server identity and the marker in a single database statement",
+          "duration": 0.6166249999999991,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 0",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 0",
+          "duration": 1.049166999999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 1",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 1",
+          "duration": 0.4774579999999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 2",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 2",
+          "duration": 0.22162499999998886,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 3",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 3",
+          "duration": 0.20275000000000887,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 4",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 4",
+          "duration": 0.36233400000000415,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 5",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 5",
+          "duration": 0.19179200000000662,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 6",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 6",
+          "duration": 1.1494589999999931,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects invalid configuration before a query 7",
+          "status": "passed",
+          "title": "rejects invalid configuration before a query 7",
+          "duration": 0.35841700000000287,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects identity, marker and signature mismatches 0",
+          "status": "passed",
+          "title": "rejects identity, marker and signature mismatches 0",
+          "duration": 0.5278330000000011,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects identity, marker and signature mismatches 1",
+          "status": "passed",
+          "title": "rejects identity, marker and signature mismatches 1",
+          "duration": 0.17950000000000443,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects identity, marker and signature mismatches 2",
+          "status": "passed",
+          "title": "rejects identity, marker and signature mismatches 2",
+          "duration": 0.13904100000000597,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects identity, marker and signature mismatches 3",
+          "status": "passed",
+          "title": "rejects identity, marker and signature mismatches 3",
+          "duration": 0.12558400000000347,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation rejects identity, marker and signature mismatches 4",
+          "status": "passed",
+          "title": "rejects identity, marker and signature mismatches 4",
+          "duration": 0.165040999999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["read-only staging database attestation"],
+          "fullName": "read-only staging database attestation fails closed on a database outage without exposing the underlying error",
+          "status": "passed",
+          "title": "fails closed on a database outage without exposing the underlying error",
+          "duration": 0.23775000000000546,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621885899,
+      "endTime": 1793621885908.2378,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/lib/server/commerce/staging-database-identity.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Authenticated complete product media library"],
+          "fullName": "Authenticated complete product media library rejects unauthorized readers before database access",
+          "status": "passed",
+          "title": "rejects unauthorized readers before database access",
+          "duration": 18.258375,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Authenticated complete product media library"],
+          "fullName": "Authenticated complete product media library returns bounded searched pages and display URLs without original storage keys",
+          "status": "passed",
+          "title": "returns bounded searched pages and display URLs without original storage keys",
+          "duration": 3.8232909999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["Authenticated complete product media library"],
+          "fullName": "Authenticated complete product media library rejects malformed pagination and handles database failure without leaking errors",
+          "status": "passed",
+          "title": "rejects malformed pagination and handles database failure without leaking errors",
+          "duration": 1.7094590000000096,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883406,
+      "endTime": 1793621883429.7095,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/api/admin/media/route.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["report route with hosted staging disabled"],
+          "fullName": "report route with hosted staging disabled rejects before session or database access even with valid site credentials",
+          "status": "passed",
+          "title": "rejects before session or database access even with valid site credentials",
+          "duration": 17.506,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621884106,
+      "endTime": 1793621884123.506,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/api/admin/reports/staging-boundary.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["private staging image delivery"],
+          "fullName": "private staging image delivery rejects missing or incorrect staging credentials before database or storage access",
+          "status": "passed",
+          "title": "rejects missing or incorrect staging credentials before database or storage access",
+          "duration": 15.42233299999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["private staging image delivery"],
+          "fullName": "private staging image delivery serves a registered display image only to authenticated staging viewers without caching",
+          "status": "passed",
+          "title": "serves a registered display image only to authenticated staging viewers without caching",
+          "duration": 3.5205419999999776,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["private staging image delivery"],
+          "fullName": "private staging image delivery refuses evidence keys, unregistered objects, and inactive hosted configuration",
+          "status": "passed",
+          "title": "refuses evidence keys, unregistered objects, and inactive hosted configuration",
+          "duration": 2.1750410000000215,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["private staging image delivery"],
+          "fullName": "private staging image delivery fails closed on wrong content type and oversized objects",
+          "status": "passed",
+          "title": "fails closed on wrong content type and oversized objects",
+          "duration": 1.0826250000000073,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793621883901,
+      "endTime": 1793621883923.0825,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/workspace/src/app/api/staging-media/[...key]/route.test.ts"
+    }
+  ]
+}

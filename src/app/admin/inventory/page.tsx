@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { inventoryPage } from "@/lib/server/admin-inventory";
 import { getDatabase } from "@/lib/server/database";
 import { requireAdminPage } from "@/lib/server/admin-page";
 import { hasPermission } from "@/lib/admin/permissions";
@@ -9,24 +11,19 @@ export const dynamic = "force-dynamic";
 export default async function AdminInventoryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; saved?: string; q?: string; low?: string }>;
+  searchParams: Promise<{
+    error?: string;
+    saved?: string;
+    q?: string;
+    low?: string;
+    page?: string;
+  }>;
 }) {
   const actor = await requireAdminPage("INVENTORY_READ");
   const query = await searchParams;
   const canAdjust = hasPermission(actor.roleCode, "INVENTORY_ADJUST");
-  const [allBalances, movements, orderMovements] = await Promise.all([
-    getDatabase().inventoryBalance.findMany({
-      where: {
-        product: { type: "READY_MADE", status: { not: "ARCHIVED" } },
-        variant: { active: true },
-      },
-      include: {
-        product: { select: { titleAr: true, slug: true, status: true } },
-        variant: { select: { nameAr: true, sku: true } },
-      },
-      orderBy: [{ quantity: "asc" }, { product: { titleAr: "asc" } }],
-      take: 300,
-    }),
+  const [listing, movements, orderMovements] = await Promise.all([
+    inventoryPage(query),
     getDatabase().inventoryMovement.findMany({
       include: {
         balance: {
@@ -41,15 +38,10 @@ export default async function AdminInventoryPage({
     }),
     getDatabase().commerceStockEvent.findMany({ orderBy: { createdAt: "desc" }, take: 50 }),
   ]);
-  const search = query.q?.trim().slice(0, 120) ?? "";
-  const balances = allBalances.filter(
-    (b) =>
-      (!search ||
-        [b.product.titleAr, b.variant.nameAr, b.variant.sku ?? ""].some((v) =>
-          v.includes(search),
-        )) &&
-      (query.low !== "1" || b.quantity - b.reserved <= b.lowStockAt),
-  );
+  const balances = listing.rows;
+  const pageHref = (page: number) =>
+    "/admin/inventory?" +
+    new URLSearchParams({ q: listing.q, low: listing.low ? "1" : "", page: String(page) });
   const orderVariants = await getDatabase().productVariant.findMany({
     where: { id: { in: [...new Set(orderMovements.map((m) => m.variantId))] } },
     select: { id: true, nameAr: true, product: { select: { titleAr: true } } },
@@ -93,14 +85,11 @@ export default async function AdminInventoryPage({
           <button className="admin-button">عرض الأرصدة</button>
         </div>
         <span className="admin-muted">
-          {new Intl.NumberFormat("ar-EG").format(balances.length)} رصيد ضمن النتائج المعروضة
+          {new Intl.NumberFormat("ar-EG").format(listing.total)} رصيد مطابق · صفحة{" "}
+          {new Intl.NumberFormat("ar-EG").format(listing.page)} من{" "}
+          {new Intl.NumberFormat("ar-EG").format(listing.pages)}
         </span>
       </form>
-      {allBalances.length === 300 ? (
-        <p className="admin-notice">
-          تُعرض أول ٣٠٠ من أرصدة المخزون مرتبة حسب الكمية. استخدم الكتالوج للوصول إلى بقية المنتجات.
-        </p>
-      ) : null}
       <section
         className="admin-table-wrap inventory-table-region"
         tabIndex={0}
@@ -194,6 +183,20 @@ export default async function AdminInventoryPage({
           </p>
         )}
       </section>
+      {listing.pages > 1 ? (
+        <nav className="admin-shortcuts" aria-label="صفحات المخزون">
+          {listing.page > 1 ? (
+            <Link className="admin-button" href={pageHref(listing.page - 1)}>
+              السابق
+            </Link>
+          ) : null}
+          {listing.page < listing.pages ? (
+            <Link className="admin-button" href={pageHref(listing.page + 1)}>
+              التالي
+            </Link>
+          ) : null}
+        </nav>
+      ) : null}
       <section className="admin-panel admin-subsection">
         <h2>آخر حركات المخزون</h2>
         {movements.length ? (
