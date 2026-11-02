@@ -1,0 +1,57 @@
+{
+  "verifiedAt": "2026-11-02T12:52:37.869539+00:00",
+  "sourceCommit": "bda268c841b28309486b600e2ea90f79a8065745",
+  "archive": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/releases/sprtaya-phase55-bda268c841b2.zip",
+  "bytes": 1520539,
+  "sha256": "9cd86bd8eb6a2222c792c68b79e52a1820b6e592fbb193ffac61468e3b7164c7",
+  "members": 184,
+  "sourceAndMemberHashMatches": true,
+  "integrity": "PASS",
+  "unsafePaths": 0,
+  "unicodeCollisions": 0,
+  "nonAsciiUtf8Entries": 6,
+  "secretPatternFindings": [],
+  "excludedSensitiveFileTypes": true,
+  "privateCustomerDataset": "No customer/order/export records packaged; catalog and brand data only",
+  "buildRunsMigrations": false,
+  "startupRunsMigrations": false,
+  "packageManager": "pnpm@11.24.0",
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1156.0",
+    "@aws-sdk/s3-request-presigner": "3.1156.0",
+    "@prisma/adapter-mariadb": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "@swc/helpers": "0.5.23",
+    "better-auth": "1.7.14",
+    "dotenv": "18.0.9",
+    "mariadb": "3.5.4",
+    "next": "16.4.3",
+    "prisma": "7.10.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sharp": "0.35.5",
+    "tsx": "4.23.15",
+    "zod": "4.6.7"
+  },
+  "migrationNames": [
+    "20261027000000_phase2_initial",
+    "20261027120000_phase2_2_review_safety",
+    "20261029143000_phase3_local_commerce",
+    "20261029144500_phase3_cancellation_review",
+    "20261030023000_phase35_factory_operations",
+    "20261030024500_phase35_customer_access",
+    "20261031000000_phase4_report_indexes"
+  ],
+  "recovery": {
+    "path": "/Users/zuriki/Desktop/Desha Kanka/.local/staging-readiness/releases/sprtaya-recovery-cea867a.zip",
+    "bytes": 37716671,
+    "sha256": "f7ef1fc42ad070b0fe424a00882ec873f97cb15c19dfac99905dd321eb3b28d8",
+    "available": true
+  },
+  "mediaBackup": {
+    "path": "/Users/zuriki/Downloads/Sprtaya-Backups/sprtaya-media-2026-11-01.tar.gz",
+    "bytes": 332109106,
+    "sha256": "ada01123c5aa75c3f40de6fed22f402e5d866c5ba43dce8f878d27a903704d17",
+    "available": true
+  }
+}

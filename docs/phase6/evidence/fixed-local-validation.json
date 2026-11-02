@@ -1,0 +1,31 @@
+{
+  "install": {
+    "exitCode": 0,
+    "seconds": 7.97
+  },
+  "build": {
+    "exitCode": 0,
+    "seconds": 54.7
+  },
+  "typecheck": {
+    "exitCode": 0,
+    "seconds": 8.27
+  },
+  "lint": {
+    "exitCode": 0,
+    "seconds": 11.71
+  },
+  "prisma": {
+    "exitCode": 0,
+    "seconds": 1.45
+  },
+  "migrationPrepare": {
+    "exitCode": 0,
+    "seconds": 1.27,
+    "databaseAccess": false
+  },
+  "migrationPrepareInitialBlockedByLocalIpcPermissions": {
+    "exitCode": 1,
+    "seconds": 0.9
+  }
+}
