@@ -1,7 +1,7 @@
 {
   "scope": "Local candidate source, generated production build, known private local credentials, trace paths and original media checksums; no hosted values retrieved",
   "counts": {
-    "sourceText": 525,
+    "sourceText": 532,
     "buildText": 315,
     "traces": 55
   },

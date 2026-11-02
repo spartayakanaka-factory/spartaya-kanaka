@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "bda268c841b28309486b600e2ea90f79a8065745",
+  "archiveSha256": "9cd86bd8eb6a2222c792c68b79e52a1820b6e592fbb193ffac61468e3b7164c7",
+  "results": {
+    "install": 0,
+    "build": 0,
+    "typecheck": 0,
+    "migrationPrepare": 0
+  },
+  "freshExtractAndOfflineFrozenInstall": true,
+  "credentialsProvided": false,
+  "generatedNextEnvOnlyChangeAllowed": true,
+  "sourcePayloadChanges": [],
+  "migrationsExecuted": false,
+  "hostedExecution": false
+}

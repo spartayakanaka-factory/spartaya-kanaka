@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "bda268c841b28309486b600e2ea90f79a8065745",
+  "preview": false,
+  "archive": "/Users/zuriki/Desktop/Desha Kanka/.local/phase55/releases/sprtaya-phase55-bda268c841b2.zip",
+  "bytes": 1520539,
+  "sha256": "9cd86bd8eb6a2222c792c68b79e52a1820b6e592fbb193ffac61468e3b7164c7",
+  "members": 184,
+  "utf8Metadata": "PASS",
+  "unicodeCollisions": 0,
+  "unsafePaths": 0,
+  "integrity": "PASS",
+  "deployed": false,
+  "knownPrivateValuesChecked": 11,
+  "privateValueFindings": [],
+  "memberHashVerification": "PASS",
+  "sourceAndArchiveIdentity": "PASS",
+  "currentWorktreeRuntimePayloadMatchesRelease": true
+}
