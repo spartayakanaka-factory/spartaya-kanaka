@@ -12,6 +12,7 @@ export default defineConfig([
     ".next-phase3/**",
     ".next-phase35/**",
     ".next-phase4/**",
+    ".next-phase5/**",
     ".local/**",
     "out/**",
     "build/**",

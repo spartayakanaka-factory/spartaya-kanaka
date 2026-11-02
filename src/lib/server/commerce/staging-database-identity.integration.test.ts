@@ -13,8 +13,11 @@ describe.skipIf(!enabled)("staging identity using an isolated MariaDB session", 
     if (
       url.hostname !== "127.0.0.1" ||
       url.port !== "33078" ||
-      url.pathname !== "/sprtaya_phase4_disposable_test" ||
-      url.username !== "sprtaya_phase4"
+      url.pathname !==
+        (process.env.P5_WORKSTREAM === "1"
+          ? "/sprtaya_phase5_disposable_test"
+          : "/sprtaya_phase4_disposable_test") ||
+      url.username !== (process.env.P5_WORKSTREAM === "1" ? "sprtaya_phase5" : "sprtaya_phase4")
     )
       throw new Error("Exact disposable Phase 4 test database required");
     const conn = await mariadb.createConnection({

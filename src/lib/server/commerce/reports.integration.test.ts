@@ -15,7 +15,9 @@ describe.skipIf(!enabled)("owner reporting against disposable MariaDB", () => {
     expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
       process.env.P4_RECOVERY_TEST === "1"
         ? "/sprtaya_phase4_recovery_v3"
-        : "/sprtaya_phase4_disposable_test",
+        : process.env.P5_WORKSTREAM === "1"
+          ? "/sprtaya_phase5_disposable_test"
+          : "/sprtaya_phase4_disposable_test",
     );
     // These tests assert whole-day aggregates. Repeated local runs retain synthetic
     // records, so reserve an unoccupied interval before creating this run's facts.

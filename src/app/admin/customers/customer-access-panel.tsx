@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 type Data = {
   customers: {
@@ -15,27 +16,34 @@ type Data = {
 export function CustomerAccessPanel() {
   const [data, setData] = useState<Data | null>(null),
     [page, setPage] = useState(0),
+    [query, setQuery] = useState(""),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
   const load = useCallback(
     async (signal?: AbortSignal) => {
-      const r = await fetch("/api/admin/commerce?resource=customers&page=" + page, {
-        cache: "no-store",
-        signal,
-      });
+      const r = await fetch(
+        "/api/admin/commerce?resource=customers&q=" + encodeURIComponent(query) + "&page=" + page,
+        {
+          cache: "no-store",
+          signal,
+        },
+      );
       if (!r.ok) throw Error("تعذر تحميل الحسابات. راجع صلاحية المالك.");
       setData(await r.json());
     },
-    [page],
+    [page, query],
   );
   useEffect(() => {
     const c = new AbortController();
-    fetch("/api/admin/commerce?resource=customers&page=" + page, {
-      cache: "no-store",
-      signal: c.signal,
-    })
+    fetch(
+      "/api/admin/commerce?resource=customers&q=" + encodeURIComponent(query) + "&page=" + page,
+      {
+        cache: "no-store",
+        signal: c.signal,
+      },
+    )
       .then(async (r) => {
-        if (!r.ok) throw Error("Unable to load customer accounts");
+        if (!r.ok) throw Error("تعذر تحميل حسابات العملاء. تحقق من الاتصال ثم أعد المحاولة.");
         return (await r.json()) as Data;
       })
       .then(setData)
@@ -43,7 +51,7 @@ export function CustomerAccessPanel() {
         if (e.name !== "AbortError") setMessage(e.message);
       });
     return () => c.abort();
-  }, [page]);
+  }, [page, query]);
   return (
     <>
       <p className="admin-notice">
@@ -51,6 +59,20 @@ export function CustomerAccessPanel() {
         حظر لأرقام الهواتف أو طلبات الضيوف.
       </p>
       <p role="status">{message}</p>
+      <form
+        className="admin-toolbar"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setQuery(String(new FormData(e.currentTarget).get("q") ?? ""));
+          setPage(0);
+        }}
+      >
+        <label>
+          بحث عن عميل
+          <input name="q" maxLength={120} placeholder="الاسم أو الهاتف أو البريد" />
+        </label>
+        <button className="admin-button">بحث</button>
+      </form>
       <section className="admin-panel">
         <h2>الحسابات المسجلة</h2>
         {data ? (
@@ -65,6 +87,9 @@ export function CustomerAccessPanel() {
                     <h3>{c.name}</h3>
                     <strong>{c.banned ? "الوصول موقوف" : "حساب متاح"}</strong>
                   </header>
+                  <Link className="admin-text-button" href={"/admin/customers/" + c.id}>
+                    عرض سجل الطلبات
+                  </Link>
                   <address>
                     <bdi>{c.email}</bdi>
                     {c.phone ? (

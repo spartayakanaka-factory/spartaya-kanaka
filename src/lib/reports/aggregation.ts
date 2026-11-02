@@ -199,7 +199,9 @@ export function aggregateReports(
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([code, a]) => ({
         currency: code,
-        ...Object.fromEntries(Object.entries(a).map(([k, v]) => [k, String(v)])),
+        ...(Object.fromEntries(Object.entries(a).map(([k, v]) => [k, String(v)])) as {
+          [K in keyof Amounts]: string;
+        }),
         netCollected: String(a.collected - a.refunded),
       })),
   };

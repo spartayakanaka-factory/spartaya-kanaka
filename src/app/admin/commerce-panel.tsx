@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ManualPaymentCard } from "@/components/manual-payment";
 import { FactoryPaymentSettings, FactoryShippingSettings } from "./factory-settings";
 import { FactoryWorkQueue } from "./factory-work-queue";
+import { orderStateLabels, paymentMethodLabels } from "@/lib/admin/order-presentation";
 import { parsePriceMinor } from "@/lib/admin/price";
 import { decimalFromMinor, formatMoneyMinor } from "@/lib/money";
 type Row = {
@@ -28,6 +29,7 @@ type Row = {
   id: string;
   state: string;
   totalMinor: string;
+  initialMinor: string;
   paidMinor: string;
   currency: string;
   createdAt: string;
@@ -48,6 +50,7 @@ type Row = {
     id: string;
     state: string;
     method: string;
+    purpose: string;
     amountMinor: string;
     claimReference?: string | null;
     evidenceRequired?: boolean;
@@ -89,15 +92,7 @@ type Data = {
   notifications: { id: string; kind: string; locale: string; state: string; attempts: number }[];
 };
 const states: Record<string, string> = {
-  AWAITING_PAYMENT: "بانتظار الدفع",
-  CONFIRMED: "مؤكد",
-  IN_PRODUCTION: "قيد التصنيع",
-  READY: "جاهز",
-  SHIPPED: "تم الشحن",
-  DELIVERED: "تم التسليم",
-  CANCELLED: "ملغي",
-  EXPIRED: "منتهي",
-  RETURNED: "مرتجع",
+  ...orderStateLabels,
   REQUESTED: "بانتظار الموافقة",
   APPROVED: "معتمد",
   EXECUTED: "منفذ — ينتظر التسوية",
@@ -160,10 +155,12 @@ const policyValues: Record<string, string> = {
 export function AdminCommercePanel({
   orderId,
   settings = false,
+  initialFilter = "",
   owner = false,
 }: {
   orderId?: string;
   settings?: boolean;
+  initialFilter?: string;
   owner?: boolean;
 }) {
   const [data, setData] = useState<Data | null>(null),
@@ -171,10 +168,10 @@ export function AdminCommercePanel({
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
     [q, setQ] = useState(""),
-    [filter, setFilter] = useState(""),
+    [filter, setFilter] = useState(initialFilter),
     [page, setPage] = useState(0),
     [financeKind, setFinanceKind] = useState("VERIFY_TRANSFER");
-  const money = (n: string) => formatMoneyMinor(Number(n), "ar", "EGP");
+  const money = (n: string) => formatMoneyMinor(n, "ar", order?.currency ?? "EGP");
   const load = useCallback(async () => {
     const r = await fetch(
       "/api/admin/commerce?" +
@@ -291,18 +288,54 @@ export function AdminCommercePanel({
             <h2>
               طلب <bdi>{order.id.slice(0, 8)}</bdi> · {states[order.state] || order.state}
             </h2>
-            <p>
-              الإجمالي {money(order.totalMinor)} · الدفعات المتحققة {money(order.paidMinor)} ·
-              المسترد {money(order.refundedMinor)} · الرصيد{" "}
-              {money(
-                String(
-                  BigInt(order.totalMinor) -
-                    BigInt(order.creditedMinor) -
-                    BigInt(order.paidMinor) +
-                    BigInt(order.refundedMinor),
-                ),
-              )}{" "}
-              · {order.paymentMethod}
+            <p className="admin-muted">
+              طريقة الدفع: {paymentMethodLabels[order.paymentMethod] ?? order.paymentMethod}
+            </p>
+            <dl className="admin-order-money">
+              <div>
+                <dt>إجمالي الطلب</dt>
+                <dd>{money(order.totalMinor)}</dd>
+              </div>
+              <div>
+                <dt>المطلوب مقدماً</dt>
+                <dd>{money(order.initialMinor)}</dd>
+              </div>
+              <div>
+                <dt>دفعات أولى متحققة</dt>
+                <dd>
+                  {money(
+                    String(
+                      order.payments
+                        ?.filter((p) => p.state === "SUCCEEDED" && p.purpose === "INITIAL")
+                        .reduce((sum, p) => sum + BigInt(p.amountMinor), BigInt(0)) ?? BigInt(0),
+                    ),
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt>إجمالي المدفوع المتحقق</dt>
+                <dd>{money(order.paidMinor)}</dd>
+              </div>
+              <div>
+                <dt>المسترد</dt>
+                <dd>{money(order.refundedMinor)}</dd>
+              </div>
+              <div>
+                <dt>الرصيد المستحق</dt>
+                <dd>
+                  {money(
+                    String(
+                      BigInt(order.totalMinor) -
+                        BigInt(order.creditedMinor) -
+                        BigInt(order.paidMinor) +
+                        BigInt(order.refundedMinor),
+                    ),
+                  )}
+                </dd>
+              </div>
+            </dl>
+            <p className="admin-muted">
+              المبالغ المعروضة من سجل الطلب. بلاغ التحويل غير المتحقق لا يُحسب ضمن المدفوع.
             </p>
             {order.items?.map((i) => (
               <article key={i.id} className="factory-item">
@@ -318,7 +351,7 @@ export function AdminCommercePanel({
                     {i.type === "MADE_TO_ORDER"
                       ? i.manufacturingState === "NOT_STARTED"
                         ? "لم يبدأ التصنيع"
-                        : i.manufacturingState === "IN_PROGRESS"
+                        : i.manufacturingState === "IN_PRODUCTION"
                           ? "التصنيع جارٍ"
                           : "اكتمل التصنيع"
                       : "قطعة جاهزة"}
@@ -575,39 +608,41 @@ export function AdminCommercePanel({
                 إضافة ملاحظة داخلية
               </button>
             </form>
-            <h2>سجل الطلب</h2>
-            {order.events?.map((e) => (
-              <p key={e.id}>
-                {(
-                  {
-                    "order.created": "تسجيل الطلب",
-                    "payment.initiated": "بدء دفعة",
-                    "payment.evidence_submitted": "رفع إثبات تحويل",
-                    "payment.verified": "مطابقة دفعة",
-                    "payment.rejected": "رفض إثبات مع توضيح",
-                    "order.shipped": "تسجيل شحنة",
-                    "order.note_added": "إضافة ملاحظة داخلية",
-                    "order.cancelled": "إلغاء الطلب",
-                    "finance.requested": "طلب مراجعة مالية",
-                    "finance.approve": "اعتماد المراجعة",
-                    "finance.execute": "تنفيذ قرار المراجعة",
-                    "finance.reconcile": "تسوية المراجعة",
-                    "fulfillment.start": "بدء التصنيع",
-                    "fulfillment.ready": "تجهيز للشحن",
-                    "fulfillment.delivered": "تسجيل التسليم",
-                    "fulfillment.cod_collected": "تسجيل تحصيل المندوب",
-                    "fulfillment.cod_reconciled": "تسوية تحصيل المندوب",
-                  } as Record<string, string>
-                )[e.kind] || "تحديث موثق"}{" "}
-                ·{" "}
-                {e.actorKey.startsWith("staff:")
-                  ? "فريق المصنع"
-                  : e.actorKey.startsWith("guest:") || e.actorKey.startsWith("customer:")
-                    ? "العميل"
-                    : "النظام"}{" "}
-                · {new Date(e.createdAt).toLocaleString("ar-EG")}
-              </p>
-            ))}
+            <details className="admin-order-history">
+              <summary>سجل الطلب ({order.events?.length.toLocaleString("ar-EG") ?? "٠"})</summary>
+              {order.events?.map((e) => (
+                <p key={e.id}>
+                  {(
+                    {
+                      "order.created": "تسجيل الطلب",
+                      "payment.initiated": "بدء دفعة",
+                      "payment.evidence_submitted": "رفع إثبات تحويل",
+                      "payment.verified": "مطابقة دفعة",
+                      "payment.rejected": "رفض إثبات مع توضيح",
+                      "order.shipped": "تسجيل شحنة",
+                      "order.note_added": "إضافة ملاحظة داخلية",
+                      "order.cancelled": "إلغاء الطلب",
+                      "finance.requested": "طلب مراجعة مالية",
+                      "finance.approve": "اعتماد المراجعة",
+                      "finance.execute": "تنفيذ قرار المراجعة",
+                      "finance.reconcile": "تسوية المراجعة",
+                      "fulfillment.start": "بدء التصنيع",
+                      "fulfillment.ready": "تجهيز للشحن",
+                      "fulfillment.delivered": "تسجيل التسليم",
+                      "fulfillment.cod_collected": "تسجيل تحصيل المندوب",
+                      "fulfillment.cod_reconciled": "تسوية تحصيل المندوب",
+                    } as Record<string, string>
+                  )[e.kind] || "تحديث موثق"}{" "}
+                  ·{" "}
+                  {e.actorKey.startsWith("staff:")
+                    ? "فريق المصنع"
+                    : e.actorKey.startsWith("guest:") || e.actorKey.startsWith("customer:")
+                      ? "العميل"
+                      : "النظام"}{" "}
+                  · {new Date(e.createdAt).toLocaleString("ar-EG")}
+                </p>
+              ))}
+            </details>
           </section>
         </>
       ) : null}
@@ -637,13 +672,11 @@ export function AdminCommercePanel({
                 >
                   <option value="PAYMENT_REVIEW">مراجعة التحويلات</option>
                   <option value="">كل الحالات</option>
-                  {Object.entries(states)
-                    .slice(0, 9)
-                    .map(([s, l]) => (
-                      <option key={s} value={s}>
-                        {l}
-                      </option>
-                    ))}
+                  {Object.entries(orderStateLabels).map(([s, l]) => (
+                    <option key={s} value={s}>
+                      {l}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
@@ -653,13 +686,13 @@ export function AdminCommercePanel({
             </p>
             <div className="admin-table-wrap">
               <table className="admin-table">
-                <caption>طلبات الاختبار المحلية</caption>
+                <caption>قائمة الطلبات · أحدث الطلبات أولاً</caption>
                 <thead>
                   <tr>
                     <th>الطلب</th>
                     <th>الحالة</th>
                     <th>الإجمالي</th>
-                    <th>المطابق</th>
+                    <th>المدفوع المتحقق</th>
                     <th>التاريخ</th>
                   </tr>
                 </thead>
@@ -671,7 +704,9 @@ export function AdminCommercePanel({
                           <bdi>{o.id.slice(0, 8)}</bdi>
                         </Link>
                       </td>
-                      <td>{states[o.state] || o.state}</td>
+                      <td>
+                        <span className="admin-badge">{states[o.state] || o.state}</span>
+                      </td>
                       <td>{money(o.totalMinor)}</td>
                       <td>{money(o.paidMinor)}</td>
                       <td>{new Date(o.createdAt).toLocaleDateString("ar-EG")}</td>

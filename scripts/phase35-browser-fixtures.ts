@@ -12,7 +12,9 @@ async function main() {
     (process.env.SR_LOCAL_ISOLATION === "1" && u.username === "sprtaya_sr_runtime"
       ? "/sprtaya_sr_staging_local"
       : process.env.P4_WORKSTREAM === "1"
-        ? "/sprtaya_phase4_disposable_local"
+        ? process.env.P5_WORKSTREAM === "1"
+          ? "/sprtaya_phase5_disposable_local"
+          : "/sprtaya_phase4_disposable_local"
         : "/sprtaya_phase35_disposable_local")
   )
     throw Error("Phase 3.5 fixture target required");

@@ -53,10 +53,12 @@ describe.skipIf(process.env.PHASE3_DB_INTEGRATION !== "1")(
       db = getDatabase();
       expect(new URL(process.env.DATABASE_URL!).pathname).toBe(
         process.env.P4_WORKSTREAM === "1"
-          ? "/sprtaya_phase4_disposable_test"
+          ? process.env.P5_WORKSTREAM === "1"
+            ? "/sprtaya_phase5_disposable_test"
+            : "/sprtaya_phase4_disposable_test"
           : process.env.P35_WORKSTREAM === "1"
-          ? "/sprtaya_phase35_disposable_test"
-          : "/sprtaya_phase3_disposable_test",
+            ? "/sprtaya_phase35_disposable_test"
+            : "/sprtaya_phase3_disposable_test",
       );
       await fixturePolicy(db);
       rate = await fixtureRate(db, address.region);

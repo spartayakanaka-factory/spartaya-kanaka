@@ -50,8 +50,20 @@ export async function GET(request: Request) {
     if (u.searchParams.get("resource") === "customers") {
       demand(viewer.roleCode === "OWNER", "OWNER_REQUIRED", 403);
       const page = Math.min(10000, Math.max(0, Number(u.searchParams.get("page")) || 0));
+      const search = (u.searchParams.get("q") ?? "").trim();
+      demand(search.length <= 120, "INVALID_INPUT", 400);
+      const where = search
+        ? {
+            OR: [
+              { name: { contains: search } },
+              { email: { contains: search } },
+              { phone: { contains: search } },
+            ],
+          }
+        : {};
       const [customers, total] = await Promise.all([
         db.customerUser.findMany({
+          where,
           select: {
             id: true,
             name: true,
@@ -65,7 +77,7 @@ export async function GET(request: Request) {
           skip: Math.floor(page) * 30,
           orderBy: { createdAt: "desc" },
         }),
-        db.customerUser.count(),
+        db.customerUser.count({ where }),
       ]);
       return Response.json(
         { customers, total, page: Math.floor(page) },

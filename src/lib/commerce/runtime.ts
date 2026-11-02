@@ -85,6 +85,10 @@ export function commerceEnabled(env = process.env) {
   if (env.SR_HOSTED_ISOLATION === "1") return hostedStagingConfigured(env);
   try {
     const u = new URL(env.DATABASE_URL || "");
+    const phase5 =
+      env.P5_WORKSTREAM === "1" &&
+      u.username === "sprtaya_phase5" &&
+      ["/sprtaya_phase5_disposable_local", "/sprtaya_phase5_disposable_test"].includes(u.pathname);
     const localStaging =
       u.pathname === "/sprtaya_sr_staging_local" &&
       u.username === "sprtaya_sr_runtime" &&
@@ -99,7 +103,8 @@ export function commerceEnabled(env = process.env) {
       u.protocol === "mysql:" &&
       u.hostname === "127.0.0.1" &&
       u.port === "33078" &&
-      (localStaging ||
+      (phase5 ||
+        localStaging ||
         [
           "/sprtaya_phase3_disposable_local",
           "/sprtaya_phase3_disposable_test",

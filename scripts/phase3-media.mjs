@@ -14,7 +14,11 @@ const pidFile = path.join(directory, "pid");
 const originals = "sprtaya-phase3-originals";
 const display = "sprtaya-phase3-display";
 const portBase = Number(process.env.P3_MEDIA_PORT_BASE || 39010);
-if (![39010, 39110, 39210, 39310].includes(portBase))
+if (
+  ![39010, 39110, 39210, 39310, ...(process.env.P5_WORKSTREAM === "1" ? [39410] : [])].includes(
+    portBase,
+  )
+)
   throw Error("Use a reviewed disposable storage port range.");
 const endpoint = "http://127.0.0.1:" + portBase;
 mkdirSync(directory, { recursive: true, mode: 0o700 });

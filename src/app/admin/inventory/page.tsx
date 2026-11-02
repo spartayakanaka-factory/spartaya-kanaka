@@ -9,12 +9,12 @@ export const dynamic = "force-dynamic";
 export default async function AdminInventoryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; saved?: string }>;
+  searchParams: Promise<{ error?: string; saved?: string; q?: string; low?: string }>;
 }) {
   const actor = await requireAdminPage("INVENTORY_READ");
   const query = await searchParams;
   const canAdjust = hasPermission(actor.roleCode, "INVENTORY_ADJUST");
-  const [balances, movements, orderMovements] = await Promise.all([
+  const [allBalances, movements, orderMovements] = await Promise.all([
     getDatabase().inventoryBalance.findMany({
       where: {
         product: { type: "READY_MADE", status: { not: "ARCHIVED" } },
@@ -41,6 +41,15 @@ export default async function AdminInventoryPage({
     }),
     getDatabase().commerceStockEvent.findMany({ orderBy: { createdAt: "desc" }, take: 50 }),
   ]);
+  const search = query.q?.trim().slice(0, 120) ?? "";
+  const balances = allBalances.filter(
+    (b) =>
+      (!search ||
+        [b.product.titleAr, b.variant.nameAr, b.variant.sku ?? ""].some((v) =>
+          v.includes(search),
+        )) &&
+      (query.low !== "1" || b.quantity - b.reserved <= b.lowStockAt),
+  );
   const orderVariants = await getDatabase().productVariant.findMany({
     where: { id: { in: [...new Set(orderMovements.map((m) => m.variantId))] } },
     select: { id: true, nameAr: true, product: { select: { titleAr: true } } },
@@ -68,7 +77,36 @@ export default async function AdminInventoryPage({
             : "راجع الكمية وسبب التعديل."}
         </p>
       ) : null}
-      <section className="admin-table-wrap inventory-table-region" tabIndex={0} role="region" aria-label="أرصدة المخزون">
+      <form action="/admin/inventory" className="admin-toolbar">
+        <div className="admin-filter">
+          <label>
+            بحث في المخزون
+            <input name="q" defaultValue={query.q} placeholder="اسم المنتج أو رقم الصنف" />
+          </label>
+          <label>
+            عرض
+            <select name="low" defaultValue={query.low ?? ""}>
+              <option value="">كل الأرصدة</option>
+              <option value="1">المتاح عند حد التنبيه أو أقل</option>
+            </select>
+          </label>
+          <button className="admin-button">عرض الأرصدة</button>
+        </div>
+        <span className="admin-muted">
+          {new Intl.NumberFormat("ar-EG").format(balances.length)} رصيد ضمن النتائج المعروضة
+        </span>
+      </form>
+      {allBalances.length === 300 ? (
+        <p className="admin-notice">
+          تُعرض أول ٣٠٠ من أرصدة المخزون مرتبة حسب الكمية. استخدم الكتالوج للوصول إلى بقية المنتجات.
+        </p>
+      ) : null}
+      <section
+        className="admin-table-wrap inventory-table-region"
+        tabIndex={0}
+        role="region"
+        aria-label="أرصدة المخزون"
+      >
         <table className="admin-table">
           <thead>
             <tr>
@@ -151,7 +189,9 @@ export default async function AdminInventoryPage({
           </tbody>
         </table>
         {balances.length ? null : (
-          <p className="admin-empty">لا توجد أرصدة مخزون بعد. أضف منتجاً جاهزاً أولاً.</p>
+          <p className="admin-empty">
+            لا توجد أرصدة تطابق العرض الحالي. راجع الفلاتر أو أضف منتجاً جاهزاً.
+          </p>
         )}
       </section>
       <section className="admin-panel admin-subsection">

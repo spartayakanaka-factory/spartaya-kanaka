@@ -110,10 +110,12 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
       url.port !== "33078" ||
       url.pathname !==
         (process.env.P4_WORKSTREAM === "1"
-          ? "/sprtaya_phase4_disposable_test"
+          ? process.env.P5_WORKSTREAM === "1"
+            ? "/sprtaya_phase5_disposable_test"
+            : "/sprtaya_phase4_disposable_test"
           : process.env.P35_WORKSTREAM === "1"
-          ? "/sprtaya_phase35_disposable_test"
-          : "/sprtaya_phase3_disposable_test")
+            ? "/sprtaya_phase35_disposable_test"
+            : "/sprtaya_phase3_disposable_test")
     )
       throw new Error("Local acceptance is restricted to this workspace's test database.");
     ownerCookie = (await session("OWNER")).cookie;
@@ -449,9 +451,12 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
   it("uses real S3 signed uploads, rejects altered ownership and non-images, and persists a derivative", async () => {
     const storage = getMediaStorage();
     if (
-      !["http://127.0.0.1:39010", "http://127.0.0.1:39110", "http://127.0.0.1:39210"].includes(
-        process.env.MEDIA_S3_ENDPOINT || "",
-      ) ||
+      ![
+        "http://127.0.0.1:39010",
+        "http://127.0.0.1:39110",
+        "http://127.0.0.1:39210",
+        ...(process.env.P5_WORKSTREAM === "1" ? ["http://127.0.0.1:39410"] : []),
+      ].includes(process.env.MEDIA_S3_ENDPOINT || "") ||
       new URL(storage.publicBase).hostname !== "127.0.0.1"
     )
       throw new Error("Media acceptance requires the isolated loopback S3 service.");

@@ -131,21 +131,17 @@ export function FactoryWorkQueue({
               </button>
             ))}
           </div>
-          <h3>آخر التنبيهات</h3>
-          <p className="admin-muted">
-            التنبيهات محفوظة محلياً في الاختبار. لا توجد رسائل بريد أو واتساب خارجية مفعلة.
-          </p>
-          {queue.notifications.length ? (
-            queue.notifications.slice(0, 4).map(renderNotification)
-          ) : (
-            <p>لا توجد تنبيهات حتى الآن.</p>
-          )}
-          {queue.notifications.length > 4 ? (
-            <details>
-              <summary>تنبيهات سابقة ({queue.notifications.length - 4})</summary>
-              {queue.notifications.slice(4).map(renderNotification)}
-            </details>
-          ) : null}
+          <details open={queue.notifications.some((n) => n.state === "FAILED")}>
+            <summary>سجل التنبيهات ({queue.notifications.length.toLocaleString("ar-EG")})</summary>
+            <p className="admin-muted">
+              آخر التنبيهات المحفوظة محلياً. لا توجد رسائل بريد أو واتساب خارجية مفعلة.
+            </p>
+            {queue.notifications.length ? (
+              queue.notifications.map(renderNotification)
+            ) : (
+              <p>لا توجد تنبيهات حتى الآن.</p>
+            )}
+          </details>
         </>
       ) : (
         <p>جارٍ تحميل قائمة المتابعة…</p>
