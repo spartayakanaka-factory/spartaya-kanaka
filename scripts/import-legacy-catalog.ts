@@ -87,8 +87,10 @@ async function main() {
     for (const path of paths) {
       const full = resolveLegacyAssetPath(assetRoot, path);
       if (!existsSync(full)) continue;
-      const exists = existsSync(full);
-      const stat = exists ? statSync(full) : null;
+      const stat = statSync(full);
+      const source = products
+        .flatMap((product) => product.images ?? [])
+        .find((image) => image.local_path === path);
       const mime = imageContentType(readFileSync(full));
       if (!mime) throw new Error("Unsupported original image bytes; preserved file unchanged.");
       const existingMedia = await db.mediaAsset.findUnique({
