@@ -2,6 +2,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { z } from "zod";
 import { requirePermission } from "@/lib/server/admin-session";
+import { getDatabase } from "@/lib/server/database";
 import { getMediaStorage } from "@/lib/server/media-storage";
 import { hasTrustedRequestOrigin } from "@/lib/server/request-origin";
 import { getStagingAccessResponse } from "@/lib/staging-access";
@@ -30,7 +31,12 @@ export async function POST(request: Request) {
     const id = crypto.randomUUID();
     const key = `product-originals/${id}.${extensions[parsed.data.contentType]}`;
     const signedHeaders = { "Content-Type": parsed.data.contentType, "x-amz-meta-owner": actor.id, "If-None-Match": "*" };
-    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id }, IfNoneMatch: "*" }), { expiresIn: 300, unhoistableHeaders: new Set(["x-amz-meta-owner"]), signableHeaders: new Set(["content-type", "if-none-match"]) });
+    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id }, IfNoneMatch: "*" }), { expiresIn: 300, unhoistableHeaders: new Set(["x-amz-meta-owner"]), signableHeaders: new Set(["content-type", "content-length", "if-none-match"]) });
+    await getDatabase().auditEvent.create({ data: {
+      id, actorId: actor.id, actorLabel: actor.name, action: "media.upload-authorized",
+      entity: "MediaAsset", entityId: id,
+      afterData: { originalKey: key, bucket: storage.originalsBucket, endpoint: storage.endpoint, size: parsed.data.size },
+    } });
     return Response.json({ uploadUrl, key, signedHeaders }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     const message = error instanceof Error ? error.message : "";

@@ -4,7 +4,7 @@ import { getProductImageUrl } from "@/lib/asset-url";
 import { getCategoryCover } from "@/lib/merchandising";
 import { displayCategoryName, displayShortCategoryName, getCopy } from "@/lib/i18n";
 import { Icon } from "@/components/icon";
-import { formatMoneyMinor } from "@/lib/money";
+import { formatMoneyMinor, isPositiveProductPrice } from "@/lib/money";
 import type { CatalogCategory, CatalogProduct, Locale } from "@/lib/types";
 
 export function CatalogNotice({ locale }: { locale: Locale }) {
@@ -62,6 +62,33 @@ export function PageIntro({
   );
 }
 
+export function ProductFulfillment({
+  product,
+  locale,
+}: {
+  product: CatalogProduct;
+  locale: Locale;
+}) {
+  if (!product.productType) return null;
+  const ar = locale === "ar";
+  const made = product.productType === "MADE_TO_ORDER";
+  const available =
+    product.availability === "AVAILABLE" &&
+    (made
+      ? Boolean(product.productionDays)
+      : Boolean(product.variants?.some((variant) => variant.available)));
+  return (
+    <p className="product-fulfillment">
+      <span>
+        {made ? (ar ? "تصنيع حسب الطلب" : "Made to order") : ar ? "منتج جاهز" : "Ready-made"}
+      </span>
+      <span>
+        {available ? (ar ? "متاح" : "Available") : ar ? "غير متاح حالياً" : "Currently unavailable"}
+      </span>
+    </p>
+  );
+}
+
 export function ProductCard({
   product,
   locale,
@@ -73,6 +100,9 @@ export function ProductCard({
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   const image = product.images[0];
+  const name = (locale === "en" && product.nameEn) || product.nameAr;
+  const arabicName = locale === "ar" || !product.nameEn;
+  const price = product.priceMinor ?? null;
   const categoryName = product.categoryNamesAr[0];
   const categoryId = product.categoryIds?.[0] ?? "";
   return (
@@ -107,13 +137,21 @@ export function ProductCard({
                 ? "من مجموعة المصنع"
                 : "From the factory collection"}
           </p>
-          <Heading className="product-name" lang="ar" dir="rtl" title={product.nameAr}>
-            {product.nameAr}
+          <Heading
+            className="product-name"
+            lang={arabicName ? "ar" : "en"}
+            dir={arabicName ? "rtl" : "ltr"}
+            title={name}
+          >
+            {name}
           </Heading>
+          <ProductFulfillment product={product} locale={locale} />
           <p className="product-price">
-            {product.priceMinor !== null && product.priceMinor !== undefined
-              ? formatMoneyMinor(product.priceMinor, locale, product.sourceCurrency ?? "EGP")
-              : locale === "ar" ? "السعر عند الاستفسار" : "Price on enquiry"}
+            {isPositiveProductPrice(price)
+              ? formatMoneyMinor(price, locale, product.sourceCurrency ?? "EGP")
+              : locale === "ar"
+                ? "السعر عند الاستفسار"
+                : "Price on enquiry"}
           </p>
           <span className="product-link">
             {getCopy(locale, "explore")}

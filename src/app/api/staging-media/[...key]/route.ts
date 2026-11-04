@@ -1,7 +1,7 @@
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 import { commerceEnabled } from "@/lib/commerce/runtime";
 import { getDatabase } from "@/lib/server/database";
-import { getMediaStorage } from "@/lib/server/media-storage";
+import { getMediaStorage, privateStagingMediaEnabled } from "@/lib/server/media-storage";
 import {
   getStagingAccessConfig,
   getStagingAccessResponse,
@@ -23,12 +23,13 @@ export async function GET(request: Request, context: { params: Promise<{ key: st
   const blocked = getStagingAccessResponse(request.headers);
   if (blocked) return blocked;
   if (
-    process.env.SR_HOSTED_ISOLATION !== "1" ||
-    !commerceEnabled() ||
+    (!privateStagingMediaEnabled() &&
+      !(process.env.SR_HOSTED_ISOLATION === "1" && commerceEnabled())) ||
     getStagingAccessConfig(process.env, getStagingRequestHostname(request.headers)).mode !==
       "protected"
   )
     return new Response(null, { status: 404, headers });
+  let storage: ReturnType<typeof getMediaStorage> | undefined;
   try {
     const parts = (await context.params).key;
     if (
@@ -40,10 +41,10 @@ export async function GET(request: Request, context: { params: Promise<{ key: st
     const key = parts.join("/");
     const asset = await getDatabase().mediaAsset.findUnique({
       where: { displayKey: key },
-      select: { id: true },
+      select: { provider: true },
     });
-    if (!asset) return new Response(null, { status: 404, headers });
-    const storage = getMediaStorage();
+    if (asset?.provider !== "S3_COMPATIBLE") return new Response(null, { status: 404, headers });
+    storage = getMediaStorage();
     const object = await storage.client.send(
       new GetObjectCommand({ Bucket: storage.displayBucket, Key: key }),
     );
@@ -70,7 +71,10 @@ export async function GET(request: Request, context: { params: Promise<{ key: st
     return new Response(new Uint8Array(Buffer.concat(chunks)), {
       headers: { ...headers, "Content-Type": "image/webp" },
     });
-  } catch {
-    return new Response(null, { status: 503, headers });
+  } catch (error) {
+    const missing = error instanceof Error && ["NoSuchKey", "NotFound"].includes(error.name);
+    return new Response(null, { status: missing ? 404 : 503, headers });
+  } finally {
+    storage?.client.destroy();
   }
 }

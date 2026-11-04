@@ -1,9 +1,23 @@
 import "server-only";
 import { S3Client } from "@aws-sdk/client-s3";
 import { commerceEnabled } from "@/lib/commerce/runtime";
+import { getStagingAccessConfig } from "@/lib/staging-access";
 import { stagingR2ConfigIssues } from "@/lib/commerce/staging-r2-config";
 
+/** Independent product-media gate. Enabling it does not enable commerce. */
+export function privateStagingMediaEnabled() {
+  return process.env.MEDIA_STAGING_UPLOADS === "1" &&
+    process.env.APP_ENV === "staging" &&
+    getStagingAccessConfig().mode === "protected" &&
+    stagingR2ConfigIssues(process.env).length === 0;
+}
+
 export function getMediaStorage() {
+  if (process.env.MEDIA_STAGING_UPLOADS === "1" && !privateStagingMediaEnabled())
+    throw new Error("MEDIA_STORAGE_UNAVAILABLE");
+  if (process.env.APP_ENV === "staging" &&
+      process.env.SR_HOSTED_ISOLATION !== "1" && !privateStagingMediaEnabled())
+    throw new Error("MEDIA_STORAGE_UNAVAILABLE");
   const {
     MEDIA_S3_ENDPOINT: endpoint,
     MEDIA_S3_ORIGINALS_BUCKET: originalsBucket,
@@ -66,6 +80,7 @@ export function getMediaStorage() {
   });
   return {
     client,
+    endpoint: parsed.origin,
     originalsBucket,
     displayBucket,
     publicBase: publicUrl.toString().replace(/\/$/, ""),

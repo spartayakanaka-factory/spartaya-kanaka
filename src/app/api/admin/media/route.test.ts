@@ -4,6 +4,7 @@ const mocks = vi.hoisted(() => ({
   db: vi.fn(),
   count: vi.fn(),
   findMany: vi.fn(),
+  query: vi.fn(),
 }));
 vi.mock("@/lib/server/admin-session", () => ({ requirePermission: mocks.permission }));
 vi.mock("@/lib/server/database", () => ({ getDatabase: mocks.db }));
@@ -11,17 +12,20 @@ vi.mock("@/lib/staging-access", () => ({ getStagingAccessResponse: () => null })
 import { GET } from "./route";
 beforeEach(() => {
   vi.clearAllMocks();
+  mocks.query.mockReset();
   mocks.permission.mockResolvedValue({ id: "owner" });
-  mocks.db.mockReturnValue({ mediaAsset: { count: mocks.count, findMany: mocks.findMany } });
+  mocks.db.mockReturnValue({ mediaAsset: { count: mocks.count, findMany: mocks.findMany }, $transaction: (work: (tx: unknown) => unknown) => work({ $queryRaw: mocks.query }) });
   mocks.count.mockResolvedValue(400);
-  mocks.findMany.mockResolvedValue([
+  const rows = [
     {
       id: "image",
       altAr: "نحاس",
       originalKey: "private-original-key",
       publicUrl: "https://display.invalid/product.webp",
     },
-  ]);
+  ];
+  mocks.findMany.mockResolvedValue(rows);
+  mocks.query.mockResolvedValueOnce([{ count: BigInt(400) }]).mockResolvedValueOnce(rows);
 });
 describe("Authenticated complete product media library", () => {
   it("rejects unauthorized readers before database access", async () => {
@@ -38,8 +42,8 @@ describe("Authenticated complete product media library", () => {
       page: 7,
       assets: [{ id: "image", label: "نحاس", url: "https://display.invalid/product.webp" }],
     });
-    expect(mocks.findMany.mock.calls[0][0]).toMatchObject({ take: 36, skip: 252 });
-    expect(JSON.stringify(mocks.findMany.mock.calls[0][0].where)).toContain("نحاس");
+    expect(mocks.query).toHaveBeenCalledTimes(2);
+    expect(mocks.query.mock.calls[1].slice(-2)).toEqual([36, 252]);
   });
   it("rejects malformed pagination and handles database failure without leaking errors", async () => {
     for (const value of ["-1", "2.2", "NaN", "10001"])

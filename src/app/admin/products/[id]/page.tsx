@@ -1,3 +1,9 @@
+import { publishProduct } from "@/app/admin/actions";
+import { hasPermission } from "@/lib/admin/permissions";
+import {
+  productPublicationBlockers,
+  publicationBlockerLabels,
+} from "@/lib/admin/product-publication";
 import { notFound } from "next/navigation";
 import { requireAdminPage } from "@/lib/server/admin-page";
 import { getDatabase } from "@/lib/server/database";
@@ -21,7 +27,7 @@ export default async function EditProductPage({
       where: { id },
       include: {
         legacyMapping: true,
-        categories: { select: { categoryId: true } },
+        categories: { include: { category: { select: { visible: true, reviewRequired: true } } } },
         variants: {
           where: { active: true },
           include: { inventory: { select: { quantity: true } } },
@@ -42,6 +48,8 @@ export default async function EditProductPage({
     }),
   ]);
   if (!product) notFound();
+  const blockers = productPublicationBlockers(product);
+  const canPublish = hasPermission(actor.roleCode, "PRODUCTS_PUBLISH");
   return (
     <AdminFrame actor={actor}>
       <AdminPageHeader title="تعديل المنتج" description={product.titleAr} />
@@ -64,6 +72,38 @@ export default async function EditProductPage({
           تم حفظ التغييرات.
         </p>
       ) : null}
+      <section className="admin-panel publication-summary" aria-labelledby="publication-title">
+        <h2 id="publication-title">جاهزية النشر</h2>
+        {product.status === "ARCHIVED" ? (
+          <p>المنتج مؤرشف.</p>
+        ) : (
+          <>
+            {blockers.length ? (
+              <ul className="publication-checklist">
+                {blockers.map((blocker) => (
+                  <li key={blocker}>{publicationBlockerLabels[blocker]}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>
+                {product.status === "PUBLISHED"
+                  ? "المنتج ظاهر في المتجر."
+                  : "النسخة المحفوظة جاهزة للنشر."}
+              </p>
+            )}
+            {canPublish && product.status === "DRAFT" && !blockers.length ? (
+              <form action={publishProduct.bind(null, product.id, true)}>
+                <button className="admin-button" type="submit">
+                  نشر النسخة المحفوظة
+                </button>
+              </form>
+            ) : null}
+            {product.status === "DRAFT" ? (
+              <p className="admin-muted">احفظ تعديلاتك لتحديث حالة الجاهزية.</p>
+            ) : null}
+          </>
+        )}
+      </section>
       <ProductForm
         actor={actor}
         assets={assets}

@@ -177,6 +177,7 @@ export function AddToCart({
 }) {
   const ar = locale === "ar",
     [variant, setVariant] = useState(variants[0]?.id || ""),
+    [quantity, setQuantity] = useState(1),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
   return (
@@ -194,15 +195,28 @@ export function AddToCart({
           </select>
         </label>
       ) : null}
+      <label>
+        {ar ? "الكمية" : "Quantity"}
+        <input
+          type="number"
+          min={1}
+          max={99}
+          value={quantity || ""}
+          onChange={(event) => setQuantity(Number(event.target.value))}
+        />
+      </label>
       <button
         className="button"
-        disabled={busy || !variant}
+        disabled={busy || !variant || !Number.isInteger(quantity) || quantity < 1 || quantity > 99}
         onClick={async () => {
           setBusy(true);
           try {
-            const cart = await commerceApi<Cart>("resource=cart").catch(() => null);
+            const cart = await commerceApi<Cart>("resource=cart").catch((error: unknown) => {
+              if (error instanceof Error && error.message === "GUEST_SESSION_REQUIRED") return null;
+              throw error;
+            });
             const old = cart?.items.find((i) => i.variantId === variant)?.quantity || 0;
-            await commerceApi("", { action: "cart", variantId: variant, quantity: old + 1 });
+            await commerceApi("", { action: "cart", variantId: variant, quantity: old + quantity });
             setMessage(ar ? "أضيفت للحقيبة" : "Added to your bag");
           } catch (e) {
             setMessage(

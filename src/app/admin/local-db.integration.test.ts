@@ -3,7 +3,9 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hashPassword, verifyPassword } from "better-auth/crypto";
 import sharp from "sharp";
-import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { chromium } from "playwright";
+import { GET as getPrivateDisplay } from "@/app/api/staging-media/[...key]/route";
+import { DeleteObjectCommand, HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { assertSafeDatabaseTarget } from "../../../scripts/database-target";
 
@@ -24,6 +26,7 @@ import { getAuth } from "@/lib/server/auth";
 import { getAdminActor, requirePermission } from "@/lib/server/admin-session";
 import { getStoreProductBySlug } from "@/lib/server/storefront-catalog";
 import { getMediaStorage } from "@/lib/server/media-storage";
+import { DELETE as deleteMedia } from "@/app/api/admin/media/[id]/route";
 import { POST as signUpload } from "@/app/api/admin/media/upload-url/route";
 import { POST as finalizeUpload } from "@/app/api/admin/media/finalize/route";
 import {
@@ -249,6 +252,33 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
     });
     expect(product.variants[0].inventory?.quantity).toBe(4);
     expect(await getStoreProductBySlug(slug)).toBeUndefined();
+  });
+
+  it("rejects invalid prices and prevents a zero override from bypassing publication", async () => {
+    const data = form({
+      productId,
+      titleAr: "قطعة اصطناعية للاختبار فقط",
+      slug,
+      descriptionAr: "بيانات اختبار محلية فقط",
+      type: "READY_MADE",
+      price: "١٬٢٣٤٫٥٦",
+      detailsReviewed: "on",
+      variantsJson: JSON.stringify([{ id: variantId, nameAr: "متغير اختبار", price: "0" }]),
+    });
+    data.append("categoryIds", categoryId);
+    data.append("mediaIds", mediaId);
+    const db = getDatabase();
+    for (const price of ["-1", "1.234"]) {
+      data.set("price", price);
+      await redirected(saveProduct(data), `/admin/products/${productId}?error=invalid`);
+    }
+    data.set("price", "١٬٢٣٤٫٥٦");
+    await redirected(saveProduct(data), `/admin/products/${productId}?saved=1`);
+    await redirected(publishProduct(productId, true), `/admin/products/${productId}?error=publish`);
+    expect(await db.product.findUnique({ where: { id: productId }, select: { status: true } })).toEqual({ status: "DRAFT" });
+    data.set("variantsJson", JSON.stringify([{ id: variantId, nameAr: "متغير اختبار" }]));
+    await redirected(saveProduct(data), `/admin/products/${productId}?saved=1`);
+    expect(await db.productVariant.findUnique({ where: { id: variantId }, select: { priceMinor: true } })).toEqual({ priceMinor: null });
   });
 
   it("bulk reviews and publishes into the database storefront without a rebuild", async () => {
@@ -493,12 +523,23 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
       expect(signedResponse.status).toBe(200);
       const signed = await signedResponse.json();
       key = signed.key;
-      const upload = await fetch(signed.uploadUrl, {
-        method: "PUT",
-        headers: signed.signedHeaders,
-        body: new Uint8Array(image),
-      });
-      expect(upload.status).toBe(200);
+      // Model the observed Chromium failure after a real committed PUT.
+      // The client-side error cannot establish whether an object was written.
+      const uploadWithBlockedResponse = async () => {
+        const upload = await fetch(signed.uploadUrl, {
+          method: "PUT",
+          headers: signed.signedHeaders,
+          body: new Uint8Array(image),
+        });
+        expect(upload.status).toBe(200);
+        throw new TypeError("Browser blocked access to the upload response");
+      };
+      await expect(uploadWithBlockedResponse()).rejects.toThrow(TypeError);
+      const uploaded = await storage.client.send(
+        new HeadObjectCommand({ Bucket: storage.originalsBucket, Key: signed.key }),
+      );
+      expect(uploaded.ContentLength).toBe(image.length);
+      expect(await getDatabase().mediaAsset.count({ where: { originalKey: signed.key } })).toBe(0);
       expect(
         (await fetch(process.env.MEDIA_S3_ENDPOINT + "/" + storage.originalsBucket + "/" + key))
           .status,
@@ -880,6 +921,36 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
       ).toBe(2);
       for (const asset of assets)
         expect((await fetch(storage.publicBase + "/" + asset.display)).status).toBe(200);
+      const remove = (id: string) => deleteMedia(new Request(
+        process.env.BETTER_AUTH_URL! + "/api/admin/media/" + id,
+        { method: "DELETE", headers: { origin: process.env.BETTER_AUTH_URL! } },
+      ), { params: Promise.resolve({ id }) });
+      asUser("");
+      expect((await remove(assets[0].id)).status).toBe(403);
+      asUser(ownerCookie);
+      expect((await remove(assets[1].id)).status).toBe(409);
+      const send = S3Client.prototype.send;
+      const outage = vi.spyOn(S3Client.prototype, "send").mockImplementation(function (
+        this: S3Client,
+        ...args: Parameters<typeof send>
+      ) {
+        if (args[0] instanceof DeleteObjectCommand && args[0].input.Key === assets[0].key)
+          throw new Error("Injected second object deletion failure");
+        return Reflect.apply(send, this, args);
+      });
+      try {
+        expect((await remove(assets[0].id)).status).toBe(503);
+        expect(await getDatabase().mediaAsset.findUnique({ where: { id: assets[0].id } })).toBeNull();
+        expect((await fetch(storage.publicBase + "/" + assets[0].display)).status).toBe(404);
+      } finally {
+        outage.mockRestore();
+      }
+      expect((await remove(assets[0].id)).status).toBe(204);
+      expect((await remove(assets[0].id)).status).toBe(204);
+      expect((await fetch(storage.publicBase + "/" + assets[0].display)).status).toBe(404);
+      expect(await getDatabase().mediaAsset.findUnique({ where: { id: assets[0].id } })).toBeNull();
+      expect(await getDatabase().auditEvent.count({ where: { entityId: assets[0].id, action: "media.cleanup-requested" } })).toBe(1);
+      expect((await finalizeUpload(req({ key: assets[0].key, size: 1 }))).status).toBe(409);
     } finally {
       if (replacementId) await getDatabase().product.deleteMany({ where: { id: replacementId } });
       for (const asset of assets) {
@@ -910,6 +981,137 @@ describe.skipIf(!enabled)("Local MariaDB admin acceptance (real auth/actions/dat
     await redirected(deleteCategory(empty.id), "/admin/categories?saved=deleted");
     expect(await getDatabase().category.findUnique({ where: { id: empty.id } })).toBeNull();
   });
+
+  it.skipIf(process.env.P8_REAL_R2 !== "1")("exercises the application routes and MariaDB against private real R2", async () => {
+    const db = getDatabase();
+    const endpoint = "https://b2c700ac4fb9325de8bb7dee4d0ed3a2.r2.cloudflarestorage.com";
+    const origin = "https://bisque-pheasant-330767.hostingersite.com";
+    const settings = {
+      APP_ENV: "staging", STAGING_SITE: "1", STAGING_ACCESS_USERNAME: "local-pilot",
+      STAGING_ACCESS_PASSWORD: "local-pilot-credential-only-synthetic",
+      MEDIA_STAGING_UPLOADS: "1", STAGING_R2_ACCOUNT_ID: "b2c700ac4fb9325de8bb7dee4d0ed3a2",
+      MEDIA_S3_ENDPOINT: endpoint, MEDIA_S3_REGION: "auto", MEDIA_S3_FORCE_PATH_STYLE: "true",
+      MEDIA_S3_ORIGINALS_BUCKET: "sprtaya-staging-private", MEDIA_S3_DISPLAY_BUCKET: "sprtaya-staging-public",
+      MEDIA_PUBLIC_BASE_URL: origin + "/api/staging-media",
+      MEDIA_ACCESS_KEY_ID: process.env.P8_REAL_R2_ACCESS_KEY,
+      MEDIA_SECRET_ACCESS_KEY: process.env.P8_REAL_R2_SECRET_KEY,
+      AUTH_TRUSTED_ORIGINS: origin,
+    };
+    for (const [name, value] of Object.entries(settings)) vi.stubEnv(name, value);
+    const basic = "Basic " + Buffer.from("local-pilot:local-pilot-credential-only-synthetic").toString("base64");
+    const asR2User = (cookie: string) => { asUser(cookie); context.headers.set("authorization", basic); };
+    const req = (path: string, body?: unknown, session = true, allowedOrigin = origin) => new Request(origin + path, {
+      method: body === undefined ? "DELETE" : "POST",
+      headers: { origin: allowedOrigin, ...(session ? { authorization: basic } : {}), "content-type": "application/json" },
+      ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+    });
+    const storage = getMediaStorage();
+    let key: string | undefined, displayKey: string | undefined, assetId: string | undefined, draftId: string | undefined;
+    const report: Record<string, unknown> = {};
+    try {
+      const png = await sharp({create:{width:24,height:16,channels:4,background:{r:112,g:151,b:80,alpha:0.5}}}).png().toBuffer();
+      const input = { contentType: "image/png", size: png.length };
+      asR2User("");
+      expect((await signUpload(req("/api/admin/media/upload-url", input, false))).status).toBe(401);
+      expect((await signUpload(req("/api/admin/media/upload-url", input))).status).toBe(403);
+      asR2User(inventoryCookie);
+      expect((await signUpload(req("/api/admin/media/upload-url", input))).status).toBe(403);
+      asR2User(editorCookie);
+      const staff = await signUpload(req("/api/admin/media/upload-url", input));
+      expect(staff.status).toBe(200);
+      const staffId = (await staff.json()).key.split("/")[1].split(".")[0];
+      await db.auditEvent.update({where:{id:staffId},data:{createdAt:new Date(Date.now()-16*60*1000)}});
+      expect((await finalizeUpload(req("/api/admin/media/finalize", {key:"product-originals/"+staffId+".png",size:png.length}))).status).toBe(410);
+      asR2User(ownerCookie);
+      expect((await signUpload(req("/api/admin/media/upload-url", input, true, "https://invalid.example"))).status).toBe(403);
+      const signedResponse = await signUpload(req("/api/admin/media/upload-url", input));
+      expect(signedResponse.status).toBe(200);
+      const signed = await signedResponse.json();
+      key = signed.key;
+      expect(key).toMatch(/^product-originals\/[0-9a-f-]{36}\.png$/);
+      expect(new URL(signed.uploadUrl).searchParams.get("X-Amz-Expires")).toBe("300");
+      const ticketId = key!.split("/")[1].split(".")[0];
+      expect((await db.auditEvent.findUniqueOrThrow({where:{id:ticketId}})).action).toBe("media.upload-authorized");
+      const finish = () => finalizeUpload(req("/api/admin/media/finalize",{key,size:png.length,altAr:"صورة اختبار R2"}));
+      expect((await finish()).status).toBe(503);
+      const browser = await chromium.launch({channel:"chrome"});
+      try {
+        const page=await browser.newPage();
+        await page.route(origin+"/",route=>route.fulfill({contentType:"text/html",body:"<!doctype html><title>Local route R2 test</title>"}));
+        await page.goto(origin+"/");
+        report.browserPut=await page.evaluate(async ({url,headers,bytes})=>(await fetch(url,{method:"PUT",headers,body:new Uint8Array(bytes),credentials:"omit"})).status,{url:signed.uploadUrl,headers:signed.signedHeaders,bytes:[...png]});
+        expect(report.browserPut).toBe(200);
+      } finally { await browser.close(); }
+      asR2User(editorCookie);
+      expect((await finish()).status).toBe(403);
+      asR2User(ownerCookie);
+      const send = S3Client.prototype.send;
+      const outage = vi.spyOn(S3Client.prototype, "send").mockImplementation(function (
+        this: S3Client,
+        ...args: Parameters<typeof send>
+      ) {
+        if (args[0] instanceof PutObjectCommand && args[0].input.Bucket === storage.displayBucket)
+          throw new Error("Injected derivative storage failure");
+        return Reflect.apply(send, this, args);
+      });
+      try { expect((await finish()).status).toBe(503); } finally { outage.mockRestore(); }
+      expect(await db.mediaAsset.count({where:{id:ticketId}})).toBe(0);
+      const failCommit=vi.spyOn(db,"$transaction").mockRejectedValueOnce(new Error("Injected database commit failure"));
+      try { expect((await finish()).status).toBe(503); } finally { failCommit.mockRestore(); }
+      expect(await db.mediaAsset.count({where:{id:ticketId}})).toBe(0);
+      const finalized=await finish();
+      expect(finalized.status).toBe(200);
+      const asset=await finalized.json();
+      assetId=asset.id;
+      expect(assetId).toBe(ticketId);
+      const row=await db.mediaAsset.findUniqueOrThrow({where:{id:asset.id}});
+      displayKey=row.displayKey!;
+      expect(row.sha256).toBe(createHash("sha256").update(png).digest("hex"));
+      expect(await (await finish()).json()).toMatchObject({id:assetId});
+      const draft=await db.product.create({data:{slug:"r2-acceptance-"+randomUUID(),titleAr:"منتج اصطناعي",descriptionAr:"اختبار محلي"}});
+      draftId=draft.id;
+      const edit=form({productId:draft.id,titleAr:draft.titleAr,descriptionAr:draft.descriptionAr,slug:draft.slug,type:"MADE_TO_ORDER",mediaIds:asset.id,variantsJson:JSON.stringify([{nameAr:"متغير اصطناعي"}])});
+      await redirected(saveProduct(edit),"/admin/products/"+draft.id+"?saved=1");
+      expect(await db.productMedia.count({where:{productId:draft.id,mediaId:asset.id}})).toBe(1);
+      const preview=(auth?:string)=>getPrivateDisplay(new Request(asset.url,{headers:auth?{authorization:auth}:{}}),{params:Promise.resolve({key:displayKey!.split("/")})});
+      expect((await preview()).status).toBe(401);
+      const response=await preview(basic);
+      expect(response.status).toBe(200);
+      expect(response.headers.get("cache-control")).toBe("private, no-store");
+      expect((await sharp(Buffer.from(await response.arrayBuffer())).metadata()).format).toBe("webp");
+      const remove=()=>deleteMedia(req("/api/admin/media/"+asset.id),{params:Promise.resolve({id:asset.id})});
+      expect((await remove()).status).toBe(409);
+      edit.delete("mediaIds");
+      await redirected(saveProduct(edit),"/admin/products/"+draft.id+"?saved=1");
+      expect((await remove()).status).toBe(204);
+      for(const [Bucket,Key] of [[storage.originalsBucket,key],[storage.displayBucket,displayKey]])
+        await expect(storage.client.send(new HeadObjectCommand({Bucket,Key}))).rejects.toMatchObject({$metadata:{httpStatusCode:404}});
+      expect(await db.mediaAsset.count({where:{id:asset.id}})).toBe(0);
+      expect(await db.productMedia.count({where:{productId:draft.id}})).toBe(0);
+      await db.product.delete({where:{id:draft.id}});
+      expect(await db.product.count({where:{id:draft.id}})).toBe(0);
+      draftId=undefined;
+      report.result={originalKey:key,displayKey,finalize:200,duplicate:200,preview:200,anonymousPreview:401,referencedDelete:409,cleanup:204,exactObjectHeads:[404,404],syntheticProductAndMediaRemoved:true,derivativeFailure:503,databaseFailure:503};
+    } finally {
+      if(draftId)await db.product.deleteMany({where:{id:draftId}});
+      if(assetId)await db.mediaAsset.deleteMany({where:{id:assetId}});
+      if(key){
+        const uploadId=key.split("/")[1].split(".")[0];
+        const receipts=await db.auditEvent.findMany({where:{entity:"MediaAsset",entityId:uploadId,action:"media.display-prepared"},select:{afterData:true}});
+        const keys=new Set([displayKey,...receipts.map(r=>(r.afterData as {displayKey?:string}|null)?.displayKey)]);
+        await storage.client.send(new DeleteObjectCommand({Bucket:storage.originalsBucket,Key:key}));
+        for(const Key of keys)if(Key){
+          await storage.client.send(new DeleteObjectCommand({Bucket:storage.displayBucket,Key}));
+          await expect(storage.client.send(new HeadObjectCommand({Bucket:storage.displayBucket,Key}))).rejects.toMatchObject({$metadata:{httpStatusCode:404}});
+        }
+        await expect(storage.client.send(new HeadObjectCommand({Bucket:storage.originalsBucket,Key:key}))).rejects.toMatchObject({$metadata:{httpStatusCode:404}});
+        report.exactReconciliation={originalKey:key,preparedDerivativeKeys:[...keys].filter(Boolean),allAbsent:true};
+      }
+      if(process.env.P8_REAL_R2_EVIDENCE)
+        await writeFile(process.env.P8_REAL_R2_EVIDENCE,JSON.stringify(report,null,2)+"\n",{mode:0o600});
+      storage.client.destroy();vi.unstubAllEnvs();asUser(ownerCookie);
+    }
+  }, 90_000);
 
   it("rejects a database-expired session and a revoked session", async () => {
     asUser(ownerCookie);

@@ -12,6 +12,7 @@ import { getAuth } from "@/lib/server/auth";
 import { getDatabase } from "@/lib/server/database";
 import { productPublicationBlockers } from "@/lib/admin/product-publication";
 import { hasPermission } from "@/lib/admin/permissions";
+import { effectiveProductPrice, isPositiveProductPrice } from "@/lib/money";
 import { parsePriceMinor as minorUnits } from "@/lib/admin/price";
 
 const uuid = z.string().uuid();
@@ -127,7 +128,7 @@ export async function saveProduct(formData: FormData): Promise<void> {
       nameAr: variant.nameAr,
       nameEn: variant.nameEn || null,
       sku: variant.sku?.trim() || null,
-      priceMinor: minorUnits(variant.price) ?? priceMinor,
+      priceMinor: minorUnits(variant.price),
       options: parseVariantOptions(variant.optionsText),
       widthMm: optionalDimension(variant.widthMm, 50_000),
       heightMm: optionalDimension(variant.heightMm, 50_000),
@@ -361,7 +362,7 @@ export async function saveBulkProductReview(formData: FormData): Promise<void> {
         });
         if (entry.categoryId) await tx.productCategory.createMany({ data: [{ productId: current.id, categoryId: entry.categoryId, position: current.categories.length }], skipDuplicates: true });
         if (entry.initialQuantity !== null) {
-          const variant = await tx.productVariant.create({ data: { productId: current.id, nameAr: entry.newVariantNameAr, priceMinor: nextPrice, availability: entry.initialQuantity > 0 ? "AVAILABLE" : "UNAVAILABLE", position: 0 } });
+          const variant = await tx.productVariant.create({ data: { productId: current.id, nameAr: entry.newVariantNameAr, priceMinor: null, availability: entry.initialQuantity > 0 ? "AVAILABLE" : "UNAVAILABLE", position: 0 } });
           const balance = await tx.inventoryBalance.create({ data: { productId: current.id, variantId: variant.id, quantity: entry.initialQuantity, lowStockAt: 1 } });
           await tx.inventoryMovement.create({ data: { balanceId: balance.id, kind: "OPENING", delta: entry.initialQuantity, balanceAfter: entry.initialQuantity, reason: "رصيد افتتاحي مسجل أثناء مراجعة الكتالوج", actorId: actor.id, actorLabel: actor.name } });
         }
@@ -579,8 +580,13 @@ export async function saveManufacturingPolicy(formData: FormData): Promise<void>
   if (product.status === "PUBLISHED") await requirePermission("PRODUCTS_PUBLISH");
   if (depositMode === "DEPOSIT" && value < 1) redirect("/admin/products/" + productId + "?error=policy");
   if (depositMode === "DEPOSIT" && depositType === "PERCENT" && value > 100) redirect("/admin/products/" + productId + "?error=policy");
-  const applicablePrice = product.priceMinor ?? product.variants.map((variant) => variant.priceMinor).filter((price): price is number => price !== null).sort((a, b) => a - b)[0] ?? null;
-  if (depositMode === "DEPOSIT" && depositType === "FIXED_MINOR" && (applicablePrice === null || value > applicablePrice)) redirect("/admin/products/" + productId + "?error=policy");
+  const effectivePrices = product.variants.length
+    ? product.variants.map((variant) => effectiveProductPrice(product.priceMinor, variant.priceMinor))
+    : [product.priceMinor];
+  if (depositMode === "DEPOSIT" && depositType === "FIXED_MINOR" &&
+      effectivePrices.some((price) => !isPositiveProductPrice(price) || value > price)) {
+    redirect("/admin/products/" + productId + "?error=policy");
+  }
   const data = { available, minProductionDays: minDays, maxProductionDays: maxDays, depositMode: depositMode as "FULL_ADVANCE" | "DEPOSIT", depositType: depositType as "FIXED_MINOR" | "PERCENT", depositValue: depositMode === "FULL_ADVANCE" ? 100 : value, balanceCollection: balanceCollection as "BEFORE_DISPATCH" | "CASH_ON_DELIVERY", codBalanceEligible: codBalanceEligible && balanceCollection === "CASH_ON_DELIVERY", updatedById: actor.id };
   await db.$transaction([
     db.manufacturingPolicy.upsert({ where: { productId }, create: { id: productId, productId, ...data }, update: data }),

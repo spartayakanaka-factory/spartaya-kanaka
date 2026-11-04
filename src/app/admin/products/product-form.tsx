@@ -103,7 +103,8 @@ export function ProductForm({
     slug: "رابط المنتج مستخدم بالفعل. اختر رابطاً آخر.",
     category: "تعذر العثور على أحد التصنيفات المختارة.",
     stock: "لا يمكن تحويل المنتج إلى تصنيع حسب الطلب قبل تصفير المخزون.",
-    publish: "أكمل مراجعة الاسم والسعر والصورة والتصنيف والمخزون أو سياسة التصنيع قبل النشر.",
+    publish:
+      "قبل النشر، اعتمد سعراً أكبر من صفر للمنتج ولكل متغير، وأكمل مراجعة التفاصيل والصورة والتصنيف والمخزون أو سياسة التصنيع.",
     inventory: "أدخل كمية مؤكدة لكل متغير جاهز لا يملك رصيداً مسجلاً.",
     policy: "راجع إعدادات التصنيع والدفعة؛ القيمة أو المدة غير صالحة.",
     media: "تعذر حفظ ترتيب الصور أو إحدى الصور المختارة.",
@@ -117,7 +118,16 @@ export function ProductForm({
           {errorMessages[error ?? ""]}
         </p>
       ) : null}
-      <form action={saveProduct} className="admin-panel admin-form">
+      <nav className="product-editor-links" aria-label="أقسام تعديل المنتج">
+        <a href="#product-basics">بيانات القطعة</a>
+        <a href="#product-photos">الصور</a>
+        <a href="#product-variants">خيارات المنتج</a>
+        {product?.type === "MADE_TO_ORDER" && canWrite ? (
+          <a href="#product-manufacturing">التصنيع</a>
+        ) : null}
+      </nav>
+      <form action={saveProduct} className="admin-panel admin-form" id="product-basics">
+        <h2>بيانات القطعة</h2>
         {product ? <input name="productId" type="hidden" value={product.id} /> : null}
         <div className="admin-form-grid">
           <label>
@@ -199,28 +209,38 @@ export function ProductForm({
               rows={5}
             />
           </label>
-          <MediaPicker
-            assets={[...mediaLibrary.values()].map((asset) => ({
-              id: asset.id,
-              label: asset.altAr || asset.originalKey.split("/").pop() || "صورة",
-              url:
-                asset.publicUrl ??
-                "/assets/" +
-                  asset.originalKey
-                    .replace(/^legacy:/, "")
-                    .split("/")
-                    .map(encodeURIComponent)
-                    .join("/"),
-            }))}
-            selected={product?.media.map((entry) => entry.mediaId) ?? []}
-          />
-          <VariantEditor existingProduct={Boolean(product)} initial={variantDrafts} />
+          <div className="wide" id="product-photos">
+            <MediaPicker
+              assets={[...mediaLibrary.values()].map((asset) => ({
+                id: asset.id,
+                label: asset.altAr || asset.originalKey.split("/").pop() || "صورة",
+                url:
+                  asset.publicUrl ??
+                  "/assets/" +
+                    asset.originalKey
+                      .replace(/^legacy:/, "")
+                      .split("/")
+                      .map(encodeURIComponent)
+                      .join("/"),
+              }))}
+              selected={product?.media.map((entry) => entry.mediaId) ?? []}
+            />
+          </div>
+          <div className="wide" id="product-variants">
+            <VariantEditor existingProduct={Boolean(product)} initial={variantDrafts} />
+          </div>
           <details className="wide admin-advanced">
-            <summary>خيارات إضافية</summary>
+            <summary>الترجمة الإنجليزية ورابط المنتج</summary>
             <div className="admin-form-grid admin-advanced-grid">
               <label>
                 اسم المنتج بالإنجليزية
-                <input defaultValue={product?.titleEn ?? ""} maxLength={191} name="titleEn" />
+                <input
+                  defaultValue={product?.titleEn ?? ""}
+                  dir="ltr"
+                  lang="en"
+                  maxLength={191}
+                  name="titleEn"
+                />
               </label>
               <label>
                 رابط المنتج
@@ -237,6 +257,8 @@ export function ProductForm({
                   defaultValue={product?.descriptionEn ?? ""}
                   maxLength={10000}
                   name="descriptionEn"
+                  dir="ltr"
+                  lang="en"
                   rows={4}
                 />
               </label>
@@ -265,7 +287,11 @@ export function ProductForm({
 function ManufacturingForm({ product }: { product: ProductRecord }) {
   const policy = product.manufacturingPolicy;
   return (
-    <form action={saveManufacturingPolicy} className="admin-panel admin-form">
+    <form
+      action={saveManufacturingPolicy}
+      className="admin-panel admin-form"
+      id="product-manufacturing"
+    >
       <h2>مدة التصنيع والعربون</h2>
       <p className="admin-muted">
         تظل السياسة المحفوظة للمنتج كما هي حتى تحفظ تغييراً صريحاً. إثبات الدفع يحتاج مطابقة،

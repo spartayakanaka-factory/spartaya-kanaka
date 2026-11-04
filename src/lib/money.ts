@@ -1,5 +1,14 @@
 import type { Locale } from "@/lib/types";
 
+/** Match checkout's variant override and product fallback. */
+export function effectiveProductPrice(productPrice: number | null, variantPrice?: number | null) {
+  return variantPrice ?? productPrice;
+}
+
+export function isPositiveProductPrice(price: number | null): price is number {
+  return price !== null && Number.isSafeInteger(price) && price > 0;
+}
+
 export function decimalFromMinor(minor: number): string {
   const amount = BigInt(minor);
   const hundred = BigInt(100);

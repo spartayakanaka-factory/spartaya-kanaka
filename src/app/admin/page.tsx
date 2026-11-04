@@ -76,7 +76,7 @@ export default async function AdminDashboard() {
             label: "مسودات للمراجعة",
             value: drafts!,
             note: "لا تظهر للعملاء قبل النشر",
-            href: "/admin/products?status=DRAFT",
+            href: "/admin/products/review",
           },
         ]
       : []),

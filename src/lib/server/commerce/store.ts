@@ -1,3 +1,4 @@
+import { effectiveProductPrice, isPositiveProductPrice } from "@/lib/money";
 import "server-only";
 import { getProductImageUrl } from "@/lib/asset-url";
 import {
@@ -223,7 +224,7 @@ export async function updateCart(shopper: Shopper, variantId: string, quantity: 
           v.product.detailsReviewedAt &&
           v.product.availability === "AVAILABLE" &&
           v.availability === "AVAILABLE" &&
-          (v.priceMinor ?? v.product.priceMinor) !== null,
+          isPositiveProductPrice(effectiveProductPrice(v.product.priceMinor, v.priceMinor)),
         "PRODUCT_UNAVAILABLE",
       );
       if (v.product.type === "READY_MADE")
@@ -349,9 +350,9 @@ async function prepare(tx: Tx, shopper: Shopper, input: CheckoutInput) {
         v.availability === "AVAILABLE",
       "PRODUCT_UNAVAILABLE",
     );
-    const price = v.priceMinor ?? v.product.priceMinor;
+    const price = effectiveProductPrice(v.product.priceMinor, v.priceMinor);
     demand(
-      price !== null && price > 0 && v.product.currency === policy.currency,
+      isPositiveProductPrice(price) && v.product.currency === policy.currency,
       "PRICE_APPROVAL_REQUIRED",
     );
     const money = lineMoney(minor(price), item.quantity, policy);

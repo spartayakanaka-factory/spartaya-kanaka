@@ -17,7 +17,8 @@ const publicInclude = {
     orderBy: { position: "asc" as const },
   },
   media: { include: { media: true }, orderBy: { position: "asc" as const } },
-  variants: { where: { active: true }, orderBy: { position: "asc" as const } },
+  variants: { where: { active: true }, include: { inventory: { select: { quantity: true, reserved: true } } }, orderBy: { position: "asc" as const } },
+  manufacturingPolicy: { select: { available: true, minProductionDays: true, maxProductionDays: true } },
   legacyMapping: true,
 } satisfies Prisma.ProductInclude;
 const publicCategoryInclude = {
@@ -71,6 +72,11 @@ function mapProduct(row: PublicProductRow): CatalogProduct {
     originalUrl: row.legacyMapping?.sourceUrl ?? "",
     nameAr: row.titleAr,
     descriptionAr: row.descriptionAr,
+    nameEn: row.titleEn,
+    descriptionEn: row.descriptionEn,
+    ...(row.type === "MADE_TO_ORDER" && row.manufacturingPolicy?.available
+      ? { productionDays: { min: row.manufacturingPolicy.minProductionDays, max: row.manufacturingPolicy.maxProductionDays } }
+      : {}),
     categoryNamesAr: categories.map((category) => category.nameAr),
     categoryNamesEn: categories.map((category) => category.nameEn ?? ""),
     categoryIds: categories.map((category) => category.sourceId ?? category.slug),
@@ -90,6 +96,10 @@ function mapProduct(row: PublicProductRow): CatalogProduct {
       sku: variant.sku,
       options: variant.options && typeof variant.options === "object" && !Array.isArray(variant.options) ? variant.options as Record<string, string> : {},
       priceMinor: variant.priceMinor,
+      available: variant.availability === "AVAILABLE" &&
+        (row.type === "READY_MADE"
+          ? Boolean(variant.inventory && variant.inventory.quantity > variant.inventory.reserved)
+          : Boolean(row.manufacturingPolicy?.available)),
     })),
     images,
     purchasable: false,
@@ -191,7 +201,7 @@ export async function searchStoreProducts(query: string, locale: Locale): Promis
   const rows = await publishedRows();
   return rows.map(mapProduct).filter((product) => {
     const labels = product.categoryIds?.map((id, index) => displayCategoryName(id, product.categoryNamesAr[index] ?? "", locale)) ?? [];
-    const searchable = normalizeSearch([product.nameAr, product.descriptionAr, ...labels].join(" "));
+    const searchable = normalizeSearch([product.nameAr, product.nameEn, product.descriptionAr, product.descriptionEn, ...labels].join(" "));
     return terms.every((term) => searchable.includes(term));
   });
 }

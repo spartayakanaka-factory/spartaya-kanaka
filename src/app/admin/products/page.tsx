@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Prisma } from "@/generated/prisma/client";
 import Image from "next/image";
 import { getProductImageUrl } from "@/lib/asset-url";
 import { getDatabase } from "@/lib/server/database";
@@ -7,57 +8,78 @@ import { hasPermission } from "@/lib/admin/permissions";
 import { AdminFrame, AdminPageHeader } from "@/app/admin/admin-frame";
 import { archiveProduct, duplicateProduct, publishProduct } from "@/app/admin/actions";
 import { formatMoneyMinor } from "@/lib/money";
+import { productSearchWhere } from "./product-search";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; status?: string; type?: string; page?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const actor = await requireAdminPage("PRODUCTS_READ");
   const query = await searchParams;
-  const status = ["DRAFT", "PUBLISHED", "ARCHIVED"].includes(query.status ?? "")
-    ? (query.status as "DRAFT" | "PUBLISHED" | "ARCHIVED")
-    : undefined;
-  const type = ["READY_MADE", "MADE_TO_ORDER"].includes(query.type ?? "")
-    ? (query.type as "READY_MADE" | "MADE_TO_ORDER")
-    : undefined;
-  const where = {
+  const value = (key: string) => {
+    const input = query[key];
+    return (Array.isArray(input) ? input[0] : input)?.trim() ?? "";
+  };
+  const q = value("q").slice(0, 191);
+  const category = value("category").slice(0, 191);
+  const statusValue = value("status");
+  const typeValue = value("type");
+  const status = statusValue === "DRAFT" || statusValue === "PUBLISHED" || statusValue === "ARCHIVED"
+    ? statusValue : undefined;
+  const type = typeValue === "READY_MADE" || typeValue === "MADE_TO_ORDER" ? typeValue : undefined;
+  const filtered = Boolean(q || category || status || type);
+  const where: Prisma.ProductWhereInput = {
     ...(type ? { type } : {}),
     ...(status ? { status } : {}),
-    ...(query.q
-      ? {
-          OR: [
-            { titleAr: { contains: query.q } },
-            { titleEn: { contains: query.q } },
-            { slug: { contains: query.q } },
-          ],
-        }
-      : {}),
+    ...(category ? { categories: { some: { categoryId: category } } } : {}),
   };
+  const db = getDatabase();
   const pageSize = 50;
-  const count = await getDatabase().product.count({ where });
+  const requestedPage = Number(value("page") || 1);
+  const pageNumber = Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+  const pageFor = (count: number) => Math.min(pageNumber, Math.max(1, Math.ceil(count / pageSize)));
+  const include = {
+    categories: { include: { category: true }, orderBy: { position: "asc" } },
+    variants: { where: { active: true }, include: { inventory: true } },
+    media: { include: { media: true }, orderBy: { position: "asc" }, take: 1 },
+  } satisfies Prisma.ProductInclude;
+  const orderBy = [{ updatedAt: "desc" }, { titleAr: "asc" }, { id: "asc" }] satisfies Prisma.ProductOrderByWithRelationInput[];
+  const [result, categories] = await Promise.all([
+    q
+      ? db.$transaction(async (tx) => {
+          const predicate = productSearchWhere({ q, category, status, type });
+          const [total] = await tx.$queryRaw<{ count: bigint }[]>`
+            SELECT COUNT(*) AS count FROM products p WHERE ${predicate}
+          `;
+          const count = Number(total.count);
+          const page = pageFor(count);
+          const ids = await tx.$queryRaw<{ id: string }[]>`
+            SELECT p.id FROM products p WHERE ${predicate}
+            ORDER BY p.updatedAt DESC, p.titleAr ASC, p.id ASC
+            LIMIT ${pageSize} OFFSET ${(page - 1) * pageSize}
+          `;
+          const rows = ids.length
+            ? await tx.product.findMany({ where: { id: { in: ids.map(({ id }) => id) } }, include, orderBy })
+            : [];
+          return { count, page, rows };
+        }, { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead })
+      : (async () => {
+          const count = await db.product.count({ where });
+          const page = pageFor(count);
+          const rows = await db.product.findMany({ where, include, orderBy, take: pageSize, skip: (page - 1) * pageSize });
+          return { count, page, rows };
+        })(),
+    db.category.findMany({ select: { id: true, nameAr: true }, orderBy: [{ nameAr: "asc" }, { id: "asc" }] }),
+  ]);
+  const { count, page, rows } = result;
   const totalPages = Math.max(1, Math.ceil(count / pageSize));
-  const requestedPage = Number(query.page ?? 1);
-  const page = Math.min(
-    Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1,
-    totalPages,
-  );
-  const rows = await getDatabase().product.findMany({
-    where,
-    include: {
-      categories: { include: { category: true } },
-      variants: { where: { active: true }, include: { inventory: true } },
-      media: { include: { media: true }, orderBy: { position: "asc" }, take: 1 },
-    },
-    orderBy: [{ updatedAt: "desc" }, { titleAr: "asc" }],
-    take: pageSize,
-    skip: (page - 1) * pageSize,
-  });
   const pageHref = (value: number) => {
     const params = new URLSearchParams({ page: String(value) });
-    if (query.q) params.set("q", query.q);
+    if (q) params.set("q", q);
+    if (category) params.set("category", category);
     if (status) params.set("status", status);
     if (type) params.set("type", type);
     return "/admin/products?" + params;
@@ -82,11 +104,11 @@ export default async function AdminProductsPage({
           ) : undefined
         }
       />
-      <form action="/admin/products" className="admin-toolbar">
+      <form action="/admin/products" className="admin-toolbar" method="get" role="search" aria-label="بحث المنتجات">
         <div className="admin-filter">
           <label>
             بحث عن منتج
-            <input defaultValue={query.q} name="q" placeholder="الاسم أو الرابط" />
+            <input defaultValue={q} name="q" type="search" maxLength={191} placeholder="الاسم أو الرابط…" />
           </label>
           <label>
             الحالة
@@ -105,12 +127,22 @@ export default async function AdminProductsPage({
               <option value="MADE_TO_ORDER">تصنيع حسب الطلب</option>
             </select>
           </label>
+          <label>
+            التصنيف
+            <select name="category" defaultValue={category}>
+              <option value="">كل التصنيفات</option>
+              {category && !categories.some((item) => item.id === category) ? (
+                <option value={category}>تصنيف غير متاح</option>
+              ) : null}
+              {categories.map((item) => <option key={item.id} value={item.id}>{item.nameAr}</option>)}
+            </select>
+          </label>
           <button className="admin-button" type="submit">
             عرض النتائج
           </button>
-          {query.q || status || type ? <Link href="/admin/products">مسح الفلاتر</Link> : null}
+          {filtered && count > 0 ? <Link href="/admin/products">مسح الفلاتر</Link> : null}
         </div>
-        <span className="admin-muted">
+        <span className="admin-muted" role="status">
           {new Intl.NumberFormat("ar-EG").format(count)} منتج · صفحة{" "}
           {new Intl.NumberFormat("ar-EG").format(page)} من{" "}
           {new Intl.NumberFormat("ar-EG").format(totalPages)}
@@ -249,7 +281,10 @@ export default async function AdminProductsPage({
             </tbody>
           </table>
         ) : (
-          <p className="admin-empty">لا توجد منتجات بهذه المواصفات.</p>
+          <div className="admin-empty">
+            <p>{filtered ? "لم نجد منتجات تطابق البحث أو الفلاتر." : "لا توجد منتجات في الكتالوج بعد."}</p>
+            {filtered ? <Link className="admin-button" href="/admin/products">مسح الفلاتر</Link> : null}
+          </div>
         )}
       </div>
       {totalPages > 1 ? (

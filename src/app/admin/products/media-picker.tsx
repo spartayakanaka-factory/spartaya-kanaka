@@ -80,7 +80,9 @@ export function MediaPicker({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ contentType: file.type, size: file.size }),
         });
-        if (!signing.ok) throw new Error("تخزين الصور غير متاح في هذه البيئة.");
+        if (signing.status === 401 || signing.status === 403)
+          throw new Error("لا تملك صلاحية رفع الصور. سجّل الدخول بحساب مسموح له.");
+        if (!signing.ok) throw new Error("تخزين الصور غير متاح حالياً. حاول لاحقاً أو تواصل مع المسؤول.");
         const { uploadUrl, key, signedHeaders } = (await signing.json()) as {
           uploadUrl: string;
           key: string;
@@ -92,11 +94,18 @@ export function MediaPicker({
           body: file,
         });
         if (!uploaded.ok) throw new Error("تعذر رفع الصورة إلى مساحة التخزين.");
-        const finalized = await fetch("/api/admin/media/finalize", {
+        const finalize = () => fetch("/api/admin/media/finalize", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ key, size: file.size, altAr: file.name.replace(/\.[^.]+$/, "") }),
+          body: JSON.stringify({
+            key,
+            size: file.size,
+            altAr: file.name.replace(/\.[^.]+$/, "").slice(0, 191),
+          }),
         });
+        // Retry the same key if the first request lost its response after commit.
+        let finalized = await finalize().catch(() => null);
+        if (!finalized || finalized.status === 503) finalized = await finalize();
         if (!finalized.ok) {
           const result = (await finalized.json().catch(() => ({}))) as { error?: string };
           throw new Error(

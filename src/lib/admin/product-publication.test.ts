@@ -34,6 +34,16 @@ describe("product publication requirements", () => {
     expect(productPublicationBlockers({ ...validReadyMade, type: "MADE_TO_ORDER", variants: [], manufacturingPolicy: { available: true } })).toEqual([]);
   });
 
+  it("blocks nonpositive base prices and invalid explicit variant overrides", () => {
+    for (const priceMinor of [0, -1, 1.25, Number.NaN]) {
+      expect(productPublicationBlockers({ ...validReadyMade, priceMinor })).toContain("price");
+      expect(productPublicationBlockers({ ...validReadyMade, variants: [{ inventory: {}, priceMinor }] })).toContain("variant-price");
+    }
+    for (const priceMinor of [null, 17500]) {
+      expect(productPublicationBlockers({ ...validReadyMade, variants: [{ inventory: {}, priceMinor }] })).toEqual([]);
+    }
+  });
+
   it("requires a balance for every active ready-made variant, while zero is a valid reviewed balance", () => {
     expect(productPublicationBlockers({ ...validReadyMade, variants: [{ inventory: null }] })).toContain("inventory");
   });

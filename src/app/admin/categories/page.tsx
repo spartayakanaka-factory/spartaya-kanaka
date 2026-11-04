@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getProductImageUrl } from "@/lib/asset-url";
+import { CategoryCover } from "./category-cover";
 import { getDatabase } from "@/lib/server/database";
 import { requireAdminPage } from "@/lib/server/admin-page";
 import { hasPermission } from "@/lib/admin/permissions";
@@ -56,27 +58,36 @@ export default async function AdminCategoriesPage({
           {errors[query.error ?? ""]}
         </p>
       ) : null}
-      <div className="admin-table-wrap" role="region" aria-label="التصنيفات" tabIndex={0}>
-        <table className="admin-table">
+      <div className="admin-table-wrap admin-category-table-wrap" role="region" aria-label="التصنيفات" tabIndex={0}>
+        <table className="admin-table admin-category-table">
           <thead>
             <tr>
               <th>التصنيف</th>
               <th>المنتجات</th>
-              <th>المراجعة</th>
+              <th className="admin-category-review">المراجعة</th>
               <th>الظهور</th>
-              <th>الصورة</th>
-              <th>إجراء</th>
+              <th className="admin-category-image">الصورة</th>
+              <th className="admin-category-action">إجراء</th>
             </tr>
           </thead>
           <tbody>
-            {categories.map((category) => (
+            {categories.map((category) => {
+              const image = category.image;
+              const localPath = image?.originalKey.startsWith("legacy:") ? image.originalKey.slice(7) : "";
+              const cover = image && (localPath || image.publicUrl)
+                ? getProductImageUrl({ localPath, publicUrl: image.publicUrl ?? undefined }) : "";
+              const label = localPath.split("/").pop() || image?.altAr || "صورة التصنيف";
+              return (
               <tr key={category.id}>
                 <td>
                   {category.nameAr}
-                  <small className="admin-table-sub">{category.slug}</small>
+                  <small className="admin-table-sub" dir="ltr">{category.slug}</small>
+                  {canWrite ? (
+                    <Link className="admin-category-mobile-edit" href={"/admin/categories?edit=" + category.id} aria-label={"تعديل " + category.nameAr}>تعديل</Link>
+                  ) : null}
                 </td>
                 <td>{new Intl.NumberFormat("ar-EG").format(category._count.products)}</td>
-                <td>
+                <td className="admin-category-review">
                   <span
                     className={
                       "admin-badge " +
@@ -90,18 +101,19 @@ export default async function AdminCategoriesPage({
                   {category.visible ? "ظاهر" : "مخفي"}
                   {category.featured ? " · مختار" : ""}
                 </td>
-                <td>
-                  {category.image?.altAr || category.image?.originalKey.split("/").pop() || "—"}
+                <td className="admin-category-image">
+                  {cover && cover !== "/assets/unavailable.jpg" ? <CategoryCover key={cover} src={cover} label={label} /> : <span aria-label="لا توجد صورة">—</span>}
                 </td>
-                <td>
+                <td className="admin-category-action">
                   {canWrite ? (
-                    <Link href={"/admin/categories?edit=" + category.id}>تعديل</Link>
+                    <Link href={"/admin/categories?edit=" + category.id} aria-label={"تعديل " + category.nameAr}>تعديل</Link>
                   ) : (
                     "—"
                   )}
                 </td>
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         </table>
       </div>
