@@ -4,6 +4,7 @@ import {
   productPublicationBlockers,
   publicationBlockerLabels,
 } from "@/lib/admin/product-publication";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdminPage } from "@/lib/server/admin-page";
 import { getDatabase } from "@/lib/server/database";
@@ -52,7 +53,15 @@ export default async function EditProductPage({
   const canPublish = hasPermission(actor.roleCode, "PRODUCTS_PUBLISH");
   return (
     <AdminFrame actor={actor}>
-      <AdminPageHeader title="تعديل المنتج" description={product.titleAr} />
+      <AdminPageHeader
+        title="تعديل المنتج"
+        description={product.titleAr}
+        action={
+          <Link className="admin-button" href={`/admin/products/${product.id}/preview`}>
+            معاينة النسخة المحفوظة
+          </Link>
+        }
+      />
       <div className="admin-product-meta">
         <span className="admin-badge">
           {product.status === "PUBLISHED"

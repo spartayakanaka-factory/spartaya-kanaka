@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import { getAllProducts, getCategoryById, getProductById, getProductBySlug, getProductsInCategory, getVerifiedCategories, normalizeSearch, searchProducts as searchLocal, sortProducts } from "@/lib/catalog";
 import { displayCategoryName } from "@/lib/i18n";
 import { getDatabase } from "@/lib/server/database";
+import { requireAdminPage } from "@/lib/server/admin-page";
 import type { CatalogCategory, CatalogImage, CatalogProduct, Locale } from "@/lib/types";
 import type { Prisma } from "@/generated/prisma/client";
 
@@ -132,6 +133,12 @@ async function publishedRows(): Promise<PublicProductRow[]> {
 export async function getStoreProducts(): Promise<CatalogProduct[]> {
   if (!databaseCatalogEnabled()) return getAllProducts();
   return (await publishedRows()).map(mapProduct);
+}
+
+export async function getAdminProductPreview(id: string) {
+  const actor = await requireAdminPage("PRODUCTS_READ");
+  const row = await getDatabase().product.findUnique({ where: { id }, include: publicInclude });
+  return { actor, product: row ? mapProduct(row) : null };
 }
 
 export async function getStoreProductBySlug(slug: string): Promise<CatalogProduct | undefined> {

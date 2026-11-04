@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 const pageSize = 25;
 
 
-type ReviewQuery = { q?: string; category?: string; incomplete?: string; page?: string; error?: string; saved?: string };
+type ReviewQuery = Record<string, string | string[] | undefined>;
 
 function sourcePrice(payload: unknown) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) return null;
@@ -45,15 +45,18 @@ function messageForError(error: string | undefined) {
 export default async function ProductReviewPage({ searchParams }: { searchParams: Promise<ReviewQuery> }) {
   const actor = await requireAdminPage("PRODUCTS_READ");
   const query = await searchParams;
-  const q = (query.q ?? "").trim().slice(0, 100);
-  const categoryId = query.category ?? "";
-  const incompleteOnly = query.incomplete === "1";
-  const parsedPage = Number(query.page ?? 1);
+  const field = (key: string) => typeof query[key] === "string" ? query[key] : undefined;
+  const q = (field("q") ?? "").trim().slice(0, 100);
+  const categoryId = (field("category") ?? "").slice(0, 191);
+  const readiness = field("readiness");
+  const filter = readiness === "ready" ? "ready" : readiness === "incomplete" || field("incomplete") === "1" ? "incomplete" : "";
+  const draftsOnly = field("drafts") === "1";
+  const parsedPage = Number(field("page") ?? 1);
   const requestedPage = Number.isSafeInteger(parsedPage) && parsedPage > 0 ? parsedPage : 1;
   const db = getDatabase();
   const candidates = q
     ? db.$queryRaw<{ id: string }[]>`
-        SELECT p.id FROM products p WHERE ${productSearchWhere({ q, category: categoryId, excludeArchived: true })}
+        SELECT p.id FROM products p WHERE ${productSearchWhere({ q, category: categoryId, status: draftsOnly ? "DRAFT" : undefined, excludeArchived: true })}
         ORDER BY p.updatedAt DESC, p.titleAr ASC, p.id ASC LIMIT 1000
       `
     : Promise.resolve(null);
@@ -61,7 +64,7 @@ export default async function ProductReviewPage({ searchParams }: { searchParams
     getDatabase().category.findMany({ orderBy: [{ sortOrder: "asc" }, { nameAr: "asc" }], select: { id: true, nameAr: true, visible: true, reviewRequired: true } }),
     candidates.then((ids) => db.product.findMany({
       where: ids ? { id: { in: ids.map(({ id }) => id) } } : {
-        status: { not: "ARCHIVED" },
+        status: draftsOnly ? "DRAFT" : { not: "ARCHIVED" },
         ...(categoryId ? { categories: { some: { categoryId } } } : {}),
       },
       include: {
@@ -75,31 +78,38 @@ export default async function ProductReviewPage({ searchParams }: { searchParams
       take: 1000,
     })),
   ]);
-  const filteredRows = incompleteOnly ? rawRows.filter((product) => productPublicationBlockers(product).length > 0) : rawRows;
+  const filteredRows = filter
+    ? rawRows.filter((product) => {
+        const ready = productPublicationBlockers(product).length === 0;
+        return filter === "ready" ? ready : !ready;
+      })
+    : rawRows;
   const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
   const page = Math.min(requestedPage, totalPages);
   const rows = filteredRows.slice((page - 1) * pageSize, page * pageSize);
   const canWrite = hasPermission(actor.roleCode, "PRODUCTS_WRITE");
   const canPublish = hasPermission(actor.roleCode, "PRODUCTS_PUBLISH");
   const eligibleCategories = categories.filter((category) => category.visible && !category.reviewRequired);
-  const errorMessage = messageForError(query.error);
+  const errorMessage = messageForError(field("error"));
   const queryHref = (nextPage: number) => {
     const params = new URLSearchParams();
     if (q) params.set("q", q);
     if (categoryId) params.set("category", categoryId);
-    if (incompleteOnly) params.set("incomplete", "1");
+    if (filter) params.set("readiness", filter);
+    if (draftsOnly) params.set("drafts", "1");
     if (nextPage > 1) params.set("page", String(nextPage));
     return "/admin/products/review" + (params.size ? "?" + params.toString() : "");
   };
 
   return <AdminFrame actor={actor}>
     <AdminPageHeader title="مراجعة الكتالوج" description="راجع بيانات المصدر يدوياً، ثم أدخل السعر التشغيلي والنوع والمخزون الحقيقي قبل النشر." action={<Link className="admin-button" href="/admin/products">كل المنتجات</Link>} />
-    {query.saved ? <p className="admin-notice" role="status">{query.saved === "published" ? "حُفظت المراجعات ونُشرت المنتجات المحددة." : "حُفظت مراجعات المنتجات."}</p> : null}
+    {field("saved") ? <p className="admin-notice" role="status">{field("saved") === "published" ? "حُفظت المراجعات ونُشرت المنتجات المحددة." : "حُفظت مراجعات المنتجات."}</p> : null}
     {errorMessage ? <p className="admin-error" role="alert">{errorMessage}</p> : null}
     <form action="/admin/products/review" className="admin-panel review-filters">
       <label>بحث عن منتج<input defaultValue={q} maxLength={100} name="q" placeholder="اسم المنتج أو الرابط" /></label>
       <label>التصنيف<select defaultValue={categoryId} name="category"><option value="">كل التصنيفات</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.nameAr}{category.visible && !category.reviewRequired ? "" : " · يحتاج مراجعة"}</option>)}</select></label>
-      <label className="admin-check"><input defaultChecked={incompleteOnly} name="incomplete" type="checkbox" value="1" />غير المكتمل فقط</label>
+      <label>جاهزية النشر<select defaultValue={filter} name="readiness"><option value="">كل المنتجات</option><option value="ready">جاهز للنشر</option><option value="incomplete">يحتاج استكمال</option></select></label>
+      <label className="admin-check"><input defaultChecked={draftsOnly} name="drafts" type="checkbox" value="1" />المسودات فقط</label>
       <button className="admin-button" type="submit">تطبيق</button>
       <span className="admin-muted">{new Intl.NumberFormat("ar-EG").format(filteredRows.length)} منتج · صفحة {page} من {totalPages}</span>
     </form>

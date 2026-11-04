@@ -68,6 +68,8 @@ type Rate = {
   feeMinor: string;
   leadDays: number;
   codEnabled: boolean;
+  codFeeMinor: string | null;
+  codMaximumMinor: string | null;
   city?: string;
   area?: string;
 };
@@ -338,13 +340,16 @@ export function CommercePage({
   locale,
   view,
   orderId,
+  checkoutEnabled = false,
 }: {
   locale: string;
   view: "cart" | "checkout" | "account" | "order";
   orderId?: string;
+  checkoutEnabled?: boolean;
 }) {
   const router = useRouter();
   const submission = useRef<{ hash: string; key: string } | null>(null);
+  const quoteSummary = useRef<HTMLDivElement>(null);
   const ar = locale === "ar",
     t = (a: string, e: string) => (ar ? a : e),
     base = "/" + locale;
@@ -391,14 +396,17 @@ export function CommercePage({
         products.find((p) => p.variants.some((v) => v.id === item.variantId))?.type ===
         "READY_MADE",
     );
-  const selectedRate = rates.find(
-    (rate) =>
-      rate.id === rateId && rate.region === address.region && destinationMatches(rate, address),
+  const matchingRates = rates.filter(
+    (rate) => rate.region === address.region && destinationMatches(rate, address),
   );
+  const selectedRate = matchingRates.find((rate) => rate.id === rateId);
+  const codEligible =
+    readyOnly &&
+    selectedRate?.codEnabled &&
+    selectedRate.codFeeMinor !== null &&
+    selectedRate.codMaximumMinor !== null;
   const availableMethods = ["COD", "WALLET", "INSTAPAY", "MOCK_CARD"].filter(
-    (value) =>
-      paymentOptions[value] &&
-      (value !== "COD" || (readyOnly && selectedRate?.codEnabled !== false)),
+    (value) => paymentOptions[value] && (value !== "COD" || codEligible),
   );
   const effectiveMethod = availableMethods.includes(method) ? method : availableMethods[0] || "";
   const money = (v: string | number) => formatMoneyMinor(Number(v), ar ? "ar" : "en", "EGP");
@@ -445,6 +453,9 @@ export function CommercePage({
     if (view === "checkout")
       setAddresses(await commerceApi<typeof addresses>("resource=addresses").catch(() => []));
   }
+  useEffect(() => {
+    if (quote) quoteSummary.current?.focus();
+  }, [quote]);
   useEffect(() => {
     let active = true;
     (async () => {
@@ -608,9 +619,13 @@ export function CommercePage({
                     "Review tax and delivery before confirmation. Ready-made and made-to-order items cannot share this checkout.",
                   )}
                 </p>
-                <Link className="button" href={base + "/checkout"}>
-                  {t("مراجعة الطلب", "Review checkout")}
-                </Link>
+                {checkoutEnabled ? (
+                  <Link className="button" href={base + "/checkout"}>
+                    {t("مراجعة الطلب", "Review checkout")}
+                  </Link>
+                ) : (
+                  <p>{t("إتمام الطلب غير متاح حالياً.", "Checkout is currently unavailable.")}</p>
+                )}
               </>
             ) : null}
           </div>
@@ -619,6 +634,7 @@ export function CommercePage({
               className="commerce-panel"
               onSubmit={(e) => {
                 e.preventDefault();
+                if (busy || !selectedRate || !effectiveMethod) return;
                 if (!egyptianMobile(address.phone)) {
                   setMessage(
                     t(
@@ -629,6 +645,7 @@ export function CommercePage({
                   (e.currentTarget.elements.namedItem("phone") as HTMLInputElement)?.focus();
                   return;
                 }
+                setQuote(null);
                 void run(async () => {
                   const result = await commerceApi<typeof quote>("", {
                     action: "quote",
@@ -642,111 +659,132 @@ export function CommercePage({
               }}
             >
               <h2>{t("التوصيل والدفع", "Delivery and payment")}</h2>
-              {addresses.length ? (
-                <label>
-                  {t("استخدم عنواناً محفوظاً", "Use a saved address")}
-                  <select
-                    aria-label={t("عنوان محفوظ", "Saved address")}
-                    defaultValue=""
-                    onChange={(e) => {
-                      const found = addresses.find((a) => a.id === e.target.value);
-                      if (found) {
-                        const { id: ignored, ...value } = found;
-                        void ignored;
-                        setAddress(value);
-                        setQuote(null);
-                      }
-                    }}
-                  >
-                    <option value="">{t("عنوان جديد", "New address")}</option>
-                    {addresses.map((a) => (
-                      <option value={a.id} key={a.id}>
-                        {a.recipient} · {a.city} · {a.line1}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              ) : null}
-              <AddressFields
-                value={address}
-                onChange={(v) => {
-                  if (
-                    v.region !== address.region ||
-                    v.city !== address.city ||
-                    v.area !== address.area
-                  )
-                    setRateId("");
-                  setAddress(v);
-                  setQuote(null);
-                }}
-                ar={ar}
-                rates={rates}
-              />
-              <label>
-                {t("خدمة التوصيل", "Delivery service")}
-                <select
-                  required
-                  aria-label={t("خدمة التوصيل", "Delivery service")}
-                  value={rateId}
-                  onChange={(e) => {
-                    setRateId(e.target.value);
+              <fieldset className="commerce-delivery-fields" disabled={busy}>
+                <legend className="sr-only">
+                  {t("بيانات التوصيل والدفع", "Delivery and payment details")}
+                </legend>
+                {addresses.length ? (
+                  <label>
+                    {t("استخدم عنواناً محفوظاً", "Use a saved address")}
+                    <select
+                      aria-label={t("عنوان محفوظ", "Saved address")}
+                      defaultValue=""
+                      onChange={(e) => {
+                        const found = addresses.find((a) => a.id === e.target.value);
+                        if (found) {
+                          const { id: ignored, ...value } = found;
+                          void ignored;
+                          setAddress(value);
+                          setRateId("");
+                          setQuote(null);
+                        }
+                      }}
+                    >
+                      <option value="">{t("عنوان جديد", "New address")}</option>
+                      {addresses.map((a) => (
+                        <option value={a.id} key={a.id}>
+                          {a.recipient} · {a.city} · {a.line1}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : null}
+                <AddressFields
+                  value={address}
+                  onChange={(v) => {
+                    if (
+                      v.region !== address.region ||
+                      v.city !== address.city ||
+                      v.area !== address.area
+                    )
+                      setRateId("");
+                    setAddress(v);
                     setQuote(null);
                   }}
-                >
-                  <option value="">{t("اختر الخدمة", "Select service")}</option>
-                  {rates
-                    .filter((r) => r.region === address.region && destinationMatches(r, address))
-                    .map((r) => (
+                  ar={ar}
+                  rates={rates}
+                />
+                <label>
+                  {t("خدمة التوصيل", "Delivery service")}
+                  <select
+                    required
+                    aria-label={t("خدمة التوصيل", "Delivery service")}
+                    value={selectedRate?.id ?? ""}
+                    disabled={!matchingRates.length}
+                    onChange={(e) => {
+                      setRateId(e.target.value);
+                      setQuote(null);
+                    }}
+                  >
+                    <option value="">
+                      {!address.region
+                        ? t("اختر المحافظة أولاً", "Select a governorate first")
+                        : matchingRates.length
+                          ? t("اختر الخدمة", "Select service")
+                          : t("لا توجد خدمة لهذا العنوان", "No service for this address")}
+                    </option>
+                    {matchingRates.map((r) => (
                       <option value={r.id} key={r.id}>
                         {r.carrier} · {money(r.feeMinor)} · {r.leadDays}{" "}
                         {t("أيام اختبار", "test days")}
                       </option>
                     ))}
-                </select>
-              </label>
-              <label>
-                {t("طريقة دفع الاختبار", "Test payment method")}
-                <select
-                  aria-label={t("طريقة دفع الاختبار", "Test payment method")}
-                  value={effectiveMethod}
-                  required
-                  onChange={(e) => {
-                    setMethod(e.target.value);
-                    setQuote(null);
-                  }}
+                  </select>
+                </label>
+                <label>
+                  {t("طريقة دفع الاختبار", "Test payment method")}
+                  <select
+                    aria-label={t("طريقة دفع الاختبار", "Test payment method")}
+                    value={effectiveMethod}
+                    required
+                    onChange={(e) => {
+                      setMethod(e.target.value);
+                      setQuote(null);
+                    }}
+                  >
+                    {!availableMethods.length ? (
+                      <option value="">
+                        {t("لا توجد طريقة دفع مهيأة", "No configured payment method")}
+                      </option>
+                    ) : null}
+                    {availableMethods.map((value) => (
+                      <option value={value} key={value}>
+                        {value === "COD"
+                          ? t(
+                              "الدفع عند الاستلام — للجاهز فقط",
+                              "Cash on delivery — ready-to-ship only",
+                            )
+                          : value === "WALLET"
+                            ? t("تحويل إلى محفظة — مراجعة يدوية", "Mobile wallet — manual review")
+                            : value === "INSTAPAY"
+                              ? "InstaPay — " + t("مراجعة يدوية", "manual review")
+                              : t("بطاقة وهمية محلية", "Local mock card")}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <p>
+                  {t(
+                    "لا تُرسل أي أموال. كل الأرقام هنا إعدادات اصطناعية للاختبار.",
+                    "Do not send funds. All amounts here are synthetic test settings.",
+                  )}
+                </p>
+                <button
+                  className="button button-light"
+                  disabled={busy || !selectedRate || !effectiveMethod}
                 >
-                  {!availableMethods.length ? (
-                    <option value="">
-                      {t("لا توجد طريقة دفع مهيأة", "No configured payment method")}
-                    </option>
-                  ) : null}
-                  {availableMethods.map((value) => (
-                    <option value={value} key={value}>
-                      {value === "COD"
-                        ? t(
-                            "الدفع عند الاستلام — للجاهز فقط",
-                            "Cash on delivery — ready-to-ship only",
-                          )
-                        : value === "WALLET"
-                          ? t("تحويل إلى محفظة — مراجعة يدوية", "Mobile wallet — manual review")
-                          : value === "INSTAPAY"
-                            ? "InstaPay — " + t("مراجعة يدوية", "manual review")
-                            : t("بطاقة وهمية محلية", "Local mock card")}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <p>
-                {t(
-                  "لا تُرسل أي أموال. كل الأرقام هنا إعدادات اصطناعية للاختبار.",
-                  "Do not send funds. All amounts here are synthetic test settings.",
-                )}
-              </p>
-              <button className="button button-light" disabled={busy}>
-                {t("احسب الإجمالي", "Calculate total")}
-              </button>
+                  {t("احسب الإجمالي", "Calculate total")}
+                </button>
+              </fieldset>
               {quote ? (
-                <div className="commerce-summary">
+                <div
+                  aria-labelledby="checkout-summary-title"
+                  className="commerce-summary"
+                  ref={quoteSummary}
+                  role="region"
+                  tabIndex={-1}
+                >
+                  <h3 id="checkout-summary-title">{t("ملخص الطلب", "Order summary")}</h3>
                   <dl>
                     <div>
                       <dt>

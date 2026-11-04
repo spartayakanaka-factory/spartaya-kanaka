@@ -119,6 +119,10 @@ export function commerceEnabled(env = process.env) {
     return false;
   }
 }
+export function commerceCheckoutEnabled(env = process.env) {
+  return env.P3_CHECKOUT === "1" && commerceEnabled(env);
+}
+
 export function assertCommerceEnvironment() {
   if (!commerceEnabled()) throw new CommerceError("LOCAL_COMMERCE_DISABLED", 503);
 }

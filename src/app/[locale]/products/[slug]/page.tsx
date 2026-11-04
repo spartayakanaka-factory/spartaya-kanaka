@@ -1,4 +1,4 @@
-import { commerceEnabled } from "@/lib/commerce/runtime";
+import { commerceCheckoutEnabled } from "@/lib/commerce/runtime";
 import { AddToCart } from "@/components/commerce-client";
 import { getDatabase } from "@/lib/server/database";
 import type { Metadata } from "next";
@@ -54,7 +54,7 @@ export default async function ProductPage({ params }: Props) {
   ]);
   if (!product) notFound();
   const buying =
-    commerceEnabled() && process.env.P3_CHECKOUT === "1" && product.status === "PUBLISHED"
+    commerceCheckoutEnabled() && product.status === "PUBLISHED"
       ? await getDatabase().product.findUnique({
           where: { slug },
           include: {

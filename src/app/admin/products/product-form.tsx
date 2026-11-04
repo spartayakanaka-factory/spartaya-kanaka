@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { saveProduct, saveManufacturingPolicy, reorderProductMedia } from "@/app/admin/actions";
+import { DepositFields } from "@/app/admin/products/deposit-fields";
 import { MediaPicker } from "@/app/admin/products/media-picker";
 import { decimalFromMinor } from "@/lib/money";
 import { VariantEditor, type VariantDraft } from "@/app/admin/products/variant-editor";
@@ -227,7 +228,7 @@ export function ProductForm({
             />
           </div>
           <div className="wide" id="product-variants">
-            <VariantEditor existingProduct={Boolean(product)} initial={variantDrafts} />
+            <VariantEditor initial={variantDrafts} />
           </div>
           <details className="wide admin-advanced">
             <summary>الترجمة الإنجليزية ورابط المنتج</summary>
@@ -302,7 +303,7 @@ function ManufacturingForm({ product }: { product: ProductRecord }) {
         <label>
           أقل مدة (أيام)
           <input
-            defaultValue={policy?.minProductionDays ?? 7}
+            defaultValue={policy?.minProductionDays}
             min="1"
             max="365"
             name="minDays"
@@ -313,7 +314,7 @@ function ManufacturingForm({ product }: { product: ProductRecord }) {
         <label>
           أقصى مدة (أيام)
           <input
-            defaultValue={policy?.maxProductionDays ?? 14}
+            defaultValue={policy?.maxProductionDays}
             min="1"
             max="365"
             name="maxDays"
@@ -321,37 +322,17 @@ function ManufacturingForm({ product }: { product: ProductRecord }) {
             required
           />
         </label>
-        <label>
-          طريقة الدفعة
-          <select defaultValue={policy?.depositMode ?? "FULL_ADVANCE"} name="depositMode">
-            <option value="FULL_ADVANCE">دفع كامل مقدماً</option>
-            <option value="DEPOSIT">عربون</option>
-          </select>
-        </label>
-        <label>
-          قيمة العربون
-          <select defaultValue={policy?.depositType ?? "PERCENT"} name="depositType">
-            <option value="PERCENT">نسبة مئوية</option>
-            <option value="FIXED_MINOR">مبلغ بالجنيه</option>
-          </select>
-        </label>
-        <label>
-          قيمة العربون
-          <input
-            defaultValue={
-              policy
-                ? policy.depositType === "FIXED_MINOR"
-                  ? decimalFromMinor(policy.depositValue)
-                  : policy.depositValue
-                : 100
-            }
-            inputMode={policy?.depositType === "FIXED_MINOR" ? "decimal" : "numeric"}
-            min="0"
-            name="depositValue"
-            step={policy?.depositType === "FIXED_MINOR" ? "0.01" : "1"}
-            type="number"
-          />
-        </label>
+        <DepositFields
+          initialMode={policy?.depositMode ?? "FULL_ADVANCE"}
+          initialType={policy?.depositType ?? "PERCENT"}
+          initialValue={
+            policy
+              ? policy.depositType === "FIXED_MINOR"
+                ? decimalFromMinor(policy.depositValue)
+                : String(policy.depositValue)
+              : ""
+          }
+        />
         <label>
           تحصيل المتبقي
           <select

@@ -1935,3 +1935,15 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+.admin-product-preview {
+  padding: 0;
+}
+.admin-product-preview h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-block: 8px;
+}
+.admin-product-preview .product-info {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
