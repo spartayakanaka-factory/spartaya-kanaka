@@ -25,10 +25,10 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm exec playwright install --with-deps chromium
       - name: Disposable Phase 3.5 acceptance
-        if: ${{ github.base_ref != 'review/phase3-5-factory-commerce-20261030' }}
+        if: ${{ (github.base_ref || github.ref_name) == 'review/phase3-integration-20261029' }}
         run: node scripts/phase3-ci.mjs --phase35
       - name: Disposable Phase 4 acceptance
-        if: ${{ github.base_ref == 'review/phase3-5-factory-commerce-20261030' }}
+        if: ${{ (github.base_ref || github.ref_name) != 'review/phase3-integration-20261029' }}
         run: node scripts/phase3-ci.mjs --phase4
       - name: Save successful synthetic acceptance evidence
         if: success()
