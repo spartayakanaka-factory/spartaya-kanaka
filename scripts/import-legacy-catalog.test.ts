@@ -1,7 +1,10 @@
 import { afterEach, expect, it, vi } from "vitest";
+import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import sharp from "sharp";
 import rawProducts from "../sprtaya-kanaka-assets/بيانات/products.json";
-import type { LegacyProduct } from "../src/lib/catalog-import";
+import { isImportableLegacyImage, type LegacyProduct } from "../src/lib/catalog-import";
 
 const fixture = vi.hoisted(() => ({
   db: {
@@ -36,14 +39,20 @@ afterEach(() => vi.unstubAllEnvs());
 it("executes import media creation with preserved metadata and byte-derived MIME (mocked database)", async () => {
   const image = (rawProducts as LegacyProduct[])
     .flatMap((p) => p.images ?? [])
-    .find((i) => i.local_path && i.status !== "failed")!;
+    .find(isImportableLegacyImage)!;
+  const assetRoot = mkdtempSync(path.join(os.tmpdir(), "sprtaya-import-test-"));
   const argv = process.argv;
   const previousExitCode = process.exitCode;
   const output = vi.spyOn(process.stdout, "write").mockImplementation(() => true);
   const error = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
   try {
-    // The original files are read only. No database, external storage or secret is configured.
-    vi.stubEnv("LEGACY_ASSET_ROOT", path.resolve("../../../sprtaya-kanaka-assets"));
+    // Preserve the catalog metadata but provide independent, valid image bytes.
+    const file = path.join(assetRoot, image.local_path);
+    mkdirSync(path.dirname(file), { recursive: true });
+    await sharp({ create: { width: 1, height: 1, channels: 3, background: "#98663d" } })
+      .webp()
+      .toFile(file);
+    vi.stubEnv("LEGACY_ASSET_ROOT", assetRoot);
     process.argv = [argv[0], "import-legacy-catalog.ts", "--apply"];
     await import("./import-legacy-catalog");
     await vi.waitFor(() => expect(fixture.db.$disconnect).toHaveBeenCalledOnce());
@@ -68,5 +77,6 @@ it("executes import media creation with preserved metadata and byte-derived MIME
     process.exitCode = previousExitCode;
     output.mockRestore();
     error.mockRestore();
+    rmSync(assetRoot, { recursive: true, force: true });
   }
 });
