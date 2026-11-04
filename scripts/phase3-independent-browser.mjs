@@ -53,6 +53,28 @@ async function goto(url) {
   const r = await page.goto(base + url, { waitUntil: "networkidle" });
   assert.ok(r.status() < 400, url + " status " + r.status());
 }
+async function signInStaff(account) {
+  await goto("/admin/login");
+  await page.getByLabel("البريد الإلكتروني", { exact: true }).fill(account.email);
+  await page.getByLabel("كلمة المرور", { exact: true }).fill(account.password);
+  await page.getByRole("button", { name: "تسجيل الدخول", exact: true }).click();
+  if (account.forcePasswordChange) {
+    await page.waitForURL(base + "/admin/password");
+    const rotated = randomBytes(24).toString("base64url");
+    await page.getByLabel("كلمة المرور الحالية").fill(account.password);
+    await page.getByLabel("كلمة المرور الجديدة", { exact: true }).fill(rotated);
+    await page.getByLabel("تأكيد كلمة المرور").fill(rotated);
+    await page.getByRole("button", { name: "تغيير كلمة المرور", exact: true }).click();
+    await page.waitForURL(base + "/admin");
+    account.password = rotated;
+    account.forcePasswordChange = false;
+    await writeFile(staffFile, JSON.stringify(fixtures, null, 2), { mode: 0o600 });
+  }
+  await page.getByRole("heading", { level: 1, name: "متابعة اليوم" }).waitFor();
+  await goto("/admin/orders");
+  assert.equal(new URL(page.url()).pathname, "/admin/orders");
+  await page.getByRole("heading", { level: 1, name: "إدارة الطلبات" }).waitFor();
+}
 async function shot(name) {
   await page.evaluate(async () => {
     await document.fonts.ready;
@@ -299,25 +321,7 @@ try {
     },
   );
   await check("owner login, password rotation and Arabic order dashboard", async () => {
-    const owner = fixtures.staff[0];
-    await goto("/admin/login");
-    await page.getByLabel("البريد الإلكتروني", { exact: true }).fill(owner.email);
-    await page.getByLabel("كلمة المرور", { exact: true }).fill(owner.password);
-    await page.getByRole("button", { name: "تسجيل الدخول", exact: true }).click();
-    await page.waitForURL(/\/admin(?:\/password)?$/);
-    if (page.url().endsWith("/admin/password")) {
-      const rotated = randomBytes(24).toString("base64url");
-      await page.getByLabel("كلمة المرور الحالية").fill(owner.password);
-      await page.getByLabel("كلمة المرور الجديدة", { exact: true }).fill(rotated);
-      await page.getByLabel("تأكيد كلمة المرور").fill(rotated);
-      await page.getByRole("button", { name: "تغيير كلمة المرور", exact: true }).click();
-      await page.waitForURL(base + "/admin");
-      owner.password = rotated;
-      owner.forcePasswordChange = false;
-      await writeFile(staffFile, JSON.stringify(fixtures, null, 2), { mode: 0o600 });
-    }
-    await goto("/admin/orders");
-    await page.getByRole("heading", { name: "إدارة الطلبات" }).waitFor();
+    await signInStaff(fixtures.staff[0]);
     await page
       .getByRole("link", { name: orderId.slice(0, 8), exact: true })
       .first()
@@ -351,24 +355,7 @@ try {
           headers: { origin: base },
           data: {},
         });
-        const account = fixtures.staff[index];
-        await goto("/admin/login");
-        await page.getByLabel("البريد الإلكتروني", { exact: true }).fill(account.email);
-        await page.getByLabel("كلمة المرور", { exact: true }).fill(account.password);
-        await page.getByRole("button", { name: "تسجيل الدخول", exact: true }).click();
-        await page.waitForURL(/\/admin(?:\/password)?$/);
-        if (page.url().endsWith("/admin/password")) {
-          const rotated = randomBytes(24).toString("base64url");
-          await page.getByLabel("كلمة المرور الحالية").fill(account.password);
-          await page.getByLabel("كلمة المرور الجديدة", { exact: true }).fill(rotated);
-          await page.getByLabel("تأكيد كلمة المرور").fill(rotated);
-          await page.getByRole("button", { name: "تغيير كلمة المرور", exact: true }).click();
-          await page.waitForURL(base + "/admin");
-          account.password = rotated;
-          account.forcePasswordChange = false;
-          await writeFile(staffFile, JSON.stringify(fixtures, null, 2), { mode: 0o600 });
-        }
-        await goto("/admin/orders");
+        await signInStaff(fixtures.staff[index]);
       }
       const row = () =>
         page
