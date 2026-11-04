@@ -44,9 +44,10 @@ try {
   });
   assert.equal(login.status(), 200);
   await page.goto(base + "/admin/products/" + fixtures.ready.id, { waitUntil: "networkidle" });
-  const prior = await page
-    .locator('input[name="mediaIds"]')
-    .evaluateAll((elements) => elements.map((e) => e.value));
+  const mediaIds = () => page.locator('input[name="mediaIds"]').evaluateAll(
+    (elements) => elements.map((element) => element.value),
+  );
+  const prior = await mediaIds();
   assert.ok(prior.length);
   const upload = page.locator('input[type="file"]');
   await upload.setInputFiles({
@@ -64,14 +65,20 @@ try {
   const signedResponse = page.waitForResponse(
     (r) => r.url().endsWith("/api/admin/media/upload-url") && r.request().method() === "POST",
   );
+  const finalizedResponse = page.waitForResponse(
+    (r) => r.url().endsWith("/api/admin/media/finalize") && r.ok(),
+  );
   await upload.setInputFiles({ name: label + ".jpg", mimeType: "image/jpeg", buffer });
   const signed = await (await signedResponse).json();
+  const finalized = await (await finalizedResponse).json();
   await page
     .getByText("تم رفع الصور وإضافتها إلى القائمة. احفظ المنتج لتثبيت ارتباطها.", { exact: true })
     .waitFor();
-  await page.getByLabel(/اختر صور المنتج من مكتبة الوسائط/).selectOption({ label });
-  const selected = await page.locator('input[name="mediaIds"]').inputValue();
-  assert.match(selected, /^[a-f0-9-]{36}$/);
+  assert.match(finalized.id, /^[a-f0-9-]{36}$/);
+  assert.deepEqual(await mediaIds(), [...prior, finalized.id]);
+  const removeNewImage = page.getByRole("button", { name: "إزالة الصورة من المنتج: " + label, exact: true });
+  await page.getByRole("listitem").filter({ has: removeNewImage })
+    .getByRole("button", { name: "اجعلها رئيسية", exact: true }).click();
   async function save() {
     await page.getByRole("button", { name: "حفظ التغييرات", exact: true }).click();
     await page.waitForURL(
@@ -79,11 +86,9 @@ try {
     );
   }
   await save();
-  assert.equal(await page.locator('input[name="mediaIds"]').inputValue(), selected);
+  assert.deepEqual(await mediaIds(), [finalized.id, ...prior]);
   await page.goto(base + "/ar/products/" + fixtures.ready.slug, { waitUntil: "networkidle" });
-  const image = page
-    .locator('img[src*="' + new URL(process.env.MEDIA_S3_ENDPOINT).host + '/"]')
-    .first();
+  const image = page.locator(`img[src="${finalized.url}"]`).first();
   await image.waitFor();
   await image.evaluate((el) => el.decode());
   assert.ok(await image.evaluate((el) => el.naturalWidth > 0));
@@ -109,14 +114,9 @@ try {
   // Restore this new synthetic product's original genuine-photo association.
   // Keep the new S3 asset for inspection; no retention/deletion policy is invented.
   await page.goto(base + "/admin/products/" + fixtures.ready.id, { waitUntil: "networkidle" });
-  await page.getByLabel(/اختر صور المنتج من مكتبة الوسائط/).selectOption(prior);
+  await removeNewImage.click();
   await save();
-  assert.deepEqual(
-    await page
-      .locator('input[name="mediaIds"]')
-      .evaluateAll((elements) => elements.map((e) => e.value)),
-    prior,
-  );
+  assert.deepEqual(await mediaIds(), prior);
   assert.deepEqual(errors, []);
   checks.push({
     name: "real admin browser upload/replacement/retrieval and association restoration",
