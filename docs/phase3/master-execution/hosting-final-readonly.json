@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-29T23:18:36.026Z",
+  "domain": "bisque-pheasant-330767.hostingersite.com",
+  "build": {
+    "uuid": "01a188e1-e80f-714d-8e7b-56c7588e9d91",
+    "state": "completed",
+    "commit": "cea867a0df48d0aa145613b0d491b1a779b4ee3d"
+  },
+  "buildSettings": {
+    "node_version": 22,
+    "app_type": "next",
+    "root_directory": null,
+    "output_directory": ".next",
+    "build_script": "build",
+    "entry_file": null,
+    "package_manager": "pnpm"
+  },
+  "gitAutoDeployment": {
+    "is_enabled": true,
+    "owner": "spartayakanaka-factory",
+    "repository": "spartaya-kanaka",
+    "branch": "codex/hostinger-nextjs-source"
+  },
+  "mutationsPerformed": false,
+  "environmentNames": {
+    "verification": "User manually confirmed; values not accessed",
+    "names": [
+      "APP_ENV",
+      "STAGING_SITE",
+      "STAGING_ACCESS_USERNAME",
+      "STAGING_ACCESS_PASSWORD",
+      "LEGACY_ASSET_ROOT"
+    ]
+  }
+}

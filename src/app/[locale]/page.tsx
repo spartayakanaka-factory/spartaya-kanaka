@@ -4,8 +4,13 @@ import { CategoryGrid, ProductGrid } from "@/components/storefront-ui";
 import { HeroShowcase } from "@/components/hero-showcase";
 import { Icon } from "@/components/icon";
 import { getProductImageUrl } from "@/lib/asset-url";
-import { getStoreCategories, getStoreFeaturedProducts, getStoreProductById } from "@/lib/server/storefront-catalog";
+import {
+  getStoreCategories,
+  getStoreFeaturedProducts,
+  getStoreProductById,
+} from "@/lib/server/storefront-catalog";
 import { merchandising } from "@/lib/merchandising";
+import { getProductById as getEditorialProduct } from "@/lib/catalog";
 import { getCopy, isLocale } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
 import { getStoreContactSettings } from "@/lib/server/store-settings";
@@ -40,7 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) notFound();
   const ar = locale === "ar";
   const base = "/" + locale;
-  const [allCategories, featuredProducts, heroProducts, detailProduct, shell, coffee, contacts] = await Promise.all([
+  const [allCategories, featuredProducts, heroProducts, shell, contacts] = await Promise.all([
     getStoreCategories(),
     getStoreFeaturedProducts(),
     Promise.all([
@@ -48,26 +53,42 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       getStoreProductById(merchandising.detailProductId),
       getStoreProductById(merchandising.coffeeProductId),
     ]),
-    getStoreProductById(merchandising.detailProductId),
     getStoreProductById(merchandising.shellProductId),
-    getStoreProductById(merchandising.coffeeProductId),
     getStoreContactSettings(),
   ]);
+  const [heroProduct, detailProduct, coffee] = heroProducts;
   const curatedCategoryIds = new Set(merchandising.homeCategoryIds);
-  const categories = allCategories.filter((category) => category.featured || curatedCategoryIds.has(category.id));
+  const curatedCategories = allCategories.filter(
+    (category) => category.featured || curatedCategoryIds.has(category.id),
+  );
+  const categories = curatedCategories.length ? curatedCategories : allCategories.slice(0, 8);
   const choices = [
-    { product: heroProducts[0], label: ar ? "طقم القهوة" : "The coffee set" },
-    { product: heroProducts[1], label: ar ? "السبرتاية والكنكة" : "The coffee ritual" },
-    { product: heroProducts[2], label: ar ? "الدلة العربية" : "The Arabic pot" },
-  ].flatMap(({ product, label }) => {
-    const image = product?.images[0];
-    return product && image
+    {
+      product: heroProduct,
+      sourceId: merchandising.heroProductId,
+      label: ar ? "طقم القهوة" : "The coffee set",
+    },
+    {
+      product: detailProduct,
+      sourceId: merchandising.detailProductId,
+      label: ar ? "السبرتاية والكنكة" : "The coffee ritual",
+    },
+    {
+      product: coffee,
+      sourceId: merchandising.coffeeProductId,
+      label: ar ? "الدلة العربية" : "The Arabic pot",
+    },
+  ].flatMap(({ product, sourceId, label }) => {
+    // Approved editorial photography remains part of the factory's art
+    // direction while catalog records await review. Draft detail links stay hidden.
+    const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
+    return image
       ? [
           {
             label,
-            name: product.nameAr,
+            name: product?.nameAr ?? label,
             src: getProductImageUrl(image),
-            href: base + "/products/" + product.slug,
+            href: product ? base + "/products/" + product.slug : base + "/products",
             width: image.width ?? 900,
             height: image.height ?? 1200,
             unoptimized: Boolean(image.publicUrl),
@@ -75,7 +96,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         ]
       : [];
   });
-  const detail = detailProduct?.images[0];
+  const detail =
+    detailProduct?.images[0] ?? getEditorialProduct(merchandising.detailProductId)?.images[0];
   return (
     <>
       <section className="hero" aria-labelledby="home-title">
@@ -95,9 +117,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             )}
           </h1>
           <p>
-            {contacts.descriptionAr || (ar
-              ? "سبرتايات وكنك وأطقم قهوة من النحاس، وقطع صدف تضيف لبيتك حكاية من قلب القاهرة."
-              : "Copper coffee sets, traditional burners and natural shell pieces. A little of Cairo, made part of your everyday.")}
+            {(ar && contacts.descriptionAr) ||
+              (ar
+                ? "سبرتايات وكنك وأطقم قهوة من النحاس، وقطع صدف تضيف لبيتك حكاية من قلب القاهرة."
+                : "Copper coffee sets, traditional burners and natural shell pieces. A little of Cairo, made part of your everyday.")}
           </p>
           <div className="hero-actions">
             <Link className="button button-copper" href={base + "/products"}>
@@ -117,15 +140,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <HeroShowcase choices={choices} locale={locale} />
       </section>
 
-      <aside className="store-notes" aria-label={ar ? "عن مجموعتنا" : "About our collection"}>
-        <p>{ar ? "نحاس وصدف، بتفاصيل تستحق التأمل" : "Copper & shell, in considered detail"}</p>
-        <p>{ar ? "من مصنع سبرتاية وكنكة" : "From Sprtaya & Kanaka factory"}</p>
-        <a href={"tel:" + contacts.phone}>
-          {ar ? "للجملة والتصنيع الخاص" : "Wholesale & custom enquiries"}
-          <Icon name="arrow" />
-        </a>
-      </aside>
-
       <section
         className="section category-section"
         id="categories"
@@ -140,34 +154,36 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 : "From the morning coffee to the finishing touch."}
             </p>
           </div>
-          <Link className="text-link" href={base + "/collections"}>
-            {getCopy(locale, "browseCategories")}
-            <Icon name="arrow" />
-          </Link>
         </div>
         <CategoryGrid categories={categories} locale={locale} compact />
+        <Link className="text-link category-section-link" href={base + "/collections"}>
+          {getCopy(locale, "browseCategories")}
+          <Icon name="arrow" />
+        </Link>
       </section>
 
-      <section
-        className="section product-section featured-products"
-        aria-labelledby="featured-title"
-      >
-        <div className="section-heading">
-          <div>
-            <h2 id="featured-title">{ar ? "مختارات من المجموعة" : "Selected for your home"}</h2>
-            <p>
-              {ar
-                ? "أطقم قهوة، سبرتايات، وقطع للبيت."
-                : "Coffee sets, traditional burners & pieces for home."}
-            </p>
+      {featuredProducts.length ? (
+        <section
+          className="section product-section featured-products"
+          aria-labelledby="featured-title"
+        >
+          <div className="section-heading">
+            <div>
+              <h2 id="featured-title">{ar ? "مختارات من المجموعة" : "Selected for your home"}</h2>
+              <p>
+                {ar
+                  ? "أطقم قهوة، سبرتايات، وقطع للبيت."
+                  : "Coffee sets, traditional burners & pieces for home."}
+              </p>
+            </div>
+            <Link className="text-link" href={base + "/products"}>
+              {ar ? "تصفح كل القطع" : "Explore all pieces"}
+              <Icon name="arrow" />
+            </Link>
           </div>
-          <Link className="text-link" href={base + "/products"}>
-            {ar ? "تصفح كل القطع" : "Explore all pieces"}
-            <Icon name="arrow" />
-          </Link>
-        </div>
-        <ProductGrid products={featuredProducts} locale={locale} />
-      </section>
+          <ProductGrid products={featuredProducts} locale={locale} />
+        </section>
+      ) : null}
 
       <section className="craft-section" aria-labelledby="craft-title">
         <div className="craft-photo">
@@ -191,12 +207,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <p>
             {ar
               ? "في نقشة النحاس ولمعة الصدف، تفاصيل تمنح كل قطعة حضورها. سبرتاية وكنكة مصنع مصري يقدم قطعاً للبيت والقهوة والهدايا، امتداداً للحرف اليدوية التراثية في القاهرة."
-              : "In the engraving of copper and the lustre of shell, a piece finds its character. Sprtaya & Kanaka is an Egyptian factory creating homeware, coffee pieces and gifts rooted in Cairo’s traditional crafts."}
+              : "In the engraving of copper and the lustre of shell, a piece finds its character. Sprtaya & Kanaka is an Egyptian factory creating homeware, coffee pieces and gifts rooted in Cairo’s traditional crafts."}{" "}
+            <Link className="craft-story-link" href={base + "/about"}>
+              {ar ? "اقرأ عن المصنع." : "Meet the factory."}
+            </Link>
           </p>
-          <Link className="text-link" href={base + "/about"}>
-            {ar ? "تعرف على حكايتنا" : "Meet the factory"}
-            <Icon name="arrow" />
-          </Link>
         </div>
       </section>
 
@@ -217,6 +232,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {[
             {
               product: coffee,
+              sourceId: merchandising.coffeeProductId,
               id: "dal-kho-aarby",
               title: ar ? "على مهل، فنجان قهوة" : "Make time for coffee",
               text: ar
@@ -225,22 +241,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             },
             {
               product: shell,
+              sourceId: merchandising.shellProductId,
               id: "mntjat-alsdf-altbyaay",
               title: ar ? "من الصدف، لبيتك" : "Shell for home",
               text: ar
                 ? "علب وقطع صدف، لكل منها حضورها."
                 : "Explore shell boxes and decorative pieces.",
             },
-          ].map(({ product, id, title, text }) => {
-            const image = product?.images[0];
+          ].map(({ product, sourceId, id, title, text }) => {
+            const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
             return (
-              <Link className="collection-feature" key={id} href={base + "/collections/" + id}>
+              <Link
+                className="collection-feature"
+                key={id}
+                href={
+                  allCategories.some((category) => category.id === id)
+                    ? base + "/collections/" + id
+                    : base + "/products"
+                }
+              >
                 <div className="collection-feature-image">
                   {image ? (
                     <Image
                       src={getProductImageUrl(image)}
                       unoptimized={Boolean(image.publicUrl)}
-                      alt={product?.nameAr ?? ""}
+                      alt={product?.nameAr ?? title}
                       width={image.width ?? 900}
                       height={image.height ?? 1200}
                       sizes="(max-width: 700px) 90vw, 46vw"
@@ -261,6 +286,42 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      <section className="section ordering-section" aria-labelledby="ordering-title">
+        <h2 id="ordering-title">
+          {ar ? "اختيار القطعة والتوصيل" : "Choosing your piece & delivery"}
+        </h2>
+        <dl>
+          <div>
+            <dt>{ar ? "القطع الجاهزة" : "Ready-made pieces"}</dt>
+            <dd>
+              {ar
+                ? "تظهر حالة التوافر في صفحة القطعة. تواصل مع المصنع لتأكيد الكمية وموعد التسليم."
+                : "Check availability on the product page and confirm the quantity and delivery date with the factory."}
+            </dd>
+          </div>
+          <div>
+            <dt>{ar ? "التصنيع حسب الطلب" : "Made to order"}</dt>
+            <dd>
+              {ar
+                ? "راجع مدة التصنيع عند عرضها، واتفق مع المصنع على المواصفات وشروط الدفعة قبل بدء العمل."
+                : "Check the production estimate where listed and agree on specifications and deposit terms with the factory."}
+            </dd>
+          </div>
+          <div>
+            <dt>{ar ? "التوصيل داخل مصر" : "Delivery within Egypt"}</dt>
+            <dd>
+              {ar
+                ? "أرسل عنوانك للمصنع لتأكيد تكلفة الشحن وموعد الوصول وطريقة الدفع المناسبة."
+                : "Share your address with the factory to confirm shipping cost, timing and the payment options for your order."}
+            </dd>
+          </div>
+        </dl>
+        <Link className="text-link" href={base + "/policies"}>
+          {ar ? "التوصيل وسياسة الطلب" : "Delivery & ordering policies"}
+          <Icon name="arrow" />
+        </Link>
+      </section>
+
       <section className="contact-band" aria-labelledby="trade-title">
         <div>
           <h2 id="trade-title">{ar ? "من فكرة، إلى قطعة" : "From an idea to a piece"}</h2>
@@ -277,9 +338,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             aria-label={(ar ? "اتصل بالمصنع على " : "Call the factory on ") + contacts.phone}
           >
             <Icon name="phone" />
-            <span className="phone-number" dir="ltr">{contacts.phone}</span>
+            <span className="phone-number" dir="ltr">
+              {contacts.phone}
+            </span>
           </a>
-          <p>{ar ? "التصنيع الخاص يبدأ بمكالمة." : "Custom work starts with a call."}</p>
+          <Link className="text-link" href={base + "/wholesale"}>
+            {ar ? "اطلب عرض سعر للجملة" : "Request a wholesale quote"}
+            <Icon name="arrow" />
+          </Link>
+          <Link className="text-link" href={base + "/custom-orders"}>
+            {ar ? "ناقش طلب تصنيع خاص" : "Discuss a custom order"}
+            <Icon name="arrow" />
+          </Link>
         </div>
       </section>
     </>

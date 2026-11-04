@@ -1,0 +1,6 @@
+{
+  "scope": "Read-only synthetic Phase 3.5 order snapshots",
+  "orders": 10,
+  "itemAndShippingTotalsMatch": true,
+  "creditsBounded": true
+}

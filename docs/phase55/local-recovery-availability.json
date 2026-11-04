@@ -1,0 +1,14 @@
+{
+  "recoveryZips": [
+    {
+      "path": "/Users/zuriki/Desktop/Desha Kanka/.local/staging-readiness/releases/sprtaya-recovery-cea867a.zip",
+      "sha256": "f7ef1fc42ad070b0fe424a00882ec873f97cb15c19dfac99905dd321eb3b28d8",
+      "bytes": 37716671
+    }
+  ],
+  "offServerMediaBackup": {
+    "present": true,
+    "sha256": "ada01123c5aa75c3f40de6fed22f402e5d866c5ba43dce8f878d27a903704d17"
+  },
+  "hostedBackupFreshness": "NOT VERIFIED; fresh database export still required before any hosted schema operation"
+}

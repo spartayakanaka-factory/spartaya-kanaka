@@ -1,0 +1,38 @@
+{
+  "maintenanceSha256": "ba9d141db2a481f9e7f11f90dfe555bd29d1a228f7313d2f3427fd95e98d63ac",
+  "maintenanceContent": "Require all denied\nPassengerAppRoot /home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/hbuilds/current/nodejs\nPassengerAppType node\nPassengerNodejs /opt/alt/alt-nodejs22/root/bin/node\nPassengerStartupFile server.js\nPassengerBaseURI /\nPassengerRestartDir /home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/hbuilds/current/nodejs/tmp\nSetEnv NODE_OPTIONS \"--require /home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/hbuilds/config/preload-timestamp.js\"\nSetEnv LSNODE_CONSOLE_LOG console.log\nSetEnv TOKIO_WORKER_THREADS 2",
+  "appResolved": "/home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/hbuilds/versions/01a198ba-dc6f-725b-a9c2-4d5b254e552a/nodejs",
+  "documentRoot": [
+    {
+      "name": ".htaccess",
+      "symlink": false,
+      "resolved": "/home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/public_html/.htaccess"
+    }
+  ],
+  "appEntries": [
+    "tmp",
+    "sprtaya-kanaka-assets",
+    "server.js",
+    "console.log",
+    "node_modules",
+    "stderr.log",
+    "package.json",
+    ".next"
+  ],
+  "staticExamples": [
+    "/_next/static/chunks/3899.55a0943bf5e7fec7.js",
+    "/_next/static/css/37dc45a42c661e2c.css"
+  ],
+  "serverEntry": {
+    "bytes": 8027,
+    "usesStartServer": true,
+    "hasStandaloneMode": true,
+    "containsNextRequire": true,
+    "sha256": "10622923e3c81c151a3b8292b1788e2bb6ead0310bfd3a7654de79ee7ea5d0e9"
+  },
+  "media": {
+    "resolved": "/home/u858869017/domains/bisque-pheasant-330767.hostingersite.com/shared/sprtaya-kanaka-assets",
+    "count": 1753
+  },
+  "observedAt": "2026-11-02T12:53:31.775153+00:00"
+}

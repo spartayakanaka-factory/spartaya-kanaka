@@ -1,0 +1,503 @@
+{
+  "pass": "3",
+  "checks": [
+    {
+      "name": "dashboard",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "categories",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "products",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "product-form",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "bulk-review",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "orders",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "inventory",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customers",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "shipping-payments",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "reports",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "staff",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "settings",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "audit",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "order-detail",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customer-history",
+      "width": 390,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "dashboard",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "categories",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "products",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "product-form",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "bulk-review",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "orders",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "inventory",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customers",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "shipping-payments",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "reports",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "staff",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "settings",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "audit",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "order-detail",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customer-history",
+      "width": 768,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "dashboard",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "categories",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "products",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "product-form",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "bulk-review",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "orders",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "inventory",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customers",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "shipping-payments",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "reports",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "staff",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "settings",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "audit",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "order-detail",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "name": "customer-history",
+      "width": 1440,
+      "status": 200,
+      "overflow": false
+    }
+  ],
+  "audits": [
+    {
+      "name": "dashboard",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "categories",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "products",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "product-form",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "bulk-review",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "orders",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "inventory",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "customers",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "shipping-payments",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "reports",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "staff",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "audit",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "order-detail",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "customer-history",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "name": "dashboard",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "categories",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "products",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "product-form",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "bulk-review",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "orders",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "inventory",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "customers",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "shipping-payments",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "reports",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "staff",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "audit",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "order-detail",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "customer-history",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "name": "dashboard",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "categories",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "products",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "product-form",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "bulk-review",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "orders",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "inventory",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "customers",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "shipping-payments",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "reports",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "staff",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "audit",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "order-detail",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "name": "customer-history",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "errors": []
+}

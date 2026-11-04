@@ -1,19 +1,13 @@
-import { readFile } from "node:fs/promises";
+import { readFile, realpath } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
 import { getStagingAccessDecision, getStagingAccessResponse } from "@/lib/staging-access";
+import { imageContentType } from "@/lib/image-content-type";
 
 const assetRoot = path.resolve(
   process.env.LEGACY_ASSET_ROOT || path.join(process.cwd(), "sprtaya-kanaka-assets"),
 );
 const allowedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
-const mimeTypes: Record<string, string> = {
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".png": "image/png",
-  ".webp": "image/webp",
-  ".avif": "image/avif",
-};
 
 export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
   const blocked = getStagingAccessResponse(request.headers);
@@ -29,10 +23,18 @@ export async function GET(request: Request, context: { params: Promise<{ path: s
     return new NextResponse("Not found", { status: 404 });
   }
   try {
-    const image = await readFile(resolved);
+    const [canonicalRoot, canonicalFile] = await Promise.all([
+      realpath(assetRoot),
+      realpath(resolved),
+    ]);
+    if (!canonicalFile.startsWith(canonicalRoot + path.sep))
+      return new NextResponse("Not found", { status: 404 });
+    const image = await readFile(canonicalFile);
+    const contentType = imageContentType(image);
+    if (!contentType) return new NextResponse("Not found", { status: 404 });
     return new NextResponse(new Uint8Array(image), {
       headers: {
-        "Content-Type": mimeTypes[extension],
+        "Content-Type": contentType,
         "Cache-Control":
           getStagingAccessDecision(request.headers).mode === "disabled"
             ? "public, max-age=31536000, immutable"

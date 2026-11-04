@@ -1,0 +1,69 @@
+{
+  "readOnly": true,
+  "phase35NotDeployed": true,
+  "checks": [
+    {
+      "path": "/",
+      "auth": "absent",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    },
+    {
+      "path": "/",
+      "auth": "invalid",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    },
+    {
+      "path": "/admin",
+      "auth": "absent",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    },
+    {
+      "path": "/admin",
+      "auth": "invalid",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    },
+    {
+      "path": "/robots.txt",
+      "auth": "absent",
+      "status": 200,
+      "noindex": null,
+      "challenge": false
+    },
+    {
+      "path": "/robots.txt",
+      "auth": "invalid",
+      "status": 200,
+      "noindex": null,
+      "challenge": false
+    },
+    {
+      "path": "/assets/unavailable.jpg",
+      "auth": "absent",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    },
+    {
+      "path": "/assets/unavailable.jpg",
+      "auth": "invalid",
+      "status": 401,
+      "noindex": "noindex, nofollow, noarchive",
+      "challenge": true
+    }
+  ],
+  "robotsOverride": {
+    "status": 200,
+    "body": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n",
+    "disallowAll": false,
+    "noindex": null,
+    "wildcardAllowsAll": true
+  }
+}

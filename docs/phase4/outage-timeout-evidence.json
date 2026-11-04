@@ -1,0 +1,16 @@
+{
+  "scope": "Separate local production server with a nonresponsive loopback MariaDB handshake, followed by restart with the correct disposable database; no database shutdown.",
+  "unavailableStatus": 503,
+  "statuses": [
+    503,
+    503,
+    503,
+    503,
+    503
+  ],
+  "simulatedHandshakeTimeout": true,
+  "maximumObservedSockets": 1,
+  "unavailableLatencyMs": 5478,
+  "recoveredStatus": 200,
+  "leakedReportFields": false
+}

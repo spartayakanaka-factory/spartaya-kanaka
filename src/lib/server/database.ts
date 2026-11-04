@@ -3,6 +3,7 @@ import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "@/generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+let runtimeDatabase: PrismaClient | undefined;
 
 function readDatabaseConfig() {
   const raw = process.env.DATABASE_URL;
@@ -25,9 +26,11 @@ function readDatabaseConfig() {
 }
 
 export function getDatabase() {
+  if (runtimeDatabase) return runtimeDatabase;
   if (globalForPrisma.prisma) return globalForPrisma.prisma;
   const adapter = new PrismaMariaDb(readDatabaseConfig());
   const prisma = new PrismaClient({ adapter });
+  runtimeDatabase = prisma;
   if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
   return prisma;
 }

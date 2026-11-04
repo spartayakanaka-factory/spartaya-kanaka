@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import { getAllProducts, getCategoryById, getProductById, getProductBySlug, getProductsInCategory, getVerifiedCategories, normalizeSearch, searchProducts as searchLocal, sortProducts } from "@/lib/catalog";
 import { displayCategoryName } from "@/lib/i18n";
 import { getDatabase } from "@/lib/server/database";
+import { requireAdminPage } from "@/lib/server/admin-page";
 import type { CatalogCategory, CatalogImage, CatalogProduct, Locale } from "@/lib/types";
 import type { Prisma } from "@/generated/prisma/client";
 
@@ -17,7 +18,8 @@ const publicInclude = {
     orderBy: { position: "asc" as const },
   },
   media: { include: { media: true }, orderBy: { position: "asc" as const } },
-  variants: { where: { active: true }, orderBy: { position: "asc" as const } },
+  variants: { where: { active: true }, include: { inventory: { select: { quantity: true, reserved: true } } }, orderBy: { position: "asc" as const } },
+  manufacturingPolicy: { select: { available: true, minProductionDays: true, maxProductionDays: true } },
   legacyMapping: true,
 } satisfies Prisma.ProductInclude;
 const publicCategoryInclude = {
@@ -71,6 +73,11 @@ function mapProduct(row: PublicProductRow): CatalogProduct {
     originalUrl: row.legacyMapping?.sourceUrl ?? "",
     nameAr: row.titleAr,
     descriptionAr: row.descriptionAr,
+    nameEn: row.titleEn,
+    descriptionEn: row.descriptionEn,
+    ...(row.type === "MADE_TO_ORDER" && row.manufacturingPolicy?.available
+      ? { productionDays: { min: row.manufacturingPolicy.minProductionDays, max: row.manufacturingPolicy.maxProductionDays } }
+      : {}),
     categoryNamesAr: categories.map((category) => category.nameAr),
     categoryNamesEn: categories.map((category) => category.nameEn ?? ""),
     categoryIds: categories.map((category) => category.sourceId ?? category.slug),
@@ -90,6 +97,10 @@ function mapProduct(row: PublicProductRow): CatalogProduct {
       sku: variant.sku,
       options: variant.options && typeof variant.options === "object" && !Array.isArray(variant.options) ? variant.options as Record<string, string> : {},
       priceMinor: variant.priceMinor,
+      available: variant.availability === "AVAILABLE" &&
+        (row.type === "READY_MADE"
+          ? Boolean(variant.inventory && variant.inventory.quantity > variant.inventory.reserved)
+          : Boolean(row.manufacturingPolicy?.available)),
     })),
     images,
     purchasable: false,
@@ -122,6 +133,12 @@ async function publishedRows(): Promise<PublicProductRow[]> {
 export async function getStoreProducts(): Promise<CatalogProduct[]> {
   if (!databaseCatalogEnabled()) return getAllProducts();
   return (await publishedRows()).map(mapProduct);
+}
+
+export async function getAdminProductPreview(id: string) {
+  const actor = await requireAdminPage("PRODUCTS_READ");
+  const row = await getDatabase().product.findUnique({ where: { id }, include: publicInclude });
+  return { actor, product: row ? mapProduct(row) : null };
 }
 
 export async function getStoreProductBySlug(slug: string): Promise<CatalogProduct | undefined> {
@@ -191,7 +208,7 @@ export async function searchStoreProducts(query: string, locale: Locale): Promis
   const rows = await publishedRows();
   return rows.map(mapProduct).filter((product) => {
     const labels = product.categoryIds?.map((id, index) => displayCategoryName(id, product.categoryNamesAr[index] ?? "", locale)) ?? [];
-    const searchable = normalizeSearch([product.nameAr, product.descriptionAr, ...labels].join(" "));
+    const searchable = normalizeSearch([product.nameAr, product.nameEn, product.descriptionAr, product.descriptionEn, ...labels].join(" "));
     return terms.every((term) => searchable.includes(term));
   });
 }

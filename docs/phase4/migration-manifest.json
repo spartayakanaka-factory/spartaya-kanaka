@@ -1,0 +1,47 @@
+{
+  "scope": "Phase 4 isolated fresh-schema review; recovery of populated schemas requires separate verified-backup rehearsal.",
+  "review": {
+    "existingChanges": [
+      "inventory_balances: additive reserved integer default 0, CHECK reserved between 0 and quantity",
+      "shipping_rates: add city/area with empty defaults; replace governorate/carrier uniqueness with destination/carrier uniqueness",
+      "customer_addresses: nullable area/deliveryInstructions",
+      "commerce_payments: evidenceRequired defaults false; nullable instruction snapshot/rejection explanation",
+      "commerce_notifications: nullable retry/error metadata",
+      "customer_users: banned defaults false; no existing account ban"
+    ],
+    "newData": "Synthetic only; no existing product updates",
+    "recovery": "Verified full dump restoration into separate disposable database; never down-migrate persistent data",
+    "destructiveDataStatements": false,
+    "schemaIndexReplacement": "DROP INDEX shipping_rates_country_region_carrier_key; replaced by shipping_destination_carrier_unique. No DROP TABLE/DATABASE, TRUNCATE or DELETE."
+  },
+  "migrations": [
+    {
+      "name": "20261027000000_phase2_initial",
+      "sha256": "2eb27f571d0468002332d05f1d6496d84552c38314c4a7d0509041bd2183a7be"
+    },
+    {
+      "name": "20261027120000_phase2_2_review_safety",
+      "sha256": "59990d2ae325326b585de3291c350232f2e8b3c7e1a03da671435c187dc32fd2"
+    },
+    {
+      "name": "20261029143000_phase3_local_commerce",
+      "sha256": "6221d977ce45692d6e1c2219a013191d13ec7af4ba29b820b49b6eccf35c60fc"
+    },
+    {
+      "name": "20261029144500_phase3_cancellation_review",
+      "sha256": "b5d8b0fc2a6ab5a68fdd844bb551ebcc4ac6557e488668fb91a3a1bc7b65116c"
+    },
+    {
+      "name": "20261030023000_phase35_factory_operations",
+      "sha256": "4c0523bb53f3d703b75de9ce053dffb034e94f8b3712c176fe82822a35022a06"
+    },
+    {
+      "name": "20261030024500_phase35_customer_access",
+      "sha256": "c34b856ae6e0b5bcad2403543c520dad9a83346d3a862b82acec9ee6e88c1950"
+    },
+    {
+      "name": "20261031000000_phase4_report_indexes",
+      "sha256": "57120ac7f295ab1911b4508310d3103a5b37da3918ceec759a0f8eafa264bf32"
+    }
+  ]
+}

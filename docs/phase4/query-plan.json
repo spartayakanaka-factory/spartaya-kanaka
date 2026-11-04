@@ -1,0 +1,18 @@
+{
+  "scope": "Read-only EXPLAIN on disposable MariaDB; plans depend on data volume",
+  "elapsedMs": 83,
+  "plan": [
+    {
+      "id": "1",
+      "select_type": "SIMPLE",
+      "table": "commerce_events",
+      "type": "ALL",
+      "possible_keys": null,
+      "key": null,
+      "key_len": null,
+      "ref": null,
+      "rows": "869",
+      "Extra": "Using where"
+    }
+  ]
+}

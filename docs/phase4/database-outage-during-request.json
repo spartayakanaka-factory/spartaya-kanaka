@@ -1,0 +1,10 @@
+{
+  "scope": "Entire separate loopback-only MariaDB instance stopped while a real authenticated report request was waiting on its session table; the shared Phase 2–4 service was not stopped.",
+  "requestWasPendingBeforeShutdown": true,
+  "responseStatus": 403,
+  "elapsedMs": 1701,
+  "financialDataExposed": false,
+  "databaseRestarted": true,
+  "sessionRecovered": true,
+  "reportAfterRecovery": "The separate instance is intentionally excluded by the commerce safety guard; successful report recovery is separately verified in outage-evidence.json."
+}

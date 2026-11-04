@@ -1,4 +1,6 @@
 node_modules/
+.local/
+.next-local/
 .agents/
 .pnpm-store/
 .taste-skill/
@@ -18,3 +20,19 @@ scripts/.page-cache/
 scripts/.sprtaya-kanaka-state.json
 __pycache__/
 *.py[cod]
+
+.next-phase3/
+.next-phase35/
+
+.next-phase4/
+
+.next-phase5/
+node_modules
+
+# Full-resolution local browser review evidence stays available locally.
+docs/phase5/visual-pass-*/*.png
+docs/phase5/product-browser/*.png
+docs/phase5/factory-browser/screenshots/*.png
+docs/phase55/visual-pass-*/*.png
+docs/phase55/product-browser/*.png
+docs/phase55/factory-browser/screenshots/*.png

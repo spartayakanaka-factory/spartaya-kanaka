@@ -1,0 +1,104 @@
+{
+  "observed_utc": "2026-10-28T22:18:41.832414+00:00",
+  "responses": [
+    {
+      "case": "cdn-home",
+      "path": "/",
+      "layer": "cdn",
+      "result": "200 0 92.113.23.187",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:18:41 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 770dabf0d9ee5f336611a19c62f4f927-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 1.112\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "cdn-missing",
+      "path": "/nonexistent-hostinger-audit-20261029",
+      "layer": "cdn",
+      "result": "200 0 92.113.23.187",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:18:41 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: b170dcfc8cd6fd7228514d5e05a74320-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 1.113\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "cdn-robots",
+      "path": "/robots.txt",
+      "layer": "cdn",
+      "result": "200 58 92.113.23.187",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:18:40 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: 07992de2a8aa4f51e5f244f9a3bf0668-fra-edge10\ncontent-type: text/plain\n\n",
+      "body_bytes": 58,
+      "sha256": "75959e778007bee9d4989a997f47b50ab03332a9de3404ee9e340e7cc5eb6eab",
+      "excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+    },
+    {
+      "case": "origin-home",
+      "path": "/",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "origin-ar",
+      "path": "/ar",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "origin-missing",
+      "path": "/nonexistent-hostinger-audit-20261029",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "origin-admin",
+      "path": "/admin",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "origin-auth",
+      "path": "/api/auth/get-session",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    },
+    {
+      "case": "origin-robots",
+      "path": "/robots.txt",
+      "layer": "origin",
+      "result": "000 0 62.72.37.195",
+      "error": "curl: (35) LibreSSL/3.3.6: error:1404B438:SSL routines:ST_CONNECT:tlsv1 alert internal error\n",
+      "headers": "",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "excerpt": ""
+    }
+  ]
+}

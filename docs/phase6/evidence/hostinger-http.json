@@ -1,0 +1,152 @@
+{
+  "observedAt": "2026-11-02T12:53:31.775153+00:00",
+  "scope": "Current maintenance only; no valid credentials, no transition",
+  "checks": [
+    {
+      "route": "/ar",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/ar",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/en",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/en",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/admin/login",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/admin/login",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/api/admin/media",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/api/admin/media",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/api/staging-database-preflight",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/api/staging-database-preflight",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/icon.svg",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/icon.svg",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/robots.txt",
+      "kind": "anonymous",
+      "status": 200,
+      "contentType": "text/plain",
+      "xRobotsTag": null,
+      "basicChallenge": false,
+      "body": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+    },
+    {
+      "route": "/robots.txt",
+      "kind": "invalid",
+      "status": 200,
+      "contentType": "text/plain",
+      "xRobotsTag": null,
+      "basicChallenge": false,
+      "body": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+    },
+    {
+      "route": "/_next/static/chunks/3899.55a0943bf5e7fec7.js",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/_next/static/chunks/3899.55a0943bf5e7fec7.js",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "kind": "anonymous",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "kind": "invalid",
+      "status": 403,
+      "contentType": "text/html",
+      "xRobotsTag": null,
+      "basicChallenge": false
+    }
+  ]
+}

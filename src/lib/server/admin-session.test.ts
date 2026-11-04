@@ -3,11 +3,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({
   headers: vi.fn(),
   getSession: vi.fn(),
+  findUser: vi.fn(),
 }));
 
 vi.mock("next/headers", () => ({ headers: mocks.headers }));
 vi.mock("@/lib/server/auth", () => ({
   getAuth: () => ({ api: { getSession: mocks.getSession } }),
+}));
+
+vi.mock("@/lib/server/database", () => ({
+  getDatabase: () => ({ adminUser: { findUnique: mocks.findUser } }),
 }));
 
 import { getAdminActor, requirePermission } from "@/lib/server/admin-session";
@@ -28,6 +33,14 @@ const validStagingAuthorization =
   "Basic " + Buffer.from(`${stagingUsername}:${stagingPassword}`).toString("base64");
 
 function session(roleCode: string, forcePasswordChange = false) {
+  mocks.findUser.mockResolvedValue({
+    id: "test-user",
+    name: "Test Admin",
+    email: "admin@example.invalid",
+    roleCode,
+    forcePasswordChange,
+    banned: false,
+  });
   return {
     user: {
       id: "test-user",
@@ -130,5 +143,19 @@ describe("admin session authorization boundary (mocked session; no persistence c
     mocks.getSession.mockRejectedValue(new Error("session store unavailable"));
     await expect(getAdminActor()).resolves.toBeNull();
     await expect(requirePermission("INVENTORY_READ")).rejects.toThrow("FORBIDDEN");
+  });
+  it("rejects a banned current row and uses a changed role instead of session privileges", async () => {
+    mocks.getSession.mockResolvedValue(session("OWNER"));
+    mocks.findUser.mockResolvedValueOnce({ banned: true });
+    expect(await getAdminActor()).toBeNull();
+    mocks.findUser.mockResolvedValue({
+      id: "test-user",
+      name: "Current",
+      email: "current@example.invalid",
+      roleCode: "INVENTORY_STAFF",
+      forcePasswordChange: false,
+      banned: false,
+    });
+    await expect(requirePermission("STAFF_MANAGE")).rejects.toThrow("FORBIDDEN");
   });
 });

@@ -1,0 +1,16 @@
+{
+  "newCandidateUnitAndMockedTests": 101,
+  "failed": 0,
+  "skipped": 0,
+  "testFiles": 13,
+  "catalogImporterCliRegression": "old source fails; fixed source passes; database mocked",
+  "beforeFixFailedTests": 1,
+  "realDatabaseTestsRunInPhase6": 0,
+  "productionHttpChecks": 46,
+  "priorPhase55EvidenceReused": {
+    "totalTests": 338,
+    "realDatabaseStorageTests": 110,
+    "hostedExecution": false
+  },
+  "noHostedWrites": true
+}

@@ -1,0 +1,63 @@
+{
+  "localBranch": "codex/phase3-master-local",
+  "sourceCommit": "6ac28ee42676b8f07779e9e0795b7f047720a944",
+  "canonicalBranch": "codex/hostinger-nextjs-source",
+  "canonicalHead": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "originalValidatedWorkspaceHead": "1b0bb030a723949b84a96ffbfd644e1e25ac085c",
+  "requestedReviewBranch": "review/phase3-integration-20261029",
+  "reviewBranchPublished": false,
+  "pullRequest": null,
+  "remoteCI": "NOT TESTED: publication blocked by live auto-deployment setting",
+  "package": {
+    "archive": "sprtaya-phase3-6ac28ee42676_20261029_231903.zip",
+    "bytes": 1555309,
+    "sha256": "8c11240e6d48cf046274dc43e55bae18577dae3ee75abba3c0ec52bb8220d151",
+    "commit": "6ac28ee42676b8f07779e9e0795b7f047720a944"
+  },
+  "packageFiles": 180,
+  "packageUploaded": false,
+  "sourceOnlyArtifact": "Private runtime/release-artifacts; no original product archive or environment files",
+  "automated": {
+    "passed": 177,
+    "failed": 0,
+    "skipped": 0,
+    "realDatabaseStorage": 78
+  },
+  "browser": {
+    "coreChecks": 23,
+    "mediaJourneys": 1,
+    "axeAudits": 35,
+    "widths": [
+      390,
+      768,
+      1440
+    ],
+    "visualPasses": 2
+  },
+  "localStagingHTTPChecks": 27,
+  "independentPackageHTTPChecks": 13,
+  "localStaticChecks": {
+    "TypeScript": "PASS",
+    "ESLint": "PASS",
+    "PrismaValidation": "PASS",
+    "productionWebpackBuild": "PASS",
+    "normalPackageBuildAndStartup": "PASS"
+  },
+  "statuses": {
+    "localImplementation": "PASS",
+    "GitHubIntegration": "PARTIAL",
+    "persistentDatabasePromotion": "PARTIAL",
+    "hostedStaging": "PARTIAL",
+    "hostedPhase3Acceptance": "NOT TESTED",
+    "hostedRobotsControl": "FAIL",
+    "productionReadiness": "NOT TESTED"
+  },
+  "writeBoundaries": {
+    "GitHubPush": false,
+    "HostingerMutation": false,
+    "persistentDatabaseMigrations": false,
+    "livePayments": false,
+    "productionOrDNSChanges": false
+  },
+  "blockingAutoDeployment": true
+}

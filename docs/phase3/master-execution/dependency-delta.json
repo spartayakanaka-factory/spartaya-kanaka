@@ -1,0 +1,10 @@
+{
+  "added": [
+    "fsevents@2.3.2",
+    "playwright-core@1.62.1",
+    "playwright@1.62.1"
+  ],
+  "removed": [],
+  "applicationDependencyPinsUnchanged": true,
+  "reason": "Explicit browser/accessibility development dependencies; no runtime/framework upgrades."
+}

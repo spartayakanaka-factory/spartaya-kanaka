@@ -1,0 +1,118 @@
+{
+  "base": "http://localhost:3003",
+  "productionMode": true,
+  "checks": [
+    {
+      "name": "production HTTP smoke, noindex, anonymous administrative boundaries",
+      "pass": true
+    },
+    {
+      "name": "guest browse, add, persist and review checkout in Arabic",
+      "pass": true
+    },
+    {
+      "name": "invalid credentials/CSRF and unowned order access are rejected by live server",
+      "pass": true
+    },
+    {
+      "name": "customer registration, private verification, login, profile and saved address persist",
+      "pass": true
+    },
+    {
+      "name": "two real customer sessions cannot enumerate each other's orders or obtain staff authority",
+      "pass": true
+    },
+    {
+      "name": "owner login, password rotation and Arabic order dashboard",
+      "pass": true
+    },
+    {
+      "name": "three real staff sessions enforce refund request, approval, execution and reconciliation",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 390px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 768px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 ar 1440px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 1 en 1440px",
+      "pass": true
+    },
+    {
+      "name": "visual pass 2 ar 390px",
+      "pass": false,
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'scrollable-region-focusable',\n+     impact: 'serious',\n+     nodes: [\n+       [\n+         '.admin-panel.admin-subsection:nth-child(4) > .admin-table-wrap'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    }
+  ],
+  "errors": [],
+  "audits": [
+    {
+      "view": "account",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "cart",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "checkout",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/orders/271a766f-92f6-4a5b-bad2-aaf2b459fc69",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/commerce-settings",
+      "locale": "ar",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "view": "/admin/inventory",
+      "locale": "ar",
+      "width": 390,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            [
+              ".admin-panel.admin-subsection:nth-child(4) > .admin-table-wrap"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

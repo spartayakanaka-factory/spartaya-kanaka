@@ -13,6 +13,11 @@ const nextConfig = {
     // Include exports metadata and CommonJS helpers as well as ESM files.
     "/*": ["./node_modules/@swc/helpers/**/*"],
   },
+  // Development databases, local credentials and downloaded tools must never
+  // be included in a deployable server artifact.
+  outputFileTracingExcludes: {
+    "/*": ["./.local/**/*", "./.env", "./.env.*"],
+  },
   // This branch is the private Hostinger staging branch. Keep every response
   // out of search results even if the request Proxy is skipped by the host.
   async headers() {

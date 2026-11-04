@@ -1,6 +1,6 @@
 # Owner dashboard proposal
 
-The dashboard is a future Arabic-first product design, not an operational screen in this release. It should work comfortably on an ordinary phone and keep routine tasks visible before advanced configuration.
+The Phase 2 Arabic dashboard now supports authenticated catalog, categories, media, inventory, staff, settings and audit operations locally. See [the local acceptance report](phase2-local/acceptance.md). The order, customer, sales, shipping and payment ideas below remain a future proposal; they are not implemented in Phase 2.
 
 ## Daily home
 

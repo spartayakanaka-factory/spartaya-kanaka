@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")/.."
+if command -v node >/dev/null 2>&1; then
+  task_node="$(command -v node)"
+else
+  task_node="$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node"
+fi
+if [ ! -x "$task_node" ]; then
+  echo "Install Node 22.12+ or 24.x, then run this command again." >&2
+  exit 1
+fi
+exec "$task_node" scripts/local-phase2.mjs "$@"

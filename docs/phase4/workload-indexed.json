@@ -1,0 +1,987 @@
+{
+  "scope": "Actual ownerReport; 2 warmups and 7 samples, 5ms heap sampling, forced GC. Query-event time includes driver overhead; elapsed minus summed query durations is an estimate. Node CPU includes Prisma driver and Node processing, not database-server CPU.",
+  "engine": "MariaDB 11.8.9",
+  "environment": "Apple M1, 8 GB RAM, macOS 15.6.1, Node 22.23.4; local single-process synthetic run",
+  "results": [
+    {
+      "orders": 100,
+      "items": 100,
+      "payments": 50,
+      "shipments": 25,
+      "financialEvents": 75,
+      "warmups": 2,
+      "iterations": 7,
+      "latenciesMs": [
+        26,
+        26,
+        25,
+        29,
+        25,
+        29,
+        25
+      ],
+      "medianMs": 26,
+      "databaseQueryMs": [
+        20.738874999999666,
+        21.136995999999954,
+        20.09854199999984,
+        24.209165000000326,
+        19.794999000000303,
+        25.31333299999983,
+        20.08274800000038
+      ],
+      "databaseQueryCounts": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "nodeProcessCpuMs": [
+        41.255,
+        44.266,
+        51.487,
+        31.022,
+        40.813,
+        32.177,
+        39.651
+      ],
+      "estimatedNonQueryMs": [
+        6,
+        5,
+        5,
+        5,
+        5,
+        4,
+        5
+      ],
+      "p95Ms": 29,
+      "sampledPeakHeapBytes": 54848880,
+      "postGcHeapDeltaBytes": [
+        164040,
+        197536,
+        160000,
+        -312424,
+        -816224,
+        -664584,
+        -180472
+      ],
+      "totalsVerified": true,
+      "eventPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.12673461
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.067563307,
+          "r_loops": 1,
+          "r_total_time_ms": 0.239007888,
+          "nested_loop": [
+            {
+              "read_sorted_file": {
+                "r_rows": 75,
+                "filesort": {
+                  "sort_key": "commerce_events.`id`",
+                  "r_loops": 1,
+                  "r_total_time_ms": 0.154657066,
+                  "r_limit": 5001,
+                  "r_used_priority_queue": false,
+                  "r_output_rows": 75,
+                  "r_buffer_size": "2047KiB",
+                  "r_sort_mode": "packed_sort_key,packed_addon_fields",
+                  "table": {
+                    "table_name": "commerce_events",
+                    "access_type": "range",
+                    "possible_keys": [
+                      "p4_events_kind_created_idx"
+                    ],
+                    "key": "p4_events_kind_created_idx",
+                    "key_length": "265",
+                    "used_key_parts": [
+                      "kind",
+                      "createdAt"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 76,
+                    "r_rows": 75,
+                    "cost": 0.01858654,
+                    "r_table_time_ms": 0.039133114,
+                    "r_other_time_ms": 0.102771308,
+                    "r_engine_stats": {
+                      "pages_accessed": 14
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 100,
+                    "attached_condition": "commerce_events.createdAt >= '2098-07-14 21:00:00' and commerce_events.createdAt < '2098-07-15 21:00:00' and commerce_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                    "r_filtered": 100,
+                    "using_index": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "orderPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.039216464
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.08250932,
+          "r_loops": 1,
+          "r_total_time_ms": 0.178745393,
+          "nested_loop": [
+            {
+              "read_sorted_file": {
+                "r_rows": 100,
+                "filesort": {
+                  "sort_key": "commerce_orders.`id`",
+                  "r_loops": 1,
+                  "r_total_time_ms": 0.111689824,
+                  "r_limit": 5001,
+                  "r_used_priority_queue": false,
+                  "r_output_rows": 100,
+                  "r_buffer_size": "2047KiB",
+                  "r_sort_mode": "packed_sort_key,packed_addon_fields",
+                  "table": {
+                    "table_name": "commerce_orders",
+                    "access_type": "range",
+                    "possible_keys": [
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "p4_orders_created_idx",
+                    "key_length": "7",
+                    "used_key_parts": [
+                      "createdAt"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 100,
+                    "r_rows": 100,
+                    "cost": 0.01796034,
+                    "r_table_time_ms": 0.026797223,
+                    "r_other_time_ms": 0.077849474,
+                    "r_engine_stats": {
+                      "pages_accessed": 4
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 100,
+                    "attached_condition": "commerce_orders.createdAt >= '2098-07-14 21:00:00' and commerce_orders.createdAt < '2098-07-15 21:00:00'",
+                    "r_filtered": 100,
+                    "using_index": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "pendingGroupPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.128568323
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.301240129,
+          "r_loops": 1,
+          "r_total_time_ms": 0.610168175,
+          "filesort": {
+            "sort_key": "p.currency, p.method, p.state, p.evidenceRequired",
+            "r_loops": 1,
+            "r_total_time_ms": 0.003917479,
+            "r_used_priority_queue": false,
+            "r_output_rows": 0,
+            "r_buffer_size": "4KiB",
+            "r_sort_mode": "packed_sort_key,rowid",
+            "temporary_table": {
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "o",
+                    "access_type": "range",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "commerce_orders_state_createdAt_idx",
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "commerce_orders_state_createdAt_idx",
+                    "key_length": "130",
+                    "used_key_parts": [
+                      "state"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 400,
+                    "r_rows": 400,
+                    "cost": 0.0686132,
+                    "r_table_time_ms": 0.110981343,
+                    "r_other_time_ms": 0.089226833,
+                    "r_engine_stats": {
+                      "pages_accessed": 20
+                    },
+                    "filtered": 16.15508842,
+                    "r_total_filtered": 25,
+                    "attached_condition": "o.createdAt >= '2098-07-14 21:00:00' and o.createdAt < '2098-07-15 21:00:00' and o.state not in ('CANCELLED','EXPIRED','RETURNED')",
+                    "r_filtered": 25,
+                    "using_index": true
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "p",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "commerce_payments_orderId_requestKey_key"
+                    ],
+                    "key": "commerce_payments_orderId_requestKey_key",
+                    "key_length": "144",
+                    "used_key_parts": [
+                      "orderId"
+                    ],
+                    "ref": [
+                      "sprtaya_phase4_recovery_v3.o.id"
+                    ],
+                    "loops": 64.62035541,
+                    "r_loops": 100,
+                    "rows": 1,
+                    "r_rows": 0.5,
+                    "cost": 0.191036381,
+                    "r_table_time_ms": 0.387788735,
+                    "r_other_time_ms": 0.01216919,
+                    "r_engine_stats": {
+                      "pages_accessed": 300
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 0,
+                    "attached_condition": "p.state in ('PENDING','CLAIMED','FAILED')",
+                    "r_filtered": 0
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "orders": 1000,
+      "items": 1000,
+      "payments": 500,
+      "shipments": 250,
+      "financialEvents": 750,
+      "warmups": 2,
+      "iterations": 7,
+      "latenciesMs": [
+        104,
+        107,
+        111,
+        72,
+        93,
+        97,
+        94
+      ],
+      "medianMs": 97,
+      "databaseQueryMs": [
+        79.42804100000012,
+        86.30624900000021,
+        90.34995900000035,
+        46.05420800000002,
+        70.60374999999931,
+        76.00791900000058,
+        74.12429100000054
+      ],
+      "databaseQueryCounts": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "nodeProcessCpuMs": [
+        149.991,
+        131.412,
+        126.251,
+        143.973,
+        133.185,
+        141.803,
+        132.966
+      ],
+      "estimatedNonQueryMs": [
+        24,
+        21,
+        21,
+        26,
+        23,
+        21,
+        20
+      ],
+      "p95Ms": 111,
+      "sampledPeakHeapBytes": 90953792,
+      "postGcHeapDeltaBytes": [
+        581712,
+        670648,
+        545616,
+        -7620360,
+        -6330936,
+        -3969520,
+        -2448360
+      ],
+      "totalsVerified": true,
+      "eventPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.154240312
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.622776344,
+          "r_loops": 1,
+          "r_total_time_ms": 1.27868178,
+          "nested_loop": [
+            {
+              "read_sorted_file": {
+                "r_rows": 750,
+                "filesort": {
+                  "sort_key": "commerce_events.`id`",
+                  "r_loops": 1,
+                  "r_total_time_ms": 1.106229358,
+                  "r_limit": 5001,
+                  "r_used_priority_queue": false,
+                  "r_output_rows": 750,
+                  "r_buffer_size": "2047KiB",
+                  "r_sort_mode": "packed_sort_key,packed_addon_fields",
+                  "table": {
+                    "table_name": "commerce_events",
+                    "access_type": "range",
+                    "possible_keys": [
+                      "p4_events_kind_created_idx"
+                    ],
+                    "key": "p4_events_kind_created_idx",
+                    "key_length": "265",
+                    "used_key_parts": [
+                      "kind",
+                      "createdAt"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 751,
+                    "r_rows": 750,
+                    "cost": 0.132130515,
+                    "r_table_time_ms": 0.227213776,
+                    "r_other_time_ms": 0.868430054,
+                    "r_engine_stats": {
+                      "pages_accessed": 20
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 100,
+                    "attached_condition": "commerce_events.createdAt >= '2098-07-14 21:00:00' and commerce_events.createdAt < '2098-07-15 21:00:00' and commerce_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                    "r_filtered": 100,
+                    "using_index": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "orderPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.098437076
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.8121094,
+          "r_loops": 1,
+          "r_total_time_ms": 1.284557998,
+          "nested_loop": [
+            {
+              "read_sorted_file": {
+                "r_rows": 1000,
+                "filesort": {
+                  "sort_key": "commerce_orders.`id`",
+                  "r_loops": 1,
+                  "r_total_time_ms": 1.107771345,
+                  "r_limit": 5001,
+                  "r_used_priority_queue": false,
+                  "r_output_rows": 1000,
+                  "r_buffer_size": "2047KiB",
+                  "r_sort_mode": "packed_sort_key,packed_addon_fields",
+                  "table": {
+                    "table_name": "commerce_orders",
+                    "access_type": "range",
+                    "possible_keys": [
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "p4_orders_created_idx",
+                    "key_length": "7",
+                    "used_key_parts": [
+                      "createdAt"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 1000,
+                    "r_rows": 1000,
+                    "cost": 0.15767004,
+                    "r_table_time_ms": 0.230381099,
+                    "r_other_time_ms": 0.869471937,
+                    "r_engine_stats": {
+                      "pages_accessed": 16
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 100,
+                    "attached_condition": "commerce_orders.createdAt >= '2098-07-14 21:00:00' and commerce_orders.createdAt < '2098-07-15 21:00:00'",
+                    "r_filtered": 100,
+                    "using_index": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "pendingGroupPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.152865027
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 2.052415097,
+          "r_loops": 1,
+          "r_total_time_ms": 1.583244926,
+          "filesort": {
+            "sort_key": "p.currency, p.method, p.state, p.evidenceRequired",
+            "r_loops": 1,
+            "r_total_time_ms": 0.163117153,
+            "r_used_priority_queue": false,
+            "r_output_rows": 0,
+            "r_buffer_size": "4KiB",
+            "r_sort_mode": "packed_sort_key,rowid",
+            "temporary_table": {
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "p",
+                    "access_type": "ALL",
+                    "possible_keys": [
+                      "commerce_payments_orderId_requestKey_key"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 1007,
+                    "r_rows": 1007,
+                    "cost": 0.229703,
+                    "r_table_time_ms": 0.503145986,
+                    "r_other_time_ms": 0.12273378,
+                    "r_engine_stats": {
+                      "pages_accessed": 25
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 18.76861966,
+                    "attached_condition": "p.state in ('PENDING','CLAIMED','FAILED')",
+                    "r_filtered": 18.76861966
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "o",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "commerce_orders_state_createdAt_idx",
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "PRIMARY",
+                    "key_length": "144",
+                    "used_key_parts": [
+                      "id"
+                    ],
+                    "ref": [
+                      "sprtaya_phase4_recovery_v3.p.orderId"
+                    ],
+                    "loops": 1007,
+                    "r_loops": 189,
+                    "rows": 1,
+                    "r_rows": 1,
+                    "cost": 1.16366428,
+                    "r_table_time_ms": 0.765408695,
+                    "r_other_time_ms": 0.021962887,
+                    "r_engine_stats": {
+                      "pages_accessed": 435
+                    },
+                    "filtered": 56.34142303,
+                    "r_total_filtered": 0,
+                    "attached_condition": "o.createdAt >= '2098-07-14 21:00:00' and o.createdAt < '2098-07-15 21:00:00' and o.state not in ('CANCELLED','EXPIRED','RETURNED')",
+                    "r_filtered": 0
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "orders": 4000,
+      "items": 4000,
+      "payments": 2000,
+      "shipments": 1000,
+      "financialEvents": 3000,
+      "warmups": 2,
+      "iterations": 7,
+      "latenciesMs": [
+        300,
+        282,
+        325,
+        286,
+        297,
+        300,
+        294
+      ],
+      "medianMs": 297,
+      "databaseQueryMs": [
+        213.3685400000022,
+        195.11595899999975,
+        240.41691499999888,
+        200.656747,
+        203.28333499999917,
+        212.39658299999883,
+        204.89970699999776
+      ],
+      "databaseQueryCounts": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "nodeProcessCpuMs": [
+        367.191,
+        378.72,
+        369.919,
+        364.259,
+        396.458,
+        355.622,
+        382.828
+      ],
+      "estimatedNonQueryMs": [
+        87,
+        87,
+        85,
+        85,
+        94,
+        88,
+        90
+      ],
+      "p95Ms": 325,
+      "sampledPeakHeapBytes": 204455240,
+      "postGcHeapDeltaBytes": [
+        -5803320,
+        -3461176,
+        -13426192,
+        -11647736,
+        -7970144,
+        -14993920,
+        -10076368
+      ],
+      "totalsVerified": true,
+      "eventPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.181370938
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.891642485,
+          "r_loops": 1,
+          "r_total_time_ms": 2.773991808,
+          "nested_loop": [
+            {
+              "table": {
+                "table_name": "commerce_events",
+                "access_type": "index",
+                "possible_keys": [
+                  "p4_events_kind_created_idx"
+                ],
+                "key": "PRIMARY",
+                "key_length": "144",
+                "used_key_parts": [
+                  "id"
+                ],
+                "loops": 1,
+                "r_loops": 1,
+                "rows": 5442,
+                "r_rows": 5420,
+                "cost": 0.891642485,
+                "r_table_time_ms": 1.803165523,
+                "r_other_time_ms": 0.965950274,
+                "r_engine_stats": {
+                  "pages_accessed": 174
+                },
+                "filtered": 93.95442963,
+                "r_total_filtered": 55.35055351,
+                "attached_condition": "commerce_events.createdAt >= '2098-07-14 21:00:00' and commerce_events.createdAt < '2098-07-15 21:00:00' and commerce_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                "r_filtered": 55.35055351
+              }
+            }
+          ]
+        }
+      },
+      "orderPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.099520634
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 3.694604007,
+          "r_loops": 1,
+          "r_total_time_ms": 2.730607813,
+          "nested_loop": [
+            {
+              "table": {
+                "table_name": "commerce_orders",
+                "access_type": "index",
+                "possible_keys": [
+                  "p4_orders_created_idx"
+                ],
+                "key": "PRIMARY",
+                "key_length": "144",
+                "used_key_parts": [
+                  "id"
+                ],
+                "loops": 1,
+                "r_loops": 1,
+                "rows": 4519,
+                "r_rows": 4624,
+                "cost": 0.710610955,
+                "r_table_time_ms": 2.076180461,
+                "r_other_time_ms": 0.650676574,
+                "r_engine_stats": {
+                  "pages_accessed": 239
+                },
+                "filtered": 100,
+                "r_total_filtered": 86.50519031,
+                "attached_condition": "commerce_orders.createdAt >= '2098-07-14 21:00:00' and commerce_orders.createdAt < '2098-07-15 21:00:00'",
+                "r_filtered": 86.50519031
+              }
+            }
+          ]
+        }
+      },
+      "pendingGroupPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.157699363
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 4.629191475,
+          "r_loops": 1,
+          "r_total_time_ms": 3.898266574,
+          "filesort": {
+            "sort_key": "p.currency, p.method, p.state, p.evidenceRequired",
+            "r_loops": 1,
+            "r_total_time_ms": 0.010668879,
+            "r_used_priority_queue": false,
+            "r_output_rows": 0,
+            "r_buffer_size": "4KiB",
+            "r_sort_mode": "packed_sort_key,rowid",
+            "temporary_table": {
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "p",
+                    "access_type": "ALL",
+                    "possible_keys": [
+                      "commerce_payments_orderId_requestKey_key"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 2507,
+                    "r_rows": 2507,
+                    "cost": 0.474203,
+                    "r_table_time_ms": 2.102310879,
+                    "r_other_time_ms": 0.483558591,
+                    "r_engine_stats": {
+                      "pages_accessed": 54
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 7.538891105,
+                    "attached_condition": "p.state in ('PENDING','CLAIMED','FAILED')",
+                    "r_filtered": 7.538891105
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "o",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "commerce_orders_state_createdAt_idx",
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "PRIMARY",
+                    "key_length": "144",
+                    "used_key_parts": [
+                      "id"
+                    ],
+                    "ref": [
+                      "sprtaya_phase4_recovery_v3.p.orderId"
+                    ],
+                    "loops": 2507,
+                    "r_loops": 189,
+                    "rows": 1,
+                    "r_rows": 1,
+                    "cost": 2.50532428,
+                    "r_table_time_ms": 1.250425922,
+                    "r_other_time_ms": 0.040091646,
+                    "r_engine_stats": {
+                      "pages_accessed": 439
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 0,
+                    "attached_condition": "o.createdAt >= '2098-07-14 21:00:00' and o.createdAt < '2098-07-15 21:00:00' and o.state not in ('CANCELLED','EXPIRED','RETURNED')",
+                    "r_filtered": 0
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "orders": 4900,
+      "items": 4900,
+      "payments": 2450,
+      "shipments": 1225,
+      "financialEvents": 3675,
+      "warmups": 2,
+      "iterations": 7,
+      "latenciesMs": [
+        350,
+        353,
+        364,
+        353,
+        357,
+        357,
+        346
+      ],
+      "medianMs": 353,
+      "databaseQueryMs": [
+        240.26233399999546,
+        244.68574999999691,
+        250.25291599999946,
+        238.5659569999989,
+        245.4927490000009,
+        245.49599699999817,
+        237.7889610000002
+      ],
+      "databaseQueryCounts": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "nodeProcessCpuMs": [
+        478.257,
+        459.844,
+        463.126,
+        501.063,
+        475.656,
+        493.952,
+        455.515
+      ],
+      "estimatedNonQueryMs": [
+        110,
+        108,
+        114,
+        114,
+        112,
+        111,
+        108
+      ],
+      "p95Ms": 364,
+      "sampledPeakHeapBytes": 236728904,
+      "postGcHeapDeltaBytes": [
+        -7418000,
+        -5995656,
+        -15110792,
+        -11555032,
+        -5460288,
+        -17283512,
+        7767280
+      ],
+      "totalsVerified": true,
+      "eventPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.196832477
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.95888333,
+          "r_loops": 1,
+          "r_total_time_ms": 3.164906191,
+          "nested_loop": [
+            {
+              "table": {
+                "table_name": "commerce_events",
+                "access_type": "index",
+                "possible_keys": [
+                  "p4_events_kind_created_idx"
+                ],
+                "key": "PRIMARY",
+                "key_length": "144",
+                "used_key_parts": [
+                  "id"
+                ],
+                "loops": 1,
+                "r_loops": 1,
+                "rows": 5450,
+                "r_rows": 6095,
+                "cost": 0.95888333,
+                "r_table_time_ms": 2.037130698,
+                "r_other_time_ms": 1.122691105,
+                "r_engine_stats": {
+                  "pages_accessed": 191
+                },
+                "filtered": 100,
+                "r_total_filtered": 60.29532404,
+                "attached_condition": "commerce_events.createdAt >= '2098-07-14 21:00:00' and commerce_events.createdAt < '2098-07-15 21:00:00' and commerce_events.kind in ('payment.verified','fulfillment.cod_reconciled','finance.reconcile')",
+                "r_filtered": 60.29532404
+              }
+            }
+          ]
+        }
+      },
+      "orderPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.104563346
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 0.853497105,
+          "r_loops": 1,
+          "r_total_time_ms": 3.117354665,
+          "nested_loop": [
+            {
+              "table": {
+                "table_name": "commerce_orders",
+                "access_type": "index",
+                "possible_keys": [
+                  "p4_orders_created_idx"
+                ],
+                "key": "PRIMARY",
+                "key_length": "144",
+                "used_key_parts": [
+                  "id"
+                ],
+                "loops": 1,
+                "r_loops": 1,
+                "rows": 5429,
+                "r_rows": 5524,
+                "cost": 0.853497105,
+                "r_table_time_ms": 2.331691771,
+                "r_other_time_ms": 0.781453688,
+                "r_engine_stats": {
+                  "pages_accessed": 269
+                },
+                "filtered": 100,
+                "r_total_filtered": 88.7038378,
+                "attached_condition": "commerce_orders.createdAt >= '2098-07-14 21:00:00' and commerce_orders.createdAt < '2098-07-15 21:00:00'",
+                "r_filtered": 88.7038378
+              }
+            }
+          ]
+        }
+      },
+      "pendingGroupPlan": {
+        "query_optimization": {
+          "r_total_time_ms": 0.187455532
+        },
+        "query_block": {
+          "select_id": 1,
+          "cost": 4.723758809,
+          "r_loops": 1,
+          "r_total_time_ms": 3.177283757,
+          "filesort": {
+            "sort_key": "p.currency, p.method, p.state, p.evidenceRequired",
+            "r_loops": 1,
+            "r_total_time_ms": 0.009460295,
+            "r_used_priority_queue": false,
+            "r_output_rows": 0,
+            "r_buffer_size": "4KiB",
+            "r_sort_mode": "packed_sort_key,rowid",
+            "temporary_table": {
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "p",
+                    "access_type": "ALL",
+                    "possible_keys": [
+                      "commerce_payments_orderId_requestKey_key"
+                    ],
+                    "loops": 1,
+                    "r_loops": 1,
+                    "rows": 2562,
+                    "r_rows": 2957,
+                    "cost": 0.483168,
+                    "r_table_time_ms": 1.736234979,
+                    "r_other_time_ms": 0.393123174,
+                    "r_engine_stats": {
+                      "pages_accessed": 61
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 6.391613121,
+                    "attached_condition": "p.state in ('PENDING','CLAIMED','FAILED')",
+                    "r_filtered": 6.391613121
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "o",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "commerce_orders_state_createdAt_idx",
+                      "p4_orders_created_idx"
+                    ],
+                    "key": "PRIMARY",
+                    "key_length": "144",
+                    "used_key_parts": [
+                      "id"
+                    ],
+                    "ref": [
+                      "sprtaya_phase4_recovery_v3.p.orderId"
+                    ],
+                    "loops": 2562,
+                    "r_loops": 189,
+                    "rows": 1,
+                    "r_rows": 1,
+                    "cost": 2.55451848,
+                    "r_table_time_ms": 0.994956288,
+                    "r_other_time_ms": 0.029506118,
+                    "r_engine_stats": {
+                      "pages_accessed": 443
+                    },
+                    "filtered": 100,
+                    "r_total_filtered": 0,
+                    "attached_condition": "o.createdAt >= '2098-07-14 21:00:00' and o.createdAt < '2098-07-15 21:00:00' and o.state not in ('CANCELLED','EXPIRED','RETURNED')",
+                    "r_filtered": 0
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

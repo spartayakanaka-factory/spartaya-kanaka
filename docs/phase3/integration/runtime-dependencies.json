@@ -1,0 +1,12 @@
+{
+  "node": "v22.23.4",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "packageManager": "pnpm@11.24.0",
+  "nodeLinker": "hoisted",
+  "cleanFrozenInstall": true,
+  "installSource": "Existing verified pnpm content-addressed store; fresh real node_modules, not a source symlink",
+  "swcRequireAndImport": "PASS",
+  "prismaRuntimeUtilities": "PASS",
+  "resolvedHelper": "node_modules/@swc/helpers/esm/_interop_require_default.js"
+}

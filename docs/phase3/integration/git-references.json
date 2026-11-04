@@ -1,0 +1,13 @@
+{
+  "canonicalBase": "cea867a0df48d0aa145613b0d491b1a779b4ee3d",
+  "implementationCommit": "cf4a082075f46c48acc2285945aaa119365ba4b7",
+  "localBranch": "codex/phase3-integration",
+  "canonicalLineageVerified": true,
+  "auditedSourceCommit": "1b0bb030a723949b84a96ffbfd644e1e25ac085c",
+  "auditedSourceFixCommit": "77a8cab30d4062cedacec348456dd79403570fb5",
+  "pushed": false,
+  "merged": false,
+  "hostingerModified": false,
+  "persistentMigrationsApplied": false,
+  "note": "Final evidence metadata commit follows; its SHA is in local history and the completion response."
+}

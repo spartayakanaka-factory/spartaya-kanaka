@@ -1,3 +1,4 @@
+import { commerceEnabled } from "@/lib/commerce/runtime";
 import Link from "next/link";
 import { HeaderControls } from "@/components/header-controls";
 import { getCopy, displayCategoryName, displayShortCategoryName } from "@/lib/i18n";
@@ -52,7 +53,7 @@ export async function SiteHeader({ locale }: { locale: Locale }) {
             <Link href={base + "/wholesale"}>{getCopy(locale, "navWholesale")}</Link>
             <Link href={base + "/contact"}>{getCopy(locale, "navContact")}</Link>
           </nav>
-          <HeaderControls factoryPhone={contacts.phone} locale={locale} links={links} />
+          <HeaderControls commerce={commerceEnabled()} factoryPhone={contacts.phone} locale={locale} links={links} />
         </div>
       </header>
       <nav className="category-nav" aria-label={ar ? "تسوق حسب التصنيف" : "Shop by category"}>

@@ -1,3 +1,4 @@
+import { commerceEnabled } from "@/lib/commerce/runtime";
 import Link from "next/link";
 import { site } from "@/lib/site-config";
 import { getStoreContactSettings } from "@/lib/server/store-settings";
@@ -9,9 +10,14 @@ import type { Locale } from "@/lib/types";
 export async function SiteFooter({ locale }: { locale: Locale }) {
   const ar = locale === "ar",
     base = "/" + locale;
-  const [allCategories, contacts] = await Promise.all([getStoreCategories(), getStoreContactSettings()]);
+  const [allCategories, contacts] = await Promise.all([
+    getStoreCategories(),
+    getStoreContactSettings(),
+  ]);
   const categoryIds = new Set(site.featuredCategoryIds);
-  const categories = allCategories.filter((category) => category.featured || categoryIds.has(category.id));
+  const categories = allCategories.filter(
+    (category) => category.featured || categoryIds.has(category.id),
+  );
   return (
     <footer className="site-footer">
       <div className="footer-main">
@@ -71,9 +77,13 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           {ar ? "سبرتاية وكنكة. جميع الحقوق محفوظة." : "Sprtaya & Kanaka. All rights reserved."}
         </p>
         <p>
-          {ar
-            ? "الطلب والدفع الإلكتروني غير متاحين حالياً."
-            : "Online ordering & payment are not available yet."}
+          {commerceEnabled()
+            ? ar
+              ? "طلبات اختبار محلية فقط — دون دفع حقيقي."
+              : "Local test orders only — no real payments."
+            : ar
+              ? "الطلب والدفع الإلكتروني غير متاحين حالياً."
+              : "Online ordering & payment are not available yet."}
         </p>
       </div>
     </footer>

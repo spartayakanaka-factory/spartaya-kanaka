@@ -1,0 +1,61 @@
+{
+  "observedAt": "2026-11-02T12:53:27.498Z",
+  "domain": "bisque-pheasant-330767.hostingersite.com",
+  "deployment": {
+    "domain": "bisque-pheasant-330767.hostingersite.com",
+    "build": {
+      "uuid": "01a198ba-dc6f-725b-a9c2-4d5b254e552a",
+      "state": "completed",
+      "options": {
+        "node_version": 22,
+        "app_type": "next",
+        "root_directory": null,
+        "output_directory": ".next",
+        "build_script": "build",
+        "entry_file": null,
+        "package_manager": "pnpm",
+        "source_type": "archive",
+        "source_options": {
+          "archive_path": "sprtaya-candidate-aa593e5-minimal.zip",
+          "owner": null,
+          "repository": null,
+          "branch": null,
+          "installation_uuid": null,
+          "commit": null
+        }
+      },
+      "created_at": "2026-11-01T20:09:05Z",
+      "updated_at": "2026-11-01T20:11:24Z"
+    },
+    "logs": {
+      "logs": null,
+      "lines": 1
+    },
+    "buildSettings": {
+      "node_version": 22,
+      "app_type": "next",
+      "root_directory": null,
+      "output_directory": ".next",
+      "build_script": "build",
+      "entry_file": null,
+      "package_manager": "pnpm"
+    },
+    "gitAutoDeployment": null
+  },
+  "environmentNames": [
+    "LEGACY_ASSET_ROOT",
+    "STAGING_ACCESS_PASSWORD",
+    "STAGING_ACCESS_USERNAME",
+    "STAGING_SITE",
+    "APP_ENV"
+  ],
+  "runtime": {
+    "startedAt": "2026-11-02T01:33:48Z",
+    "lastDeployedAt": "2026-11-01T20:11:24Z",
+    "totalLines": 5,
+    "observedErrors": 0,
+    "observedReady": true,
+    "nextVersion": "16.4.3"
+  },
+  "changesPerformed": false
+}

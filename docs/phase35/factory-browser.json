@@ -1,0 +1,132 @@
+{
+  "scope": "Local production mode, synthetic orders and private S3",
+  "checks": [
+    {
+      "name": "authenticated factory staff sessions and independent customer/admin boundaries",
+      "pass": true
+    },
+    {
+      "name": "mobile ready-made COD checkout, fulfillment, collection and separate reconciliation",
+      "pass": true
+    },
+    {
+      "name": "wallet private screenshot UI, spoof/replay boundaries and authorized reconciliation",
+      "pass": true
+    },
+    {
+      "name": "made-to-order InstaPay deposit, manufacturing gate and outstanding balance before dispatch",
+      "pass": true
+    },
+    {
+      "name": "internal production notes remain private, bilingual local notification processing",
+      "pass": true
+    },
+    {
+      "name": "owner shipping/payment settings and customer-account controls persist through real forms",
+      "pass": true
+    },
+    {
+      "name": "visual review pass 1 - new factory/payment screens at 390/768/1440",
+      "pass": true
+    },
+    {
+      "name": "visual review pass 2 - new factory/payment screens at 390/768/1440",
+      "pass": true
+    }
+  ],
+  "audits": [
+    {
+      "name": "COD confirmation 390 RTL",
+      "violations": []
+    },
+    {
+      "name": "wallet proof 390 RTL",
+      "violations": []
+    },
+    {
+      "name": "queue 390",
+      "violations": []
+    },
+    {
+      "name": "manufacturing 390",
+      "violations": []
+    },
+    {
+      "name": "settings 390",
+      "violations": []
+    },
+    {
+      "name": "expanded advanced settings 390",
+      "violations": []
+    },
+    {
+      "name": "customers 390",
+      "violations": []
+    },
+    {
+      "name": "wallet-ar 390",
+      "violations": []
+    },
+    {
+      "name": "wallet-en 390",
+      "violations": []
+    },
+    {
+      "name": "queue 768",
+      "violations": []
+    },
+    {
+      "name": "manufacturing 768",
+      "violations": []
+    },
+    {
+      "name": "settings 768",
+      "violations": []
+    },
+    {
+      "name": "expanded advanced settings 768",
+      "violations": []
+    },
+    {
+      "name": "customers 768",
+      "violations": []
+    },
+    {
+      "name": "wallet-ar 768",
+      "violations": []
+    },
+    {
+      "name": "wallet-en 768",
+      "violations": []
+    },
+    {
+      "name": "queue 1440",
+      "violations": []
+    },
+    {
+      "name": "manufacturing 1440",
+      "violations": []
+    },
+    {
+      "name": "settings 1440",
+      "violations": []
+    },
+    {
+      "name": "expanded advanced settings 1440",
+      "violations": []
+    },
+    {
+      "name": "customers 1440",
+      "violations": []
+    },
+    {
+      "name": "wallet-ar 1440",
+      "violations": []
+    },
+    {
+      "name": "wallet-en 1440",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

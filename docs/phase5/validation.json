@@ -1,0 +1,15 @@
+{
+  "baseCommit": "aa593e5370bf77986e8c4f6aeae48fe2cfce3c3d",
+  "branch": "codex/phase5-arabic-admin",
+  "nextBuildId": "tg44-d6R8nabR2fLY7p--",
+  "node": "22.23.4",
+  "next": "16.4.3",
+  "prisma": "7.10.1",
+  "database": "MariaDB 11.8.9; exact disposable Phase 5 schemas",
+  "typeScript": "PASS",
+  "eslint": "PASS",
+  "prismaValidation": "PASS",
+  "productionBuild": "PASS",
+  "hostedChanges": false,
+  "newMigrations": 0
+}

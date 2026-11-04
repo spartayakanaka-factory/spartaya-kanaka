@@ -1,0 +1,34 @@
+{
+  "scope": "Read-only; exact isolated local Phase 5 schema",
+  "importedDrafts": 487,
+  "unapprovedPricesPreserved": true,
+  "stockInvariants": true,
+  "reservationAndDispatchEvents": 9,
+  "readyStock": {
+    "quantity": 17,
+    "reserved": 3
+  },
+  "cairoDay": "2026-11-02",
+  "dashboardAndReportOrderCount": 10,
+  "authoritativeCurrencyTotals": [
+    {
+      "currency": "EGP",
+      "orderValue": "140510",
+      "outstanding": "13901",
+      "collected": "126609",
+      "refunded": "0",
+      "cod": "43203",
+      "wallet": "41703",
+      "instapay": "41703",
+      "deposits": "24603",
+      "codCount": "3",
+      "walletCount": "3",
+      "instapayCount": "6",
+      "codPending": "0",
+      "netCollected": "126609"
+    }
+  ],
+  "reportComparedToActualPaymentAndShipmentRows": true,
+  "reviewedMigrations": 7,
+  "newMigrations": 0
+}

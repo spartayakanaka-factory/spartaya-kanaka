@@ -1,0 +1,55 @@
+[
+  {
+    "route": "/admin",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "route": "/admin/products",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "route": "/admin/orders",
+    "width": 390,
+    "findings": []
+  },
+  {
+    "route": "/admin",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "route": "/admin/products",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "route": "/admin/orders",
+    "width": 768,
+    "findings": []
+  },
+  {
+    "route": "/admin",
+    "width": 1440,
+    "findings": [
+      {
+        "level": "WARN",
+        "id": "ragged-row",
+        "width": 1440,
+        "message": "1 pair(s) of cards in one row end at different heights (by 79px).",
+        "fix": "Cards that share a row share a bottom edge: balance them by their content (the same number of rows, a block of similar height beside it), or stack them. In testing, ragged rows were marked down every time."
+      }
+    ]
+  },
+  {
+    "route": "/admin/products",
+    "width": 1440,
+    "findings": []
+  },
+  {
+    "route": "/admin/orders",
+    "width": 1440,
+    "findings": []
+  }
+]

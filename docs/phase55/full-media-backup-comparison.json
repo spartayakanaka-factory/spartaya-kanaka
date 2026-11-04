@@ -1,0 +1,8 @@
+{
+  "scope": "Read-only off-server media backup compared against current preserved local assets; no extraction or hosted access",
+  "filesCompared": 1753,
+  "missing": [],
+  "different": [],
+  "unsafeMembers": [],
+  "pass": true
+}

@@ -7,6 +7,7 @@ export interface CatalogVariant {
   sku: string | null;
   options: Record<string, string>;
   priceMinor: number | null;
+  available?: boolean;
 }
 
 export interface CatalogImage {
@@ -24,6 +25,9 @@ export interface CatalogProduct {
   originalUrl: string;
   nameAr: string;
   descriptionAr: string;
+  nameEn?: string | null;
+  descriptionEn?: string | null;
+  productionDays?: { min: number; max: number };
   categoryNamesAr: string[];
   categoryUrls: string[];
   categoryIds?: string[];

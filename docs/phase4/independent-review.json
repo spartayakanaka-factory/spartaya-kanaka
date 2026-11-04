@@ -1,0 +1,18 @@
+{
+  "review": "Separate artifact cross-check by the implementer; not an external audit",
+  "checks": {
+    "regression": true,
+    "financial integration": true,
+    "browser and axe": true,
+    "concurrency": true,
+    "financial exact totals": true,
+    "outage and recovery": true,
+    "migration recovery": true,
+    "advisory audit": true,
+    "preservation": true,
+    "workload-benchmark.json": true,
+    "workload-indexed.json": true,
+    "fixed matrix": true
+  },
+  "result": "PASS_WITH_DOCUMENTED_LOCAL_SCOPE"
+}

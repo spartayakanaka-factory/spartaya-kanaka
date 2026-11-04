@@ -1,0 +1,113 @@
+{
+  "observed_utc": "2026-10-28T22:17:36.750074+00:00",
+  "responses": [
+    {
+      "path": "/",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: d39236dd7ff3dad3e046cc585b572f73-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.025\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/ar",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 280a6cee3c8f1c649b33add248e2c3bc-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.023\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/en",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: a507471521eb5bd10ec7eee0c96b80de-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.033\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/nonexistent-hostinger-audit-20261029",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 64b6995befe79a83b9730b011146b5da-fra-edge10\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.030\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/admin",
+      "result": "200 0 92.113.16.133",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 226b4088c03f897f25d847a81244ac32-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.019\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/admin/login",
+      "result": "200 0 92.113.16.133",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 9e08519d5cafd7ea154a01d1220cdfce-fra-edge9\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.017\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/admin/products",
+      "result": "200 0 92.113.16.133",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: c8ca08fc777ee1099bfe8e4f12a16128-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.022\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/api/auth/get-session",
+      "result": "200 0 92.113.16.133",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 073fa2100be508366b11e6fd36e3206d-fra-edge10\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.020\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/api/admin/media/upload-url",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: c2d328281045d04a5204078f4d5c9ed6-fra-edge7\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.019\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/robots.txt",
+      "result": "200 58 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\ncontent-type: text/plain\ncontent-length: 58\nvary: Accept-Encoding\nserver: hcdn\nx-hcdn-request-id: a93b079225237bf492536018f7828754-fra-edge7\ncontent-type: text/plain\n\n",
+      "body_bytes": 58,
+      "sha256": "75959e778007bee9d4989a997f47b50ab03332a9de3404ee9e340e7cc5eb6eab",
+      "body_excerpt": "User-agent: Googlebot\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+    },
+    {
+      "path": "/sitemap.xml",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: 0f3e0e7b9d4c63add90c7df1a3d0a5a9-fra-edge6\nx-hcdn-cache-status: DYNAMIC\nx-hcdn-upstream-rt: 0.021\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    },
+    {
+      "path": "/favicon.ico",
+      "result": "200 0 92.113.23.31",
+      "error": "",
+      "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 22:17:36 GMT\nplatform: hostinger\npanel: hpanel\ncontent-security-policy: upgrade-insecure-requests\nserver: hcdn\nx-hcdn-request-id: a07f38e52df65b49175718dd7501b9ee-fra-edge7\nx-hcdn-cache-status: MISS\nx-hcdn-upstream-rt: 0.025\n\n",
+      "body_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_excerpt": ""
+    }
+  ]
+}

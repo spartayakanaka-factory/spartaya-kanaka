@@ -1,0 +1,15 @@
+{
+  "sourcePayloadChanges": ["next-env.d.ts"],
+  "allowedGeneratedNextEnvOnly": true,
+  "traceCount": 55,
+  "helperVariantsTraced": {
+    "cjs": true,
+    "esm": true
+  },
+  "privateFilesTraced": [],
+  "outsideRootTraceCount": 1,
+  "publicBrowserSourceMaps": [],
+  "databaseOrServiceCredentialsProvided": false,
+  "outsideRootPaths": ["/Users/zuriki/Desktop/Desha Kanka/package.json"],
+  "outsideRootExplanation": "Ancestor package.json recorded by tracing because the validation directory is nested in the existing project; no outside runtime dependency is imported into the source ZIP. Deploy source, never this local .next output."
+}

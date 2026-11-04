@@ -1,0 +1,67 @@
+{
+  "routes": [
+    {
+      "url": "/admin",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/products",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/products?page=10",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/products/review",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/categories",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/inventory",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/settings",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/staff",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/admin/audit",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/ar",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/en",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    },
+    {
+      "url": "/robots.txt",
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive"
+    }
+  ],
+  "errors": [],
+  "secureSessionCookie": "PASS",
+  "pagination": "487 products, 10 pages: PASS"
+}

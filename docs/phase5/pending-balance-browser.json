@@ -1,0 +1,10 @@
+{
+  "scope": "Real local browser and MariaDB; synthetic unpaid order only",
+  "customerCheckout": true,
+  "paidMinor": "0",
+  "initialMinor": "8201",
+  "totalMinor": "13901",
+  "outstandingDisplayExact": true,
+  "reportIncludesBalance": true,
+  "dashboardQueueLinkFiltersCorrectly": true
+}

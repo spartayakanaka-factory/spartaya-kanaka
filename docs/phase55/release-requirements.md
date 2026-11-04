@@ -1,0 +1,35 @@
+# Phase 5.5 release requirements
+
+Exact artifact/source identity and checksum: [release record](release.json). Runtime source is commit `bda268c841b28309486b600e2ea90f79a8065745`; subsequent documentation/test-evidence checkpoints do not change any packaged runtime member.
+
+## Build and runtime
+
+- Node 22.x; tested 22.23.4. The existing engine declaration also permits supported Node 24, but Node 24 was not tested here.
+- Exact pinned `pnpm@11.24.0`, frozen `pnpm-lock.yaml`; existing hoisted-linker configuration is included. No dependency version was upgraded.
+- Next 16.4.3, Prisma/client/adapter 7.10.1, Better Auth 1.7.14, existing MariaDB adapter and Sharp dependencies.
+- Fresh source ZIP, application root `./`, `pnpm install --frozen-lockfile`, build script `build` (`Prisma generate` followed by `next build --webpack`), `.next` output, normal Next.js server. This is not a prebuilt or standalone ZIP; dependencies and compiled output are generated on the host.
+- Existing SWC helper tracing includes package exports plus CJS/ESM helpers. Clean Node 22 production startup and routes passed locally. Hostinger's Linux loader/GLIBC compatibility still needs the next separately approved real build; macOS tests are not a Hostinger PASS.
+- Build's command-scoped placeholder `DATABASE_URL` is for client generation and does not open a connection. There is no migration, seed, import, owner creation or payment activation in build/start/install hooks. Manual migration commands are separate.
+- `RELEASE-MANIFEST.json` binds exact source/member hashes. The ZIP has 184 entries, including this manifest; source files are at archive root, Arabic filenames retain UTF-8 metadata. Dependencies, `.git`, `.env` files, local state, generated Prisma/build outputs, test artifacts and investigation documentation are excluded. Only the reviewed migration JSON and required operational script dependency closure accompany the app.
+- Product originals remain external under `LEGACY_ASSET_ROOT`; brand/catalog data needed by build are included. The original archives are unchanged.
+
+## Configuration stages (names only; secrets must remain private)
+
+| Stage                                            | Required/allowed names and behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Code/security acceptance, no database            | Preserve `APP_ENV`, `STAGING_SITE`, `STAGING_ACCESS_USERNAME`, `STAGING_ACCESS_PASSWORD`, `LEGACY_ASSET_ROOT`. Optional `NEXT_PUBLIC_SITE_URL` is public origin only. Keep `CATALOG_SOURCE=local`, commerce/account/refund/payment/notification feature flags off; `PAYMENT_MODE=MOCK`. Missing/incorrect staging credentials fail closed. No database, provider or storage credentials are needed                                                                                                        |
+| Temporary read-only connectivity, after approval | `DATABASE_URL`, `DATABASE_TARGET=hostinger-phase2-test`, temporary `STAGING_DB_PREFLIGHT_SECRET`. Exact internal database/user/host/port remain guarded. Remove/disable temporary preflight secret afterward                                                                                                                                                                                                                                                                                              |
+| Approved synthetic database application          | Distinct `BETTER_AUTH_SECRET`, `CUSTOMER_AUTH_SECRET`, `MOCK_PAYMENT_SECRET`; staging-only `BETTER_AUTH_URL`, `CUSTOMER_AUTH_URL`, `AUTH_TRUSTED_ORIGINS`; `SR_HOSTED_ISOLATION`, explicit allowed staff/customer IDs and the existing verified-access/database/storage attestations. Set no attestation before obtaining evidence. `P3_SIMULATION=1`, `P3_DISPOSABLE=1`, `PAYMENT_MODE=MOCK`, `P3_NOTIFICATIONS=0` remain mandatory. Individually enable only separately approved synthetic capabilities |
+| Approved private R2 storage                      | `STAGING_R2_ACCOUNT_ID`, `MEDIA_S3_ENDPOINT`, `MEDIA_S3_REGION`, `MEDIA_ACCESS_KEY_ID`, `MEDIA_SECRET_ACCESS_KEY`, `MEDIA_S3_FORCE_PATH_STYLE`, `MEDIA_S3_ORIGINALS_BUCKET`, `MEDIA_S3_DISPLAY_BUCKET`, `MEDIA_PUBLIC_BASE_URL`. Both staging buckets remain private; display URL points to the guarded application route. No R2 configuration or hosted persistence was tested in this phase                                                                                                             |
+
+Never copy local `P5_WORKSTREAM`, local schema credentials, fixture prices/fees/tax rules, financial grants or synthetic account secrets into merchant production. Do not expose any secret through `NEXT_PUBLIC_*`, CLI arguments, reports, screenshots or repository files.
+
+## Operational readiness and limitations
+
+Use authenticated route smoke checks as health/readiness probes; no new public health endpoint was introduced. Check build/runtime logs through the supported host interface and retain diagnostics privately. A successful build alone does not establish functioning authentication, database or storage.
+
+Seven migrations retain their existing names, order, SQL and checksums. The old generic hosted command remains promotion-blocked. The new `db:migrate:phase55` defaults to local-file preparation; applying an empty staging initialization needs explicit flags, the packaged source SHA, backup/restore evidence, exact-target preflight and separate owner approval. It never seeds/imports. Nonempty or partial targets are refused.
+
+Fresh hosted database state, grants, backup/restore verification, runner availability and private storage configuration remain external gates. The prior database association confirmation does not prove that no other application uses its account. No automatic privilege reduction is authorized.
+
+Direct LiteSpeed file mappings and the publication gap remain unresolved hosted risks. Do not rely on IP whitelisting or claim Next.js covers a direct static mapping. Follow the [approval-gated runbook](hosted-acceptance-runbook.md); permanent reopening is not approved.

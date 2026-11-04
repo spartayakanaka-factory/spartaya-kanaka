@@ -1,0 +1,7 @@
+{
+  "scope": "Separate local production server with unreachable loopback database port, followed by restart with the correct disposable database; no database shutdown.",
+  "unavailableStatus": 503,
+  "unavailableLatencyMs": 5460,
+  "recoveredStatus": 200,
+  "leakedReportFields": false
+}

@@ -1,0 +1,8 @@
+{
+  "previousCommit": "bda268c841b28309486b600e2ea90f79a8065745",
+  "newCommit": "b9a757067cf89fc9301a72b8a956467420c634a1",
+  "addedMembers": [],
+  "removedMembers": [],
+  "changedMembers": ["scripts/import-legacy-catalog.ts", "RELEASE-MANIFEST.json"],
+  "schemaMigrationsDependenciesAssetsChanged": false
+}

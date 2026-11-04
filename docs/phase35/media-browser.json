@@ -1,0 +1,15 @@
+{
+  "productionMode": true,
+  "checks": [
+    {
+      "name": "real admin browser upload/replacement/retrieval and association restoration",
+      "pass": true,
+      "privateOriginalAnonymousStatus": 403,
+      "publicDisplayStatus": 200,
+      "invalidMimeRejected": true,
+      "genuinePhotoAssociationRestored": true
+    }
+  ],
+  "errors": [],
+  "signedUrlsOrCredentialsRecorded": false
+}

@@ -1,0 +1,7 @@
+{
+  "traceManifestsChecked": 47,
+  "privateFileFindings": [],
+  "swcTracedFiles": 438,
+  "swcMetadataCjsEsmAndExportsPresent": true,
+  "scannerNote": "Private state is matched by its actual root; legitimate Prisma runtime libraries are retained."
+}

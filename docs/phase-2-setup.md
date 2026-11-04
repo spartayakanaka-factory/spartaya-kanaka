@@ -1,6 +1,6 @@
 # Phase 2 setup and operations
 
-This is an implementation guide. No database, object-storage bucket, credentials, import, or hosting deployment is configured in this workspace.
+This is the general implementation guide. An isolated local MariaDB and filesystem-backed S3 environment is now available; use [the current local runbook](phase2-local/README.md) and [acceptance results](phase2-local/acceptance.md). Hostinger database acceptance and externally persistent media remain separate release gates. Earlier infrastructure-blocked reports are historical.
 
 ## Local or staging database
 

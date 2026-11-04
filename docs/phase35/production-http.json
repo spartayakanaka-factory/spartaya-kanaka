@@ -1,0 +1,35 @@
+{
+  "scope": "Local final production-mode server",
+  "checks": [
+    {
+      "route": "/ar",
+      "status": 200,
+      "noindex": true,
+      "durationMs": 97
+    },
+    {
+      "route": "/en",
+      "status": 200,
+      "noindex": true,
+      "durationMs": 33
+    },
+    {
+      "route": "/admin/login",
+      "status": 200,
+      "noindex": true,
+      "durationMs": 11
+    },
+    {
+      "route": "/api/admin/commerce",
+      "status": 403,
+      "noindex": true,
+      "durationMs": 4
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "noindex": true,
+      "durationMs": 6
+    }
+  ]
+}

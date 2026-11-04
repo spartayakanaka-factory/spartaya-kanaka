@@ -1,0 +1,240 @@
+{
+  "scope": "Clean extracted package, real production-mode Next server, no database/service credentials; local routing only",
+  "checks": [
+    {
+      "route": "/",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/ar",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/ar",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/en",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/en",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/admin/login",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/admin/login",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/media",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/media",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/commerce",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/commerce",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/api/auth/get-session",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/api/auth/get-session",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/api/staging-database-preflight",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/api/staging-database-preflight",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/robots.txt",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/robots.txt",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/sitemap.xml",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/icon.svg",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/icon.svg",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/_next/static/chunks/webpack-f5a3d34be55c4e47.js",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/_next/static/chunks/webpack-f5a3d34be55c4e47.js",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/assets/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA/%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D8%A7%D8%AA%20%D8%A3%D8%AE%D8%B1%D9%89/%D8%B9%D9%84%D8%A8%D9%87%20%D8%B3%D8%A8%D8%AD%D9%87%20-%20%D8%B5%D8%AF%D9%81%20%D9%84%D9%88%D9%83%D8%B3%20(%D8%AC%D9%85%D9%84%D9%87)-01.jpg",
+      "kind": "anonymous",
+      "status": 401
+    },
+    {
+      "route": "/assets/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA/%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D8%A7%D8%AA%20%D8%A3%D8%AE%D8%B1%D9%89/%D8%B9%D9%84%D8%A8%D9%87%20%D8%B3%D8%A8%D8%AD%D9%87%20-%20%D8%B5%D8%AF%D9%81%20%D9%84%D9%88%D9%83%D8%B3%20(%D8%AC%D9%85%D9%84%D9%87)-01.jpg",
+      "kind": "invalid",
+      "status": 401
+    },
+    {
+      "route": "/ar",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/en",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/admin/login",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/_next/static/chunks/webpack-f5a3d34be55c4e47.js",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/_next/static/css/37dc45a42c661e2c.css",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/assets/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA/%D8%AA%D8%B5%D9%86%D9%8A%D9%81%D8%A7%D8%AA%20%D8%A3%D8%AE%D8%B1%D9%89/%D8%B9%D9%84%D8%A8%D9%87%20%D8%B3%D8%A8%D8%AD%D9%87%20-%20%D8%B5%D8%AF%D9%81%20%D9%84%D9%88%D9%83%D8%B3%20(%D8%AC%D9%85%D9%84%D9%87)-01.jpg",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/robots.txt",
+      "kind": "valid-site",
+      "status": 200
+    },
+    {
+      "route": "/api/admin/media",
+      "kind": "site-auth-no-staff-or-db",
+      "status": 403
+    },
+    {
+      "route": "/api/admin/commerce",
+      "kind": "site-auth-no-staff-or-db",
+      "status": 503
+    },
+    {
+      "route": "/api/staging-database-preflight",
+      "kind": "site-auth-no-staff-or-db",
+      "status": 404
+    },
+    {
+      "route": "/api/commerce?resource=cart",
+      "kind": "site-auth-no-staff-or-db",
+      "status": 503
+    },
+    {
+      "route": "/.env",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/.git/config",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/package.json",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/prisma/schema.prisma",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/src/app/page.tsx",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/RELEASE-MANIFEST.json",
+      "kind": "private-source-probe",
+      "status": 404
+    },
+    {
+      "route": "/sprtaya-phase55-preview.zip",
+      "kind": "private-source-probe",
+      "status": 404
+    }
+  ],
+  "proxyEnforced": true,
+  "originalArabicImageHashMatches": true,
+  "imageContentType": "image/webp",
+  "disabledCommerce": true,
+  "hostingerRoutingVerified": false
+}

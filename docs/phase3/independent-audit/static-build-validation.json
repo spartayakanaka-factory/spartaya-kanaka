@@ -1,0 +1,12 @@
+{
+  "productionBuild": "PASS",
+  "buildCommand": "scripts/phase3 build",
+  "nextBuildMode": "--webpack",
+  "typeScript": "PASS",
+  "eslint": "PASS",
+  "prismaSchemaValidation": "PASS",
+  "dependencyLockUnchanged": true,
+  "schemaMigrationsUnchanged": true,
+  "runtime": "Node.js 24.22.1",
+  "hostingerNode22Acceptance": "NOT TESTED"
+}

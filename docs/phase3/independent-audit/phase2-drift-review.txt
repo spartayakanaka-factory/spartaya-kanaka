@@ -1,0 +1,952 @@
+FILE .gitignore
+diff --git a/../audit-canonical/.gitignore b/tmp/p3-compare-source
+index 5f11660..548e4ba 100644
+--- a/../audit-canonical/.gitignore
++++ b/tmp/p3-compare-source
+@@ -1,4 +1,6 @@
+ node_modules/
++.local/
++.next-local/
+ .agents/
+ .pnpm-store/
+ .taste-skill/
+
+FILE README.md
+diff --git a/../audit-canonical/README.md b/tmp/p3-compare-source
+index 3d9b741..76c99fc 100644
+--- a/../audit-canonical/README.md
++++ b/tmp/p3-compare-source
+@@ -25,7 +25,7 @@ Useful commands:
+ - Product and verified category browsing, local Arabic search, product detail galleries, About, wholesale, custom manufacturing, and contact pages.
+ - Source product prices are retained in the catalog adapter but are never rendered. Every imported product is explicitly browse-only.
+ - Original images are streamed from the preserved **sprtaya-kanaka-assets** folder through an allow-listed image route.
+-- No database or staff credentials are configured in this workspace; checkout, payment, and customer accounts are not implemented. The Phase 2 admin requires the setup described below.
++- The isolated local Phase 2 environment now uses MariaDB and private synthetic staff credentials. Checkout, payment, and customer accounts are not implemented. See [local setup and acceptance](docs/phase2-local/README.md).
+
+ ## Project notes
+
+@@ -42,7 +42,7 @@ Useful commands:
+
+ The asset extraction report and original manifests remain in **sprtaya-kanaka-assets**. The app does not edit that archive.
+
+-The Next.js application root is this repository root. The original product-photo directory is preserved locally and excluded from Git because it is about 319 MiB; a fresh GitHub checkout therefore needs the approved media package or storage configured before product photography can be served. This source branch is for Hostinger framework detection and review; it has not been deployed.
++The Next.js application root is this repository root. The original product-photo directory is preserved locally and excluded from Git because it is about 319 MiB; a fresh GitHub checkout therefore needs the approved media package or storage configured before product photography can be served. Staging deployment history is documented separately; the local Phase 2 procedure does not deploy or alter a hosted app.
+
+ ## Phase 1 visual redesign
+
+@@ -54,6 +54,10 @@ See [the Phase 1 redesign report](docs/phase-1-redesign-report.md) for the skill
+
+ ## Phase 2 admin and catalog foundation
+
+-Phase 2 adds a MySQL/MariaDB schema and migration, an Arabic role-guarded admin console, Better Auth staff sign-in, products/categories/variants, inventory ledger, settings and audit records, a draft-only legacy importer, and an S3-compatible media upload path. No database, staff credentials, or media bucket is configured in this workspace. The local catalog remains the default until an owner provisions and verifies infrastructure and reviews imported records.
++Phase 2 adds the MySQL/MariaDB schema and two migrations, an Arabic role-guarded admin console, Better Auth staff sign-in, products/categories/variants, inventory ledger, settings and audit records, a draft-only legacy importer, and an S3-compatible media upload path. The isolated local runner selects MariaDB; the standard preview still defaults to the archive catalog. See [the local development guide](docs/phase2-local/README.md) for private local services and [the latest acceptance report](docs/phase2-local/acceptance.md) for executed evidence. Earlier reports retain their historical test results.
+
+ There is still no checkout, payment, customer account, production deployment, or Phase 3 feature. Follow [the Phase 2 setup guide](docs/phase-2-setup.md); see [PHASE_2_REPORT.md](PHASE_2_REPORT.md) for actual validation and remaining blockers.
++
++## Phase 3 planning
++
++The [Phase 3 architecture and milestone plan](docs/phase-3-architecture-plan.md) covers customer accounts, checkout, reservations, payments, orders, fulfillment and notifications. Review the [owner decision checklist](docs/phase-3-owner-decisions.md) before implementation. This is a documentation proposal; no Phase 3 migrations or payment integrations have been implemented.
+
+FILE docs/owner-dashboard.md
+diff --git a/../audit-canonical/docs/owner-dashboard.md b/tmp/p3-compare-source
+index 09d3fd7..854470f 100644
+--- a/../audit-canonical/docs/owner-dashboard.md
++++ b/tmp/p3-compare-source
+@@ -1,6 +1,6 @@
+ # Owner dashboard proposal
+
+-The dashboard is a future Arabic-first product design, not an operational screen in this release. It should work comfortably on an ordinary phone and keep routine tasks visible before advanced configuration.
++The Phase 2 Arabic dashboard now supports authenticated catalog, categories, media, inventory, staff, settings and audit operations locally. See [the local acceptance report](phase2-local/acceptance.md). The order, customer, sales, shipping and payment ideas below remain a future proposal; they are not implemented in Phase 2.
+
+ ## Daily home
+
+
+FILE docs/phase-2-setup.md
+diff --git a/../audit-canonical/docs/phase-2-setup.md b/tmp/p3-compare-source
+index 264eb0c..977171b 100644
+--- a/../audit-canonical/docs/phase-2-setup.md
++++ b/tmp/p3-compare-source
+@@ -1,6 +1,6 @@
+ # Phase 2 setup and operations
+
+-This is an implementation guide. No database, object-storage bucket, credentials, import, or hosting deployment is configured in this workspace.
++This is the general implementation guide. An isolated local MariaDB and filesystem-backed S3 environment is now available; use [the current local runbook](phase2-local/README.md) and [acceptance results](phase2-local/acceptance.md). Hostinger database acceptance and externally persistent media remain separate release gates. Earlier infrastructure-blocked reports are historical.
+
+ ## Local or staging database
+
+
+FILE eslint.config.mjs
+diff --git a/../audit-canonical/eslint.config.mjs b/tmp/p3-compare-source
+index b1f2e05..0759390 100644
+--- a/../audit-canonical/eslint.config.mjs
++++ b/tmp/p3-compare-source
+@@ -8,6 +8,8 @@ export default defineConfig([
+   globalIgnores([
+     ".next/**",
+     ".next-phase2/**",
++    ".next-local/**",
++    ".local/**",
+     "out/**",
+     "build/**",
+     "coverage/**",
+
+FILE next-env.d.ts
+diff --git a/../audit-canonical/next-env.d.ts b/tmp/p3-compare-source
+index ce4e94a..5f72236 100644
+--- a/../audit-canonical/next-env.d.ts
++++ b/tmp/p3-compare-source
+@@ -1,7 +1,7 @@
+ /// <reference types="next" />
+ /// <reference types="next/image-types/global" />
+-import "./.next/types/routes.d.ts";
+-import "./.next/types/root-params.d.ts";
++import "./.next-local/types/routes.d.ts";
++import "./.next-local/types/root-params.d.ts";
+
+ // NOTE: This file should not be edited
+ // see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+FILE next.config.mjs
+diff --git a/../audit-canonical/next.config.mjs b/tmp/p3-compare-source
+index 68a1a66..5805630 100644
+--- a/../audit-canonical/next.config.mjs
++++ b/tmp/p3-compare-source
+@@ -7,6 +7,11 @@ const nextConfig = {
+   outputFileTracingIncludes: {
+     "/*": ["./node_modules/@swc/helpers/esm/**/*"],
+   },
++  // Development databases, local credentials and downloaded tools must never
++  // be included in a deployable server artifact.
++  outputFileTracingExcludes: {
++    "/*": ["./.local/**/*", "./.env", "./.env.*"],
++  },
+   // This branch is the private Hostinger staging branch. Keep every response
+   // out of search results even if the request Proxy is skipped by the host.
+   async headers() {
+
+FILE scripts/owner-bootstrap-secret.test.ts
+diff --git a/../audit-canonical/scripts/owner-bootstrap-secret.test.ts b/tmp/p3-compare-source
+index 2c5f94f..47cd9f9 100644
+--- a/../audit-canonical/scripts/owner-bootstrap-secret.test.ts
++++ b/tmp/p3-compare-source
+@@ -10,6 +10,32 @@ const hostingerEnvironment = () => ({
+ });
+
+ describe("one-time owner bootstrap secret", () => {
++  it("accepts a consumed one-time password for an explicitly confirmed isolated local target", () => {
++    const environment = {
++      ...hostingerEnvironment(),
++      DATABASE_TARGET: "local",
++      DATABASE_URL: "mysql://local_user:test@127.0.0.1:33077/sprtaya_phase2_test",
++      APP_ENV: "local",
++      STAGING_SITE: "0",
++    };
++    expect(consumeOwnerBootstrapPassword(environment, ["--confirm-local"], false)).toBe(
++      "long-one-time-owner-password",
++    );
++    expect(environment).not.toHaveProperty("OWNER_BOOTSTRAP_PASSWORD");
++  });
++
++  it("rejects remote and production targets even with a local confirmation flag", () => {
++    const environment = {
++      ...hostingerEnvironment(),
++      DATABASE_TARGET: "local",
++      DATABASE_URL: "mysql://local_user:test@remote.invalid/sprtaya_phase2_test",
++      APP_ENV: "local",
++      STAGING_SITE: "0",
++    };
++    expect(() => consumeOwnerBootstrapPassword(environment, ["--confirm-local"], false)).toThrow(/loopback/);
++    expect(() => consumeOwnerBootstrapPassword({ ...environment, ...hostingerEnvironment(), DATABASE_TARGET: "local", APP_ENV: "local", STAGING_SITE: "0", DATABASE_URL: "mysql://u:p@127.0.0.1/sprtaya_test", NODE_ENV: "production" }, ["--confirm-local"], false)).toThrow(/production/);
++  });
++
+   it("accepts a matching secret only for the explicitly confirmed Hostinger staging target", () => {
+     const environment = hostingerEnvironment();
+     expect(
+
+FILE scripts/owner-bootstrap-secret.ts
+diff --git a/../audit-canonical/scripts/owner-bootstrap-secret.ts b/tmp/p3-compare-source
+index 1c62348..3958550 100644
+--- a/../audit-canonical/scripts/owner-bootstrap-secret.ts
++++ b/tmp/p3-compare-source
+@@ -1,3 +1,5 @@
++import { assertSafeDatabaseTarget } from "./database-target";
++
+ export type OwnerBootstrapEnvironment = Record<string, string | undefined>;
+
+ export function consumeOwnerBootstrapPassword(
+@@ -21,16 +23,22 @@ export function consumeOwnerBootstrapPassword(
+     return null;
+   }
+
+-  if (
+-    environment.DATABASE_TARGET !== "hostinger-phase2-test" ||
+-    environment.APP_ENV !== "staging" ||
+-    environment.STAGING_SITE !== "1" ||
+-    !args.includes("--confirm-hostinger-phase2-test")
+-  ) {
++  const confirmedHostinger =
++    environment.DATABASE_TARGET === "hostinger-phase2-test" &&
++    environment.APP_ENV === "staging" &&
++    environment.STAGING_SITE === "1" &&
++    args.includes("--confirm-hostinger-phase2-test");
++  const confirmedLocal =
++    environment.DATABASE_TARGET === "local" &&
++    environment.APP_ENV === "local" &&
++    environment.STAGING_SITE === "0" &&
++    args.includes("--confirm-local");
++  if (!confirmedLocal && !confirmedHostinger) {
+     throw new Error(
+-      "Environment-based owner provisioning requires explicit confirmation of the Hostinger Phase 2 staging target.",
++      "Environment-based owner provisioning requires explicit confirmation of the isolated local or Hostinger Phase 2 staging target.",
+     );
+   }
++  if (confirmedLocal) assertSafeDatabaseTarget({ environment });
+
+   if (!password || !confirmation || password !== confirmation) {
+     throw new Error("The one-time owner password and confirmation must both be set and match.");
+@@ -41,3 +49,4 @@ export function consumeOwnerBootstrapPassword(
+
+   return password;
+ }
++
+
+FILE src/app/[locale]/page.tsx
+diff --git a/../audit-canonical/src/app/[locale]/page.tsx b/tmp/p3-compare-source
+index a3fa05c..853b85b 100644
+--- a/../audit-canonical/src/app/[locale]/page.tsx
++++ b/tmp/p3-compare-source
+@@ -6,6 +6,7 @@ import { Icon } from "@/components/icon";
+ import { getProductImageUrl } from "@/lib/asset-url";
+ import { getStoreCategories, getStoreFeaturedProducts, getStoreProductById } from "@/lib/server/storefront-catalog";
+ import { merchandising } from "@/lib/merchandising";
++import { getProductById as getEditorialProduct } from "@/lib/catalog";
+ import { getCopy, isLocale } from "@/lib/i18n";
+ import { site } from "@/lib/site-config";
+ import { getStoreContactSettings } from "@/lib/server/store-settings";
+@@ -54,20 +55,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
+     getStoreContactSettings(),
+   ]);
+   const curatedCategoryIds = new Set(merchandising.homeCategoryIds);
+-  const categories = allCategories.filter((category) => category.featured || curatedCategoryIds.has(category.id));
++  const curatedCategories = allCategories.filter((category) => category.featured || curatedCategoryIds.has(category.id));
++  const categories = curatedCategories.length ? curatedCategories : allCategories.slice(0, 8);
+   const choices = [
+-    { product: heroProducts[0], label: ar ? "طقم القهوة" : "The coffee set" },
+-    { product: heroProducts[1], label: ar ? "السبرتاية والكنكة" : "The coffee ritual" },
+-    { product: heroProducts[2], label: ar ? "الدلة العربية" : "The Arabic pot" },
+-  ].flatMap(({ product, label }) => {
+-    const image = product?.images[0];
+-    return product && image
++    { product: heroProducts[0], sourceId: merchandising.heroProductId, label: ar ? "طقم القهوة" : "The coffee set" },
++    { product: heroProducts[1], sourceId: merchandising.detailProductId, label: ar ? "السبرتاية والكنكة" : "The coffee ritual" },
++    { product: heroProducts[2], sourceId: merchandising.coffeeProductId, label: ar ? "الدلة العربية" : "The Arabic pot" },
++  ].flatMap(({ product, sourceId, label }) => {
++    // Approved editorial photography remains part of the factory's art
++    // direction while catalog records await review. Draft detail links stay hidden.
++    const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
++    return image
+       ? [
+           {
+             label,
+-            name: product.nameAr,
++            name: product?.nameAr ?? label,
+             src: getProductImageUrl(image),
+-            href: base + "/products/" + product.slug,
++            href: product ? base + "/products/" + product.slug : base + "/products",
+             width: image.width ?? 900,
+             height: image.height ?? 1200,
+             unoptimized: Boolean(image.publicUrl),
+@@ -75,7 +79,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
+         ]
+       : [];
+   });
+-  const detail = detailProduct?.images[0];
++  const detail = detailProduct?.images[0] ?? getEditorialProduct(merchandising.detailProductId)?.images[0];
+   return (
+     <>
+       <section className="hero" aria-labelledby="home-title">
+@@ -217,6 +221,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
+           {[
+             {
+               product: coffee,
++              sourceId: merchandising.coffeeProductId,
+               id: "dal-kho-aarby",
+               title: ar ? "على مهل، فنجان قهوة" : "Make time for coffee",
+               text: ar
+@@ -225,22 +230,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
+             },
+             {
+               product: shell,
++              sourceId: merchandising.shellProductId,
+               id: "mntjat-alsdf-altbyaay",
+               title: ar ? "من الصدف، لبيتك" : "Shell for home",
+               text: ar
+                 ? "علب وقطع صدف، لكل منها حضورها."
+                 : "Explore shell boxes and decorative pieces.",
+             },
+-          ].map(({ product, id, title, text }) => {
+-            const image = product?.images[0];
++          ].map(({ product, sourceId, id, title, text }) => {
++            const image = product?.images[0] ?? getEditorialProduct(sourceId)?.images[0];
+             return (
+-              <Link className="collection-feature" key={id} href={base + "/collections/" + id}>
++              <Link className="collection-feature" key={id} href={allCategories.some((category) => category.id === id) ? base + "/collections/" + id : base + "/products"}>
+                 <div className="collection-feature-image">
+                   {image ? (
+                     <Image
+                       src={getProductImageUrl(image)}
+                       unoptimized={Boolean(image.publicUrl)}
+-                      alt={product?.nameAr ?? ""}
++                      alt={product?.nameAr ?? title}
+                       width={image.width ?? 900}
+                       height={image.height ?? 1200}
+                       sizes="(max-width: 700px) 90vw, 46vw"
+
+FILE src/app/admin/actions.ts
+diff --git a/../audit-canonical/src/app/admin/actions.ts b/tmp/p3-compare-source
+index 5a18083..f8bff56 100644
+--- a/../audit-canonical/src/app/admin/actions.ts
++++ b/tmp/p3-compare-source
+@@ -5,11 +5,12 @@ import { headers } from "next/headers";
+ import { redirect } from "next/navigation";
+ import { z } from "zod";
+ import { hashPassword, verifyPassword } from "better-auth/crypto";
+-import { getAdminActor, requirePermission, type AdminActor } from "@/lib/server/admin-session";
++import { getAdminActor, requirePermission } from "@/lib/server/admin-session";
+ import { getAuth } from "@/lib/server/auth";
+ import { getDatabase } from "@/lib/server/database";
+ import { productPublicationBlockers } from "@/lib/admin/product-publication";
+ import { hasPermission } from "@/lib/admin/permissions";
++import { parsePriceMinor as minorUnits } from "@/lib/admin/price";
+
+ const uuid = z.string().uuid();
+ const productSchema = z.object({
+@@ -41,16 +42,6 @@ const variantSchema = z.object({
+   quantity: z.string().optional(),
+ });
+
+-function minorUnits(raw: string | undefined) {
+-  if (!raw) return null;
+-  const value = raw.replace(/\s/g, "").replace(/,/g, "");
+-  if (!/^(?:\d{1,7})(?:\.\d{1,2})?$/.test(value)) throw new Error("INVALID_PRICE");
+-  const [whole, fraction = ""] = value.split(".");
+-  const minor = Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
+-  if (!Number.isSafeInteger(minor) || minor < 0) throw new Error("INVALID_PRICE");
+-  return minor;
+-}
+-
+ function intField(raw: string | undefined, fallback = 0) {
+   if (!raw) return fallback;
+   if (!/^\d{1,8}$/.test(raw)) throw new Error("INVALID_QUANTITY");
+@@ -80,20 +71,6 @@ function parseVariantOptions(raw: string | undefined) {
+   return Object.keys(options).length ? options : null;
+ }
+
+-async function audit(actor: AdminActor, action: string, entity: string, entityId: string, after: unknown, before?: unknown) {
+-  await getDatabase().auditEvent.create({
+-    data: {
+-      actorId: actor.id,
+-      actorLabel: actor.name,
+-      action,
+-      entity,
+-      entityId,
+-      beforeData: before === undefined ? undefined : JSON.parse(JSON.stringify(before)),
+-      afterData: after === undefined ? undefined : JSON.parse(JSON.stringify(after)),
+-    },
+-  });
+-}
+-
+ function revalidateStorefront(slug?: string) {
+   revalidatePath("/ar");
+   revalidatePath("/en");
+@@ -227,8 +204,9 @@ export async function saveProduct(formData: FormData): Promise<void> {
+       },
+     });
+     if (existing?.variants.length) await tx.productVariant.updateMany({ where: { productId: product.id, active: true }, data: { position: { increment: 100 }, sku: null } });
++    let retiredPosition = Math.max(1000, ((await tx.productVariant.aggregate({ where: { productId: product.id }, _max: { position: true } }))._max.position ?? 999) + 1);
+     for (const variant of removedVariants) {
+-      await tx.productVariant.update({ where: { id: variant.id }, data: { active: false, sku: null, availability: "UNAVAILABLE", position: 1000 + variant.position } });
++      await tx.productVariant.update({ where: { id: variant.id }, data: { active: false, sku: null, availability: "UNAVAILABLE", position: retiredPosition++ } });
+     }
+     for (const [position, inputVariant] of normalizedVariants.entries()) {
+       const oldVariant = inputVariant.id ? existing?.variants.find((variant) => variant.id === inputVariant.id) : undefined;
+@@ -253,9 +231,16 @@ export async function saveProduct(formData: FormData): Promise<void> {
+       const policy = await tx.manufacturingPolicy.findUnique({ where: { productId: product.id }, select: { available: true } });
+       await tx.product.update({ where: { id: product.id }, data: { availability: policy?.available ? "AVAILABLE" : "UNAVAILABLE" } });
+     }
++    if (product.status === "PUBLISHED") {
++      const reviewed = await tx.product.findUniqueOrThrow({ where: { id: product.id }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
++      if (productPublicationBlockers(reviewed).length) throw new Error("PUBLISH_BLOCKED");
++    }
+     if (input.mediaIds.length) await tx.mediaAsset.updateMany({ where: { id: { in: input.mediaIds } }, data: { lastReferencedAt: new Date() } });
+     await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: created ? "product.created" : "product.updated", entity: "Product", entityId: product.id, afterData: { titleAr: product.titleAr, slug: product.slug, type: product.type, priceMinor: product.priceMinor } } });
+     return product;
++  }).catch((error: unknown) => {
++    if (error instanceof Error && error.message === "PUBLISH_BLOCKED") redirect("/admin/products/" + input.productId + "?error=publish");
++    throw error;
+   });
+   revalidateStorefront(saved.slug);
+   redirect("/admin/products/" + saved.id + "?saved=1");
+@@ -385,6 +370,11 @@ export async function saveBulkProductReview(formData: FormData): Promise<void> {
+         }
+         await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "product.bulk-reviewed", entity: "Product", entityId: current.id, beforeData: { titleAr: current.titleAr, type: current.type, priceMinor: current.priceMinor, detailsReviewedAt: current.detailsReviewedAt }, afterData: { titleAr: entry.titleAr, type: nextType, priceMinor: nextPrice, detailsReviewed: entry.detailsReviewed, categoryId: entry.categoryId ?? null, initialQuantity: entry.initialQuantity } } });
+       }
++      const alreadyPublished = currentRows.filter((row) => row.status === "PUBLISHED").map((row) => row.id);
++      if (alreadyPublished.length) {
++        const updatedPublished = await tx.product.findMany({ where: { id: { in: alreadyPublished } }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
++        if (updatedPublished.some((row) => productPublicationBlockers(row).length)) throw new Error("PUBLISH_BLOCKED");
++      }
+       if (intent === "publish") {
+         const rows = await tx.product.findMany({ where: { id: { in: publishIds } }, include: { media: true, variants: { where: { active: true }, include: { inventory: true } }, manufacturingPolicy: true, categories: { include: { category: true } } } });
+         const byId = new Map(rows.map((row) => [row.id, row]));
+@@ -441,7 +431,7 @@ export async function duplicateProduct(id: string): Promise<void> {
+   redirect("/admin/products/" + copy.id + "?saved=1");
+ }
+
+-const categorySchema = z.object({ id: z.string().optional(), nameAr: z.string().trim().min(2).max(191), nameEn: z.string().trim().max(191).optional(), slug: z.string().trim().min(2).max(191).regex(/^[\p{L}\p{N}-]+$/u), descriptionAr: z.string().max(2000).optional(), sortOrder: z.number().int().min(0).max(9999), visible: z.boolean(), featured: z.boolean(), reviewRequired: z.boolean(), parentId: z.string().optional(), imageAssetId: z.string().optional() });
++const categorySchema = z.object({ id: uuid.optional(), nameAr: z.string().trim().min(2).max(191), nameEn: z.string().trim().max(191).optional(), slug: z.string().trim().min(2).max(191).regex(/^[\p{L}\p{N}-]+$/u), descriptionAr: z.string().max(2000).optional(), sortOrder: z.number().int().min(0).max(9999), visible: z.boolean(), featured: z.boolean(), reviewRequired: z.boolean(), parentId: uuid.optional(), imageAssetId: uuid.optional() });
+ export async function saveCategory(formData: FormData): Promise<void> {
+   const actor = await requirePermission("CATEGORIES_WRITE");
+   const data = {
+@@ -461,8 +451,12 @@ export async function saveCategory(formData: FormData): Promise<void> {
+   if (!parsed.success) redirect("/admin/categories?error=invalid");
+   const value = parsed.data;
+   const db = getDatabase();
++  if (value.id && !await db.category.findUnique({ where: { id: value.id }, select: { id: true } })) redirect("/admin/categories?error=missing");
++  if (await db.category.findFirst({ where: { slug: value.slug, ...(value.id ? { id: { not: value.id } } : {}) }, select: { id: true } })) redirect("/admin/categories?error=slug");
+   if (value.parentId && (!uuid.safeParse(value.parentId).success || value.parentId === value.id)) redirect("/admin/categories?error=hierarchy");
+   if (value.imageAssetId && !uuid.safeParse(value.imageAssetId).success) redirect("/admin/categories?error=media");
++  if (value.parentId && !await db.category.findUnique({ where: { id: value.parentId }, select: { id: true } })) redirect("/admin/categories?error=hierarchy");
++  if (value.imageAssetId && !await db.mediaAsset.findUnique({ where: { id: value.imageAssetId }, select: { id: true } })) redirect("/admin/categories?error=media");
+   if (value.id && value.parentId) {
+     let ancestorId: string | null | undefined = value.parentId;
+     const seen = new Set<string>();
+@@ -473,16 +467,38 @@ export async function saveCategory(formData: FormData): Promise<void> {
+       ancestorId = ancestor?.parentId;
+     }
+   }
+-  const category = await db.category.upsert({
++  await db.$transaction(async (tx) => {
++  const category = await tx.category.upsert({
+     where: { id: value.id ?? "00000000-0000-0000-0000-000000000000" },
+     create: { nameAr: value.nameAr, nameEn: value.nameEn || null, slug: value.slug, descriptionAr: value.descriptionAr || null, sortOrder: value.sortOrder, visible: value.visible, featured: value.featured, reviewRequired: value.reviewRequired, parentId: value.parentId ?? null, imageAssetId: value.imageAssetId ?? null },
+     update: { nameAr: value.nameAr, nameEn: value.nameEn || null, slug: value.slug, descriptionAr: value.descriptionAr || null, sortOrder: value.sortOrder, visible: value.visible, featured: value.featured, reviewRequired: value.reviewRequired, parentId: value.parentId ?? null, imageAssetId: value.imageAssetId ?? null },
+   });
+-  await audit(actor, value.id ? "category.updated" : "category.created", "Category", category.id, value);
++  await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: value.id ? "category.updated" : "category.created", entity: "Category", entityId: category.id, afterData: value } });
++  });
+   revalidateStorefront();
+   redirect("/admin/categories?saved=1");
+ }
+
++export async function deleteCategory(id: string): Promise<void> {
++  const actor = await requirePermission("CATEGORIES_WRITE");
++  if (!uuid.safeParse(id).success) redirect("/admin/categories?error=invalid");
++  try {
++    await getDatabase().$transaction(async (tx) => {
++      const category = await tx.category.findUnique({ where: { id }, include: { _count: { select: { products: true, children: true } } } });
++      if (!category) throw new Error("NOT_FOUND");
++      if (category._count.products || category._count.children) throw new Error("NOT_EMPTY");
++      await tx.category.delete({ where: { id } });
++      await tx.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "category.deleted", entity: "Category", entityId: id, beforeData: { nameAr: category.nameAr, slug: category.slug } } });
++    });
++  } catch (error) {
++    if (error instanceof Error && error.message === "NOT_FOUND") redirect("/admin/categories?error=missing");
++    if (error instanceof Error && error.message === "NOT_EMPTY" || error && typeof error === "object" && "code" in error && error.code === "P2003") redirect("/admin/categories?error=not-empty");
++    throw error;
++  }
++  revalidateStorefront();
++  redirect("/admin/categories?saved=deleted");
++}
++
+ export async function adjustInventory(formData: FormData): Promise<void> {
+   const actor = await requirePermission("INVENTORY_ADJUST");
+   const variantId = String(formData.get("variantId") ?? "");
+@@ -496,11 +512,12 @@ export async function adjustInventory(formData: FormData): Promise<void> {
+   try {
+     await db.$transaction(async (tx) => {
+       if (await tx.inventoryMovement.findUnique({ where: { requestKey }, select: { id: true } })) throw new Error("DUPLICATE_REQUEST");
+-      const balance = await tx.inventoryBalance.findUnique({ where: { variantId } });
+-      if (!balance) throw new Error("NOT_FOUND");
++      const balance = await tx.inventoryBalance.findUnique({ where: { variantId }, include: { variant: { select: { active: true } }, product: { select: { type: true, status: true } } } });
++      if (!balance || !balance.variant.active || balance.product.type !== "READY_MADE" || balance.product.status === "ARCHIVED") throw new Error("NOT_FOUND");
+       const affected = await tx.$executeRaw`UPDATE inventory_balances SET quantity = quantity + ${delta}, version = version + 1, updatedAt = CURRENT_TIMESTAMP(3) WHERE id = ${balance.id} AND quantity + ${delta} >= 0 AND version = ${balance.version}`;
+       if (affected !== 1) throw new Error("STOCK_CONFLICT");
+       const updated = await tx.inventoryBalance.findUniqueOrThrow({ where: { id: balance.id } });
++      await tx.productVariant.update({ where: { id: variantId }, data: { availability: updated.quantity > 0 ? "AVAILABLE" : "UNAVAILABLE" } });
+       await tx.inventoryMovement.create({ data: { balanceId: balance.id, kind: "ADJUSTMENT", delta, balanceAfter: updated.quantity, reason, requestKey, actorId: actor.id, actorLabel: actor.name } });
+       const totalStock = (await tx.inventoryBalance.aggregate({ where: { productId: balance.productId, variant: { active: true } }, _sum: { quantity: true } }))._sum.quantity ?? 0;
+       await tx.product.update({ where: { id: balance.productId }, data: { availability: totalStock > 0 ? "AVAILABLE" : "UNAVAILABLE" } });
+@@ -556,16 +573,19 @@ export async function saveManufacturingPolicy(formData: FormData): Promise<void>
+   } catch { redirect("/admin/products/" + productId + "?error=policy"); }
+   const product = await db.product.findUnique({ where: { id: productId, type: "MADE_TO_ORDER" }, include: { variants: { where: { active: true }, select: { priceMinor: true } } } });
+   if (!product) redirect("/admin/products?error=missing");
++  if (product.status === "PUBLISHED") await requirePermission("PRODUCTS_PUBLISH");
+   if (depositMode === "DEPOSIT" && value < 1) redirect("/admin/products/" + productId + "?error=policy");
+   if (depositMode === "DEPOSIT" && depositType === "PERCENT" && value > 100) redirect("/admin/products/" + productId + "?error=policy");
+   const applicablePrice = product.priceMinor ?? product.variants.map((variant) => variant.priceMinor).filter((price): price is number => price !== null).sort((a, b) => a - b)[0] ?? null;
+   if (depositMode === "DEPOSIT" && depositType === "FIXED_MINOR" && (applicablePrice === null || value > applicablePrice)) redirect("/admin/products/" + productId + "?error=policy");
+   const data = { available, minProductionDays: minDays, maxProductionDays: maxDays, depositMode: depositMode as "FULL_ADVANCE" | "DEPOSIT", depositType: depositType as "FIXED_MINOR" | "PERCENT", depositValue: depositMode === "FULL_ADVANCE" ? 100 : value, balanceCollection: balanceCollection as "BEFORE_DISPATCH" | "CASH_ON_DELIVERY", codBalanceEligible: codBalanceEligible && balanceCollection === "CASH_ON_DELIVERY", updatedById: actor.id };
+   await db.$transaction([
+-    db.manufacturingPolicy.upsert({ where: { productId }, create: { productId, ...data }, update: data }),
++    db.manufacturingPolicy.upsert({ where: { productId }, create: { id: productId, productId, ...data }, update: data }),
+     db.product.update({ where: { id: productId }, data: { availability: available ? "AVAILABLE" : "UNAVAILABLE" } }),
++    db.productVariant.updateMany({ where: { productId, active: true }, data: { availability: available ? "AVAILABLE" : "UNAVAILABLE" } }),
+     db.auditEvent.create({ data: { actorId: actor.id, actorLabel: actor.name, action: "manufacturing-policy.updated", entity: "ManufacturingPolicy", entityId: productId, afterData: data } }),
+   ]);
++  revalidateStorefront(product.slug);
+   redirect("/admin/products/" + productId + "?saved=1");
+ }
+
+@@ -579,8 +599,9 @@ export async function reorderProductMedia(formData: FormData): Promise<void> {
+   const order = relations.map(({ mediaId }) => ({ mediaId, position: Number(formData.get("position_" + mediaId)) }));
+   if (order.some(({ position }) => !Number.isInteger(position) || position < 0 || position > 99) || new Set(order.map(({ position }) => position)).size !== order.length) redirect("/admin/products/" + productId + "?error=media");
+   order.sort((a, b) => a.position - b.position);
+-  const product = await db.product.findUnique({ where: { id: productId }, select: { slug: true } });
++  const product = await db.product.findUnique({ where: { id: productId }, select: { slug: true, status: true } });
+   if (!product) redirect("/admin/products?error=missing");
++  if (product.status === "PUBLISHED") await requirePermission("PRODUCTS_PUBLISH");
+   await db.$transaction(async (tx) => {
+     // Clear positions first because MySQL enforces the per-product unique position index immediately.
+     await tx.productMedia.updateMany({ where: { productId }, data: { position: { increment: 100 } } });
+
+FILE src/app/admin/admin-frame.tsx
+diff --git a/../audit-canonical/src/app/admin/admin-frame.tsx b/tmp/p3-compare-source
+index e2f5cff..d94dba3 100644
+--- a/../audit-canonical/src/app/admin/admin-frame.tsx
++++ b/tmp/p3-compare-source
+@@ -24,6 +24,7 @@ export function AdminFrame({ actor, children }: { actor: AdminActor; children: R
+         <nav className="admin-nav">
+           {links.filter(([href]) => href === "/admin" || href === "/admin/products" && hasPermission(actor.roleCode, "PRODUCTS_READ") || href === "/admin/categories" && hasPermission(actor.roleCode, "CATEGORIES_READ") || href === "/admin/inventory" && hasPermission(actor.roleCode, "INVENTORY_READ") || href === "/admin/settings" && hasPermission(actor.roleCode, "SETTINGS_READ")).map(([href, label]) => <Link href={href} key={href}>{label}</Link>)}
+           {hasPermission(actor.roleCode, "STAFF_MANAGE") ? <Link href="/admin/staff">المستخدمون</Link> : null}
++          {hasPermission(actor.roleCode, "AUDIT_READ") ? <Link href="/admin/audit">سجل العمليات</Link> : null}
+           {hasPermission(actor.roleCode, "PRODUCTS_READ") ? <Link href="/admin/products/review">مراجعة الكتالوج</Link> : null}
+           <Link href="/admin/password">كلمة المرور</Link>
+         </nav>
+
+FILE src/app/admin/admin.css
+diff --git a/../audit-canonical/src/app/admin/admin.css b/tmp/p3-compare-source
+index 1a5bc21..8fa2b36 100644
+--- a/../audit-canonical/src/app/admin/admin.css
++++ b/tmp/p3-compare-source
+@@ -137,7 +137,11 @@
+ .review-actions > .admin-muted { margin-inline-start: auto; font-size: 12px; }
+ .review-pagination { justify-content: space-between; margin-top: 14px; color: var(--muted); font-size: 12px; }
+ .review-pagination .admin-button { text-decoration: none; }
+-@media (max-width: 1000px) { .admin-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
++@media (max-width: 1000px) {
++  .admin-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
++  .review-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
++  .review-actions { position: static; }
++}
+ @media (max-width: 700px) {
+   .admin-layout { display: block; }
+   .admin-sidebar { position: static; height: auto; padding: 12px 14px 8px; border-left: 0; border-bottom: 1px solid #e0d9cf; }
+
+FILE src/app/admin/categories/page.tsx
+diff --git a/../audit-canonical/src/app/admin/categories/page.tsx b/tmp/p3-compare-source
+index 22e4ccd..626c25a 100644
+--- a/../audit-canonical/src/app/admin/categories/page.tsx
++++ b/tmp/p3-compare-source
+@@ -3,7 +3,7 @@ import { getDatabase } from "@/lib/server/database";
+ import { requireAdminPage } from "@/lib/server/admin-page";
+ import { hasPermission } from "@/lib/admin/permissions";
+ import { AdminFrame, AdminPageHeader } from "@/app/admin/admin-frame";
+-import { saveCategory } from "@/app/admin/actions";
++import { saveCategory, deleteCategory } from "@/app/admin/actions";
+
+ export const dynamic = "force-dynamic";
+
+@@ -17,10 +17,10 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
+     db.mediaAsset.findMany({ select: { id: true, altAr: true, originalKey: true }, orderBy: { createdAt: "desc" }, take: 200 }),
+   ]);
+   const canWrite = hasPermission(actor.roleCode, "CATEGORIES_WRITE");
+-  const errors: Record<string, string> = { invalid: "راجع الحقول المطلوبة.", hierarchy: "هذا الترتيب ينشئ دورة غير صالحة في التصنيفات.", media: "الصورة المختارة غير متاحة." };
++  const errors: Record<string, string> = { invalid: "راجع الحقول المطلوبة.", hierarchy: "هذا الترتيب ينشئ دورة غير صالحة في التصنيفات.", media: "الصورة المختارة غير متاحة.", slug: "رابط التصنيف مستخدم بالفعل. اختر رابطاً آخر.", missing: "لم يعد التصنيف موجوداً.", "not-empty": "التصنيف مرتبط بمنتجات أو تصنيفات فرعية. يمكنك إخفاؤه بدلاً من حذفه." };
+   return <AdminFrame actor={actor}>
+     <AdminPageHeader title="التصنيفات" description="راجع تصنيفات المصنع، ثم أظهر ما تم اعتماده في المتجر." />
+-    {query.saved ? <p className="admin-notice" role="status">تم حفظ التصنيف.</p> : null}
++    {query.saved ? <p className="admin-notice" role="status">{query.saved === "deleted" ? "تم حذف التصنيف الفارغ وتسجيل العملية." : "تم حفظ التصنيف."}</p> : null}
+     {errors[query.error ?? ""] ? <p className="admin-error" role="alert">{errors[query.error ?? ""]}</p> : null}
+     <div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>التصنيف</th><th>المنتجات</th><th>المراجعة</th><th>الظهور</th><th>الصورة</th><th>إجراء</th></tr></thead><tbody>
+       {categories.map((category) => <tr key={category.id}><td>{category.nameAr}<small className="admin-table-sub">{category.slug}</small></td><td>{new Intl.NumberFormat("ar-EG").format(category._count.products)}</td><td><span className={"admin-badge " + (category.reviewRequired ? "admin-badge-warning" : "admin-badge-success")}>{category.reviewRequired ? "تحتاج مراجعة" : "مراجعة مكتملة"}</span></td><td>{category.visible ? "ظاهر" : "مخفي"}{category.featured ? " · مختار" : ""}</td><td>{category.image?.altAr || category.image?.originalKey.split("/").pop() || "—"}</td><td>{canWrite ? <Link href={"/admin/categories?edit=" + category.id}>تعديل</Link> : "—"}</td></tr>)}
+@@ -43,6 +43,7 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
+         </div>
+         <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">حفظ التصنيف</button>{edit ? <Link className="admin-button" href="/admin/categories">تصنيف جديد</Link> : null}</div>
+       </form>
++      {edit ? <form action={deleteCategory.bind(null, edit.id)} className="admin-subsection"><p className="admin-muted">الحذف متاح للتصنيف الفارغ فقط. يحتفظ السجل بالمنتجات والتصنيفات المرتبطة.</p><button className="admin-button" disabled={Boolean(categories.find((item) => item.id === edit.id)?._count.products || categories.some((item) => item.parentId === edit.id))} type="submit">حذف التصنيف الفارغ</button></form> : null}
+     </section> : null}
+   </AdminFrame>;
+ }
+
+FILE src/app/admin/inventory/page.tsx
+diff --git a/../audit-canonical/src/app/admin/inventory/page.tsx b/tmp/p3-compare-source
+index ca35433..cbf1ec4 100644
+--- a/../audit-canonical/src/app/admin/inventory/page.tsx
++++ b/tmp/p3-compare-source
+@@ -11,7 +11,7 @@ export default async function AdminInventoryPage({ searchParams }: { searchParam
+   const query = await searchParams;
+   const canAdjust = hasPermission(actor.roleCode, "INVENTORY_ADJUST");
+   const [balances, movements] = await Promise.all([
+-    getDatabase().inventoryBalance.findMany({ where: { product: { type: "READY_MADE" } }, include: { product: { select: { titleAr: true, slug: true, status: true } }, variant: { select: { nameAr: true, sku: true } } }, orderBy: [{ quantity: "asc" }, { product: { titleAr: "asc" } }], take: 300 }),
++    getDatabase().inventoryBalance.findMany({ where: { product: { type: "READY_MADE", status: { not: "ARCHIVED" } }, variant: { active: true } }, include: { product: { select: { titleAr: true, slug: true, status: true } }, variant: { select: { nameAr: true, sku: true } } }, orderBy: [{ quantity: "asc" }, { product: { titleAr: "asc" } }], take: 300 }),
+     getDatabase().inventoryMovement.findMany({ include: { balance: { include: { product: { select: { titleAr: true } }, variant: { select: { nameAr: true } } } } }, orderBy: { createdAt: "desc" }, take: 50 }),
+   ]);
+   return <AdminFrame actor={actor}>
+
+FILE src/app/admin/page.tsx
+diff --git a/../audit-canonical/src/app/admin/page.tsx b/tmp/p3-compare-source
+index 967da72..620a510 100644
+--- a/../audit-canonical/src/app/admin/page.tsx
++++ b/tmp/p3-compare-source
+@@ -11,8 +11,8 @@ export default async function AdminDashboard() {
+   const [published, drafts, outOfStock, balances, madeToOrder] = await Promise.all([
+     db.product.count({ where: { status: "PUBLISHED" } }),
+     db.product.count({ where: { status: "DRAFT" } }),
+-    db.inventoryBalance.count({ where: { quantity: 0 } }),
+-    db.inventoryBalance.findMany({ where: { product: { type: "READY_MADE" } }, select: { quantity: true, lowStockAt: true } }),
++    db.inventoryBalance.count({ where: { quantity: 0, variant: { active: true }, product: { type: "READY_MADE", status: { not: "ARCHIVED" } } } }),
++    db.inventoryBalance.findMany({ where: { variant: { active: true }, product: { type: "READY_MADE", status: { not: "ARCHIVED" } } }, select: { quantity: true, lowStockAt: true } }),
+     db.product.count({ where: { type: "MADE_TO_ORDER" } }),
+   ]);
+   const lowStock = balances.filter((balance) => balance.quantity > 0 && balance.quantity <= balance.lowStockAt).length;
+@@ -20,7 +20,7 @@ export default async function AdminDashboard() {
+     ["منتجات منشورة", published, "ظهرت في واجهة المتجر"],
+     ["مسودات", drafts, "تحتاج إلى مراجعة أو استكمال"],
+     ["نفد المخزون", outOfStock, "منتجات جاهزة بكمية صفر"],
+-    ["مخزون منخفض", lowStock, "3 قطع أو أقل"],
++    ["مخزون منخفض", lowStock, "حسب حد التنبيه لكل متغير"],
+     ["تصنيع حسب الطلب", madeToOrder, "إعدادات التصنيع"],
+   ] as const;
+   return (
+
+FILE src/app/admin/products/media-picker.tsx
+diff --git a/../audit-canonical/src/app/admin/products/media-picker.tsx b/tmp/p3-compare-source
+index 6dbd4e8..a069daa 100644
+--- a/../audit-canonical/src/app/admin/products/media-picker.tsx
++++ b/tmp/p3-compare-source
+@@ -5,10 +5,11 @@ import { useState } from "react";
+ type MediaOption = { id: string; label: string; url?: string | null };
+
+ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets: MediaOption[]; selected?: string[] }) {
++  const [library, setLibrary] = useState(assets);
+   const [selected, setSelected] = useState(initialSelected);
+   const [busy, setBusy] = useState(false);
+   const [message, setMessage] = useState("");
+-  const available = assets.filter((asset) => !selected.includes(asset.id));
++  const available = library.filter((asset) => !selected.includes(asset.id));
+
+   async function upload(files: FileList | null) {
+     if (!files?.length) return;
+@@ -16,6 +17,7 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
+     setMessage("");
+     const ids = [...selected];
+     try {
++      if (ids.length + files.length > 30) throw new Error("اختر حتى 30 صورة للمنتج.");
+       for (const file of Array.from(files)) {
+         if (file.size > 10 * 1024 * 1024 || !["image/jpeg", "image/png", "image/webp", "image/avif"].includes(file.type)) {
+           throw new Error("الصورة يجب أن تكون JPG أو PNG أو WebP أو AVIF وأقل من 10 ميجابايت.");
+@@ -34,9 +36,14 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ key, size: file.size, altAr: file.name.replace(/\.[^.]+$/, "") }),
+         });
+-        if (!finalized.ok) throw new Error("تم رفع الملف لكن تعذر تجهيز صورته للكتالوج.");
++        if (!finalized.ok) {
++          const result = await finalized.json().catch(() => ({})) as { error?: string };
++          throw new Error(result.error === "INVALID_IMAGE" ? "محتوى الصورة أو حجمها لا يطابق نوع الملف. اختر صورة أصلية بالصيغة الصحيحة." : "تعذر تجهيز الصورة للكتالوج. حاول مجدداً.");
++        }
+         const result = await finalized.json() as { id: string; url: string; alt?: string };
+         ids.push(result.id);
++        setLibrary((items) => [...items.filter((item) => item.id !== result.id), { id: result.id, label: result.alt || file.name, url: result.url }]);
++        setSelected([...new Set(ids)]);
+       }
+       setSelected([...new Set(ids)]);
+       setMessage("تم رفع الصور وإضافتها إلى القائمة. احفظ المنتج لتثبيت ارتباطها.");
+@@ -50,9 +57,9 @@ export function MediaPicker({ assets, selected: initialSelected = [] }: { assets
+   return <div className="admin-media-picker wide">
+     <div className="admin-form-grid">
+       <label>اختر صور المنتج من مكتبة الوسائط<select multiple onChange={(event) => setSelected(Array.from(event.currentTarget.selectedOptions).map((option) => option.value))} size={Math.max(3, Math.min(6, available.length + selected.length))} value={selected}>
+-        {[...selected.map((id) => assets.find((asset) => asset.id === id)).filter((asset): asset is MediaOption => Boolean(asset)), ...available].map((asset) => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
++        {[...selected.map((id) => library.find((asset) => asset.id === id)).filter((asset): asset is MediaOption => Boolean(asset)), ...available].map((asset) => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
+       </select><small className="admin-muted">ترتيب الاختيار يحدد الصورة الرئيسية ثم صور المعرض.</small></label>
+-      <label>رفع صور جديدة<input accept="image/jpeg,image/png,image/webp,image/avif" disabled={busy} multiple onChange={(event) => { void upload(event.target.files); event.target.value = ""; }} type="file" /><small className="admin-muted">حتى 10 ميجابايت לכל صورة. تحفظ النسخة الأصلية في التخزين الخارجي.</small></label>
++      <label>رفع صور جديدة<input accept="image/jpeg,image/png,image/webp,image/avif" disabled={busy} multiple onChange={(event) => { void upload(event.target.files); event.target.value = ""; }} type="file" /><small className="admin-muted">حتى 10 ميجابايت لكل صورة. تحفظ النسخة الأصلية في التخزين الخارجي.</small></label>
+     </div>
+     {selected.map((id) => <input key={id} name="mediaIds" type="hidden" value={id} />)}
+     {message ? <p aria-live="polite" className={message.startsWith("تم") ? "admin-notice" : "admin-error"}>{message}</p> : null}
+
+FILE src/app/admin/products/page.tsx
+diff --git a/../audit-canonical/src/app/admin/products/page.tsx b/tmp/p3-compare-source
+index b9201c7..f24d5db 100644
+--- a/../audit-canonical/src/app/admin/products/page.tsx
++++ b/tmp/p3-compare-source
+@@ -8,19 +8,32 @@ import { formatMoneyMinor } from "@/lib/money";
+
+ export const dynamic = "force-dynamic";
+
+-export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string }> }) {
++export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string; page?: string }> }) {
+   const actor = await requireAdminPage("PRODUCTS_READ");
+   const query = await searchParams;
+   const status = ["DRAFT", "PUBLISHED", "ARCHIVED"].includes(query.status ?? "") ? query.status as "DRAFT" | "PUBLISHED" | "ARCHIVED" : undefined;
+-  const rows = await getDatabase().product.findMany({
+-    where: {
++  const where = {
+       ...(status ? { status } : {}),
+       ...(query.q ? { OR: [{ titleAr: { contains: query.q } }, { titleEn: { contains: query.q } }, { slug: { contains: query.q } }] } : {}),
+-    },
++    };
++  const pageSize = 50;
++  const count = await getDatabase().product.count({ where });
++  const totalPages = Math.max(1, Math.ceil(count / pageSize));
++  const requestedPage = Number(query.page ?? 1);
++  const page = Math.min(Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1, totalPages);
++  const rows = await getDatabase().product.findMany({
++    where,
+     include: { categories: { include: { category: true } }, variants: { include: { inventory: true } }, media: true },
+     orderBy: [{ updatedAt: "desc" }, { titleAr: "asc" }],
+-    take: 200,
++    take: pageSize,
++    skip: (page - 1) * pageSize,
+   });
++  const pageHref = (value: number) => {
++    const params = new URLSearchParams({ page: String(value) });
++    if (query.q) params.set("q", query.q);
++    if (status) params.set("status", status);
++    return "/admin/products?" + params;
++  };
+   const canWrite = hasPermission(actor.roleCode, "PRODUCTS_WRITE");
+   const canPublish = hasPermission(actor.roleCode, "PRODUCTS_PUBLISH");
+   return (
+@@ -32,7 +45,7 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
+           <label>الحالة<select defaultValue={status ?? ""} name="status"><option value="">كل الحالات</option><option value="DRAFT">مسودة</option><option value="PUBLISHED">منشور</option><option value="ARCHIVED">مؤرشف</option></select></label>
+           <button className="admin-button" type="submit">بحث</button>
+         </div>
+-        <span className="admin-muted">{new Intl.NumberFormat("ar-EG").format(rows.length)} منتج</span>
++        <span className="admin-muted">{new Intl.NumberFormat("ar-EG").format(count)} منتج · صفحة {page} من {totalPages}</span>
+       </form>
+       <div className="admin-table-wrap">
+         {rows.length ? <table className="admin-table"><thead><tr><th>المنتج</th><th>التصنيف</th><th>السعر</th><th>الحالة</th><th>آخر تحديث</th><th>إجراءات</th></tr></thead><tbody>
+@@ -51,6 +64,7 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
+           </tr>)}
+         </tbody></table> : <p className="admin-empty">لا توجد منتجات بهذه المواصفات.</p>}
+       </div>
++      {totalPages > 1 ? <nav aria-label="صفحات المنتجات" className="review-pagination"><span>عرض {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, count)} من {count}</span><div>{page > 1 ? <Link className="admin-button" href={pageHref(page - 1)}>السابق</Link> : null}{page < totalPages ? <Link className="admin-button" href={pageHref(page + 1)}>التالي</Link> : null}</div></nav> : null}
+     </AdminFrame>
+   );
+ }
+
+FILE src/app/admin/products/product-form.tsx
+diff --git a/../audit-canonical/src/app/admin/products/product-form.tsx b/tmp/p3-compare-source
+index cc1cf2e..954b2a1 100644
+--- a/../audit-canonical/src/app/admin/products/product-form.tsx
++++ b/tmp/p3-compare-source
+@@ -36,6 +36,10 @@ type ProductRecord = {
+
+ export function ProductForm({ actor, categories, assets, product, error }: { actor: AdminActor; categories: CategoryOption[]; assets: { id: string; altAr: string | null; originalKey: string; publicUrl: string | null }[]; product?: ProductRecord; error?: string }) {
+   const canWrite = hasPermission(actor.roleCode, "PRODUCTS_WRITE");
++  const mediaLibrary = new Map(assets.map((asset) => [asset.id, asset]));
++  for (const entry of product?.media ?? []) {
++    mediaLibrary.set(entry.mediaId, { id: entry.mediaId, ...entry.media });
++  }
+   const selected = new Set(product?.categories.map((item) => item.categoryId) ?? []);
+   const stock = product?.variants.reduce((total, item) => total + (item.inventory?.quantity ?? 0), 0) ?? 0;
+   const variantDrafts: VariantDraft[] = product?.variants.map((variant) => {
+@@ -62,13 +66,13 @@ export function ProductForm({ actor, categories, assets, product, error }: { act
+         <div className="admin-form-grid">
+           <label>اسم المنتج بالعربية *<input autoComplete="off" defaultValue={product?.titleAr} maxLength={191} name="titleAr" required /></label>
+           <label>التصنيف *<select defaultValue={[...selected]} multiple name="categoryIds" required size={Math.min(Math.max(categories.length, 3), 7)}>{categories.map((category) => <option key={category.id} value={category.id}>{category.nameAr}</option>)}</select><small className="admin-muted">على الكمبيوتر استخدم Ctrl أو ⌘ لاختيار أكثر من تصنيف.</small></label>
+-          <label>السعر التشغيلي بالجنيه<input defaultValue={product?.priceMinor === null || !product ? "" : decimalFromMinor(product.priceMinor)} inputMode="decimal" min="0" name="price" placeholder="أدخل السعر بعد التحقق" step="0.01" type="number" /><small className="admin-muted">لا يُستخدم سعر المصدر إلا بعد التحقق منه.</small></label>
++          <label>السعر التشغيلي بالجنيه<input defaultValue={product?.priceMinor === null || !product ? "" : decimalFromMinor(product.priceMinor)} inputMode="decimal" name="price" placeholder="أدخل السعر بعد التحقق" type="text" /><small className="admin-muted">لا يُستخدم سعر المصدر إلا بعد التحقق منه.</small></label>
+           <label>نوع المنتج *<select defaultValue={product?.type ?? ""} name="type" required><option disabled value="">اختر النوع بعد المراجعة</option><option value="READY_MADE">جاهز ومتوفر بالمخزون</option><option value="MADE_TO_ORDER">يصنع بعد الطلب</option></select></label>
+           <label className="admin-check"><input defaultChecked={Boolean(product?.detailsReviewedAt)} name="detailsReviewed" type="checkbox" />راجعت الاسم والتفاصيل</label>
+           <label className="admin-check"><input defaultChecked={product?.featured ?? false} name="featured" type="checkbox" />إظهار ضمن مختارات الصفحة الرئيسية</label>
+           {product ? <label>الكمية الحالية<input disabled value={stock} /><small className="admin-muted">تُدار الكمية لكل متغير من صفحة المخزون.</small></label> : null}
+           <label className="wide">الوصف بالعربية<textarea defaultValue={product?.descriptionAr} maxLength={10000} name="descriptionAr" rows={5} /></label>
+-          <MediaPicker assets={assets.map((asset) => ({ id: asset.id, label: asset.altAr || asset.originalKey.split("/").pop() || "صورة", url: asset.publicUrl }))} selected={product?.media.map((entry) => entry.mediaId) ?? []} />
++          <MediaPicker assets={[...mediaLibrary.values()].map((asset) => ({ id: asset.id, label: asset.altAr || asset.originalKey.split("/").pop() || "صورة", url: asset.publicUrl ?? "/assets/" + asset.originalKey.replace(/^legacy:/, "").split("/").map(encodeURIComponent).join("/") }))} selected={product?.media.map((entry) => entry.mediaId) ?? []} />
+           <VariantEditor existingProduct={Boolean(product)} initial={variantDrafts} />
+           <details className="wide admin-advanced"><summary>خيارات إضافية</summary><div className="admin-form-grid admin-advanced-grid">
+             <label>اسم المنتج بالإنجليزية<input defaultValue={product?.titleEn ?? ""} maxLength={191} name="titleEn" /></label>
+@@ -76,7 +80,7 @@ export function ProductForm({ actor, categories, assets, product, error }: { act
+             <label className="wide">الوصف بالإنجليزية<textarea defaultValue={product?.descriptionEn ?? ""} maxLength={10000} name="descriptionEn" rows={4} /></label>
+           </div></details>
+         </div>
+-        {canWrite ? <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">حفظ كمسودة</button><Link className="admin-button" href="/admin/products">إلغاء</Link></div> : null}
++        {canWrite ? <div className="admin-form-actions"><button className="admin-button admin-button-primary" type="submit">{product?.status === "PUBLISHED" ? "حفظ التغييرات" : "حفظ كمسودة"}</button><Link className="admin-button" href="/admin/products">إلغاء</Link></div> : null}
+       </form>
+       {product?.type === "MADE_TO_ORDER" && canWrite ? <ManufacturingForm product={product} /> : null}
+       {product ? <GalleryOrderForm product={product} /> : null}
+
+FILE src/app/admin/products/review/page.tsx
+diff --git a/../audit-canonical/src/app/admin/products/review/page.tsx b/tmp/p3-compare-source
+index adc52de..6a3271b 100644
+--- a/../audit-canonical/src/app/admin/products/review/page.tsx
++++ b/tmp/p3-compare-source
+@@ -130,7 +130,7 @@ export default async function ProductReviewPage({ searchParams }: { searchParams
+           </div>
+           <div className="review-fields">
+             <label htmlFor={"title-" + product.id}>الاسم العربي<input defaultValue={product.titleAr} id={"title-" + product.id} maxLength={191} name={"titleAr_" + product.id} required /></label>
+-            <label htmlFor={"price-" + product.id}>السعر التشغيلي (ج.م.)<input defaultValue={product.priceMinor === null ? "" : (product.priceMinor / 100).toFixed(2)} id={"price-" + product.id} inputMode="decimal" min="0" name={"price_" + product.id} placeholder="أدخل السعر بعد التحقق" step="0.01" type="number" /></label>
++            <label htmlFor={"price-" + product.id}>السعر التشغيلي (ج.م.)<input defaultValue={product.priceMinor === null ? "" : (product.priceMinor / 100).toFixed(2)} id={"price-" + product.id} inputMode="decimal" name={"price_" + product.id} placeholder="أدخل السعر بعد التحقق" type="text" /></label>
+             <label htmlFor={"type-" + product.id}>نوع المنتج<select defaultValue={product.type ?? ""} id={"type-" + product.id} name={"type_" + product.id}><option value="">لم يحدد</option><option value="READY_MADE">جاهز مع مخزون</option><option value="MADE_TO_ORDER">تصنيع حسب الطلب</option></select></label>
+             <label htmlFor={"category-" + product.id}>إضافة تصنيف موثّق<select defaultValue="" id={"category-" + product.id} name={"categoryId_" + product.id}><option value="">احتفظ بالتصنيفات الحالية</option>{eligibleCategories.map((category) => <option key={category.id} value={category.id}>{category.nameAr}</option>)}</select></label>
+             {product.variants.length ? <div className="review-existing-variants"><strong>المتغيرات والمخزون المسجل</strong>{product.variants.map((variant) => <span key={variant.id}>{variant.nameAr} · {variant.inventory ? new Intl.NumberFormat("ar-EG").format(variant.inventory.quantity) : "لا يوجد رصيد"}</span>)}<Link href={"/admin/products/" + product.id}>إدارة المتغيرات في التفاصيل</Link></div> : <>
+
+FILE src/app/admin/products/variant-editor.tsx
+diff --git a/../audit-canonical/src/app/admin/products/variant-editor.tsx b/tmp/p3-compare-source
+index 107bed8..663d970 100644
+--- a/../audit-canonical/src/app/admin/products/variant-editor.tsx
++++ b/tmp/p3-compare-source
+@@ -32,7 +32,7 @@ export function VariantEditor({ initial, existingProduct }: { initial: VariantDr
+       <label>الاسم بالعربية<input maxLength={191} onChange={(event) => update(index, "nameAr", event.target.value)} required value={variant.nameAr} /></label>
+       <label>الاسم بالإنجليزية<input maxLength={191} onChange={(event) => update(index, "nameEn", event.target.value)} value={variant.nameEn} /></label>
+       <label>SKU<input dir="ltr" maxLength={96} onChange={(event) => update(index, "sku", event.target.value)} value={variant.sku} /></label>
+-      <label>سعر المتغير (ج.م.)<input inputMode="decimal" min="0" onChange={(event) => update(index, "price", event.target.value)} placeholder="اتركه فارغاً لاستخدام سعر المنتج" step="0.01" type="number" value={variant.price} /></label>
++      <label>سعر المتغير (ج.م.)<input inputMode="decimal" onChange={(event) => update(index, "price", event.target.value)} placeholder="اتركه فارغاً لاستخدام سعر المنتج" type="text" value={variant.price} /></label>
+       <label className="wide">الخيارات — مثال: المقاس=وسط؛ التشطيب=مطروق<input maxLength={500} onChange={(event) => update(index, "optionsText", event.target.value)} value={variant.optionsText} /></label>
+       <label>العرض (مم)<input max="50000" min="0" onChange={(event) => update(index, "widthMm", event.target.value)} type="number" value={variant.widthMm} /></label>
+       <label>الارتفاع (مم)<input max="50000" min="0" onChange={(event) => update(index, "heightMm", event.target.value)} type="number" value={variant.heightMm} /></label>
+
+FILE src/app/api/admin/media/upload-url/route.ts
+diff --git a/../audit-canonical/src/app/api/admin/media/upload-url/route.ts b/tmp/p3-compare-source
+index b25e0d8..bae2c79 100644
+--- a/../audit-canonical/src/app/api/admin/media/upload-url/route.ts
++++ b/tmp/p3-compare-source
+@@ -28,7 +28,7 @@ export async function POST(request: Request) {
+     const id = crypto.randomUUID();
+     const key = `product-originals/${id}.${extensions[parsed.data.contentType]}`;
+     const signedHeaders = { "Content-Type": parsed.data.contentType, "x-amz-meta-owner": actor.id };
+-    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id } }), { expiresIn: 300 });
++    const uploadUrl = await getSignedUrl(storage.client, new PutObjectCommand({ Bucket: storage.originalsBucket, Key: key, ContentType: parsed.data.contentType, ContentLength: parsed.data.size, Metadata: { owner: actor.id } }), { expiresIn: 300, unhoistableHeaders: new Set(["x-amz-meta-owner"]), signableHeaders: new Set(["content-type"]) });
+     return Response.json({ uploadUrl, key, signedHeaders }, { headers: { "Cache-Control": "no-store" } });
+   } catch (error) {
+     const message = error instanceof Error ? error.message : "";
+
+FILE src/components/product-gallery.tsx
+diff --git a/../audit-canonical/src/components/product-gallery.tsx b/tmp/p3-compare-source
+index 5eecef6..ab3b814 100644
+--- a/../audit-canonical/src/components/product-gallery.tsx
++++ b/tmp/p3-compare-source
+@@ -70,7 +70,7 @@ export function ProductGallery({
+         >
+           {images.map((image, index) => (
+             <button
+-              key={image.localPath}
++              key={image.publicUrl ?? image.localPath}
+               type="button"
+               className={index === active ? "gallery-thumb is-active" : "gallery-thumb"}
+               onClick={() => setActive(index)}
+
+FILE src/lib/asset-url.ts
+diff --git a/../audit-canonical/src/lib/asset-url.ts b/tmp/p3-compare-source
+index 3d5baea..f5dcf63 100644
+--- a/../audit-canonical/src/lib/asset-url.ts
++++ b/tmp/p3-compare-source
+@@ -2,7 +2,12 @@ import type { CatalogImage } from "@/lib/types";
+
+ // Shared with the gallery without importing the server's complete catalog.
+ export function getProductImageUrl(image: Pick<CatalogImage, "localPath" | "publicUrl">): string {
+-  if (image.publicUrl?.startsWith("https://")) return image.publicUrl;
++  if (image.publicUrl) {
++    try {
++      const url = new URL(image.publicUrl);
++      if (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1"].includes(url.hostname)) return image.publicUrl;
++    } catch { /* Fall back to the preserved local archive. */ }
++  }
+   if (!image.localPath) return "/assets/unavailable.jpg";
+   return "/assets/" + image.localPath.split("/").map(encodeURIComponent).join("/");
+ }
+
+FILE src/lib/server/database.ts
+diff --git a/../audit-canonical/src/lib/server/database.ts b/tmp/p3-compare-source
+index c1f3c4b..1e9382a 100644
+--- a/../audit-canonical/src/lib/server/database.ts
++++ b/tmp/p3-compare-source
+@@ -3,6 +3,7 @@ import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+ import { PrismaClient } from "@/generated/prisma/client";
+
+ const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
++let runtimeDatabase: PrismaClient | undefined;
+
+ function readDatabaseConfig() {
+   const raw = process.env.DATABASE_URL;
+@@ -25,9 +26,11 @@ function readDatabaseConfig() {
+ }
+
+ export function getDatabase() {
++  if (runtimeDatabase) return runtimeDatabase;
+   if (globalForPrisma.prisma) return globalForPrisma.prisma;
+   const adapter = new PrismaMariaDb(readDatabaseConfig());
+   const prisma = new PrismaClient({ adapter });
++  runtimeDatabase = prisma;
+   if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+   return prisma;
+ }
+
+FILE src/lib/server/media-storage.ts
+diff --git a/../audit-canonical/src/lib/server/media-storage.ts b/tmp/p3-compare-source
+index 64a020c..485c88a 100644
+--- a/../audit-canonical/src/lib/server/media-storage.ts
++++ b/tmp/p3-compare-source
+@@ -38,6 +38,9 @@ export function getMediaStorage() {
+     endpoint: parsed.toString(),
+     region: process.env.MEDIA_S3_REGION || "auto",
+     forcePathStyle: process.env.MEDIA_S3_FORCE_PATH_STYLE === "true",
++    // A presigned upload has no body until the browser supplies the image.
++    // Do not calculate an empty-body checksum while creating its signed URL.
++    requestChecksumCalculation: "WHEN_REQUIRED",
+     credentials: { accessKeyId, secretAccessKey },
+   });
+   return {
+
+FILE src/lib/server/mysql.integration.test.ts
+diff --git a/../audit-canonical/src/lib/server/mysql.integration.test.ts b/tmp/p3-compare-source
+index 943cfdc..e699167 100644
+--- a/../audit-canonical/src/lib/server/mysql.integration.test.ts
++++ b/tmp/p3-compare-source
+@@ -203,7 +203,7 @@ databaseSuite("MySQL/MariaDB integration acceptance", () => {
+             actorLabel: actor.name,
+           },
+         });
+-        await tx.manufacturingPolicy.create({ data: { productId: product.id, available: true } });
++        await tx.manufacturingPolicy.create({ data: { id: product.id, productId: product.id, available: true } });
+         await tx.auditEvent.create({
+           data: {
+             actorId: actor.id,
+
+FILE tsconfig.json
+diff --git a/../audit-canonical/tsconfig.json b/tmp/p3-compare-source
+index d7aeda1..c1a1df5 100644
+--- a/../audit-canonical/tsconfig.json
++++ b/tmp/p3-compare-source
+@@ -35,10 +35,14 @@
+     "**/*.ts",
+     "**/*.tsx",
+     ".next-phase2/types/**/*.ts",
+-    ".next-phase2/dev/types/**/*.ts"
++    ".next-phase2/dev/types/**/*.ts",
++    ".next-phase2-validation/dev/types/**/*.ts",
++    ".next-local/types/**/*.ts",
++    ".next-local/dev/types/**/*.ts"
+   ],
+   "exclude": [
+     "node_modules",
++    ".local",
+     "sprtaya-kanaka-assets",
+     "scripts"
+   ]
+
+FILE vitest.config.mts
+diff --git a/../audit-canonical/vitest.config.mts b/tmp/p3-compare-source
+index ac98093..3f54ea3 100644
+--- a/../audit-canonical/vitest.config.mts
++++ b/tmp/p3-compare-source
+@@ -10,6 +10,6 @@ export default defineConfig({
+   },
+   test: {
+     environment: "node",
+-    include: ["src/**/*.test.ts"],
++    include: ["src/**/*.test.ts", "scripts/**/*.test.ts"],
+   },
+ });

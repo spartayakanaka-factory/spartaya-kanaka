@@ -1,0 +1,10 @@
+{
+  "requests": 36,
+  "concurrency": 6,
+  "ownerSessions": 2,
+  "successes": 30,
+  "throttles": 6,
+  "errors": 0,
+  "medianMs": 31,
+  "p95Ms": 361
+}

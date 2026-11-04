@@ -1,0 +1,39 @@
+[
+  {
+    "route": "/ar",
+    "status": 200,
+    "location": null,
+    "noindex": "noindex, nofollow, noarchive"
+  },
+  {
+    "route": "/en",
+    "status": 200,
+    "location": null,
+    "noindex": "noindex, nofollow, noarchive"
+  },
+  {
+    "route": "/ar/account",
+    "status": 200,
+    "location": null,
+    "noindex": "noindex, nofollow, noarchive"
+  },
+  {
+    "route": "/en/cart",
+    "status": 200,
+    "location": null,
+    "noindex": "noindex, nofollow, noarchive"
+  },
+  {
+    "route": "/admin",
+    "status": 307,
+    "location": "/admin/login",
+    "noindex": "noindex, nofollow, noarchive"
+  },
+  {
+    "route": "/robots.txt",
+    "status": 200,
+    "location": null,
+    "noindex": "noindex, nofollow, noarchive",
+    "robots": "User-agent: *\nDisallow: /\n"
+  }
+]

@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")/.."
+if command -v node >/dev/null 2>&1; then exec node scripts/phase3.mjs "$@"; fi
+exec /Users/zuriki/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/phase3.mjs "$@"

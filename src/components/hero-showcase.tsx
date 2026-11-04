@@ -32,7 +32,7 @@ export function HeroShowcase({ choices, locale }: { choices: Choice[]; locale: L
           unoptimized={choice.unoptimized}
           width={choice.width}
           height={choice.height}
-          preload={active === 0}
+          fetchPriority={active === 0 ? "high" : "auto"}
           loading="eager"
           sizes="(max-width: 700px) 100vw, 60vw"
         />
@@ -52,7 +52,7 @@ export function HeroShowcase({ choices, locale }: { choices: Choice[]; locale: L
       >
         {choices.map((item, index) => (
           <button
-            key={item.href}
+            key={item.label}
             type="button"
             aria-pressed={active === index}
             onClick={() => setActive(index)}

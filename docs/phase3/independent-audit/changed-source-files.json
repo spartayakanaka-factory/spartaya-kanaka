@@ -1,0 +1,118 @@
+{
+  "auditedBase": "6e07948b7b4f47888335b19136813bd610293faf",
+  "sourceFixCommit": "77a8cab30d4062cedacec348456dd79403570fb5",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "d5a0d8b5e86fa1ad84e2240d8f75ce6b10af2cca86d2acf58543425b831a7eba"
+    },
+    {
+      "path": "docs/phase3/README.md",
+      "sha256": "267f7367723a784af9e287f54f2df8602ee265e9ac47a09b6078d28fe7f487c6"
+    },
+    {
+      "path": "docs/phase3/acceptance.md",
+      "sha256": "4c3e132745d7342992c80d585ed5d65049d86551d303926e9397504a719a8588"
+    },
+    {
+      "path": "scripts/deploy-migrations.mjs",
+      "sha256": "45ac8468c9034b062f7f7c913bfd87055295c5a9f6421bf6e18a2b76b0daefde"
+    },
+    {
+      "path": "scripts/phase3-db.py",
+      "sha256": "f9915cccdbb96f8f65fefa02729acb1433f99658a95f152e0e131caf50ced46f"
+    },
+    {
+      "path": "scripts/phase3-entrypoints.test.ts",
+      "sha256": "0073fc6d862b1f7f1f77fcab6564b86bb9ca67ff12b385c41f713fffb4c93b5d"
+    },
+    {
+      "path": "scripts/phase3-migrate.ts",
+      "sha256": "0feabd8a1fa53668a3c749cf4a9a6444e64428cfcd973106a541da9aaf609e37"
+    },
+    {
+      "path": "src/app/admin/admin.css",
+      "sha256": "d4b378fffd7efcd28de75a4cc0dfea18780480ee4002a9702359ad174cb936e8"
+    },
+    {
+      "path": "src/app/admin/commerce-panel.tsx",
+      "sha256": "c00d354b25d51821abe6a6da77f023c1350a032eb4977d33106871720444b756"
+    },
+    {
+      "path": "src/app/admin/inventory/page.tsx",
+      "sha256": "91dc879d1a0bfc8c5fd69281a7359227831fb3320b957dd795a4c01d12c05dd7"
+    },
+    {
+      "path": "src/app/admin/local-db.integration.test.ts",
+      "sha256": "1ed0838b96b7a507ff7871561c0f390ad3d1934d229f8cc551114951c4890458"
+    },
+    {
+      "path": "src/app/api/admin/commerce/route.ts",
+      "sha256": "315f10cdfdf55c1c4c125b3bf783a4ed453420ce89d17d113b21ddab9f52d55e"
+    },
+    {
+      "path": "src/app/api/commerce/route.ts",
+      "sha256": "7198a667560f0bed90af3ce4926fbd6e4c56768f3c23e1464a97fc529c418445"
+    },
+    {
+      "path": "src/app/api/customer-auth/[...all]/route.ts",
+      "sha256": "a0dd2967bdc18a95330d23aeddd9fb0c21997c5d3928bf003cb90b6438430f18"
+    },
+    {
+      "path": "src/app/api/mock-payments/webhook/route.ts",
+      "sha256": "d6db3016b1b59fdbe8c97ba43a7cd17e0d9a0c8206d3570adaff58c0866c2f8a"
+    },
+    {
+      "path": "src/components/commerce-client.tsx",
+      "sha256": "a2037434700ebfc1478ab05ef7f9f7ff0f1e4e099fd4bdbd6dbc82fca0c3eb9c"
+    },
+    {
+      "path": "src/lib/server/admin-session.test.ts",
+      "sha256": "9b1d385e8944e335272260e395422b0b958c8b252b2ef8ad4bc083888ba807ae"
+    },
+    {
+      "path": "src/lib/server/admin-session.ts",
+      "sha256": "eb43e359eda99eff7f81ddb542c99a576506551dc7b863758ee581006b92775f"
+    },
+    {
+      "path": "src/lib/server/commerce/admin.ts",
+      "sha256": "f9028135bf075938473c917f00012bbf69981d4ce88b72810288b1c43271dc89"
+    },
+    {
+      "path": "src/lib/server/commerce/commerce.integration.test.ts",
+      "sha256": "3502fd5bebc27d716602cf29390e4fc4a56c1d75d381cfaf78137cdbf128f74f"
+    },
+    {
+      "path": "src/lib/server/commerce/customer-dto.ts",
+      "sha256": "68e2fd797962feb6d86ba96f855510af79c6e3c33c36653c222101dc10061a59"
+    },
+    {
+      "path": "src/lib/server/commerce/http-security.test.ts",
+      "sha256": "a365bf15f91c339351209c8d2f1ba5776647a41773aa6cd11c2374c56fe332e4"
+    },
+    {
+      "path": "src/lib/server/commerce/http.ts",
+      "sha256": "11124b70222437e3ad1dd89581d8cbb742e844c5c8d73f257dbdcc911f41261d"
+    },
+    {
+      "path": "src/lib/server/commerce/independent-audit.integration.test.ts",
+      "sha256": "b25dff83ea24c39e678ce05081158e61cc781c3dcf4d0a5e6486dcf20886c0ab"
+    },
+    {
+      "path": "src/lib/server/commerce/notifications.ts",
+      "sha256": "fa11a8b65505f71262110d468ebfd8f90d4973cd52058a3effda0510088027f7"
+    },
+    {
+      "path": "src/lib/server/commerce/payments.ts",
+      "sha256": "0727d9ed6d8eeea14e3c9901a5538099b3fc79239e9d7ceae24ae671c1e0f064"
+    },
+    {
+      "path": "src/lib/server/commerce/store.ts",
+      "sha256": "86e92105200459f440ac90c843674ad80f49136f7d8805f4fa2dbd3870a7717d"
+    },
+    {
+      "path": "vitest.config.mts",
+      "sha256": "ac9692104ac35047b91b37e1b28bd4aff1cca25386ca8fa5f9c13ef844405b39"
+    }
+  ]
+}

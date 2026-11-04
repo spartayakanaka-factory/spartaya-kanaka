@@ -1,0 +1,8 @@
+{
+  "sourceTextFilesScanned": 163,
+  "knownPrivateSecretAndTokenPatternFindings": [],
+  "privateFilesInBuildTraces": [],
+  "privateValuesInClientBundles": [],
+  "gitIgnorePrivateState": true,
+  "envExampleAllowed": true
+}

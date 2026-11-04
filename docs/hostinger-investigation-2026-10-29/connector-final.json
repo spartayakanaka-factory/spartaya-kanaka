@@ -1,0 +1,38 @@
+{
+  "settings": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"domain\":\"bisque-pheasant-330767.hostingersite.com\",\"ssl\":{\"status\":\"active\",\"provider\":null,\"is_lifetime\":false,\"is_https_redirect_enabled\":true,\"expires_at\":null,\"last_error\":null},\"cdn\":{\"is_enabled\":true},\"cache\":{\"is_enabled\":false,\"is_cacheless_mode_enabled\":false}}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "runtime": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"logs\":[{\"timestamp\":\"2026-10-28T22:22:54.976Z\",\"level\":\"LOG\",\"message\":\"\\u25b2 Next.js 16.4.3\"},{\"timestamp\":\"2026-10-28T22:22:54.976Z\",\"level\":\"LOG\",\"message\":\"- Local:         http:\\/\\/0.0.0.0:3000\"},{\"timestamp\":\"2026-10-28T22:22:54.977Z\",\"level\":\"LOG\",\"message\":\"- Network:       http:\\/\\/0.0.0.0:3000\"},{\"timestamp\":\"2026-10-28T22:22:54.977Z\",\"level\":\"LOG\",\"message\":\"\\u2713 Ready in 0ms\"},{\"timestamp\":\"2026-10-28T22:22:54.981Z\",\"level\":\"LOG\",\"message\":\"\\u2713 Running next.config took 2ms\"}],\"started_at\":\"2026-10-28T19:23:55Z\",\"total_lines\":15,\"last_deployed_at\":\"2026-10-28T19:23:59Z\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "environmentKeys": {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "[{\"key\":\"STAGING_ACCESS_PASSWORD\",\"value\":\"********\"},{\"key\":\"STAGING_ACCESS_USERNAME\",\"value\":\"********\"},{\"key\":\"STAGING_SITE\",\"value\":\"********\"},{\"key\":\"APP_ENV\",\"value\":\"********\"}]"
+        }
+      ],
+      "isError": false
+    }
+  }
+}

@@ -3,6 +3,8 @@ import { createHash } from "node:crypto";
 const loopbackHosts = new Set(["localhost", "127.0.0.1", "::1"]);
 const hostingerPhase2IdentityFingerprint =
   "c682b57673c1d6e08101934269d02fc87a87eb020e327cd2414a840151c14554";
+const hostingerPhase2Database = "u858869017_sprtaya_phase2";
+const hostingerPhase2Username = "u858869017_sprtaya_test";
 
 export type DatabaseTarget = "local" | "staging" | "hostinger-phase2-test";
 
@@ -48,8 +50,10 @@ export function assertSafeDatabaseTarget(options: DatabaseTargetOptions = {}): S
 
   const host = url.hostname.toLowerCase();
   const port = Number(url.port || 3306);
-  const database = decodeURIComponent(url.pathname.replace(/^\//, "")).toLowerCase();
-  const username = decodeURIComponent(url.username).toLowerCase();
+  const databaseIdentity = decodeURIComponent(url.pathname.replace(/^\//, ""));
+  const usernameIdentity = decodeURIComponent(url.username);
+  const database = databaseIdentity.toLowerCase();
+  const username = usernameIdentity.toLowerCase();
   const password = decodeURIComponent(url.password);
 
   if (!database || !host || !username) throw new Error("DATABASE_URL is incomplete.");
@@ -65,6 +69,10 @@ export function assertSafeDatabaseTarget(options: DatabaseTargetOptions = {}): S
       environment.STAGING_SITE !== "1" ||
       host !== "127.0.0.1" ||
       port !== 3306 ||
+      url.search !== "" ||
+      url.hash !== "" ||
+      databaseIdentity !== hostingerPhase2Database ||
+      usernameIdentity !== hostingerPhase2Username ||
       !password
     ) {
       throw new Error(
@@ -72,7 +80,11 @@ export function assertSafeDatabaseTarget(options: DatabaseTargetOptions = {}): S
       );
     }
     const actualFingerprint = databaseIdentityFingerprint(database, username);
-    if (actualFingerprint !== hostingerPhase2IdentityFingerprint) {
+    if (
+      actualFingerprint !== hostingerPhase2IdentityFingerprint ||
+      database !== hostingerPhase2Database ||
+      username !== hostingerPhase2Username
+    ) {
       throw new Error("DATABASE_URL does not identify the designated Phase 2 test database user.");
     }
   } else if (environment.NODE_ENV === "production") {

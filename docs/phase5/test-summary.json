@@ -1,0 +1,9 @@
+{
+  "numTotalTests": 325,
+  "numPassedTests": 325,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "success": true,
+  "databaseStorageTests": 106,
+  "scope": "All suites executed with both integration flags enabled against the exact Phase 5 disposable schema and loopback S3; no skips."
+}
