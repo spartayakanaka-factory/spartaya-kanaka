@@ -302,6 +302,7 @@ async function main() {
       runner,
       "test",
       "--testTimeout=30000",
+      "--reporter=default",
       "--reporter=json",
       "--outputFile=" + evidence + "/regression-tests.json",
     ],
